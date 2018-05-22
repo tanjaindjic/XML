@@ -1,4 +1,4 @@
-package Model.Enums;
+package XmlWeb.model.Enums;
 
 public enum StatusKorisnika {
     AKTIVAN,

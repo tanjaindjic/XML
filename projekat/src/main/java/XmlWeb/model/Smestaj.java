@@ -1,7 +1,7 @@
-package Model;
+package XmlWeb.model;
 
-import Model.Enums.DodatneUsluge;
-import Model.Enums.TipSmestaja;
+import XmlWeb.model.Enums.DodatneUsluge;
+import XmlWeb.model.Enums.TipSmestaja;
 
 import javax.persistence.*;
 import java.util.List;

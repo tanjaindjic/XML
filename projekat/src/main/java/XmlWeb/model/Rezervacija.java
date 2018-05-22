@@ -1,6 +1,6 @@
-package Model;
+package XmlWeb.model;
 
-import Model.Enums.StatusRezevacije;
+import XmlWeb.model.Enums.StatusRezevacije;
 
 import javax.persistence.*;
 import java.util.Date;

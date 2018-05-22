@@ -1,4 +1,4 @@
-package Model.Enums;
+package XmlWeb.model.Enums;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

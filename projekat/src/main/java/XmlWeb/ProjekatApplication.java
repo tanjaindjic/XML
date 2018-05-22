@@ -1,4 +1,4 @@
-package XmlWeb.projekat;
+package XmlWeb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

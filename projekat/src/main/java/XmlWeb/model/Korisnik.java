@@ -1,8 +1,8 @@
-package Model;
+package XmlWeb.model;
 
 
-import Model.Enums.StatusKorisnika;
-import Model.Enums.TipKorisnika;
+import XmlWeb.model.Enums.StatusKorisnika;
+import XmlWeb.model.Enums.Role;
 
 import javax.persistence.*;
 import java.util.List;
@@ -25,14 +25,14 @@ public class Korisnik {
     private boolean aktiviran;
 
     @Enumerated(EnumType.STRING)
-    private TipKorisnika tip;
+    private Role role;
 
     @Enumerated(EnumType.STRING)
     private StatusKorisnika statusNaloga;
 
     private String adresa;
 
-    private String poslovniMaticniBroj;
+    private String pib;
 
     @OneToMany
     private List<Smestaj> izdaje;
@@ -91,12 +91,12 @@ public class Korisnik {
         this.aktiviran = aktiviran;
     }
 
-    public TipKorisnika getTip() {
-        return tip;
+    public Role getRole() {
+        return role;
     }
 
-    public void setTip(TipKorisnika tip) {
-        this.tip = tip;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public StatusKorisnika getStatusNaloga() {
@@ -115,12 +115,12 @@ public class Korisnik {
         this.adresa = adresa;
     }
 
-    public String getPoslovniMaticniBroj() {
-        return poslovniMaticniBroj;
+    public String getPib() {
+        return pib;
     }
 
-    public void setPoslovniMaticniBroj(String poslovniMaticniBroj) {
-        this.poslovniMaticniBroj = poslovniMaticniBroj;
+    public void setPib(String pib) {
+        this.pib = pib;
     }
 
     public List<Smestaj> getIzdaje() {
