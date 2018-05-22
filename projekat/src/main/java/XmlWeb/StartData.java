@@ -20,7 +20,6 @@ public class StartData {
 	
 	@Autowired
 	private KorisnikRepository korisnikRepo;
-	
 
 	 @PostConstruct
 	 public void initIt(){
