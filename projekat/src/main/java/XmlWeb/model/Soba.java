@@ -24,9 +24,20 @@ public class Soba {
     private List<Iznajmljivanje> iznajmljivanja;
 
     @OneToMany
+    private List<Rezervacija> rezervisano;
+
+    @OneToMany
     private List<Cenovnik> cene;
 
     public Soba() {
+    }
+
+    public List<Rezervacija> getRezervisano() {
+        return rezervisano;
+    }
+
+    public void setRezervisano(List<Rezervacija> rezervisano) {
+        this.rezervisano = rezervisano;
     }
 
     public Long getId() {

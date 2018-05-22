@@ -22,8 +22,6 @@ public class Iznajmljivanje {
 
     private Boolean mozePojedinacno;
 
-    @OneToMany
-    private List<Rezervacija> rezervisano;
 
     public Iznajmljivanje() {
     }
@@ -76,11 +74,4 @@ public class Iznajmljivanje {
         this.mozePojedinacno = mozePojedinacno;
     }
 
-    public List<Rezervacija> getRezervisano() {
-        return rezervisano;
-    }
-
-    public void setRezervisano(List<Rezervacija> rezervisano) {
-        this.rezervisano = rezervisano;
-    }
 }

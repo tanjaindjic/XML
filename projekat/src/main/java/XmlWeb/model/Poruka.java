@@ -3,6 +3,7 @@ package XmlWeb.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.util.Date;
 
 @Entity
 public class Poruka {
@@ -12,6 +13,8 @@ public class Poruka {
 
     private String tekst;
 
+    private Date vremeKreiranja;
+
     @ManyToOne
     private Korisnik primalac;
 
@@ -19,6 +22,14 @@ public class Poruka {
     private Korisnik posiljalac;
 
     public Poruka() {
+    }
+
+    public Date getVremeKreiranja() {
+        return vremeKreiranja;
+    }
+
+    public void setVremeKreiranja(Date vremeKreiranja) {
+        this.vremeKreiranja = vremeKreiranja;
     }
 
     public Long getId() {

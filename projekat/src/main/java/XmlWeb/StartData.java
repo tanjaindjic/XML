@@ -3,7 +3,6 @@ package XmlWeb;
 
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -31,7 +30,7 @@ public class StartData {
          k.setAktiviran(true);
          k.setRole(Role.ADMIN);
          k.setStatusNaloga(StatusKorisnika.AKTIVAN);
-         k.setAdresa("");
+         k.setEmail("");
          k.setPib("");
          k.setIzdaje(new ArrayList<>());
          k.setRezervacije(new ArrayList<>());

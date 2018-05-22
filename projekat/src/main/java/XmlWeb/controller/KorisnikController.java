@@ -2,6 +2,7 @@ package XmlWeb.controller;
 
 import java.util.List;
 
+import XmlWeb.dto.KorisnikDTO;
 import XmlWeb.model.Korisnik;
 import XmlWeb.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,13 @@ public class KorisnikController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/user")
-	public void updateKorisnik(@RequestBody Korisnik k){
-		 korisnikService.addKorisnik(k);
+	public void updateKorisnik(@RequestBody KorisnikDTO k){
+		 korisnikService.updateKorisnik(k);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/user")
+	public void addKorisnik(@RequestBody KorisnikDTO k){
+		korisnikService.addKorisnik(k);
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/user")

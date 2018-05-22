@@ -30,7 +30,7 @@ public class Korisnik {
     @Enumerated(EnumType.STRING)
     private StatusKorisnika statusNaloga;
 
-    private String adresa;
+    private String email;
 
     private String pib;
 
@@ -107,12 +107,12 @@ public class Korisnik {
         this.statusNaloga = statusNaloga;
     }
 
-    public String getAdresa() {
-        return adresa;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAdresa(String adresa) {
-        this.adresa = adresa;
+    public void setEmail(String adresa) {
+        this.email = adresa;
     }
 
     public String getPib() {

@@ -3,6 +3,8 @@ package XmlWeb.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import XmlWeb.dodatno.Konverter;
+import XmlWeb.dto.KorisnikDTO;
 import XmlWeb.model.Korisnik;
 import XmlWeb.repository.KorisnikRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,13 @@ public class KorisnikService {
         return allKorisnik;
     }
 	
-	public void addKorisnik(Korisnik k){
-        korisnikRepo.save(k);
+	public void addKorisnik(KorisnikDTO k){
+
+        Konverter kon = new Konverter();
+        Korisnik kor = kon.converterKorisnika(k, false);
+        if(kor!=null)
+            korisnikRepo.save(kor);
+
     }
 
     public Korisnik getKorisnik(String username){
@@ -35,8 +42,12 @@ public class KorisnikService {
         return korisnikRepo.findById(id).get();
     }
 
-    public void updateKorisnik(Korisnik a){
-        korisnikRepo.save(a);
+    public void updateKorisnik(KorisnikDTO k){
+        Konverter kon = new Konverter();
+        Korisnik kor = kon.converterKorisnika(k, true);
+        if(kor!=null)
+            korisnikRepo.save(kor);
+
     }
 
     public void updatePassword(Korisnik a){
