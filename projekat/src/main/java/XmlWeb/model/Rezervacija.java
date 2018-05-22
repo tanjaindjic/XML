@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@org.hibernate.annotations.OptimisticLocking
 public class Rezervacija {
 
     @Id
@@ -16,15 +17,36 @@ public class Rezervacija {
     private StatusRezevacije status;
 
     @ManyToOne
+    private Soba soba;
+
+    @ManyToOne
     private Korisnik rezervisao;
 
     private int ocena;
+
+    private boolean ocenio;
 
     private Date datumOd;
 
     private Date datumDo;
 
     public Rezervacija() {
+    }
+
+    public boolean isOcenio() {
+        return ocenio;
+    }
+
+    public void setOcenio(boolean ocenio) {
+        this.ocenio = ocenio;
+    }
+
+    public Soba getSoba() {
+        return soba;
+    }
+
+    public void setSoba(Soba soba) {
+        this.soba = soba;
     }
 
     public Long getId() {
