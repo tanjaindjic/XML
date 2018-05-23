@@ -10,13 +10,13 @@
       $stateProvider
 		 .state('core', {
 			 url: '/',
-			 templateUrl: 'index.html',
+			 templateUrl: 'app/components/core/core.html',
 			 controller: 'coreController',
 			 controllerAs: 'cc'
 		 })
 		.state('core.profile', {
 			url: 'profile',
-			templateUrl: 'profile/profile.html',
+			templateUrl: 'app/components/profile/profile.html',
 			controller: 'profileController',
 			controllerAs: 'pc'
 		});

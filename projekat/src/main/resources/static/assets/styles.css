@@ -1,0 +1,53 @@
+.site{
+	background-color: #eeeeee;
+	font-size: medium;
+	color: black;
+}
+.heading {
+	font: bold;
+	font-family: fantasy;
+	font-size: x-large;
+	font-weight: bold;
+	color: olive;
+	width: 55%;
+}
+.buttonP{
+	background-color: white;
+    color: black;
+    border: 2px solid #4CAF50; 
+}
+.buttonR{
+	background-color: white;
+    color: black;
+    border: 2px solid #808080;
+}
+.buttonS{
+	background-color: white;
+    color: black;
+    border: 2px solid #0080ff; 
+}
+.buttonsTD{
+	width: 15%;	
+}
+.whereTD{
+	width: 40%;	
+}
+.where{
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding-left: 40px;
+}
+.where:focus{	
+    border: 3px solid #555;
+}
+.dateTD{
+	width: 15%
+}
+.date{
+	
+}
+.peopleTD{
+	width: 15%
+}
