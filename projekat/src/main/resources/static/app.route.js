@@ -14,6 +14,12 @@
 			 controller: 'coreController',
 			 controllerAs: 'cc'
 		 })
+		 .state('core.home', {
+			 url: '/home',
+			 templateUrl: 'app/components/home/home.html',
+			 controller: 'homeController',
+			 controllerAs: 'hc'
+		 })
 		.state('core.profile', {
 			url: 'profile',
 			templateUrl: 'app/components/profile/profile.html',
