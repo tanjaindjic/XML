@@ -57,7 +57,7 @@ public class PorukaService {
     }
 
     public List<Poruka> getChat(Long osoba1, Long osoba2){
-        return porRepo.findByPosiljalacIdAndPrimalacIdOrPrimalacIdAndPosiljalacIdOrderByVremeKreiranjaAsc(osoba1, osoba2); //Jos malo kul madjije :D
+        return porRepo.findByPosiljalacIdAndPrimalacIdOrPrimalacIdAndPosiljalacIdOrderByVremeKreiranjaAsc(osoba1, osoba2, osoba2, osoba1); //Jos malo kul madjije :D
     }
 
 

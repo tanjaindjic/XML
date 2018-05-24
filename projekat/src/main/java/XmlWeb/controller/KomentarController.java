@@ -12,7 +12,7 @@ import java.util.List;
 public class KomentarController {
 
     @Autowired
-    KomentarService ks;
+    private KomentarService ks;
 
     @RequestMapping(method = RequestMethod.GET, value = "/comments/getAll")
     public List<Komentar> getAll() {
@@ -40,8 +40,8 @@ public class KomentarController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "accommodation/{id}/comments")
-    public List<Komentar>  getCommentsSmestaj(@PathVariable Long id) {
-        return ks.getKomentariBySmestaj(id);
+    public List<Komentar>  getCommentsSoba(@PathVariable Long id) {
+        return ks.getKomentariBySoba(id);
     }
 
 

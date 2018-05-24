@@ -62,12 +62,12 @@ public class KomentarService {
         return komRepo.findByRezervacijaRezervisao(id);
     }
 
-    public List<Komentar> getKomentariBySmestaj(Long id){
-        return komRepo.findByRezervacijaSmestajId(id);
+    public List<Komentar> getKomentariBySoba(Long id){
+        return komRepo.findByRezervacijaSobaId(id);
     }
 
-    public List<Komentar> getKomentariByOsobaAndSmestaj(Long osoba, Long smestaj){
-        return komRepo.findByRezervacijaRezervisaoIdAndRezervacijaSmestajId(osoba, smestaj);
+    public List<Komentar> getKomentariByOsobaAndSoba(Long osoba, Long soba){
+        return komRepo.findByRezervacijaRezervisaoIdAndRezervacijaSobaId(osoba, soba);
     }
 
 
