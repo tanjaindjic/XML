@@ -6,10 +6,7 @@ import XmlWeb.dto.KorisnikDTO;
 import XmlWeb.model.Korisnik;
 import XmlWeb.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -25,7 +22,7 @@ public class KorisnikController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/user/{id}")
-	public Korisnik getKorisnikByID(@RequestBody Long id){
+	public Korisnik getKorisnikByID(@PathVariable Long id){
 		return korisnikService.getKorisnik(id);
 	}
 	

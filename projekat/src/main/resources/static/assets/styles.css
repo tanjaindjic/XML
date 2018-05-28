@@ -3,6 +3,11 @@
 	font-size: medium;
 	color: black;
 }
+
+.white{
+	background-color:white !important;
+
+}
 .heading {
 	font: bold;
 	font-family: fantasy;
@@ -53,4 +58,38 @@
 }
 .peopleTD{
 	width: 15%
+}
+
+.goreDoleList{
+	float:left  !important;
+	padding: 0 !important;
+	color: blue;
+	cursor: pointer;
+	margin-top: 3%;
+	text-transform: uppercase;
+	vertical-align: top !important;
+	list-style-type: none !important;
+	border: 1px solid #4f4f4f;
+	display: block;
+	margin-right: 3%;
+}
+
+.pomeri{
+	padding-left: 3px  !important;
+	padding-right: 3px !important;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+}
+
+.gornjaIvica{
+	border-top: 1px solid #4f4f4f;
+	padding-left: 3px  !important;
+	padding-right: 3px !important;
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+}
+
+.centar{
+	margin-top: 3%;
+	margin-left: 3%;
 }

@@ -15,11 +15,31 @@
 			 controllerAs: 'cc'
 		 })
 		 .state('core.home', {
-			 url: '/home',
+			 url: 'home',
 			 templateUrl: 'app/components/home/home.html',
 			 controller: 'homeController',
 			 controllerAs: 'hc'
 		 })
+		  .state('core.inbox', {
+          url: 'inbox',
+          templateUrl: 'app/components/inbox/inbox.html',
+          controller: 'inboxController',
+          controllerAs: 'ic'
+      })
+          .state('core.chat', {
+              url: 'chat',
+              templateUrl: 'app/components/chat/chat.html',
+              controller: 'chatController',
+              controllerAs: 'cc',
+              params: {id :null}
+
+          })
+          .state('core.editProfile', {
+              url: 'editProfile',
+              templateUrl: 'app/components/editProfile/editProfile.html',
+              controller: 'editProfileController',
+              controllerAs: 'epc'
+          })
 		.state('core.profile', {
 			url: 'profile',
 			templateUrl: 'app/components/profile/profile.html',

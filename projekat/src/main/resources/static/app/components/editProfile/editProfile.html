@@ -1,0 +1,97 @@
+<div>
+
+
+    </br>
+    </br>
+
+    <ul class="goreDoleList">
+        <li class="pomeri">
+            <a ng-click="goToState('core.inbox')"> INBOX </a>
+        </li>
+        <li class="gornjaIvica">
+            <a ng-click="goToState('core.reservations')"> RESERVATIONS </a>
+        </li>
+        <li class="gornjaIvica">
+            <a ng-click="goToState('core.editProfile')"> EDIT PROFILE </a>
+        </li>
+    </ul>
+
+    <table class="centar">
+
+        <tr>
+            <td colspan="2"> PROFILE </td>
+        </tr>
+
+        <tr>
+            <td colspan="2"> &nbsp; </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a>USERNAME : </a>
+            </td>
+            <td>
+                <input class="input" type="text" ng-model="user.username"  >
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a>FIRST NAME : </a>
+            </td>
+            <td>
+                <input class="input" type="text" ng-model="user.firstName"  >
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+                <a>LAST NAME : </a>
+            </td>
+            <td>
+                <input class="input" type="text" ng-model="user.lastName"  >
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a>EMAIL : </a>
+            </td>
+            <td>
+                <input class="input" type="text" ng-model="user.email" disabled  >
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a>PASSWORD : </a>
+            </td>
+            <td>
+                <input class="input" type="password" ng-model="user.password"  >
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a>REPEAT PASSWORD : </a>
+            </td>
+            <td>
+                <input class="input" type="password" ng-model="rPassword"  >
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">&nbsp;</td>
+        </tr>
+
+        <tr>
+            <td  colspan="2">
+                <button  class="button" type="submit" ng-click="saveProfile(user.username, user.firstName, user.lastName, user.email, user.password, rPassword)">Save edit </button>
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>

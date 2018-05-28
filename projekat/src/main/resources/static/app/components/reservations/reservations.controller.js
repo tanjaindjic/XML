@@ -3,14 +3,14 @@
 
     angular
         .module('app')
-        .controller('profileController', profileController);
+        .controller('reservationsController', reservationsController);
 
-    profileController.$inject = ['$location', '$scope', '$rootScope','$http', '$window', '$cookies', '$stateParams', '$state', '$timeout'];
-    function profileController($location, $scope, $rootScope, $http, $window, $cookies, $stateParams, $state, $timeout) {
+    reservationsController.$inject = ['$location', '$scope', '$rootScope','$http', '$window', '$cookies', '$stateParams', '$state', '$timeout'];
+    function reservationsController($location, $scope, $rootScope, $http, $window, $cookies, $stateParams, $state, $timeout) {
 
-        var pc = this;
-    
-        
+        var cc = this;
+
+
         $scope.goToState=function (state) {
             $state.go(state , {"id" : $scope.userId} );
         }

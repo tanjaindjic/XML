@@ -36,5 +36,26 @@ public class StartData {
          k.setRezervacije(new ArrayList<>());
          korisnikRepo.save(k);
          System.out.println("dodao admira");
+         addUser("test", "test", "Minja", "Car", Role.USER);
+
 	 }
+
+	 public void addUser(String username, String password, String name, String last, Role r){
+
+         Korisnik k = new Korisnik();
+         k.setUsername(username);
+         k.setPassword(password);
+         k.setFirstName(name);
+         k.setLastName(last);
+         k.setAktiviran(true);
+         k.setRole(r);
+         k.setStatusNaloga(StatusKorisnika.AKTIVAN);
+         k.setEmail("radimail@gmail.com");
+         k.setPib("");
+         k.setIzdaje(new ArrayList<>());
+         k.setRezervacije(new ArrayList<>());
+         korisnikRepo.save(k);
+
+
+     }
 }
