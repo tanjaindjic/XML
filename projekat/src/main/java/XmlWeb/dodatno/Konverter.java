@@ -13,14 +13,14 @@ import XmlWeb.repository.RezervacijaRepository;
 import XmlWeb.repository.SobaRepository;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 public class Konverter {
 
-    @Autowired
+   /* @Autowired
     private RezervacijaRepository rezRepo;
 
     @Autowired
@@ -28,6 +28,10 @@ public class Konverter {
 
     @Autowired
     private SobaRepository sobaRepo;
+
+    @Autowired
+    private Konverter madjija;
+    */
 
 
     private boolean proveraKomentara(KomentarDTO kom){
@@ -37,7 +41,7 @@ public class Konverter {
             if(kom.getTekst()!=null)
                 if(kom.getRezervacijaId()>0)
                     if(kom.getTekst().trim().length()>0)
-                        b= rezRepo.existsById(kom.getRezervacijaId());
+                        b=true;  //rezRepo.existsById(kom.getRezervacijaId());
 
         return b;
     }
@@ -46,6 +50,7 @@ public class Konverter {
     public Komentar convertKomentara(KomentarDTO kom){
         Komentar k =null;
         if(proveraKomentara(kom)){
+            System.out.println("NE PROLAZI KONVERTER");
             k= new Komentar();
             k.setTekst(kom.getTekst());
             k.setOdobreno(false);
@@ -58,6 +63,13 @@ public class Konverter {
 
 
     private boolean proveraPoruke(PorukaDTO por){
+
+        System.out.println("Posiljalac : " +por.getPosiljalacId());
+        System.out.println("Primalac : " + por.getPrimalacId());
+        System.out.println("Text : "+por.getText() );
+
+
+
         boolean b = false;
         if(por.getPosiljalacId()!=null)
             if(por.getPrimalacId()!=null)
@@ -65,8 +77,17 @@ public class Konverter {
                     if(por.getPrimalacId()>0)
                         if(por.getPosiljalacId()>0)
                             if(por.getText().trim().length()>0)
-                                if(korRepo.existsById(por.getPosiljalacId()))
-                                    b= korRepo.existsById(por.getPrimalacId());
+                                //if(korRepo.findById(por.getPosiljalacId()).get() !=null)
+                                   // if(korRepo.findById(por.getPrimalacId()).get() !=null)
+                                        b=true;
+
+        System.out.println("b je : ");
+        if(b)
+            System.out.println("TRUE");
+        else
+            System.out.println("FALSE");
+
+
         return b;
 
     }
@@ -103,7 +124,7 @@ public class Konverter {
                                             if(kor.getPassword().trim().length()>0)
                                                 if(kor.getRole().trim().length()>0)
                                                         b=true;
-        if(b==true){
+     /*   if(b==true){
             if(update){
                 if(korRepo.findByUsername(kor.getUsername()) ==null)
                     b=false;
@@ -113,6 +134,7 @@ public class Konverter {
 
             }
         }
+        */
 
         return b;
     }
@@ -148,8 +170,10 @@ public class Konverter {
                         if(rez.getIdKorisnika()>0)
                             if(rez.getIdSobe()>0)
                                 if(rez.getKrajnjeVreme().compareTo(rez.getPocetnoVreme())>0)
-                                    if(korRepo.existsById(rez.getIdKorisnika()))
-                                        b= sobaRepo.existsById(rez.getIdSobe());
+                                    if(rez.getIdSmestaja() != null)
+                                        if(rez.getIdSmestaja()>0)
+                                        //  if(korRepo.existsById(rez.getIdKorisnika()))
+                                            b= true; // sobaRepo.existsById(rez.getIdSobe());
         return b;
 
     }
@@ -166,8 +190,11 @@ public class Konverter {
             k.setId(rez.getIdKorisnika());
             r.setRezervisao(k);
             Soba s = new Soba();
+            Smestaj sm = new Smestaj();
+            sm.setId(rez.getIdSmestaja());
             s.setId(rez.getIdSobe());
             r.setSoba(s);
+            r.setSmestaj(sm);
             r.setStatus(StatusRezevacije.NAPRAVLJENO);
             r.setOcenio(false);
         }

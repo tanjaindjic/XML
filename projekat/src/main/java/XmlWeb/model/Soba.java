@@ -10,6 +10,7 @@ import java.util.List;
 public class Soba {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private int brojLezaja;
@@ -31,6 +32,7 @@ public class Soba {
 
     public Soba() {
     }
+
 
     public List<Rezervacija> getRezervisano() {
         return rezervisano;

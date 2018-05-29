@@ -6,6 +6,8 @@ public class RezervacijaDTO {
 
     private Long idSobe;
 
+    private Long idSmestaja;
+
     private Long idKorisnika;
 
     private Date pocetnoVreme;
@@ -13,6 +15,14 @@ public class RezervacijaDTO {
     private Date krajnjeVreme;
 
     public RezervacijaDTO() {
+    }
+
+    public Long getIdSmestaja() {
+        return idSmestaja;
+    }
+
+    public void setIdSmestaja(Long idSmestaja) {
+        this.idSmestaja = idSmestaja;
     }
 
     public Long getIdSobe() {

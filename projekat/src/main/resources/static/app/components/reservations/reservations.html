@@ -1,0 +1,53 @@
+<div>
+
+
+    </br>
+    </br>
+
+
+    <ul class="goreDoleList">
+        <li class="pomeri">
+            <a ng-click="goToState('core.inbox')"> INBOX </a>
+        </li>
+        <li class="gornjaIvica">
+            <a ng-click="goToState('core.reservations')"> RESERVATIONS </a>
+        </li>
+        <li class="gornjaIvica">
+            <a ng-click="goToState('core.editProfile')"> EDIT PROFILE </a>
+        </li>
+        <li class="gornjaIvica">
+            <a ng-click="goToState('core.profile')"> PROFILE </a>
+        </li>
+    </ul>
+
+
+    <h3 class="centar">RESERVATIONS : </h3>
+
+
+
+    <ul class="goreDoleListCentar" >
+
+        <li ng-repeat="reservation in rezervacije track by $index" class="gornjaIvica">
+
+            <a ng-click="goToPlace(reservation.smestaj.id)"> Place : {{reservation.smestaj.naziv}}  </a>
+            <a> From : {{reservation.datumOd}}</a>
+            <a> To : {{reservation.datumDo}}</a>
+            <a> Comment : </a>
+            <textarea  rows="4" cols="120" ng-model="komentar"></textarea>
+            <button  type="submit"  ng-click="komentarisi(komentar, reservation.id)">Leave comment </button>
+            </br>
+            <button  type="submit"  ng-click="sendMessage(reservation.smestaj.vlasnik.id)">Send message </button>
+
+        </li>
+
+    </ul>
+    </br>
+
+
+    </br>
+
+
+
+
+
+</div>

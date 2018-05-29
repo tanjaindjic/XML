@@ -79,7 +79,7 @@
                     url: 'http://localhost:8096/user',
                     data: dto
                 }).then(function successCallback(response) {
-
+                    console.log("PROMENIO JE USERA");
 
                 }, function errorCallback(response) {
                     alert("Error occured check connection");

@@ -15,7 +15,7 @@ public class Komentar {
     private boolean odobreno;
 
     @ManyToOne
-    private Rezervacija rezervacija;
+    private Rezervacija rezervacija; // ZA OVO ILI ZA SMESTAJ MOZDA ?
 
     public Komentar() {
     }

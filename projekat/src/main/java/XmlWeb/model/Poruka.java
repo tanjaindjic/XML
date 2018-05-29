@@ -1,6 +1,7 @@
 package XmlWeb.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.util.Date;
@@ -9,6 +10,7 @@ import java.util.Date;
 public class Poruka {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String tekst;

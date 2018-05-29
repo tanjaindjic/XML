@@ -22,18 +22,15 @@ public class PorukaController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/messages/send")
     public void sendMessage(@RequestBody PorukaDTO p){
+        System.out.println("UAPO JE NA BACKEND :D");
         ps.sendPoruka(p);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/messages/inbox/{id}")
-    public List<Korisnik> getInbox(@PathVariable Long id){
-        return ps.getInbox(id);
-    }
+    public List<Korisnik> getInbox(@PathVariable Long id){ return ps.getInbox(id);}
 
     @RequestMapping(method = RequestMethod.GET, value = "/messages/inbox/{id}/chat/{id2}")
-    public List<Poruka> getChat(@PathVariable Long id, @PathVariable Long id2 ){
-        return ps.getChat(id,id2);
-    }
+    public List<Poruka> getChat(@PathVariable Long id, @PathVariable Long id2 ){ return ps.getChat(id,id2); }
 
 
 }

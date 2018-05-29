@@ -26,12 +26,18 @@
           controller: 'inboxController',
           controllerAs: 'ic'
       })
+          .state('core.reservations', {
+              url: 'reservations',
+              templateUrl: 'app/components/reservations/reservations.html',
+              controller: 'reservationsController',
+              controllerAs: 'rc'
+          })
           .state('core.chat', {
               url: 'chat',
               templateUrl: 'app/components/chat/chat.html',
               controller: 'chatController',
               controllerAs: 'cc',
-              params: {id :null}
+              params: {id :null, id2:null, username:null}
 
           })
           .state('core.editProfile', {

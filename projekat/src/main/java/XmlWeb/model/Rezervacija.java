@@ -20,6 +20,9 @@ public class Rezervacija {
     private Soba soba;
 
     @ManyToOne
+    private Smestaj smestaj;
+
+    @ManyToOne
     private Korisnik rezervisao;
 
     private int ocena;
@@ -31,6 +34,14 @@ public class Rezervacija {
     private Date datumDo;
 
     public Rezervacija() {
+    }
+
+    public Smestaj getSmestaj() {
+        return smestaj;
+    }
+
+    public void setSmestaj(Smestaj smestaj) {
+        this.smestaj = smestaj;
     }
 
     public boolean isOcenio() {

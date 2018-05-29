@@ -89,7 +89,51 @@
 	padding-bottom: 5px !important;
 }
 
+.gornjaIvicaChat{
+    padding-left: 3px  !important;
+    padding-right: 3px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+
 .centar{
 	margin-top: 3%;
 	margin-left: 3%;
+}
+
+.goreDoleListCentar{
+    float:left  !important;
+    padding: 0 !important;
+    color: blue;
+    cursor: pointer;
+    text-transform: uppercase;
+    vertical-align: top !important;
+    list-style-type: none !important;
+    border: 1px solid #4f4f4f;
+    display: block;
+    margin-right: 3%;
+
+    margin-left: 3%;
+}
+
+.zaSlanje{
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-top:1%;
+    display:block;
+}
+
+.goreDoleListChat{
+    float:left  !important;
+    padding: 0 !important;
+    vertical-align: top !important;
+    list-style-type: none !important;
+    display: block;
+    margin-right: 3%;
+    margin-left: 3%;
+}
+
+.tudjiChat{
+    background-color: aqua;
 }

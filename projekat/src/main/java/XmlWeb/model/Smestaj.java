@@ -10,6 +10,7 @@ import java.util.List;
 public class Smestaj {
 
     @Id
+    @GeneratedValue
     private Long id;
 
     private String naziv;

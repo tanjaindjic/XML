@@ -39,8 +39,8 @@ public class PorukaService {
         List<Korisnik> inbox = new ArrayList<Korisnik>();
         HashMap<Long, Korisnik> mapa = new HashMap<>();
 
-        List<SamoPosiljaoci> temp1 =  porRepo.findDistinctByPrimalacIdOrderByVremeKreiranja(korisnikId);
-        List<SamoPrimaoci> temp2 = porRepo.findDistinctByPosiljalacIdOrderByVremeKreiranja(korisnikId);
+        List<SamoPosiljaoci> temp1 =  porRepo.findDistinctByPrimalacId(korisnikId);
+        List<SamoPrimaoci> temp2 = porRepo.findDistinctByPosiljalacId(korisnikId);
 
         for (SamoPosiljaoci s1:temp1) {
             mapa.put(s1.getPosiljalac().getId(), s1.getPosiljalac());
@@ -53,11 +53,12 @@ public class PorukaService {
             inbox = new ArrayList<Korisnik>(mapa.values());
         }
 
+
         return inbox;
     }
 
     public List<Poruka> getChat(Long osoba1, Long osoba2){
-        return porRepo.findByPosiljalacIdAndPrimalacIdOrPrimalacIdAndPosiljalacIdOrderByVremeKreiranjaAsc(osoba1, osoba2, osoba2, osoba1); //Jos malo kul madjije :D
+        return porRepo.findDistinctByPosiljalacIdAndPrimalacIdOrPrimalacIdAndPosiljalacIdOrderByVremeKreiranjaAsc(osoba1, osoba2, osoba1, osoba2); //Jos malo kul madjije :D  OrderByVremeKreiranjaAsc
     }
 
 

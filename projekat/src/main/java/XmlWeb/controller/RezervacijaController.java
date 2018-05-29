@@ -6,10 +6,7 @@ import XmlWeb.dto.RezervacijaDTO;
 import XmlWeb.model.Rezervacija;
 import XmlWeb.service.RezervacijaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,8 @@ public class RezervacijaController {
         return rs.getAll();
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/reservation/{id}")
+    public List<Rezervacija> getByUser(@PathVariable Long id){ return rs.getRezervacije(id); }
 
     @RequestMapping(method = RequestMethod.POST, value = "/reservation/make")
     public boolean reserve(@RequestBody RezervacijaDTO r){
