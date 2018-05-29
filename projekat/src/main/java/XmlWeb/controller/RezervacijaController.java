@@ -30,9 +30,7 @@ public class RezervacijaController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/reservation/update")
-    public void update(@RequestBody RezStatusUpdateDTO rsud){
-        rs.updateStatus(rsud);
-    }
+    public void update(@RequestBody RezStatusUpdateDTO rsud){ rs.updateStatus(rsud); }
 
 
 }

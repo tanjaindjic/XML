@@ -45,9 +45,23 @@ public class KorisnikService {
     public void updateKorisnik(KorisnikDTO k){
         Konverter kon = new Konverter();
         Korisnik kor = kon.converterKorisnika(k, true);
-        if(kor!=null)
-            korisnikRepo.save(kor);
+        if(kor!=null) {
+            Korisnik id = korisnikRepo.findByUsername(kor.getUsername());
 
+            if(id != null){
+                kor.setId(id.getId());
+                if(id.getStatusNaloga() != null)
+                    kor.setStatusNaloga(id.getStatusNaloga());
+                kor.setRezervacije(id.getRezervacije());
+                kor.setPib(id.getPib());
+                kor.setIzdaje(id.getIzdaje());
+                kor.setAktiviran(id.isAktiviran());
+                kor.setRole(id.getRole());
+            }
+
+
+            korisnikRepo.save(kor);
+        }
     }
 
     public void updatePassword(Korisnik a){

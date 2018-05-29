@@ -69,6 +69,7 @@ public class RezervacijaService {
     }
 
     public void updateStatus(RezStatusUpdateDTO rsud ){
+
         Optional<Rezervacija> rezOp = rezRepo.findById(rsud.getId());
         if (rezOp.isPresent()){
             Rezervacija r = rezOp.get();

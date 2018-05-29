@@ -1,9 +1,9 @@
 package XmlWeb.model.Enums;
 
 public enum StatusRezevacije {
-    POTVRDJENO,
-    ODUSTAO,
-    DOSAO,
-    NAPRAVLJENO,
-    ODBIJENO
+    CONFIRMED,
+    CANCELED,
+    ARRIVED,
+    REJECTED,
+    PENDING
 }

@@ -32,9 +32,7 @@ public class KorisnikController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/user")
-	public void updateKorisnik(@RequestBody KorisnikDTO k){
-		 korisnikService.updateKorisnik(k);
-	}
+	public void updateKorisnik(@RequestBody KorisnikDTO k){ korisnikService.updateKorisnik(k); }
 
 	@RequestMapping(method = RequestMethod.POST, value = "/user")
 	public void addKorisnik(@RequestBody KorisnikDTO k){

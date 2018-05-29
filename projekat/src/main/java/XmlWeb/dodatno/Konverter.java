@@ -111,6 +111,16 @@ public class Konverter {
 
     private boolean proveraKorisnika(KorisnikDTO kor, boolean update){
 
+      /*  System.out.println("PROVERAVA KORISNIKA");
+        System.out.println("EMAIL : " + kor.getEmail());
+        System.out.println("FIRST NAME : " + kor.getFirstName());
+        System.out.println("LAST NAME : " +kor.getLastName());
+        System.out.println("PASSWORD : " +kor.getPassword());
+        System.out.println("ROLE : " +kor.getRole());
+        if(EmailValidator.getInstance().isValid(kor.getEmail())){
+            System.out.println("EMAIL JE OK");
+        }
+      */
         boolean b= false;
         if(kor.getEmail()!=null)
             if(kor.getFirstName()!=null)
@@ -123,7 +133,7 @@ public class Konverter {
                                         if(kor.getLastName().trim().length()>0)
                                             if(kor.getPassword().trim().length()>0)
                                                 if(kor.getRole().trim().length()>0)
-                                                        b=true;
+                                                    b=true;
      /*   if(b==true){
             if(update){
                 if(korRepo.findByUsername(kor.getUsername()) ==null)
@@ -143,6 +153,7 @@ public class Konverter {
 
         Korisnik k = null;
         if(proveraKorisnika(kor, update)){
+        //    System.out.println("KONVETUJE KORISNIKA");
             k = new Korisnik();
             k.setAktiviran(false);
             k.setFirstName(kor.getFirstName());
@@ -195,7 +206,7 @@ public class Konverter {
             s.setId(rez.getIdSobe());
             r.setSoba(s);
             r.setSmestaj(sm);
-            r.setStatus(StatusRezevacije.NAPRAVLJENO);
+            r.setStatus(StatusRezevacije.PENDING);
             r.setOcenio(false);
         }
 

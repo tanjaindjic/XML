@@ -69,6 +69,7 @@
                     "firstName": firstName,
                     "lastName": lastName,
                     "password": password,
+                    "email":email,
                     "pib": "",
                     "role": "USER"
                 };
@@ -79,12 +80,15 @@
                     url: 'http://localhost:8096/user',
                     data: dto
                 }).then(function successCallback(response) {
-                    console.log("PROMENIO JE USERA");
+                    alert("Edit saved");
+                    $location.path('/profile');
 
                 }, function errorCallback(response) {
                     alert("Error occured check connection");
                     $location.path('/home');
                 });
+            }else{
+                alert("All fields must be entered, please repeat your password if you want save the edit");
             }
 
 
