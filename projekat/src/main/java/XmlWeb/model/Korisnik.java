@@ -2,26 +2,60 @@ package XmlWeb.model;
 
 
 import XmlWeb.model.Enums.StatusKorisnika;
+import XmlWeb.model.security.Authority;
 import XmlWeb.model.Enums.Role;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+
+import java.util.Date;
 import java.util.List;
 
 @Entity
 public class Korisnik {
 
-    @Id
+    public List<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
+	}
+
+	@Id
     @GeneratedValue
     private Long id;
 
+    @Column(name = "USERNAME", length = 50, unique = true)
+    @NotNull
+    @Size(min = 4, max = 50)
     private String username;
 
+    
+    @Column(name = "FIRSTNAME", length = 50)
+    @NotNull
+    @Size(min = 4, max = 50)
     private String firstName;
 
+    @Column(name = "LASTNAME", length = 50)
+    @NotNull
+    @Size(min = 4, max = 50)
     private String lastName;
-
+    
+    @Column(name = "PASSWORD", length = 100)
+    @NotNull
+    @Size(min = 4, max = 100)
     private String password;
 
+    @Column(name = "LASTPASSWORDRESETDATE")
+    @Temporal(TemporalType.TIMESTAMP)
+    @NotNull
+    private Date lastPasswordResetDate;
+    
+    @Column(name = "ENABLED")
+    @NotNull
     private boolean aktiviran;
 
     @Enumerated(EnumType.STRING)
@@ -30,7 +64,17 @@ public class Korisnik {
     @Enumerated(EnumType.STRING)
     private StatusKorisnika statusNaloga;
 
+    @Column(name = "EMAIL", length = 50)
+    @NotNull
+    @Size(min = 4, max = 50)
     private String email;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "USER_AUTHORITY",
+            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
+    private List<Authority> authorities;
 
     private String pib;
 
@@ -138,4 +182,13 @@ public class Korisnik {
     public void setRezervacije(List<Rezervacija> rezervacije) {
         this.rezervacije = rezervacije;
     }
+
+	public Date getLastPasswordResetDate() {
+		// TODO Auto-generated method stub
+		return lastPasswordResetDate;
+	}
+
+	public void setLastPasswordResetDate(Date lastPasswordResetDate) {
+		this.lastPasswordResetDate = lastPasswordResetDate;
+	}
 }

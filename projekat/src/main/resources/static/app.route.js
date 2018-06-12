@@ -20,6 +20,12 @@
 			 controller: 'homeController',
 			 controllerAs: 'hc'
 		 })
+		 .state('core.login', {
+			 url: 'login',
+			 templateUrl: 'app/components/login/login.html',
+			 controller: 'loginController',
+			 controllerAs: 'lc'
+		 })
 		  .state('core.inbox', {
           url: 'inbox',
           templateUrl: 'app/components/inbox/inbox.html',

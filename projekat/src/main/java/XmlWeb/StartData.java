@@ -5,16 +5,30 @@ package XmlWeb;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import XmlWeb.model.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
+
+import XmlWeb.model.Korisnik;
+import XmlWeb.model.Poruka;
+import XmlWeb.model.Rezervacija;
+import XmlWeb.model.Smestaj;
+import XmlWeb.model.Soba;
 import XmlWeb.model.Enums.Role;
 import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.model.Enums.StatusRezevacije;
-import XmlWeb.repository.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import XmlWeb.model.security.Authority;
+import XmlWeb.model.security.AuthorityName;
+import XmlWeb.repository.AuthorityRepository;
+import XmlWeb.repository.KorisnikRepository;
+import XmlWeb.repository.PorukaRepository;
+import XmlWeb.repository.RezervacijaRepository;
+import XmlWeb.repository.SmestajRepository;
+import XmlWeb.repository.SobaRepository;
 
 
 @Component
@@ -22,6 +36,9 @@ public class StartData {
 	
 	@Autowired
 	private KorisnikRepository korisnikRepo;
+	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
     private PorukaRepository porukaRepo;
@@ -34,34 +51,44 @@ public class StartData {
 
 	@Autowired
     private RezervacijaRepository rezervacijaRepository;
+	
+	@Autowired
+    private AuthorityRepository authorityRepository;
 
 	 @PostConstruct
 	 public void initIt(){
 		 Korisnik k = new Korisnik();
 		 k.setUsername("admin");		
-		 k.setPassword("admin");
+		 k.setPassword(bCryptPasswordEncoder.encode("admin"));
          k.setFirstName("Pera");
          k.setLastName("Peric");
          k.setAktiviran(true);
          k.setRole(Role.ADMIN);
          k.setStatusNaloga(StatusKorisnika.AKTIVAN);
-         k.setEmail("");
+         k.setEmail("admir@admir.com");
+         k.setLastPasswordResetDate(new Date());
          k.setPib("");
          k.setIzdaje(new ArrayList<>());
          k.setRezervacije(new ArrayList<>());
+         List l = new ArrayList<>();
+         Authority a = new Authority();
+         a.setName(AuthorityName.ROLE_ADMIN);
+         authorityRepository.save(a);
+         l.add(a);
+         k.setAuthorities(l);
          korisnikRepo.save(k);
          System.out.println("dodao admira");
-         addUser("test", "test", "Minja", "Car", "test@gmail.com" , Role.USER);
-         addUser("Mirko", "mirko", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
-         addUser("Slavko", "slavko", "Slavko", "Slavic", "slavko@gmail.com" , Role.AGENT);
-
-         addMessage(2L, 3L, "Testiram poruke",1);
-         addMessage(3L, 2L, "Obrnut redosled",2);
-         addMessage(2L, 3L, "Evo poslao sam ti",3);
-         addMessage(2L, 4L, "Ziv si li Slavko ? ", 4);
-
-         addRezervacija(2l, 3l, 0);
-         addRezervacija(2l, 3l, 12);
+//         addUser("test", "test", "Minja", "Car", "test@gmail.com" , Role.USER);
+//         addUser("Mirko", "mirko", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
+//         addUser("Slavko", "slavko", "Slavko", "Slavic", "slavko@gmail.com" , Role.AGENT);
+//
+//         addMessage(2L, 3L, "Testiram poruke",1);
+//         addMessage(3L, 2L, "Obrnut redosled",2);
+//         addMessage(2L, 3L, "Evo poslao sam ti",3);
+//         addMessage(2L, 4L, "Ziv si li Slavko ? ", 4);
+//
+//         addRezervacija(2l, 3l, 0);
+//         addRezervacija(2l, 3l, 12);
 
 
 	 }
