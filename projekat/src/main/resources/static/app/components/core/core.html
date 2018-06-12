@@ -4,7 +4,7 @@
 			<td class='heading'>PigInc. BOOKING </td>
 			<td class='buttonsTDP'>
 				<button class='buttonP'>Manage My Property</button> 
-				<button class='buttonR' id="registerBtn">Register</button> 
+				<button class='buttonR' id="registerBtn" ng-click="register()">Register</button> 
 				<button class='buttonS' ng-click="login()" id="loginBtn">Log In</button> 
 				<button class='buttonR' ng-click="logout()" id="logoutBtn">Log Out</button> 
 			</td>
@@ -15,11 +15,11 @@
 	<hr/>
 	<table>
 		<tr>
-			<td class='whereTD'><input type='text' size='50' placeholder=" where are you traveling to?" class='where'> </td>
-			<td class='dateTD'><input type='date' class='date'></td>
-			<td class='dateTD'><input type='date' class='date'></td>
-			<td class='peopleTD'><input type="number" class='people' placeholder="how many people?"></td>
-			<td class='buttonsTD'><button class='buttonP'>find it...</button></td>
+			<td class='whereTD'><input type='text' size='50' placeholder=" Where are you traveling to?" class='where'> </td>
+			<td class='dateTD'><input type='date' class='date' placeholder="From"></td>
+			<td class='dateTD'><input type='date' class='date' placeholder="To"></td>
+			<td class='peopleTD'><input type="number" class='people' placeholder="How many people?"></td>
+			<td class='buttonsTD'><button class='buttonP'>Search</button></td>
 		</tr>	
 	</table>
 	<table>

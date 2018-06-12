@@ -95,7 +95,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .ignoring()
             .antMatchers(
                 HttpMethod.POST,
-                authenticationPath
+                authenticationPath, 
+                "/register"
             )
 
             // allow anonymous resource requests
@@ -108,7 +109,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/favicon.ico",
                 "/**/*.html",
                 "/**/*.css",
-                "/**/*.js"
+                "/**/*.js",
+                "/register"
             )
 
             // Un-secure H2 Database (for testing purposes, H2 console shouldn't be unprotected in production)

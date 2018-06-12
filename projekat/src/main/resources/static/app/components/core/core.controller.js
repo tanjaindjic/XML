@@ -31,8 +31,25 @@
 		};
 		init();
 
+		function removeJwtToken() {
+			localStorage.removeItem($scope.TOKEN_KEY);
+		}
+		
 		$scope.login = function() {
 			$location.path('/login');
+		}
+		
+		$scope.register = function() {
+			$location.path('/register');
+		}
+		
+		$scope.logout = function(){
+			removeJwtToken();
+			$scope.login.show();
+			$scope.logout.hide();
+			$scope.reg.show();
+			
+			$location.path("/home")
 		}
 
 	}

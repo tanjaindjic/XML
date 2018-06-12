@@ -36,6 +36,7 @@
 				showTokenInformation();
 				showUserInformation();
 				$scope.reg.hide();
+				$location.path("/home")
 			}
 
 		};

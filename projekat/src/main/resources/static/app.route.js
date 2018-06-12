@@ -26,6 +26,12 @@
 			 controller: 'loginController',
 			 controllerAs: 'lc'
 		 })
+		 .state('core.register', {
+			 url: 'register',
+			 templateUrl: 'app/components/register/register.html',
+			 controller: 'registerController',
+			 controllerAs: 'regc'
+		 })
 		  .state('core.inbox', {
           url: 'inbox',
           templateUrl: 'app/components/inbox/inbox.html',

@@ -83,6 +83,17 @@ public class Korisnik {
 
     @OneToMany
     private List<Rezervacija> rezervacije;
+    
+    @Column(name = "confirmation_token")
+	private String confirmationToken;
+
+	public String getConfirmationToken() {
+		return confirmationToken;
+	}
+
+	public void setConfirmationToken(String confirmationToken) {
+		this.confirmationToken = confirmationToken;
+	}
 
     public Korisnik() {
     }
