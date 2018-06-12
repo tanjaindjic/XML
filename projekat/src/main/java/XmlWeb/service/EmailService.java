@@ -8,25 +8,41 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-@Service("emailService")
+@Service
 public class EmailService {
-
-	private final String from="piginco@gmail.com";
-	private final String host = "localhost";
 	
-@SuppressWarnings("restriction")
-@Async
-  public void sendEmail(String to) {
 
+	  private JavaMailSender mailSender;
+	  
+
+	  @Autowired
+	  public EmailService(JavaMailSender mailSender) {
+	    this.mailSender = mailSender;
+	  }
+	  
+	  @Async
+	  public void sendEmail(SimpleMailMessage email) {
+	    mailSender.send(email);
+	  }
+			
+	/*@Async
+	public void sendEmail(String to) throws InterruptedException {
+		
 		System.out.println("Sending email...");
 		try{
-	        String user = "piginco@gmail.com";
-	        String pass = "pigincoNTM10";	        
+			String host ="smtp.mailhost.com" ;
+	        String user = "mailUser";
+	        String pass = "mailPass";
+	        String from = "piginco@gmail.com";
 	        String subject = "Activate your account";
-	        String messageText = "Please go to following link to activate your account: https://localhost:8096/confirm?token=" + to;
+	        String messageText =  "Please go to following link to activate your account: https://localhost:8096/confirm?token=" + to;
 	        boolean sessionDebug = false;
 	
 	        Properties props = System.getProperties();
@@ -57,6 +73,6 @@ public class EmailService {
 	        System.out.println(ex);
 	    }
 
-    
-  }
+	}*/
+
 }

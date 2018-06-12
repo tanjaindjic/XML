@@ -20,7 +20,7 @@
 			$scope.reg = $("#registerBtn");
 			$scope.userInfo = $("#userInfo").hide();
 			$scope.logout = $("#logoutBtn").hide();
-			$scope.message = "holla!";
+			$scope.message = "";
 
 			// INITIAL CALLS
 			// =============================================================

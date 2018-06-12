@@ -38,7 +38,7 @@ public class RegisterController {
 		registerService.redirect(response);
     }
     @RequestMapping(method = RequestMethod.POST, value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<HashMap> register(@RequestBody RegisterDTO regDetails) throws MalformedURLException, URISyntaxException{
+    public ResponseEntity<HashMap> register(@RequestBody RegisterDTO regDetails) throws MalformedURLException, URISyntaxException, InterruptedException{
     	return korisnikService.registerKorisnik(regDetails);
     }
 }

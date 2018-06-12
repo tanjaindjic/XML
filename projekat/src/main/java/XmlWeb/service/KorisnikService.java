@@ -11,6 +11,7 @@ import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -105,7 +106,7 @@ public class KorisnikService {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public ResponseEntity<HashMap> registerKorisnik(RegisterDTO regDetails) throws URISyntaxException, MalformedURLException {
+	public ResponseEntity<HashMap> registerKorisnik(RegisterDTO regDetails) throws URISyntaxException, MalformedURLException, InterruptedException {
 		HashMap<String, String> map = new HashMap<>();
 		Korisnik k = korisnikRepo.findByUsername(regDetails.getUsername());
 		if(k!=null) {
@@ -161,7 +162,15 @@ public class KorisnikService {
 		korisnikRepo.save(novi);
 		
 		
-		emailService.sendEmail(novi.getConfirmationToken());
+	    String link =  "Please go to following link to activate your account: https://localhost:8096/confirm?token=";
+		SimpleMailMessage registrationEmail = new SimpleMailMessage();
+		registrationEmail.setTo(novi.getEmail());
+		registrationEmail.setSubject("Registration Confirmation");
+		registrationEmail.setText("To confirm your e-mail address, please click the link below:\n"
+				+ link + "/confirm?token=" + novi.getConfirmationToken());
+		registrationEmail.setFrom("noreply@domain.com");
+		
+		emailService.sendEmail(registrationEmail);
 		//return new ResponseEntity<String>("Almost there! Please finish your registration via link we sent on your email.", HttpStatus.OK);
 		
 		map.put("text", "Almost there! Please finish your registration via link we sent on your email.");
