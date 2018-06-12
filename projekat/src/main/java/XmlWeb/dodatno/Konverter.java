@@ -160,8 +160,7 @@ public class Konverter {
             List<Smestaj> iz = new ArrayList<>();
             k.setIzdaje(iz);
             k.setLastName(kor.getLastName());
-            k.setPassword(kor.getPassword());
-            k.setPib(k.getPib());
+            k.setPassword(kor.getPassword());          
             k.setRole(Role.valueOf(kor.getRole()));
             k.setUsername(kor.getUsername());
             List<Rezervacija> rez = new ArrayList<>();

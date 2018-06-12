@@ -32,6 +32,12 @@
 			 controller: 'registerController',
 			 controllerAs: 'regc'
 		 })
+		 .state('core.succ', {
+			 url: 'success/{id}',
+			 templateUrl: 'app/components/succ/succ.html',
+			 controller: 'succController',
+			 controllerAs: 'succ'
+		 })
 		  .state('core.inbox', {
           url: 'inbox',
           templateUrl: 'app/components/inbox/inbox.html',

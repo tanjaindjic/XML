@@ -56,7 +56,7 @@ public class Korisnik {
     
     @Column(name = "ENABLED")
     @NotNull
-    private boolean aktiviran;
+    private boolean enabled;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -76,7 +76,6 @@ public class Korisnik {
             inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
     private List<Authority> authorities;
 
-    private String pib;
 
     @OneToMany
     private List<Smestaj> izdaje;
@@ -139,11 +138,11 @@ public class Korisnik {
     }
 
     public boolean isAktiviran() {
-        return aktiviran;
+        return enabled;
     }
 
     public void setAktiviran(boolean aktiviran) {
-        this.aktiviran = aktiviran;
+        this.enabled = aktiviran;
     }
 
     public Role getRole() {
@@ -170,13 +169,6 @@ public class Korisnik {
         this.email = adresa;
     }
 
-    public String getPib() {
-        return pib;
-    }
-
-    public void setPib(String pib) {
-        this.pib = pib;
-    }
 
     public List<Smestaj> getIzdaje() {
         return izdaje;

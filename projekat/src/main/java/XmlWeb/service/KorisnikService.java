@@ -1,5 +1,6 @@
 package XmlWeb.service;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -7,6 +8,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,7 +63,7 @@ public class KorisnikService {
 
 	public Korisnik getKorisnik(String username) {
 
-		return korisnikRepo.findByUsername(username);
+		return korisnikRepo.findByUsernameIgnoreCase(username);
 	}
 
 	public Korisnik getKorisnik(Long id) {
@@ -71,14 +74,13 @@ public class KorisnikService {
 		Konverter kon = new Konverter();
 		Korisnik kor = kon.converterKorisnika(k, true);
 		if (kor != null) {
-			Korisnik id = korisnikRepo.findByUsername(kor.getUsername());
+			Korisnik id = korisnikRepo.findByUsernameIgnoreCase(kor.getUsername());
 
 			if (id != null) {
 				kor.setId(id.getId());
 				if (id.getStatusNaloga() != null)
 					kor.setStatusNaloga(id.getStatusNaloga());
 				kor.setRezervacije(id.getRezervacije());
-				kor.setPib(id.getPib());
 				kor.setIzdaje(id.getIzdaje());
 				kor.setAktiviran(id.isAktiviran());
 				kor.setRole(id.getRole());
@@ -98,7 +100,7 @@ public class KorisnikService {
 	}
 
 	public Korisnik findByEmail(String email) {
-		return korisnikRepo.findByEmail(email);
+		return korisnikRepo.findByEmailIgnoreCase(email);
 	}
 
 	public Korisnik findByConfirmationToken(String confirmationToken) {
@@ -108,16 +110,16 @@ public class KorisnikService {
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity<HashMap> registerKorisnik(RegisterDTO regDetails) throws URISyntaxException, MalformedURLException, InterruptedException {
 		HashMap<String, String> map = new HashMap<>();
-		Korisnik k = korisnikRepo.findByUsername(regDetails.getUsername());
+		Korisnik k = korisnikRepo.findByUsernameIgnoreCase(regDetails.getUsername());
 		if(k!=null) {
 			map.put("text", "Username is already taken.");
 			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
 		}
 			
 			
-		k = korisnikRepo.findByEmail(regDetails.getEmail());
+		k = korisnikRepo.findByEmailIgnoreCase(regDetails.getEmail());
 		if(k!=null) {
-			map.put("text", "Username is already taken.");
+			map.put("text", "Email is already taken.");
 			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
 		}
 			
@@ -162,12 +164,12 @@ public class KorisnikService {
 		korisnikRepo.save(novi);
 		
 		
-	    String link =  "Please go to following link to activate your account: https://localhost:8096/confirm?token=";
+	    String link =  "https://localhost:8096";
 		SimpleMailMessage registrationEmail = new SimpleMailMessage();
 		registrationEmail.setTo(novi.getEmail());
 		registrationEmail.setSubject("Registration Confirmation");
-		registrationEmail.setText("To confirm your e-mail address, please click the link below:\n"
-				+ link + "/confirm?token=" + novi.getConfirmationToken());
+		registrationEmail.setText("To confirm your e-mail address, please click the link below:\n" +
+				link + "/confirm/"+novi.getConfirmationToken().toString());
 		registrationEmail.setFrom("noreply@domain.com");
 		
 		emailService.sendEmail(registrationEmail);
@@ -175,6 +177,27 @@ public class KorisnikService {
 		
 		map.put("text", "Almost there! Please finish your registration via link we sent on your email.");
 		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+
+	public ResponseEntity<HashMap> confirmReg(HttpServletResponse response, String token) throws IOException {
+		System.out.println("JEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEJ ♥");
+		HashMap<String, String> map = new HashMap<>();
+		Korisnik k = korisnikRepo.findByConfirmationToken(token);
+		if(k==null) {
+			map.put("text", "Bad token. Registration failed.");
+			return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+		}
+		
+		k.setAktiviran(true);
+		k.setStatusNaloga(StatusKorisnika.AKTIVAN);
+		korisnikRepo.save(k);
+		map.put("text", "Success! Your account is active now.");
+		response.sendRedirect("https://localhost:8096/#!/success/2");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+			
+			
+		// TODO Auto-generated method stub
+		
 	}
 
 }

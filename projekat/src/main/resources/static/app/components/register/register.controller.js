@@ -54,7 +54,7 @@
 	                data : JSON.stringify(regData)
 	            }).then(function successCallback(response) {
 	            	
-					$scope.message = response.data.text;
+					$location.path("/success/1")
 			
 	            }, function errorCallback(response) {
 	            	console.log(response)
