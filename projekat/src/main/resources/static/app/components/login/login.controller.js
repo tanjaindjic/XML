@@ -65,7 +65,7 @@
 			console.log(JSON.stringify(loginData))
 			 $http({
 	                method: 'POST',
-	                url: "http://localhost:8096/auth",
+	                url: "https://localhost:8096/auth",
 	                data : JSON.stringify(loginData)
 	            }).then(function successCallback(response) {
 	            	console.log(response.data.token)
@@ -117,6 +117,7 @@
 			$scope.loggedIn.hide();
 			$scope.loggedInBody.empty();
 			$scope.notLoggedIn.show();
+			$location.path("/home")
 		}
 
 		function createAuthorizationTokenHeader() {
