@@ -33,7 +33,7 @@
     			$timeout(timer, 1000);  
     		}
     		if(lastPart==3)
-    			$scope.message = "Your request is being processed by our administrators. After approval, an activation link will be sent to your email address.";
+    			$scope.message = "Your request is being processed by our administrators. Activation link will be sent to your email address after approval.";
     			
         };
         init();

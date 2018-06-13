@@ -56,6 +56,7 @@
 	            	
 	            	window.location = response.data.Location;
 	            }, function errorCallback(response) {
+	            	$scope.message = response.data.text;
 	            	console.log(response)
 	            });
 

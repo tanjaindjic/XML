@@ -64,7 +64,7 @@ public class Korisnik {
     
     @Column(name = "ENABLED")
     @NotNull
-    private boolean aktiviran;
+    private boolean enabled;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -144,11 +144,11 @@ public class Korisnik {
     }
 
     public boolean isAktiviran() {
-        return aktiviran;
+        return enabled;
     }
 
     public void setAktiviran(boolean aktiviran) {
-        this.aktiviran = aktiviran;
+        this.enabled = aktiviran;
     }
 
     public Role getRole() {

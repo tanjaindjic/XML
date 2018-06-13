@@ -47,7 +47,6 @@
 		 * Created by stephan on 20.03.16.
 		 */
 
-		
 		// FUNCTIONS
 		// =============================================================
 		function getJwtToken() {
@@ -64,49 +63,38 @@
 
 		function doLogin(loginData) {
 			console.log(JSON.stringify(loginData))
-			 $http({
-	                method: 'POST',
-	                url: "https://localhost:8096/auth",
-	                data : JSON.stringify(loginData)
-	            }).then(function successCallback(response) {
-	            	console.log(response.data.token)
-	            	setJwtToken(response.data.token);
-					$scope.login.hide();
-					$scope.logout.show();
-					$scope.reg.hide();
-					$scope.notLoggedIn.hide();
-					$location.path("/home")
-			
-	            }, function errorCallback(response) {alert("Bad credentials")});
+			$http({
+				method : 'POST',
+				url : "https://localhost:8096/auth",
+				data : JSON.stringify(loginData)
+			}).then(function successCallback(response) {
+				console.log(response.data.token)
+				setJwtToken(response.data.token);
+				$scope.login.hide();
+				$scope.logout.show();
+				$scope.reg.hide();
+				$scope.notLoggedIn.hide();
+				$location.path("/home")
 
-			 
-		
-			/*$.ajax({
-				url : "http://localhost:8096/#!/auth",
-				type : "POST",
-				data : JSON.stringify(loginData),
-				contentType : "application/json; charset=utf-8",
-				dataType : "json",
-				success : function(data, textStatus, jqXHR) {
-					
-					setJwtToken(data.token);
-					$scope.login.hide();
-					$scope.notLoggedIn.hide();
-					showTokenInformation();
-					showUserInformation();
-				},
-				error : function(jqXHR, textStatus, errorThrown) {
-					if (jqXHR.status === 401 || jqXHR.status === 403) {
-						$('#loginErrorModal').modal("show").find(".modal-body")
-								.empty().html(
-										"<p>Message from server:<br>"
-												+ jqXHR.responseText + "</p>");
-					} else {
-						throw new Error("an unexpected error occured: "
-								+ errorThrown);
-					}
-				}
-			});*/
+			}, function errorCallback(response) {
+				$scope.message = "Bad credentials.";
+			});
+
+			/*
+			 * $.ajax({ url : "http://localhost:8096/#!/auth", type : "POST",
+			 * data : JSON.stringify(loginData), contentType :
+			 * "application/json; charset=utf-8", dataType : "json", success :
+			 * function(data, textStatus, jqXHR) {
+			 * 
+			 * setJwtToken(data.token); $scope.login.hide();
+			 * $scope.notLoggedIn.hide(); showTokenInformation();
+			 * showUserInformation(); }, error : function(jqXHR, textStatus,
+			 * errorThrown) { if (jqXHR.status === 401 || jqXHR.status === 403) {
+			 * $('#loginErrorModal').modal("show").find(".modal-body")
+			 * .empty().html( "<p>Message from server:<br>" +
+			 * jqXHR.responseText + "</p>"); } else { throw new Error("an
+			 * unexpected error occured: " + errorThrown); } } });
+			 */
 		}
 
 		function doLogout() {
@@ -133,32 +121,34 @@
 		}
 
 		function showUserInformation() {
-			$.ajax({
-				url : "/user",
-				type : "GET",
-				contentType : "application/json; charset=utf-8",
-				dataType : "json",
-				headers : createAuthorizationTokenHeader(),
-				success : function(data, textStatus, jqXHR) {
-					$scope.userInfoBody = $scope.userInfo.find("#userInfoBody");
+			$
+					.ajax({
+						url : "/user",
+						type : "GET",
+						contentType : "application/json; charset=utf-8",
+						dataType : "json",
+						headers : createAuthorizationTokenHeader(),
+						success : function(data, textStatus, jqXHR) {
+							$scope.userInfoBody = $scope.userInfo
+									.find("#userInfoBody");
 
-					$scope.userInfoBody.append($("<div>").text(
-							"Username: " + data.username));
-					$scope.userInfoBody.append($("<div>")
-							.text("Email: " + data.email));
+							$scope.userInfoBody.append($("<div>").text(
+									"Username: " + data.username));
+							$scope.userInfoBody.append($("<div>").text(
+									"Email: " + data.email));
 
-					var $authorityList = $("<ul>");
-					data.authorities.forEach(function(authorityItem) {
-						$authorityList.append($("<li>").text(
-								authorityItem.authority));
+							var $authorityList = $("<ul>");
+							data.authorities.forEach(function(authorityItem) {
+								$authorityList.append($("<li>").text(
+										authorityItem.authority));
+							});
+							var $authorities = $("<div>").text("Authorities:");
+							$authorities.append($authorityList);
+
+							$scope.userInfoBody.append($authorities);
+							$scope.userInfo.show();
+						}
 					});
-					var $authorities = $("<div>").text("Authorities:");
-					$authorities.append($authorityList);
-
-					$scope.userInfoBody.append($authorities);
-					$scope.userInfo.show();
-				}
-			});
 		}
 
 		function showTokenInformation() {
@@ -166,8 +156,8 @@
 			var decodedToken = jwt_decode(jwtToken);
 
 			$scope.loggedInBody.append($("<h4>").text("Token"));
-			$scope.loggedInBody.append($("<div>").text(jwtToken).css("word-break",
-					"break-all"));
+			$scope.loggedInBody.append($("<div>").text(jwtToken).css(
+					"word-break", "break-all"));
 			$scope.loggedInBody.append($("<h4>").text("Token claims"));
 
 			var $table = $("<table>").addClass("table table-striped");
@@ -208,10 +198,9 @@
 
 		$("#logoutBtn").click(doLogout);
 
-		
-
 		$scope.loggedIn.click(function() {
-			$scope.loggedIn.toggleClass("text-hidden").toggleClass("text-shown");
+			$scope.loggedIn.toggleClass("text-hidden")
+					.toggleClass("text-shown");
 		});
 
 	}

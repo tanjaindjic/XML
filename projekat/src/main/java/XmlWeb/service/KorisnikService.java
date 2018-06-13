@@ -34,16 +34,15 @@ public class KorisnikService {
 
 	@Autowired
 	private KorisnikRepository korisnikRepo;
-	
+
 	@Autowired
 	private EmailService emailService;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
+
 	@Autowired
 	private AuthorityRepository autoRepo;
-	
 
 	public List<Korisnik> getAllKorisnik() {
 		List<Korisnik> allKorisnik = new ArrayList<>();
@@ -109,63 +108,61 @@ public class KorisnikService {
 	}
 
 	@SuppressWarnings("rawtypes")
-	public ResponseEntity<HashMap> registerKorisnik(HttpServletResponse response, RegisterDTO regDetails) throws URISyntaxException, InterruptedException, IOException {
+	public ResponseEntity<HashMap> registerKorisnik(HttpServletResponse response, RegisterDTO regDetails)
+			throws URISyntaxException, InterruptedException, IOException {
 		HashMap<String, String> map = new HashMap<>();
 		Korisnik k = korisnikRepo.findByUsername(regDetails.getUsername());
-		if(k!=null) {
+		if (k != null) {
 			map.put("text", "Username is already taken.");
 			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
 		}
-			
-			
+
 		k = korisnikRepo.findByEmail(regDetails.getEmail());
-		if(k!=null) {
-			map.put("text", "Username is already taken.");
+		if (k != null) {
+			map.put("text", "Email is already taken.");
 			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
 		}
-			
-			
-		if(!regDetails.getPassword1().equals(regDetails.getPassword2()))
-			{
+
+		if (!regDetails.getPassword1().equals(regDetails.getPassword2())) {
 			map.put("text", "Passwords don't match.");
 			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
-			}
-		
-		/*Zxcvbn passwordCheck = new Zxcvbn();		
-		Strength strength = passwordCheck.measure(regDetails.getPassword1());
-		if (strength.getScore() < 1) {
-			map.put("text","Your password is too weak. Please choose a stronger one.");
-			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
 		}
-			*/
+
+		/*
+		 * Zxcvbn passwordCheck = new Zxcvbn(); Strength strength =
+		 * passwordCheck.measure(regDetails.getPassword1()); if (strength.getScore() <
+		 * 1) {
+		 * map.put("text","Your password is too weak. Please choose a stronger one.");
+		 * return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED); }
+		 */
 		Korisnik novi = new Korisnik();
 		novi.setAktiviran(false);
 		List<Authority> l = new ArrayList<>();
 		Authority a;
-		if(regDetails.isAgent()) {
+		if (regDetails.isAgent()) {
 			a = autoRepo.findByName(AuthorityName.ROLE_AGENT);
-			if(a!=null)
+			if (a != null)
 				l.add(a);
 			else {
 				a = new Authority();
 				a.setName(AuthorityName.ROLE_AGENT);
 				a.setUsers(new ArrayList<>());
 				autoRepo.save(a);
-				l.add(a);			
+				l.add(a);
 			}
-		}else {
+		} else {
 			a = autoRepo.findByName(AuthorityName.ROLE_USER);
-			if(a!=null)
+			if (a != null)
 				l.add(a);
 			else {
 				a = new Authority();
 				a.setName(AuthorityName.ROLE_USER);
 				a.setUsers(new ArrayList<>());
 				autoRepo.save(a);
-				l.add(a);			
+				l.add(a);
 			}
 		}
-			
+
 		novi.setAuthorities(l);
 		novi.setEmail(regDetails.getEmail());
 		novi.setFirstName(regDetails.getFirstname());
@@ -176,40 +173,60 @@ public class KorisnikService {
 		novi.setStatusNaloga(StatusKorisnika.NEPOTVRDJEN);
 		novi.setLastPasswordResetDate(new Date());
 		novi.setUsername(regDetails.getUsername());
-		if(novi.getAuthorities().get(0).getName().toString().equals(AuthorityName.ROLE_AGENT.toString()))
+		if (novi.getAuthorities().get(0).getName().toString().equals(AuthorityName.ROLE_AGENT.toString()))
 			novi.setRole(Role.AGENT);
-		else novi.setRole(Role.USER);
+		else
+			novi.setRole(Role.USER);
 		novi.setConfirmationToken(UUID.randomUUID().toString());
 		korisnikRepo.save(novi);
 		a.getUsers().add(novi);
 		autoRepo.save(a);
-		
+
 		String subject = "Registration Confirmation";
-	    String link =  "Please go to following link to activate your account: https://localhost:8096/confirm?token=";
-		String text = "To confirm your e-mail address, please click the link below:\n"
-				+ link + "/confirm?token=" + novi.getConfirmationToken();
-		String redirect = "2";
-		if(novi.getRole().toString().equals("AGENT")) {
+		String link = "Please go to following link to activate your account: https://localhost:8096/confirm/";
+		String text = "To confirm your e-mail address, please click the link below:\n" + link 
+				+ novi.getConfirmationToken();
+		String redirect = "1";
+		if (novi.getRole().toString().equals("AGENT")) {
 			System.out.println("AGENT!");
 			subject = "Registration Details";
 			text = "Your request is being processed by our administrators. Activation link will be sent to your email address after approval.";
 			redirect = "3";
 		}
-			
-		
+
 		SimpleMailMessage registrationEmail = new SimpleMailMessage();
 		registrationEmail.setTo(novi.getEmail());
 		registrationEmail.setSubject(subject);
 		registrationEmail.setText(text);
 		registrationEmail.setFrom("noreply@domain.com");
-		
+
 		emailService.sendEmail(registrationEmail);
-		//return new ResponseEntity<String>("Almost there! Please finish your registration via link we sent on your email.", HttpStatus.OK);
-		
-		
+		// return new ResponseEntity<String>("Almost there! Please finish your
+		// registration via link we sent on your email.", HttpStatus.OK);
+
 		String location = "https://localhost:8096/#!/success/" + redirect;
-		map.put("Location",location);
+		map.put("Location", location);
 		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+
+	public ResponseEntity<HashMap> confirmReg(HttpServletResponse response, String token) throws IOException {
+		System.out.println("JEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEJ ♥");
+		HashMap<String, String> map = new HashMap<>();
+		Korisnik k = korisnikRepo.findByConfirmationToken(token);
+		if (k == null) {
+			map.put("text", "Bad token. Registration failed.");
+			return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+		}
+
+		k.setAktiviran(true);
+		k.setStatusNaloga(StatusKorisnika.AKTIVAN);
+		korisnikRepo.save(k);
+		map.put("text", "Success! Your account is active now.");
+		response.sendRedirect("https://localhost:8096/#!/success/2");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+
+		// TODO Auto-generated method stub
+
 	}
 
 }
