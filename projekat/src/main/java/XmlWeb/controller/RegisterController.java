@@ -2,10 +2,13 @@ package XmlWeb.controller;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.bouncycastle.operator.OperatorCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +49,7 @@ public class RegisterController {
 
 	@RequestMapping(method = RequestMethod.POST, value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<HashMap> register(HttpServletResponse response, @RequestBody RegisterDTO regDetails)
-			throws URISyntaxException, InterruptedException, IOException {
+			throws URISyntaxException, InterruptedException, IOException, NoSuchAlgorithmException, NoSuchProviderException, OperatorCreationException {
 		return korisnikService.registerKorisnik(response, regDetails);
 	}
 }

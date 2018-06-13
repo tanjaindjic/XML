@@ -2,6 +2,8 @@ package XmlWeb.service;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -10,6 +12,7 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.bouncycastle.operator.OperatorCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +50,10 @@ public class KorisnikService {
 	
 	@Autowired
 	private AgentRequestRepository agentRequestRepository;
-
+	
+	@Autowired
+	private CSRService csrService;	
+	
 	public List<Korisnik> getAllKorisnik() {
 		List<Korisnik> allKorisnik = new ArrayList<>();
 		korisnikRepo.findAll().forEach(allKorisnik::add);
@@ -113,7 +119,7 @@ public class KorisnikService {
 
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity<HashMap> registerKorisnik(HttpServletResponse response, RegisterDTO regDetails)
-			throws URISyntaxException, InterruptedException, IOException {
+			throws URISyntaxException, InterruptedException, IOException, NoSuchAlgorithmException, NoSuchProviderException, OperatorCreationException {
 		HashMap<String, String> map = new HashMap<>();
 		Korisnik k = korisnikRepo.findByUsername(regDetails.getUsername());
 		if (k != null) {
@@ -187,10 +193,10 @@ public class KorisnikService {
 		autoRepo.save(a);
 		if (regDetails.isAgent()) {
 			AgentRequest ar = new AgentRequest();
-			ar.setKorisnik(novi);
+			ar.setCsr(csrService.createCSR(novi));
 			agentRequestRepository.save(ar);
 		}
-
+		
 		String subject = "Registration Confirmation";
 		String link = "Please go to following link to activate your account: https://localhost:8096/confirm/";
 		String text = "To confirm your e-mail address, please click the link below:\n" + link 
