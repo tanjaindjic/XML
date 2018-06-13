@@ -1,7 +1,6 @@
 package XmlWeb.service;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,11 +20,13 @@ import org.springframework.stereotype.Service;
 import XmlWeb.dodatno.Konverter;
 import XmlWeb.dto.KorisnikDTO;
 import XmlWeb.dto.RegisterDTO;
+import XmlWeb.model.AgentRequest;
 import XmlWeb.model.Korisnik;
 import XmlWeb.model.Enums.Role;
 import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.model.security.Authority;
 import XmlWeb.model.security.AuthorityName;
+import XmlWeb.repository.AgentRequestRepository;
 import XmlWeb.repository.AuthorityRepository;
 import XmlWeb.repository.KorisnikRepository;
 
@@ -43,6 +44,9 @@ public class KorisnikService {
 
 	@Autowired
 	private AuthorityRepository autoRepo;
+	
+	@Autowired
+	private AgentRequestRepository agentRequestRepository;
 
 	public List<Korisnik> getAllKorisnik() {
 		List<Korisnik> allKorisnik = new ArrayList<>();
@@ -181,6 +185,11 @@ public class KorisnikService {
 		korisnikRepo.save(novi);
 		a.getUsers().add(novi);
 		autoRepo.save(a);
+		if (regDetails.isAgent()) {
+			AgentRequest ar = new AgentRequest();
+			ar.setKorisnik(novi);
+			agentRequestRepository.save(ar);
+		}
 
 		String subject = "Registration Confirmation";
 		String link = "Please go to following link to activate your account: https://localhost:8096/confirm/";
