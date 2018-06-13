@@ -8,7 +8,7 @@ public class RegisterDTO {
 	private String email;
 	private String firstname;
 	private String lastname;
-	private String isAgent;
+	private Boolean isAgent;
 	
 	
 	
@@ -17,7 +17,7 @@ public class RegisterDTO {
 		super();
 	}
 	public RegisterDTO(String username, String password1, String password2, String email, String firstname,
-			String lastname, String isAgent) {
+			String lastname, Boolean isAgent) {
 		super();
 		this.username = username;
 		this.password1 = password1;
@@ -63,10 +63,10 @@ public class RegisterDTO {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	public String getIsAgent() {
+	public Boolean isAgent() {
 		return isAgent;
 	}
-	public void setIsAgent(String isAgent) {
+	public void setIsAgent(Boolean isAgent) {
 		this.isAgent = isAgent;
 	}
 	

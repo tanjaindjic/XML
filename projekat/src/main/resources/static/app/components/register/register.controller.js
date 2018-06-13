@@ -54,12 +54,9 @@
 	                data : JSON.stringify(regData)
 	            }).then(function successCallback(response) {
 	            	
-					$location.path("/success/1")
-			
+	            	window.location = response.data.Location;
 	            }, function errorCallback(response) {
 	            	console.log(response)
-	            	console.log(response.data.text)
-	            	$scope.message = response.data.text;
 	            });
 
 		}
@@ -104,14 +101,14 @@
 				return;
 			}
 				
-			
 			var formData = {
+					
 				"firstname" : $form.find('input[name="firstname"]').val(),
 				"lastname" : $form.find('input[name="lastname"]').val(),
 				"username" : $form.find('input[name="username"]').val(),
 				"password1" : $form.find('input[name="password1"]').val(),
 				"password2" : $form.find('input[name="password2"]').val(),
-				"agent" : $form.find('input[name="isAgent"]').val(),
+				"isAgent" : document.getElementById("agentCheck").checked,
 				"email" : $form.find('input[name="email"]').val()
 			};
 

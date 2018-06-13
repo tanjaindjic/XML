@@ -29,6 +29,7 @@ public class EmailService {
 	  
 	  @Async
 	  public void sendEmail(SimpleMailMessage email) {
+		  System.out.println("sending mail...");
 	    mailSender.send(email);
 	  }
 			

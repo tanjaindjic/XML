@@ -1,8 +1,20 @@
 package XmlWeb.model.security;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import XmlWeb.model.Korisnik;
 
 @Entity
 @Table(name = "AUTHORITY")
@@ -19,8 +31,9 @@ public class Authority {
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
 
-    @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
-    private List<User> users;
+    @Column(name = "USERS")
+    @ManyToMany
+    private List<Korisnik> users;
 
     public Long getId() {
         return id;
@@ -38,11 +51,11 @@ public class Authority {
         this.name = name;
     }
 
-    public List<User> getUsers() {
+    public List<Korisnik> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(List<Korisnik> users) {
         this.users = users;
     }
 }

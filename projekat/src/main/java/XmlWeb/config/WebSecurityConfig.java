@@ -110,9 +110,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/**/*.html",
                 "/**/*.css",
                 "/**/*.js",
-                "/register", "/success", "/confirm/**"
-           
-               
+                "/register", 
+                "/success", 
+                "/confirm/**",
+                "/success/**"
             )
 
             // Un-secure H2 Database (for testing purposes, H2 console shouldn't be unprotected in production)

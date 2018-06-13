@@ -1,17 +1,25 @@
 package XmlWeb.model;
 
 
-import XmlWeb.model.Enums.StatusKorisnika;
-import XmlWeb.model.security.Authority;
-import XmlWeb.model.Enums.Role;
+import java.util.Date;
+import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-
-import java.util.Date;
-import java.util.List;
+import XmlWeb.model.Enums.Role;
+import XmlWeb.model.Enums.StatusKorisnika;
+import XmlWeb.model.security.Authority;
 
 @Entity
 public class Korisnik {
@@ -56,7 +64,7 @@ public class Korisnik {
     
     @Column(name = "ENABLED")
     @NotNull
-    private boolean enabled;
+    private boolean aktiviran;
 
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -69,13 +77,11 @@ public class Korisnik {
     @Size(min = 4, max = 50)
     private String email;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "USER_AUTHORITY",
-            joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "ID")},
-            inverseJoinColumns = {@JoinColumn(name = "AUTHORITY_ID", referencedColumnName = "ID")})
+    @NotNull
+    @ManyToMany
     private List<Authority> authorities;
 
+    private String pib;
 
     @OneToMany
     private List<Smestaj> izdaje;
@@ -138,11 +144,11 @@ public class Korisnik {
     }
 
     public boolean isAktiviran() {
-        return enabled;
+        return aktiviran;
     }
 
     public void setAktiviran(boolean aktiviran) {
-        this.enabled = aktiviran;
+        this.aktiviran = aktiviran;
     }
 
     public Role getRole() {
@@ -169,6 +175,13 @@ public class Korisnik {
         this.email = adresa;
     }
 
+    public String getPib() {
+        return pib;
+    }
+
+    public void setPib(String pib) {
+        this.pib = pib;
+    }
 
     public List<Smestaj> getIzdaje() {
         return izdaje;

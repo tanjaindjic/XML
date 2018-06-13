@@ -9,7 +9,6 @@
 			$cookies, $stateParams, $state, $timeout) {
 
 		var lc = this;
-		$scope.message="";
 
 		$scope.goToState = function(state) {
 			$state.go(state, {
@@ -78,9 +77,7 @@
 					$scope.notLoggedIn.hide();
 					$location.path("/home")
 			
-	            }, function errorCallback(response) {
-	            	$scope.message="Bad credentials."
-	            });
+	            }, function errorCallback(response) {alert("Bad credentials")});
 
 			 
 		

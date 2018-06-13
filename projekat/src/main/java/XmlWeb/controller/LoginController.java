@@ -26,6 +26,5 @@ public class LoginController {
     public void login(){
     	System.out.println(loginService.login());
     }
-   
 
 }
