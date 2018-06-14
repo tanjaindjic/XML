@@ -67,7 +67,6 @@ public class StartData {
          k.setStatusNaloga(StatusKorisnika.AKTIVAN);
          k.setEmail("admir@admir.com");
          k.setLastPasswordResetDate(new Date());
-         k.setPib("");
          k.setIzdaje(new ArrayList<>());
          k.setRezervacije(new ArrayList<>());
          List l = new ArrayList<>();
@@ -181,7 +180,6 @@ public class StartData {
          k.setRole(r);
          k.setStatusNaloga(StatusKorisnika.AKTIVAN);
          k.setEmail(email);
-         k.setPib("");
          k.setIzdaje(new ArrayList<>());
          k.setRezervacije(new ArrayList<>());
          korisnikRepo.save(k);

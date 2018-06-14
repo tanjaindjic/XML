@@ -14,6 +14,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import XmlWeb.model.Korisnik;
 
 @Entity
@@ -33,6 +35,7 @@ public class Authority {
 
     @Column(name = "USERS")
     @ManyToMany
+    @JsonBackReference
     private List<Korisnik> users;
 
     public Long getId() {

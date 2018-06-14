@@ -17,20 +17,14 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import XmlWeb.model.Enums.Role;
 import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.model.security.Authority;
 
 @Entity
 public class Korisnik {
-
-    public List<Authority> getAuthorities() {
-		return authorities;
-	}
-
-	public void setAuthorities(List<Authority> authorities) {
-		this.authorities = authorities;
-	}
 
 	@Id
     @GeneratedValue
@@ -79,9 +73,9 @@ public class Korisnik {
 
     @NotNull
     @ManyToMany
+    //@JsonBackReference
     private List<Authority> authorities;
 
-    private String pib;
 
     @OneToMany
     private List<Smestaj> izdaje;
@@ -92,6 +86,9 @@ public class Korisnik {
     @Column(name = "confirmation_token")
 	private String confirmationToken;
 
+    @Column(name = "pib")
+    private String PIB;
+    
 	public String getConfirmationToken() {
 		return confirmationToken;
 	}
@@ -143,6 +140,15 @@ public class Korisnik {
         this.password = password;
     }
 
+
+    public List<Authority> getAuthorities() {
+		return authorities;
+	}
+
+	public void setAuthorities(List<Authority> authorities) {
+		this.authorities = authorities;
+	}
+
     public boolean isAktiviran() {
         return enabled;
     }
@@ -175,13 +181,6 @@ public class Korisnik {
         this.email = adresa;
     }
 
-    public String getPib() {
-        return pib;
-    }
-
-    public void setPib(String pib) {
-        this.pib = pib;
-    }
 
     public List<Smestaj> getIzdaje() {
         return izdaje;
@@ -206,5 +205,13 @@ public class Korisnik {
 
 	public void setLastPasswordResetDate(Date lastPasswordResetDate) {
 		this.lastPasswordResetDate = lastPasswordResetDate;
+	}
+
+	public String getPIB() {
+		return PIB;
+	}
+
+	public void setPIB(String pIB) {
+		PIB = pIB;
 	}
 }

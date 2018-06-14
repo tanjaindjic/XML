@@ -90,7 +90,6 @@ public class KorisnikService {
 				if (id.getStatusNaloga() != null)
 					kor.setStatusNaloga(id.getStatusNaloga());
 				kor.setRezervacije(id.getRezervacije());
-				kor.setPib(id.getPib());
 				kor.setIzdaje(id.getIzdaje());
 				kor.setAktiviran(id.isAktiviran());
 				kor.setRole(id.getRole());
@@ -183,6 +182,7 @@ public class KorisnikService {
 		novi.setStatusNaloga(StatusKorisnika.NEPOTVRDJEN);
 		novi.setLastPasswordResetDate(new Date());
 		novi.setUsername(regDetails.getUsername());
+		novi.setPIB(regDetails.getPib());
 		if (novi.getAuthorities().get(0).getName().toString().equals(AuthorityName.ROLE_AGENT.toString()))
 			novi.setRole(Role.AGENT);
 		else
@@ -193,7 +193,7 @@ public class KorisnikService {
 		autoRepo.save(a);
 		if (regDetails.isAgent()) {
 			AgentRequest ar = new AgentRequest();
-			ar.setCsr(csrService.createCSR(novi));
+			ar.setCsr(csrService.generatePem(novi));
 			agentRequestRepository.save(ar);
 		}
 		

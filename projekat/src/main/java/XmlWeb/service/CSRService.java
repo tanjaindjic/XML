@@ -1,5 +1,7 @@
 package XmlWeb.service;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
@@ -8,6 +10,7 @@ import java.security.NoSuchProviderException;
 import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
+import org.bouncycastle.openssl.jcajce.JcaPEMWriter;
 import org.bouncycastle.operator.ContentSigner;
 import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.operator.jcajce.JcaContentSignerBuilder;
@@ -36,6 +39,18 @@ public class CSRService {
 		ContentSigner signer = csBuilder.build(pair.getPrivate());
 		PKCS10CertificationRequest csr = p10Builder.build(signer);
 		return csr;
+	}
+	
+	public String generatePem(Korisnik kor) throws NoSuchAlgorithmException, NoSuchProviderException, OperatorCreationException, IOException {
+		
+		 StringWriter sw = new StringWriter();
+		    try (JcaPEMWriter pw = new JcaPEMWriter(sw)) {
+		        pw.writeObject(createCSR(kor));
+		        pw.flush();
+		    }
+		    System.out.println(sw.toString());
+		    return sw.toString();
+		
 	}
 
 }
