@@ -54,6 +54,9 @@ public class KorisnikService {
 	@Autowired
 	private CSRService csrService;	
 	
+	@Autowired
+	private RegisterService regService;	
+	
 	public List<Korisnik> getAllKorisnik() {
 		List<Korisnik> allKorisnik = new ArrayList<>();
 		korisnikRepo.findAll().forEach(allKorisnik::add);
@@ -194,8 +197,9 @@ public class KorisnikService {
 		autoRepo.save(a);
 		if (regDetails.isAgent()) {
 			AgentRequest ar = new AgentRequest();
-			ar.setCsr(csrService.generatePem(novi));
+			ar.setCsr(csrService.generatePem(novi));			
 			agentRequestRepository.save(ar);
+			regService.sendToAdminModule(novi, ar);
 		}
 		
 		String subject = "Registration Confirmation";
@@ -219,7 +223,8 @@ public class KorisnikService {
 		emailService.sendEmail(registrationEmail);
 		// return new ResponseEntity<String>("Almost there! Please finish your
 		// registration via link we sent on your email.", HttpStatus.OK);
-
+		
+		
 		String location = "https://localhost:8096/#!/success/" + redirect;
 		map.put("Location", location);
 		return new ResponseEntity<>(map, HttpStatus.OK);
