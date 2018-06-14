@@ -10,6 +10,7 @@ public class RegisterDTO {
 	private String lastname;
 	private Boolean isAgent;
 	private String pib;
+	private String adresa;
 	
 	
 	
@@ -17,7 +18,7 @@ public class RegisterDTO {
 		super();
 	}
 	public RegisterDTO(String username, String password1, String password2, String email, String firstname,
-			String lastname, Boolean isAgent, String pib) {
+			String lastname, Boolean isAgent, String pib, String adresa) {
 		super();
 		this.username = username;
 		this.password1 = password1;
@@ -26,7 +27,8 @@ public class RegisterDTO {
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.isAgent = isAgent;
-		this.setPib(pib);
+		this.pib = pib;
+		this.setAdresa(adresa);
 	}
 	public String getUsername() {
 		return username;
@@ -75,6 +77,12 @@ public class RegisterDTO {
 	}
 	public void setPib(String pib) {
 		this.pib = pib;
+	}
+	public String getAdresa() {
+		return adresa;
+	}
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
 	}
 	
 

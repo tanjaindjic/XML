@@ -89,6 +89,9 @@ public class Korisnik {
     @Column(name = "pib")
     private String PIB;
     
+   
+    private String adresa;
+    
 	public String getConfirmationToken() {
 		return confirmationToken;
 	}
@@ -213,5 +216,13 @@ public class Korisnik {
 
 	public void setPIB(String pIB) {
 		PIB = pIB;
+	}
+
+	public String getAdresa() {
+		return adresa;
+	}
+
+	public void setAdresa(String adresa) {
+		this.adresa = adresa;
 	}
 }

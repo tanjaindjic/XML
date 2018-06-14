@@ -101,8 +101,8 @@
 				$scope.message = "Passwords don't match";
 				return;
 			}
-			if(document.getElementById("agentCheck").checked && $form.find('input[name="pib"]').val().trim()=="" ){
-				$scope.message = "Agents must provide PIB.";
+			if(document.getElementById("agentCheck").checked && ($form.find('input[name="pib"]').val().trim()=="" || $form.find('input[name="adresa"]').val().trim()=="") ){
+				$scope.message = "Agents must provide PIB and Adress information.";
 				return;
 			}
 				
@@ -115,7 +115,8 @@
 				"password2" : $form.find('input[name="password2"]').val(),
 				"isAgent" : document.getElementById("agentCheck").checked,
 				"email" : $form.find('input[name="email"]').val(),
-				"pib" : $form.find('input[name="pib"]').val()
+				"pib" : $form.find('input[name="pib"]').val(),
+				"adresa" : $form.find('input[name="adresa"]').val()
 			};
 
 			doRegister(formData);
@@ -128,8 +129,10 @@
 		$("#agentCheck").click(function() {
 			if (document.getElementById('agentCheck').checked) {
 		        document.getElementById('pibField').style.display = 'block';
+		        document.getElementById('adressField').style.display = 'block';
 		    } else {
 		        document.getElementById('pibField').style.display = 'none';
+		        document.getElementById('adressField').style.display = 'none';
 		    }
 		});
 
