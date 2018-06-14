@@ -183,6 +183,7 @@ public class KorisnikService {
 		novi.setLastPasswordResetDate(new Date());
 		novi.setUsername(regDetails.getUsername());
 		novi.setPIB(regDetails.getPib());
+		novi.setAdresa(regDetails.getAdresa());
 		if (novi.getAuthorities().get(0).getName().toString().equals(AuthorityName.ROLE_AGENT.toString()))
 			novi.setRole(Role.AGENT);
 		else

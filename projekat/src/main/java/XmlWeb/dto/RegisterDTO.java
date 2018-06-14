@@ -28,7 +28,7 @@ public class RegisterDTO {
 		this.lastname = lastname;
 		this.isAgent = isAgent;
 		this.pib = pib;
-		this.setAdresa(adresa);
+		this.adresa=adresa;
 	}
 	public String getUsername() {
 		return username;
