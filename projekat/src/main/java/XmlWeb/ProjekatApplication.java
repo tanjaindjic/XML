@@ -24,12 +24,15 @@ public class ProjekatApplication {
 	            @Override
 	            public void addCorsMappings(CorsRegistry registry) {
 	            	registry.addMapping("/**")
-	                .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");
+	                .allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS");
 	                registry.addMapping("/auth").allowedOrigins("https://localhost:8090");
 	                registry.addMapping("/dtorequests")
 	                .allowedHeaders("Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers")
 	                .allowedOrigins("https://localhost:8090");
 	                registry.addMapping("/user").allowedOrigins("https://localhost:8090");
+	                registry.addMapping("/requests/**/**/**")
+	                .allowedHeaders("Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers")
+	                .allowedOrigins("https://localhost:8090");
 	                
 	            }
 	        };

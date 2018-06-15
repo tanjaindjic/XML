@@ -77,7 +77,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
             .authorizeRequests()
-            .antMatchers("/dtorequests").hasAuthority("ROLE_ADMIN")
+            .antMatchers(HttpMethod.OPTIONS).anonymous()
+            .antMatchers("/dtorequests").hasRole("ADMIN")
+            .antMatchers(HttpMethod.DELETE,"/requests/**/**/**").hasRole("ADMIN")
             
             
             // Un-secure H2 Database
@@ -123,15 +125,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/register", 
                 "/success", 
                 "/confirm/**",
-                "/success/**",
-                "/dtorequests"
+                "/success/**"
+        
                 
             )
 
             // Un-secure H2 Database (for testing purposes, H2 console shouldn't be unprotected in production)
             .and()
             .ignoring()
-            .antMatchers("/h2-console/**/**");
+            .antMatchers("/h2-console/**/**")
+        
+        .and()
+        .ignoring()
+        .antMatchers(HttpMethod.OPTIONS);
+        
     }
     
 

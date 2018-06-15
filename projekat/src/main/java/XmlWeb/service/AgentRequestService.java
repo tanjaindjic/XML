@@ -79,16 +79,19 @@ public class AgentRequestService {
 
 	public void deleteRequest(Long id) {
 		
-		try {
-			RestTemplate restTemplate = new RestTemplate();
-			String entityUrl = "https://localhost:8096/requests/" + id;
-			restTemplate.delete(entityUrl);
-
-		} catch (Exception ex) {
-			System.out.println("Glavna baza nije dostupna, zahtevi ce biti preuzeti po ukljucenju baze.");
-		}
-		//agentRequestRepository.deleteById(id);
+	
+		agentRequestRepository.deleteById(id);
 		
+	}
+
+	public List<AgentRequest> getAllRequests() {
+		// TODO Auto-generated method stub
+
+		ArrayList<AgentRequest> ret = new ArrayList<>();
+		
+		agentRequestRepository.findAll().forEach(ret::add);
+		
+		return ret;
 	}
 	
 }

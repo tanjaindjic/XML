@@ -1,6 +1,5 @@
 package XmlWeb.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,15 +10,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import XmlWeb.dto.AgentRequestDTO;
 import XmlWeb.model.AgentRequest;
-import XmlWeb.repository.AgentRequestRepository;
+import XmlWeb.model.Korisnik;
 import XmlWeb.service.AgentRequestService;
+import XmlWeb.service.AuthorityService;
 import XmlWeb.service.KorisnikService;
 
 @RestController
 public class RequestController {
 	
 	@Autowired
-	private AgentRequestRepository agentRequestRepository;
+	private AuthorityService authService;
 	
 	@Autowired
 	private AgentRequestService agentReqService;
@@ -31,9 +31,7 @@ public class RequestController {
 	@RequestMapping(method = RequestMethod.GET, value = "/requests")
 	public List<AgentRequest> getRequests() {
 		
-		ArrayList<AgentRequest> ret = new ArrayList<>();
-		agentRequestRepository.findAll().forEach(ret::add);
-		return ret;
+		return agentReqService.getAllRequests();
 		
 	}
 	
@@ -44,9 +42,13 @@ public class RequestController {
 		
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE, value = "/requests/{id}")
-	public void deleteReq(@PathVariable Long id){
-		agentRequestRepository.deleteById(id);
+	@RequestMapping(method = RequestMethod.DELETE, value = "/requests/{reqId}/user/{userId}")
+	public void deleteReq(@PathVariable Long reqId, @PathVariable Long userId){
+		Korisnik k = korisnikService.getKorisnik(userId);
+		
+		authService.removeUser(k.getAuthorities().get(0).getId(), userId);
+		korisnikService.deleteKorisnik(userId);
+		agentReqService.deleteRequest(reqId);
 	}
 	
 	
