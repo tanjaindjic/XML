@@ -75,7 +75,7 @@ public class KorisnikService {
 
 	public Korisnik getKorisnik(String username) {
 
-		return korisnikRepo.findByUsername(username);
+		return korisnikRepo.findByUsernameIgnoreCase(username);
 	}
 
 	public Korisnik getKorisnik(Long id) {
@@ -86,7 +86,7 @@ public class KorisnikService {
 		Konverter kon = new Konverter();
 		Korisnik kor = kon.converterKorisnika(k, true);
 		if (kor != null) {
-			Korisnik id = korisnikRepo.findByUsername(kor.getUsername());
+			Korisnik id = korisnikRepo.findByUsernameIgnoreCase(kor.getUsername());
 
 			if (id != null) {
 				kor.setId(id.getId());
@@ -112,7 +112,7 @@ public class KorisnikService {
 	}
 
 	public Korisnik findByEmail(String email) {
-		return korisnikRepo.findByEmail(email);
+		return korisnikRepo.findByEmailIgnoreCase(email);
 	}
 
 	public Korisnik findByConfirmationToken(String confirmationToken) {
@@ -123,13 +123,13 @@ public class KorisnikService {
 	public ResponseEntity<HashMap> registerKorisnik(HttpServletResponse response, RegisterDTO regDetails)
 			throws URISyntaxException, InterruptedException, IOException, NoSuchAlgorithmException, NoSuchProviderException, OperatorCreationException {
 		HashMap<String, String> map = new HashMap<>();
-		Korisnik k = korisnikRepo.findByUsername(regDetails.getUsername());
+		Korisnik k = korisnikRepo.findByUsernameIgnoreCase(regDetails.getUsername());
 		if (k != null) {
 			map.put("text", "Username is already taken.");
 			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
 		}
 
-		k = korisnikRepo.findByEmail(regDetails.getEmail());
+		k = korisnikRepo.findByEmailIgnoreCase(regDetails.getEmail());
 		if (k != null) {
 			map.put("text", "Email is already taken.");
 			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
