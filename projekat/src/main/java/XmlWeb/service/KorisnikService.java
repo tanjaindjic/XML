@@ -307,6 +307,7 @@ public class KorisnikService {
 		novi.setLastPasswordResetDate(new Date());
 		novi.setUsername(regDetails.getUsername());
 		novi.setPIB(regDetails.getPib());
+		novi.setAktiviran(true);
 		novi.setAdresa(regDetails.getAdresa());
 		novi.setRole(Role.AGENT);
 		novi.setConfirmationToken(UUID.randomUUID().toString());
@@ -316,8 +317,8 @@ public class KorisnikService {
 		String subject = "Registration Details";
 		String text = "Your account on PigInc. BOOKING is created.\n"
 				+"Username: " + novi.getUsername()
-				+"Password: " + regDetails.getPassword1()
-				+ "Visit us on https://localhost:8096";
+				+" \n Password: " + regDetails.getPassword1()
+				+ "\n Visit us on https://localhost:8096";
 		String redirect = "1";
 		SimpleMailMessage registrationEmail = new SimpleMailMessage();
 		registrationEmail.setTo(novi.getEmail());

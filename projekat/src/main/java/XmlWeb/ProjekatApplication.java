@@ -33,6 +33,9 @@ public class ProjekatApplication {
 	                registry.addMapping("/requests/**/**/**")
 	                .allowedHeaders("Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers")
 	                .allowedOrigins("https://localhost:8090");
+	                registry.addMapping("/register/admin")
+	                .allowedHeaders("Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers")
+	                .allowedOrigins("https://localhost:8090");
 	                
 	            }
 	        };
