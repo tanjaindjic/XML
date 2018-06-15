@@ -12,6 +12,8 @@
 		$scope.logout = $("#logoutBtn");
 		$scope.login = $("#loginBtn");
 		$scope.reg = $("#registerBtn");
+		$scope.username = "";
+		
 		function getJwtToken() {
 			return localStorage.getItem($scope.TOKEN_KEY);
 		}
@@ -21,6 +23,8 @@
 				$scope.login.hide();
 				$scope.logout.show();
 				$scope.reg.hide();
+				$scope.username = " " +jwt_decode(getJwtToken()).sub;
+		
 			} else{
 				$scope.login.show();
 				$scope.logout.hide();

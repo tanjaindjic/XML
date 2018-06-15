@@ -18,10 +18,7 @@
 
 		var init = function() {
 			$scope.TOKEN_KEY = "jwtToken"
-			$scope.notLoggedIn = $("#notLoggedIn");
-			$scope.loggedIn = $("#loggedIn").hide();
-			$scope.loggedInBody = $("#loggedInBody");
-			$scope.response = $("#response");
+			
 			$scope.login = $("#loginBtn");
 			$scope.reg = $("#registerBtn");
 			$scope.userInfo = $("#userInfo").hide();
@@ -31,10 +28,7 @@
 			// =============================================================
 			if (getJwtToken()) {
 				$scope.login.hide();
-				$scope.notLoggedIn.hide();
 				$scope.logout.show();
-				showTokenInformation();
-				showUserInformation();
 				$scope.reg.hide();
 				$location.path("/home")
 			}
@@ -75,7 +69,7 @@
 				$scope.reg.hide();
 				var decoded = jwt_decode(response.data.token);
 				console.log(decoded);
-				$location.path("/home")
+				$window.location.reload();
 
 			}, function errorCallback(response) {
 				$scope.message = "Bad credentials.";
@@ -103,10 +97,7 @@
 			$scope.login.show();
 			$scope.logout.hide();
 			$scope.reg.show();
-			$scope.userInfo.hide().find("#userInfoBody").empty();
-			$scope.loggedIn.hide();
-			$scope.loggedInBody.empty();
-			$scope.notLoggedIn.show();
+		
 			$location.path("/home")
 		}
 
@@ -121,67 +112,8 @@
 			}
 		}
 
-		function showUserInformation() {
-			$
-					.ajax({
-						url : "/user",
-						type : "GET",
-						contentType : "application/json; charset=utf-8",
-						dataType : "json",
-						headers : createAuthorizationTokenHeader(),
-						success : function(data, textStatus, jqXHR) {
-							$scope.userInfoBody = $scope.userInfo
-									.find("#userInfoBody");
+		
 
-							$scope.userInfoBody.append($("<div>").text(
-									"Username: " + data.username));
-							$scope.userInfoBody.append($("<div>").text(
-									"Email: " + data.email));
-
-							var $authorityList = $("<ul>");
-							data.authorities.forEach(function(authorityItem) {
-								$authorityList.append($("<li>").text(
-										authorityItem.authority));
-							});
-							var $authorities = $("<div>").text("Authorities:");
-							$authorities.append($authorityList);
-
-							$scope.userInfoBody.append($authorities);
-							$scope.userInfo.show();
-						}
-					});
-		}
-
-		function showTokenInformation() {
-			var jwtToken = getJwtToken();
-			var decodedToken = jwt_decode(jwtToken);
-
-			$scope.loggedInBody.append($("<h4>").text("Token"));
-			$scope.loggedInBody.append($("<div>").text(jwtToken).css(
-					"word-break", "break-all"));
-			$scope.loggedInBody.append($("<h4>").text("Token claims"));
-
-			var $table = $("<table>").addClass("table table-striped");
-			appendKeyValue($table, "sub", decodedToken.sub);
-			appendKeyValue($table, "iat", decodedToken.iat);
-			appendKeyValue($table, "exp", decodedToken.exp);
-
-			$scope.loggedInBody.append($table);
-
-			$scope.loggedIn.show();
-		}
-
-		function appendKeyValue($table, key, value) {
-			var $row = $("<tr>").append($("<td>").text(key)).append(
-					$("<td>").text(value));
-			$table.append($row);
-		}
-
-		function showResponse(statusCode, message) {
-			$scope.response.empty().text(
-					"status code: " + statusCode
-							+ "\n-------------------------\n" + message);
-		}
 
 		// REGISTER EVENT LISTENERS
 		// =============================================================
@@ -199,10 +131,7 @@
 
 		$("#logoutBtn").click(doLogout);
 
-		$scope.loggedIn.click(function() {
-			$scope.loggedIn.toggleClass("text-hidden")
-					.toggleClass("text-shown");
-		});
+		
 
 	}
 
