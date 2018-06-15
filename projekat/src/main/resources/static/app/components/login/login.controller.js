@@ -73,7 +73,8 @@
 				$scope.login.hide();
 				$scope.logout.show();
 				$scope.reg.hide();
-				$scope.notLoggedIn.hide();
+				var decoded = jwt_decode(response.data.token);
+				console.log(decoded);
 				$location.path("/home")
 
 			}, function errorCallback(response) {
