@@ -52,4 +52,10 @@ public class RegisterController {
 			throws URISyntaxException, InterruptedException, IOException, NoSuchAlgorithmException, NoSuchProviderException, OperatorCreationException {
 		return korisnikService.registerKorisnik(response, regDetails);
 	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/register/admin", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<HashMap> registerByAdmin(HttpServletResponse response, @RequestBody RegisterDTO regDetails)
+			throws URISyntaxException, InterruptedException, IOException, NoSuchAlgorithmException, NoSuchProviderException, OperatorCreationException {
+		return korisnikService.registerKorisnikByAdmin(response, regDetails);
+	}
 }

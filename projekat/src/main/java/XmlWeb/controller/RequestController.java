@@ -60,12 +60,12 @@ public class RequestController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/requests/{reqId}/user/{userId}")
 	public void approveReq(@PathVariable Long reqId, @PathVariable Long userId) {
-		try {
+		//try {
 			agentReqService.approveRequest( reqId,  userId);
 			
-		}catch(Exception ex) {
-			System.out.println("Opet org.hibernate.HibernateException: Unable to access lob stream i IO Exception: \"Missing lob entry");
-		}
+		//}catch(Exception ex) {
+		//	System.out.println("Opet org.hibernate.HibernateException: Unable to access lob stream i IO Exception: \"Missing lob entry");
+		//}
 	}
 	
 	

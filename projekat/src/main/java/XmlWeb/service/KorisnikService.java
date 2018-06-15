@@ -255,4 +255,84 @@ public class KorisnikService {
 		korisnikRepo.save(k);
 	}
 
+	public ResponseEntity<HashMap> registerKorisnikByAdmin(HttpServletResponse response, RegisterDTO regDetails) {
+		// TODO Auto-generated method stub
+		HashMap<String, String> map = new HashMap<>();
+		Korisnik k = korisnikRepo.findByUsernameIgnoreCase(regDetails.getUsername());
+		if (k != null) {
+			map.put("text", "Username is already taken.");
+			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
+		}
+
+		k = korisnikRepo.findByEmailIgnoreCase(regDetails.getEmail());
+		if (k != null) {
+			map.put("text", "Email is already taken.");
+			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
+		}
+
+		if (!regDetails.getPassword1().equals(regDetails.getPassword2())) {
+			map.put("text", "Passwords don't match.");
+			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
+		}
+
+		/*
+		 * Zxcvbn passwordCheck = new Zxcvbn(); Strength strength =
+		 * passwordCheck.measure(regDetails.getPassword1()); if (strength.getScore() <
+		 * 1) {
+		 * map.put("text","Your password is too weak. Please choose a stronger one.");
+		 * return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED); }
+		 */
+		Korisnik novi = new Korisnik();
+		novi.setAktiviran(false);
+		List<Authority> l = new ArrayList<>();
+		Authority a;
+		a = autoRepo.findByName(AuthorityName.ROLE_AGENT);
+		if (a != null)
+			l.add(a);
+		else {
+			a = new Authority();
+			a.setName(AuthorityName.ROLE_AGENT);
+			a.setUsers(new ArrayList<>());
+			autoRepo.save(a);
+			l.add(a);
+		}
+		novi.setAuthorities(l);
+		novi.setEmail(regDetails.getEmail());
+		novi.setFirstName(regDetails.getFirstname());
+		novi.setLastName(regDetails.getLastname());
+		novi.setPassword(bCryptPasswordEncoder.encode(regDetails.getPassword1()));
+		novi.setIzdaje(null);
+		novi.setRezervacije(null);
+		novi.setStatusNaloga(StatusKorisnika.AKTIVAN);
+		novi.setLastPasswordResetDate(new Date());
+		novi.setUsername(regDetails.getUsername());
+		novi.setPIB(regDetails.getPib());
+		novi.setAdresa(regDetails.getAdresa());
+		novi.setRole(Role.AGENT);
+		novi.setConfirmationToken(UUID.randomUUID().toString());
+		korisnikRepo.save(novi);
+		a.getUsers().add(novi);
+		autoRepo.save(a);
+		String subject = "Registration Details";
+		String text = "Your account on PigInc. BOOKING is created.\n"
+				+"Username: " + novi.getUsername()
+				+"Password: " + regDetails.getPassword1()
+				+ "Visit us on https://localhost:8096";
+		String redirect = "1";
+		SimpleMailMessage registrationEmail = new SimpleMailMessage();
+		registrationEmail.setTo(novi.getEmail());
+		registrationEmail.setSubject(subject);
+		registrationEmail.setText(text);
+		registrationEmail.setFrom("noreply@domain.com");
+
+		emailService.sendEmail(registrationEmail);
+		// return new ResponseEntity<String>("Almost there! Please finish your
+		// registration via link we sent on your email.", HttpStatus.OK);
+		
+		
+		String location = "https://localhost:8090/#!/success/" + redirect;
+		map.put("Location", location);
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+
 }

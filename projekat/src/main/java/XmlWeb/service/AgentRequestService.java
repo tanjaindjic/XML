@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import XmlWeb.dto.AgentRequestDTO;
 import XmlWeb.model.AgentRequest;
 import XmlWeb.model.Korisnik;
+import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.repository.AgentRequestRepository;
 import XmlWeb.repository.KorisnikRepository;
 
@@ -106,11 +107,12 @@ public class AgentRequestService {
 
 	public void approveRequest(Long reqId, Long userId) {
 		// TODO Auto-generated method stub
-		Korisnik k = korisnikService.getKorisnik(userId);
-		String subject = "Registration Confirmation";
-		String link = "Please go to following link to activate your account: https://localhost:8096/confirm/";
-		String text = "To confirm your e-mail address, please click the link below:\n" + link 
-				+ k.getConfirmationToken();
+		Korisnik k = korisnikRepo.findById(userId).get();
+		k.setAktiviran(true);
+		k.setStatusNaloga(StatusKorisnika.AKTIVAN);
+		korisnikRepo.save(k);
+		String subject = "Account Activation";
+		String text = "Your registration request was approved and your account is active now. Visit us on: https://localhost:8096";
 		SimpleMailMessage registrationEmail = new SimpleMailMessage();
 		registrationEmail.setTo(k.getEmail());
 		registrationEmail.setSubject(subject);
