@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import XmlWeb.dto.AgentRequestDTO;
 import XmlWeb.model.AgentRequest;
 import XmlWeb.model.Korisnik;
+import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.service.AgentRequestService;
 import XmlWeb.service.AuthorityService;
 import XmlWeb.service.KorisnikService;
@@ -27,6 +28,7 @@ public class RequestController {
 	
 	@Autowired
 	private KorisnikService korisnikService;
+	
 	
 
 	@RequestMapping(method = RequestMethod.GET, value = "/requests")
@@ -51,6 +53,16 @@ public class RequestController {
 			authService.removeUser(k.getAuthorities().get(0).getId(), userId);
 			korisnikService.deleteKorisnik(userId);
 			agentReqService.deleteRequest(reqId);
+		}catch(Exception ex) {
+			System.out.println("Opet org.hibernate.HibernateException: Unable to access lob stream i IO Exception: \"Missing lob entry");
+		}
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/requests/{reqId}/user/{userId}")
+	public void approveReq(@PathVariable Long reqId, @PathVariable Long userId) {
+		try {
+			agentReqService.approveRequest( reqId,  userId);
+			
 		}catch(Exception ex) {
 			System.out.println("Opet org.hibernate.HibernateException: Unable to access lob stream i IO Exception: \"Missing lob entry");
 		}

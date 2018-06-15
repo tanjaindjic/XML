@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -27,6 +28,15 @@ public class AgentRequestService {
 	
 	@Autowired
 	private KorisnikRepository korisnikRepo;
+	
+	@Autowired
+	private AgentRequestService agentReqService;
+	
+	@Autowired
+	private KorisnikService korisnikService;
+
+	@Autowired
+	private EmailService emailService;
 	
 	
 	public void populateRepository(List<AgentRequest> allRequests) {
@@ -92,6 +102,24 @@ public class AgentRequestService {
 		agentRequestRepository.findAll().forEach(ret::add);
 		
 		return ret;
+	}
+
+	public void approveRequest(Long reqId, Long userId) {
+		// TODO Auto-generated method stub
+		Korisnik k = korisnikService.getKorisnik(userId);
+		String subject = "Registration Confirmation";
+		String link = "Please go to following link to activate your account: https://localhost:8096/confirm/";
+		String text = "To confirm your e-mail address, please click the link below:\n" + link 
+				+ k.getConfirmationToken();
+		SimpleMailMessage registrationEmail = new SimpleMailMessage();
+		registrationEmail.setTo(k.getEmail());
+		registrationEmail.setSubject(subject);
+		registrationEmail.setText(text);
+		registrationEmail.setFrom("noreply@domain.com");
+
+		emailService.sendEmail(registrationEmail);
+		
+		agentReqService.deleteRequest(reqId);
 	}
 	
 }

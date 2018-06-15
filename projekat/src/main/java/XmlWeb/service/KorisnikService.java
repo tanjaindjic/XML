@@ -250,4 +250,9 @@ public class KorisnikService {
 
 	}
 
+	public void saveKorisnik(Korisnik k) {
+		// TODO Auto-generated method stub
+		korisnikRepo.save(k);
+	}
+
 }
