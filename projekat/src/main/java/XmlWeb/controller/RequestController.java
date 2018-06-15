@@ -1,5 +1,6 @@
 package XmlWeb.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +45,15 @@ public class RequestController {
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/requests/{reqId}/user/{userId}")
 	public void deleteReq(@PathVariable Long reqId, @PathVariable Long userId){
-		Korisnik k = korisnikService.getKorisnik(userId);
-		
-		authService.removeUser(k.getAuthorities().get(0).getId(), userId);
-		korisnikService.deleteKorisnik(userId);
-		agentReqService.deleteRequest(reqId);
+		try {
+			Korisnik k = korisnikService.getKorisnik(userId);
+			
+			authService.removeUser(k.getAuthorities().get(0).getId(), userId);
+			korisnikService.deleteKorisnik(userId);
+			agentReqService.deleteRequest(reqId);
+		}catch(Exception ex) {
+			System.out.println("Opet org.hibernate.HibernateException: Unable to access lob stream i IO Exception: \"Missing lob entry");
+		}
 	}
 	
 	
