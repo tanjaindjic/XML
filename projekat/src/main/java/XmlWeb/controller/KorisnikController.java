@@ -39,8 +39,8 @@ public class KorisnikController {
 		korisnikService.addKorisnik(k);
 	}
 	
-	@RequestMapping(method = RequestMethod.DELETE, value = "/user")
-	public void deleteKorisnik(@RequestBody Long id){
+	@RequestMapping(method = RequestMethod.DELETE, value = "/user/{id}")
+	public void deleteKorisnik(@PathVariable Long id){
 		 korisnikService.deleteKorisnik(id);
 	}
 

@@ -99,6 +99,7 @@ public class JwtTokenUtil implements Serializable {
         claims.setIssuedAt(createdDate);
         claims.setExpiration(expirationDate);
 
+
         return Jwts.builder()
             .setClaims(claims)
             .signWith(SignatureAlgorithm.HS512, secret)
