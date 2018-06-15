@@ -49,5 +49,10 @@ public class KorisnikController {
 	public void deleteKorisnik(@PathVariable Long id){
 		 korisnikService.deleteKorisnik(id);
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/user/block/{id}")
+	public void blockKorisnik(@PathVariable Long id){
+		 korisnikService.blockKorisnik(id);
+	}
 
 }

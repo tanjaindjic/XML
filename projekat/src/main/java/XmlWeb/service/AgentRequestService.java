@@ -109,6 +109,7 @@ public class AgentRequestService {
 		// TODO Auto-generated method stub
 		Korisnik k = korisnikRepo.findById(userId).get();
 		k.setAktiviran(true);
+		k.setConfirmationToken("");
 		k.setStatusNaloga(StatusKorisnika.AKTIVAN);
 		korisnikRepo.save(k);
 		String subject = "Account Activation";

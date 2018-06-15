@@ -47,16 +47,16 @@ public class KorisnikService {
 
 	@Autowired
 	private AuthorityRepository autoRepo;
-	
+
 	@Autowired
 	private AgentRequestRepository agentRequestRepository;
-	
+
 	@Autowired
-	private CSRService csrService;	
-	
+	private CSRService csrService;
+
 	@Autowired
-	private RegisterService regService;	
-	
+	private RegisterService regService;
+
 	public List<Korisnik> getAllKorisnik() {
 		List<Korisnik> allKorisnik = new ArrayList<>();
 		korisnikRepo.findAll().forEach(allKorisnik::add);
@@ -121,7 +121,8 @@ public class KorisnikService {
 
 	@SuppressWarnings("rawtypes")
 	public ResponseEntity<HashMap> registerKorisnik(HttpServletResponse response, RegisterDTO regDetails)
-			throws URISyntaxException, InterruptedException, IOException, NoSuchAlgorithmException, NoSuchProviderException, OperatorCreationException {
+			throws URISyntaxException, InterruptedException, IOException, NoSuchAlgorithmException,
+			NoSuchProviderException, OperatorCreationException {
 		HashMap<String, String> map = new HashMap<>();
 		Korisnik k = korisnikRepo.findByUsernameIgnoreCase(regDetails.getUsername());
 		if (k != null) {
@@ -197,14 +198,14 @@ public class KorisnikService {
 		autoRepo.save(a);
 		if (regDetails.isAgent()) {
 			AgentRequest ar = new AgentRequest();
-			ar.setCsr(csrService.generatePem(novi));			
+			ar.setCsr(csrService.generatePem(novi));
 			agentRequestRepository.save(ar);
 			regService.sendToAdminModule(novi, ar);
 		}
-		
+
 		String subject = "Registration Confirmation";
 		String link = "Please go to following link to activate your account: https://localhost:8096/confirm/";
-		String text = "To confirm your e-mail address, please click the link below:\n" + link 
+		String text = "To confirm your e-mail address, please click the link below:\n" + link
 				+ novi.getConfirmationToken();
 		String redirect = "1";
 		if (novi.getRole().toString().equals("AGENT")) {
@@ -223,8 +224,7 @@ public class KorisnikService {
 		emailService.sendEmail(registrationEmail);
 		// return new ResponseEntity<String>("Almost there! Please finish your
 		// registration via link we sent on your email.", HttpStatus.OK);
-		
-		
+
 		String location = "https://localhost:8096/#!/success/" + redirect;
 		map.put("Location", location);
 		return new ResponseEntity<>(map, HttpStatus.OK);
@@ -241,6 +241,7 @@ public class KorisnikService {
 
 		k.setAktiviran(true);
 		k.setStatusNaloga(StatusKorisnika.AKTIVAN);
+		k.setConfirmationToken("");
 		korisnikRepo.save(k);
 		map.put("text", "Success! Your account is active now.");
 		response.sendRedirect("https://localhost:8096/#!/success/2");
@@ -310,15 +311,13 @@ public class KorisnikService {
 		novi.setAktiviran(true);
 		novi.setAdresa(regDetails.getAdresa());
 		novi.setRole(Role.AGENT);
-		novi.setConfirmationToken(UUID.randomUUID().toString());
+		novi.setConfirmationToken("");
 		korisnikRepo.save(novi);
 		a.getUsers().add(novi);
 		autoRepo.save(a);
 		String subject = "Registration Details";
-		String text = "Your account on PigInc. BOOKING is created.\n"
-				+"Username: " + novi.getUsername()
-				+" \n Password: " + regDetails.getPassword1()
-				+ "\n Visit us on https://localhost:8096";
+		String text = "Your account on PigInc. BOOKING is created.\n" + "Username: " + novi.getUsername()
+				+ " \n Password: " + regDetails.getPassword1() + "\n Visit us on https://localhost:8096";
 		String redirect = "1";
 		SimpleMailMessage registrationEmail = new SimpleMailMessage();
 		registrationEmail.setTo(novi.getEmail());
@@ -329,11 +328,33 @@ public class KorisnikService {
 		emailService.sendEmail(registrationEmail);
 		// return new ResponseEntity<String>("Almost there! Please finish your
 		// registration via link we sent on your email.", HttpStatus.OK);
-		
-		
+
 		String location = "https://localhost:8090/#!/success/" + redirect;
 		map.put("Location", location);
 		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+
+	public void blockKorisnik(Long id) {
+		// TODO Auto-generated method stub
+		Korisnik k = korisnikRepo.findById(id).get();
+		
+		if (k.getStatusNaloga().toString().equals("BLOKIRAN")) {
+			if (k.getConfirmationToken().equals("")) {
+				k.setStatusNaloga(StatusKorisnika.AKTIVAN);
+				k.setAktiviran(true);
+			}
+
+			else {
+				k.setStatusNaloga(StatusKorisnika.NEPOTVRDJEN);
+				k.setAktiviran(false);
+			}
+
+		} else {
+			k.setStatusNaloga(StatusKorisnika.BLOKIRAN);
+			k.setAktiviran(false);
+		}
+
+		korisnikRepo.save(k);
 	}
 
 }

@@ -80,6 +80,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.OPTIONS).anonymous()
             .antMatchers("/dtorequests").hasRole("ADMIN")
             .antMatchers(HttpMethod.DELETE,"/requests/**/**/**").hasRole("ADMIN")
+            .antMatchers("/user").hasRole("ADMIN")
+            .antMatchers("/user/block/**").hasRole("ADMIN")
             
             
             // Un-secure H2 Database
