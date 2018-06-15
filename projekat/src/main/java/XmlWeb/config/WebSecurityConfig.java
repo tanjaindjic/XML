@@ -2,6 +2,7 @@ package XmlWeb.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -16,7 +17,13 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import XmlWeb.security.*;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
+
+import XmlWeb.security.JwtAuthenticationEntryPoint;
+import XmlWeb.security.JwtAuthorizationTokenFilter;
+import XmlWeb.security.JwtTokenUtil;
 import XmlWeb.service.JwtUserDetailsService;
 
 @Configuration
@@ -62,6 +69,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity
             // we don't need CSRF because our token is invulnerable
             .csrf().disable()
+       
 
             .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 
@@ -96,7 +104,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(
                 HttpMethod.POST,
                 authenticationPath, 
-                "/register", "/requests"
+                "/register"
             )
 
             // allow anonymous resource requests
@@ -114,9 +122,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/success", 
                 "/confirm/**",
                 "/success/**",
-                "/requests",
-                "/authority",
-                "/user" //OVO NE MOZE OVAKO SAMO ZA TEST!
+                "/dtorequests"
+                
             )
 
             // Un-secure H2 Database (for testing purposes, H2 console shouldn't be unprotected in production)
@@ -124,4 +131,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .ignoring()
             .antMatchers("/h2-console/**/**");
     }
+    
+
 }
