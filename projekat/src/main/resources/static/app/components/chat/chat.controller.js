@@ -25,11 +25,20 @@
         var init = function (){
             //PROVERA DA LI JE USER ID == cookie USER ID
 
+
+            var temp=jwt_decode(getJwtToken()).jti; // Zameniti sa cookies.get('user') ili sta god kada bude login
+
+
+            $scope.userId2 = Number(temp);
+
             $scope.userId=$stateParams.id;
+
+
+
             $scope.chatWith = $stateParams.id2;
             $scope.username= $stateParams.username;
 
-            if($scope.userId != null){
+            if($scope.userId != null ){
                 $window.localStorage.setItem("id",  $scope.userId);
                 $window.localStorage.setItem("id2",  $scope.chatWith);
                 $window.localStorage.setItem("username",  $scope.username);
@@ -43,9 +52,11 @@
             }
 
             //$scope.userId= $cookies.get('id');
+
             $http({
                 method: 'GET',
-                url: 'http://localhost:8096/messages/inbox/' +$scope.userId+ '/chat/' +$scope.chatWith,
+                url: 'https://localhost:8096/messages/inbox/' +$scope.userId+ '/chat/' +$scope.chatWith,
+                headers : createAuthorizationTokenHeader()
             }).then(function successCallback(response) {
 
                 $scope.messages = response.data;
@@ -73,8 +84,9 @@
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:8096/messages/send',
+                url: 'https://localhost:8096/messages/send',
                 data:dto,
+                headers : createAuthorizationTokenHeader()
             }).then(function successCallback(response) {
                 $scope.addMessage(text);
 
@@ -118,6 +130,22 @@
 
              $scope.messages.push(message);
 
+        }
+
+
+        function getJwtToken() {
+            return localStorage.getItem($scope.TOKEN_KEY);
+        }
+
+        function createAuthorizationTokenHeader() {
+            var token = getJwtToken();
+            if (token) {
+                return {
+                    "Authorization" : "Bearer " + token
+                };
+            } else {
+                return {};
+            }
         }
 
         init();

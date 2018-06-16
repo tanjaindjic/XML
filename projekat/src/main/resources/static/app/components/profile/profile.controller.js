@@ -20,12 +20,15 @@
         $scope.user = {};
 
         var init = function (){
-            $scope.userId=2; // Zameniti sa cookies.get('user') ili sta god kada bude login
+            var temp=jwt_decode(getJwtToken()).jti; // Zameniti sa cookies.get('user') ili sta god kada bude login
 
+
+            $scope.userId = Number(temp);
             //$scope.userId= $cookies.get('id');
             $http({
                 method: 'GET',
-                url: 'http://localhost:8096/user/'+$scope.userId,
+                url: 'https://localhost:8096/user/'+$scope.userId,
+                headers : createAuthorizationTokenHeader()
             }).then(function successCallback(response) {
                 if(response.data ==null)
                     $location.path('/home');
@@ -39,6 +42,22 @@
 
 
         };
+
+        function getJwtToken() {
+            return localStorage.getItem($scope.TOKEN_KEY);
+        }
+
+        function createAuthorizationTokenHeader() {
+            var token = getJwtToken();
+            if (token) {
+                return {
+                    "Authorization" : "Bearer " + token
+                };
+            } else {
+                return {};
+            }
+        }
+
 
         init();
 

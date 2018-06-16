@@ -27,15 +27,19 @@
         }
 
         var init = function (){
-            $scope.userId=2; // Zameniti sa cookies.get('user') ili sta god kada bude login
-            $scope.username="test";
+            var temp=jwt_decode(getJwtToken()).jti; // Zameniti sa cookies.get('user') ili sta god kada bude login
+
+
+            $scope.userId = Number(temp);
+            $scope.username=jwt_decode(getJwtToken()).sub;
             //$scope.userId= $cookies.get('id');
             //$scope.username= $cookies.get('username');
 
 
             $http({
                 method: 'GET',
-                url: 'http://localhost:8096/messages/inbox/'+$scope.userId,
+                url: 'https://localhost:8096/messages/inbox/'+$scope.userId,
+                headers : createAuthorizationTokenHeader()
             }).then(function successCallback(response) {
 
                 $scope.korisnici = response.data;
@@ -49,6 +53,22 @@
 
 
         };
+
+        function getJwtToken() {
+            return localStorage.getItem($scope.TOKEN_KEY);
+        }
+
+        function createAuthorizationTokenHeader() {
+            var token = getJwtToken();
+            if (token) {
+                return {
+                    "Authorization" : "Bearer " + token
+                };
+            } else {
+                return {};
+            }
+        }
+
 
         init();
 

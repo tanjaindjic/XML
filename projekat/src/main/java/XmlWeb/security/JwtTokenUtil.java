@@ -20,6 +20,7 @@ public class JwtTokenUtil implements Serializable {
 
     static final String CLAIM_KEY_USERNAME = "sub";
     static final String CLAIM_KEY_CREATED = "iat";
+    static final String CLAIM_KEY_ID = "jti";
     private static final long serialVersionUID = -3301605591108950415L;
     private Clock clock = DefaultClock.INSTANCE;
 
@@ -39,6 +40,10 @@ public class JwtTokenUtil implements Serializable {
 
     public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
+    }
+
+    public String getIdFromToken(String token) {
+        return getClaimFromToken(token, Claims::getId);
     }
 
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
@@ -67,12 +72,12 @@ public class JwtTokenUtil implements Serializable {
         return false;
     }
 
-    public String generateToken(UserDetails userDetails) {
+    public String generateToken(UserDetails userDetails, Long id) {
         Map<String, Object> claims = new HashMap<>();
-        return doGenerateToken(claims, userDetails.getUsername());
+        return doGenerateToken(claims, userDetails.getUsername(), id);
     }
 
-    private String doGenerateToken(Map<String, Object> claims, String subject) {
+    private String doGenerateToken(Map<String, Object> claims, String subject, Long id) {
         final Date createdDate = clock.now();
         final Date expirationDate = calculateExpirationDate(createdDate);
 
@@ -80,6 +85,7 @@ public class JwtTokenUtil implements Serializable {
             .setClaims(claims)
             .setSubject(subject)
             .setIssuedAt(createdDate)
+            .setId(id.toString())
             .setExpiration(expirationDate)
             .signWith(SignatureAlgorithm.HS512, secret)
             .compact();
@@ -94,11 +100,11 @@ public class JwtTokenUtil implements Serializable {
     public String refreshToken(String token) {
         final Date createdDate = clock.now();
         final Date expirationDate = calculateExpirationDate(createdDate);
-
+        final String id = getIdFromToken(token);
         final Claims claims = getAllClaimsFromToken(token);
         claims.setIssuedAt(createdDate);
         claims.setExpiration(expirationDate);
-
+        claims.setId(id);
 
         return Jwts.builder()
             .setClaims(claims)

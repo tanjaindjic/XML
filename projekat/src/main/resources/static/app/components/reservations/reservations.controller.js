@@ -42,8 +42,9 @@
 
             $http({
                 method: 'PUT',
-                url: 'http://localhost:8096/reservation/update',
+                url: 'https://localhost:8096/reservation/update',
                 data: dto,
+                headers : createAuthorizationTokenHeader()
             }).then(function successCallback(response) {
                 alert("The reservation has been canceled ");
 
@@ -81,15 +82,19 @@
         $scope.username = "";
 
         var init = function (){
-            $scope.userId=2; // Zameniti sa cookies.get('user') ili sta god kada bude login
-            $scope.username="test";
+            var temp=jwt_decode(getJwtToken()).jti; // Zameniti sa cookies.get('user') ili sta god kada bude login
+
+
+            $scope.userId = Number(temp);
+            $scope.username=jwt_decode(getJwtToken()).sub;
             //$scope.userId= $cookies.get('id');
             //$scope.username= $cookies.get('username');
 
 
             $http({
                 method: 'GET',
-                url: 'http://localhost:8096/reservation/'+$scope.userId,
+                url: 'https://localhost:8096/reservation/'+$scope.userId,
+                headers : createAuthorizationTokenHeader()
             }).then(function successCallback(response) {
                 //toDateString() datumDo
                 $scope.temp=response.data;
@@ -124,6 +129,21 @@
 
         init();
 
+        function getJwtToken() {
+            return localStorage.getItem($scope.TOKEN_KEY);
+        }
+
+        function createAuthorizationTokenHeader() {
+            var token = getJwtToken();
+            if (token) {
+                return {
+                    "Authorization" : "Bearer " + token
+                };
+            } else {
+                return {};
+            }
+        }
+
         $scope.sendMessage=function(id){
             $state.go('core.chat' , {"id" : $scope.userId, "id2" : id, "username" : $scope.username} );
         }
@@ -137,8 +157,9 @@
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:8096/comments/add',
+                url: 'https://localhost:8096/comments/add',
                 data: dto,
+                headers : createAuthorizationTokenHeader()
             }).then(function successCallback(response) {
                 alert("Comment submitted and awaiting approval ");
 

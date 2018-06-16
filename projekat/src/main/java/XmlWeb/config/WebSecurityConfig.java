@@ -80,7 +80,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.OPTIONS).anonymous()
             .antMatchers("/dtorequests").hasRole("ADMIN")
             .antMatchers(HttpMethod.DELETE,"/requests/**/**/**").hasRole("ADMIN")
-            .antMatchers("/user").hasRole("ADMIN")
+            .antMatchers("/user").hasAnyRole("ADMIN", "USER")
             .antMatchers("/user/block/**").hasRole("ADMIN")
             //mora sa permisijama
             
@@ -114,6 +114,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/register"
             )
 
+           .antMatchers(
+                HttpMethod.DELETE // BUDZI GRBA
+
+           )
+
             // allow anonymous resource requests
             .and()
             .ignoring()
@@ -128,7 +133,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/register", 
                 "/success", 
                 "/confirm/**",
-                "/success/**"
+                "/success/**",
+                "/api/smestaj"
         
                 
             )

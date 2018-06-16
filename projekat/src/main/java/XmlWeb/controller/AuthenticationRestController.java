@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
+import XmlWeb.model.Korisnik;
+import XmlWeb.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,15 +46,18 @@ public class AuthenticationRestController {
     @Qualifier("jwtUserDetailsService")
     private UserDetailsService userDetailsService;
 
+    @Autowired
+    private KorisnikService korisnikService;
+
    // @CrossOrigin(origins = "https://localhost:8090")
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
-
+        Korisnik k = korisnikService.getKorisnik(authenticationRequest.getUsername());
         // Reload password post-security so we can generate the token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-        final String token = jwtTokenUtil.generateToken(userDetails);
+        final String token = jwtTokenUtil.generateToken(userDetails, k.getId());
 
         // Return the token
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));

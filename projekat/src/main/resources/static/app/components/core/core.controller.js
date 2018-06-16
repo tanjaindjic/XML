@@ -11,6 +11,12 @@
 		$scope.TOKEN_KEY = "jwtToken";
 		$scope.logout = $("#logoutBtn");
 		$scope.login = $("#loginBtn");
+		$scope.profile = function(){
+            $location.path('/profile');
+		}
+
+		$scope.profileShow = false;
+
 		$scope.reg = $("#registerBtn");
 		$scope.username = "";
 		
@@ -22,6 +28,8 @@
 			if (getJwtToken()) {
 				$scope.login.hide();
 				$scope.logout.show();
+
+                $scope.profileShow = true;
 				$scope.reg.hide();
 				$scope.username = " " +jwt_decode(getJwtToken()).sub;
 		
@@ -29,6 +37,7 @@
 				$scope.login.show();
 				$scope.logout.hide();
 				$scope.reg.show();
+                $scope.profileShow = false;
 			}
 				
 

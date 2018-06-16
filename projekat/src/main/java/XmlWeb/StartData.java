@@ -77,17 +77,17 @@ public class StartData {
          k.setAuthorities(l);
          korisnikRepo.save(k);
          System.out.println("dodao admira");
-//         addUser("test", "test", "Minja", "Car", "test@gmail.com" , Role.USER);
-//         addUser("Mirko", "mirko", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
-//         addUser("Slavko", "slavko", "Slavko", "Slavic", "slavko@gmail.com" , Role.AGENT);
+         addUser("test", "test", "Minja", "Car1", "test@gmail.com" , Role.USER);
+         addUser("Mirko", "mirko", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
+         addUser("Slavko", "slavko", "Slavko", "Slavic", "slavko@gmail.com" , Role.AGENT);
 //
-//         addMessage(2L, 3L, "Testiram poruke",1);
-//         addMessage(3L, 2L, "Obrnut redosled",2);
-//         addMessage(2L, 3L, "Evo poslao sam ti",3);
-//         addMessage(2L, 4L, "Ziv si li Slavko ? ", 4);
+         addMessage(2L, 3L, "Testiram poruke",1);
+         addMessage(3L, 2L, "Obrnut redosled",2);
+         addMessage(2L, 3L, "Evo poslao sam ti",3);
+         addMessage(2L, 4L, "Ziv si li Slavko ? ", 4);
 //
-//         addRezervacija(2l, 3l, 0);
-//         addRezervacija(2l, 3l, 12);
+         addRezervacija(2l, 3l, 0);
+         addRezervacija(2l, 3l, 12);
 
 
 	 }
@@ -173,16 +173,30 @@ public class StartData {
 
          Korisnik k = new Korisnik();
          k.setUsername(username);
-         k.setPassword(password);
+         k.setPassword(bCryptPasswordEncoder.encode(password));
          k.setFirstName(name);
          k.setLastName(last);
          k.setAktiviran(true);
          k.setRole(r);
          k.setStatusNaloga(StatusKorisnika.AKTIVAN);
          k.setEmail(email);
+         k.setLastPasswordResetDate(new Date());
          k.setIzdaje(new ArrayList<>());
          k.setRezervacije(new ArrayList<>());
+         List l = new ArrayList<>();
+         Authority a = new Authority();
+         if(r == Role.USER)
+            a.setName(AuthorityName.ROLE_USER);
+         else if (r == Role.AGENT)
+             a.setName(AuthorityName.ROLE_AGENT);
+         else
+             a.setName(AuthorityName.ROLE_ADMIN);
+
+         authorityRepository.save(a);
+         l.add(a);
+         k.setAuthorities(l);
          korisnikRepo.save(k);
+         System.out.println("Dodao korisnika");
 
 
      }
