@@ -1,0 +1,71 @@
+<div>
+
+
+    </br>
+    </br>
+
+  <ul class="goreDoleList">
+      <li class="pomeri">
+          <a ng-click="goToState('core.inbox')"> INBOX </a>
+      </li>
+      <li class="gornjaIvica">
+          <a ng-click="goToState('core.reservations')"> RESERVATIONS </a>
+      </li>
+      <li class="gornjaIvica">
+          <a ng-click="goToState('core.editProfile')"> EDIT PROFILE </a>
+      </li>
+      <li class="gornjaIvica">
+          <a ng-click="goToState('core.profile')"> PROFILE </a>
+      </li>
+  </ul>
+
+    <table class="centar">
+
+        <tr>
+            <td colspan="2"> PROFILE </td>
+        </tr>
+
+        <tr>
+            <td colspan="2"> &nbsp; </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a>USERNAME : </a>
+            </td>
+            <td>
+                <a>{{user.username}} </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a>FIRST NAME : </a>
+            </td>
+            <td>
+                <a>{{user.firstName}} </a>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>
+                <a>LAST NAME : </a>
+            </td>
+            <td>
+                <a>{{user.lastName}} </a>
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <a>EMAIL : </a>
+            </td>
+            <td>
+                <a>{{user.email}} </a>
+            </td>
+        </tr>
+
+    </table>
+
+</div>

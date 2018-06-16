@@ -1,0 +1,64 @@
+<div>
+
+
+    </br>
+    </br>
+
+
+    <ul class="goreDoleList">
+        <li class="pomeri">
+            <a ng-click="goToState('core.inbox')"> INBOX </a>
+        </li>
+        <li class="gornjaIvica">
+            <a ng-click="goToState('core.reservations')"> RESERVATIONS </a>
+        </li>
+        <li class="gornjaIvica">
+            <a ng-click="goToState('core.editProfile')"> EDIT PROFILE </a>
+        </li>
+        <li class="gornjaIvica">
+            <a ng-click="goToState('core.profile')"> PROFILE </a>
+        </li>
+    </ul>
+
+
+    <h3 class="centar">RESERVATIONS : </h3>
+
+
+
+    <ul class="goreDoleListCentarRezervacije" >
+
+        <li ng-repeat="reservation in rezervacije track by $index" class="gornjaIvica">
+
+            <a ng-click="goToPlace(reservation.smestaj.id)"> Place : {{reservation.smestaj.naziv}}  </a>
+
+            <button ng-if="prosaoDatum(reservation.datumOd, reservation.status)"  type="submit" class="delete" class="btn btn-primary" style="float: right !important;"  ng-confirm-click="Are you sure to cancel your reservation ?" confirmed-click="cancelReservation(reservation.id)" >
+                <img class="clearDelete" src="../../../assets/images/trash.png" width="20" height="20" title="Delete" alt="submit" />
+            </button>
+
+            <br/>
+            <a> From : {{reservation.datumOdLepi}}</a>
+            <br/>
+            <a> To : {{reservation.datumDoLepi}}</a>
+            <br/>
+            <a> STATUS : {{reservation.status}} </a>
+            <br/>
+            <a> Comment : </a>
+            <br/>
+            <textarea  rows="4" cols="80" ng-model="komentar"></textarea>
+            <br/>
+            <button  type="submit"  ng-click="komentarisi(komentar, reservation.id)">Leave comment </button>
+            <button  type="submit"  ng-click="sendMessage(reservation.smestaj.vlasnik.id)">Send message </button>
+
+        </li>
+
+    </ul>
+    </br>
+
+
+    </br>
+
+
+
+
+
+</div>

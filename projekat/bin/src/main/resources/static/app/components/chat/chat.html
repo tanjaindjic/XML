@@ -1,0 +1,62 @@
+<div>
+
+
+    </br>
+    </br>
+
+
+    <ul class="goreDoleList">
+        <li class="pomeri">
+            <a ng-click="goToState('core.inbox')"> INBOX </a>
+        </li>
+        <li class="gornjaIvica">
+            <a ng-click="goToState('core.reservations')"> RESERVATIONS </a>
+        </li>
+        <li class="gornjaIvica">
+            <a ng-click="goToState('core.editProfile')"> EDIT PROFILE </a>
+        </li>
+        <li class="gornjaIvica">
+            <a ng-click="goToState('core.profile')"> PROFILE </a>
+        </li>
+    </ul>
+
+
+    <h3 class="centar">CHAT : </h3>
+
+
+
+    <ul class="goreDoleListChat" >
+
+
+        <li ng-repeat="message in messages track by $index" class="gornjaIvicaChat">
+
+            <a ng-if="message.posiljalac.id == userId" >{{message.posiljalac.username}} : {{message.tekst}} </a>
+            <a ng-if="message.posiljalac.id != userId"  class="tudjiChat">{{message.posiljalac.username}} : {{message.tekst}} </a>
+        </li>
+
+        <li>
+            </br>
+        </li>
+
+        <li>
+              <textarea  rows="4" cols="120" ng-model="novaPoruka"></textarea>
+        </li>
+
+        <li>
+            </br>
+        </li>
+
+        <li>
+            <button  type="submit"  ng-click="sendMessage(novaPoruka)">Send message </button>
+        </li>
+    </ul>
+    </br>
+
+
+    </br>
+
+
+
+
+
+</div>
