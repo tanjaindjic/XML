@@ -18,7 +18,10 @@
 		    		Category
 		    	</th>
 		    	<th>
-		    		Rateing
+		    		Rating
+		    	</th>
+		    	<th>
+		    		Photo
 		    	</th>
 		    </tr>
 	      <tr  ng-repeat="smestaj in toShow">
@@ -40,6 +43,14 @@
 	        <td>
 		        <span>{{smestaj.rejting}}</span>
 	        </td>
+	        
+	        <td>
+	        	<img ng-src="/api/files/{{smestaj.slike[0].uri}}.jpg" height="200" wight="250">
+	        </td>
+	        <td>
+	        	<button ng-hide="userId==0||userId==null||userId=={}">Rezervisi</button>
+	        </td>
+	        
 	        
 	      </tr>
 	
