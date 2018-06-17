@@ -4,25 +4,17 @@
     </br>
     </br>
 
-  <ul class="goreDoleList">
-      <li class="pomeri">
-          <a ng-click="goToState('core.inbox')"> INBOX </a>
-      </li>
-      <li class="gornjaIvica">
-          <a ng-click="goToState('core.reservations')"> RESERVATIONS </a>
-      </li>
-      <li class="gornjaIvica">
-          <a ng-click="goToState('core.editProfile')"> EDIT PROFILE </a>
-      </li>
-      <li class="gornjaIvica">
-          <a ng-click="goToState('core.profile')"> PROFILE </a>
-      </li>
-  </ul>
+    <div class="tab">
+        <button class="tablinks" ng-click="goToState('core.inbox')" >INBOX</button>
+        <button class="tablinks" ng-click="goToState('core.reservations')" >RESERVATIONS</button>
+        <button class="tablinks" ng-click="goToState('core.editProfile')" >EDIT PROFILE</button>
+        <button class="tablinks" ng-click="goToState('core.profile')" >PROFILE</button>
+    </div>
 
     <table class="centar">
 
         <tr>
-            <td colspan="2"> PROFILE </td>
+            <td colspan="2" > <h2 class="olive">PROFILE</h2>  </td>
         </tr>
 
         <tr>
@@ -31,7 +23,7 @@
 
         <tr>
             <td>
-                <a>USERNAME : </a>
+                <a class="olive">USERNAME : </a>
             </td>
             <td>
                 <a>{{user.username}} </a>
@@ -39,18 +31,26 @@
         </tr>
 
         <tr>
+            <td colspan="2"> &nbsp; </td>
+        </tr>
+
+
+        <tr>
             <td>
-                <a>FIRST NAME : </a>
+                <a class="olive">FIRST NAME : </a>
             </td>
             <td>
                 <a>{{user.firstName}} </a>
             </td>
         </tr>
 
+        <tr>
+            <td colspan="2"> &nbsp; </td>
+        </tr>
 
         <tr>
             <td>
-                <a>LAST NAME : </a>
+                <a class="olive">LAST NAME : </a>
             </td>
             <td>
                 <a>{{user.lastName}} </a>
@@ -58,8 +58,13 @@
         </tr>
 
         <tr>
+            <td colspan="2"> &nbsp; </td>
+        </tr>
+
+
+        <tr>
             <td>
-                <a>EMAIL : </a>
+                <a class="olive">EMAIL : </a>
             </td>
             <td>
                 <a>{{user.email}} </a>
