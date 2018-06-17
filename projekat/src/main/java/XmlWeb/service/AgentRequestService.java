@@ -5,10 +5,10 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import XmlWeb.config.Read;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import XmlWeb.dto.AgentRequestDTO;
 import XmlWeb.model.AgentRequest;
@@ -50,8 +50,8 @@ public class AgentRequestService {
 		System.out.println("sacuvao novi req");
 		agentRequestRepository.save(req);
 	}
-	
-	
+
+	@Read
 	public List<AgentRequestDTO> makeDTORequests(){
 		ArrayList<AgentRequestDTO> list = new ArrayList<>();
 		for (AgentRequest ar : agentRequestRepository.findAll()) {
@@ -94,6 +94,7 @@ public class AgentRequestService {
 		agentRequestRepository.deleteById(id);
 		
 	}
+
 
 	public List<AgentRequest> getAllRequests() {
 		// TODO Auto-generated method stub

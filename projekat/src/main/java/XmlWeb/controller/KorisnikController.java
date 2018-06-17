@@ -2,6 +2,7 @@ package XmlWeb.controller;
 
 import java.util.List;
 
+import XmlWeb.config.Read;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,7 +21,8 @@ public class KorisnikController {
 	
 	@Autowired
 	private KorisnikService korisnikService;
-	
+
+	@Read
 	@RequestMapping(method = RequestMethod.GET, value = "/user")
 	public List<Korisnik> getKorisnici(){
 		System.out.println("usao po sve korisnike: " + korisnikService.getAllKorisnik().size());

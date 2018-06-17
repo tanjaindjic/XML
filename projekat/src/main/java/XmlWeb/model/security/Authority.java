@@ -1,22 +1,16 @@
 package XmlWeb.model.security;
 
+import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import XmlWeb.model.Korisnik;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
 @Table(name = "AUTHORITY")
@@ -34,9 +28,21 @@ public class Authority {
     private AuthorityName name;
 
     @Column(name = "USERS")
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JsonBackReference
     private List<Korisnik> users;
+
+    @ManyToMany
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private Collection<Permission> permissions;
+
+    public Collection<Permission> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(Collection<Permission> permissions) {
+        this.permissions = permissions;
+    }
 
     public Long getId() {
         return id;
@@ -60,5 +66,14 @@ public class Authority {
 
     public void setUsers(List<Korisnik> users) {
         this.users = users;
+    }
+
+    public Authority(@NotNull AuthorityName name, List<Korisnik> users, Collection<Permission> permissions) {
+        this.name = name;
+        this.users = users;
+        this.permissions = permissions;
+    }
+
+    public Authority() {
     }
 }

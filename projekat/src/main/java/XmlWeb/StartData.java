@@ -2,13 +2,12 @@ package XmlWeb;
 
 
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import javax.annotation.PostConstruct;
 
+import XmlWeb.model.security.Permission;
+import XmlWeb.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -23,12 +22,6 @@ import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.model.Enums.StatusRezevacije;
 import XmlWeb.model.security.Authority;
 import XmlWeb.model.security.AuthorityName;
-import XmlWeb.repository.AuthorityRepository;
-import XmlWeb.repository.KorisnikRepository;
-import XmlWeb.repository.PorukaRepository;
-import XmlWeb.repository.RezervacijaRepository;
-import XmlWeb.repository.SmestajRepository;
-import XmlWeb.repository.SobaRepository;
 
 
 @Component
@@ -55,11 +48,31 @@ public class StartData {
 	@Autowired
     private AuthorityRepository authorityRepository;
 
+    @Autowired
+    private PermissionRepository permissionRepository;
+
 	 @PostConstruct
 	 public void initIt(){
-		 Korisnik k = new Korisnik();
-		 k.setUsername("admin");		
-		 k.setPassword(bCryptPasswordEncoder.encode("admin"));
+         //creating permissions and roles
+         Permission readPermission = new Permission("READ", new ArrayList<Authority>());
+         Permission writePermission = new Permission("WRITE", new ArrayList<Authority>());
+         permissionRepository.save(readPermission);
+         permissionRepository.save(writePermission);
+        //za sad samo ove 2 permisije
+         Authority adminAuthority = new Authority(AuthorityName.ROLE_ADMIN, new ArrayList<>(), Arrays.asList(readPermission, writePermission));
+         Authority agentAuthority = new Authority(AuthorityName.ROLE_AGENT, new ArrayList<>(), Arrays.asList(readPermission, writePermission));
+         Authority userAuthority = new Authority(AuthorityName.ROLE_USER, new ArrayList<>(), Arrays.asList(readPermission));
+         authorityRepository.save(adminAuthority);
+         authorityRepository.save(agentAuthority);
+         authorityRepository.save(userAuthority);
+         readPermission.setAuthorityList(Arrays.asList(adminAuthority, agentAuthority, userAuthority));
+         writePermission.setAuthorityList(Arrays.asList(adminAuthority, agentAuthority));
+         permissionRepository.save(readPermission);
+         permissionRepository.save(writePermission);
+
+         Korisnik k = new Korisnik();
+         k.setUsername("admin");
+         k.setPassword(bCryptPasswordEncoder.encode("admin"));
          k.setFirstName("Pera");
          k.setLastName("Peric");
          k.setAktiviran(true);
@@ -70,24 +83,23 @@ public class StartData {
          k.setIzdaje(new ArrayList<>());
          k.setRezervacije(new ArrayList<>());
          List l = new ArrayList<>();
-         Authority a = new Authority();
-         a.setName(AuthorityName.ROLE_ADMIN);
-         authorityRepository.save(a);
-         l.add(a);
+         l.add(adminAuthority);
          k.setAuthorities(l);
          korisnikRepo.save(k);
+         adminAuthority.getUsers().add(k);
+         authorityRepository.save(adminAuthority);
          System.out.println("dodao admira");
          addUser("test", "test", "Minja", "Car1", "test@gmail.com" , Role.USER);
          addUser("Mirko", "mirko", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
          addUser("Slavko", "slavko", "Slavko", "Slavic", "slavko@gmail.com" , Role.AGENT);
 //
-         addMessage(2L, 3L, "Testiram poruke",1);
+      /*  addMessage(2L, 3L, "Testiram poruke",1);
          addMessage(3L, 2L, "Obrnut redosled",2);
          addMessage(2L, 3L, "Evo poslao sam ti",3);
          addMessage(2L, 4L, "Ziv si li Slavko ? ", 4);
 //
          addRezervacija(2l, 3l, 0);
-         addRezervacija(2l, 3l, 12);
+         addRezervacija(2l, 3l, 12);*/
 
 
 	 }
@@ -184,18 +196,21 @@ public class StartData {
          k.setIzdaje(new ArrayList<>());
          k.setRezervacije(new ArrayList<>());
          List l = new ArrayList<>();
-         Authority a = new Authority();
+         Authority a;
+         //OVO SAM IZMENILA JER CE BITI ZAKUCANE ROLE NEMA STA DA SE DODAJE SAMO DA NADJE ODGOVARAJUCU IZ REPOSITORY
          if(r == Role.USER)
-            a.setName(AuthorityName.ROLE_USER);
+            a = authorityRepository.findByName(AuthorityName.ROLE_USER);
          else if (r == Role.AGENT)
-             a.setName(AuthorityName.ROLE_AGENT);
+             a = authorityRepository.findByName(AuthorityName.ROLE_AGENT);
          else
-             a.setName(AuthorityName.ROLE_ADMIN);
+             a = authorityRepository.findByName(AuthorityName.ROLE_ADMIN);
 
-         authorityRepository.save(a);
+
          l.add(a);
          k.setAuthorities(l);
          korisnikRepo.save(k);
+         a.getUsers().add(k);
+         authorityRepository.save(a);
          System.out.println("Dodao korisnika");
 
 

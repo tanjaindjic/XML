@@ -1,18 +1,14 @@
 package XmlWeb.controller;
 
-import java.io.IOException;
 import java.util.List;
 
+import XmlWeb.config.Read;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import XmlWeb.dto.AgentRequestDTO;
 import XmlWeb.model.AgentRequest;
 import XmlWeb.model.Korisnik;
-import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.service.AgentRequestService;
 import XmlWeb.service.AuthorityService;
 import XmlWeb.service.KorisnikService;
@@ -28,8 +24,8 @@ public class RequestController {
 	
 	@Autowired
 	private KorisnikService korisnikService;
-	
-	
+
+
 
 	@RequestMapping(method = RequestMethod.GET, value = "/requests")
 	public List<AgentRequest> getRequests() {
@@ -37,7 +33,8 @@ public class RequestController {
 		return agentReqService.getAllRequests();
 		
 	}
-	
+	@Read
+	@CrossOrigin(origins = "https://localhost:8090")
 	@RequestMapping(method = RequestMethod.GET, value = "/dtorequests")
 	public List<AgentRequestDTO> getDTORequests() {
 		

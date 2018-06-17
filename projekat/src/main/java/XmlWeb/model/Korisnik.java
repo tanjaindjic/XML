@@ -74,7 +74,7 @@ public class Korisnik {
     private String email;
 
     @NotNull
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<Authority> authorities;
 
 
