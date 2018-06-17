@@ -9,6 +9,10 @@
 				<button class='buttonR' ng-show="profileShow" ng-click="profile()" id="profileBtn">Profile</button>
 				<button class='buttonR' ng-click="logout()" id="logoutBtn">Log Out</button> 
 			</td>
+			
+			
+			
+			
 		</tr>	
 	</table>
 	<hr/>
@@ -21,7 +25,62 @@
 			<td class='dateTD'><input type='date' class='date' placeholder="To"></td>
 			<td class='peopleTD'><input type="number" class='people' placeholder="How many people?"></td>
 			<td class='buttonsTD'><button class='buttonP'>Search</button></td>
+			<td class='buttonsTD'><button class='buttonP' ng-click="toggleAdvancedSearch()">{{advSearch()}}</button></td>
 		</tr>	
+		
+		<tr ng-show="showAdvancedSearch==true">
+			<td>
+				Chose accomodation type:<span ng-repeat="t in typeList">{{t.tip}},</span>
+			</td>
+		</tr>
+		<tr ng-show="showAdvancedSearch==true">
+			<td>
+			<div class="dropdown">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			  </button>
+			  <div class="dropdown-menu">
+			    <a class="dropdown-item" ng-click="addToTypeList(type)" ng-repeat="type in loadedTypes">{{type.tip}}</a>
+			  </div>
+			</div>
+			</td>
+		</tr>
+		<tr ng-show="showAdvancedSearch==true">
+			<td>
+				Chose accomodation category:<span ng-repeat="c in catList">{{c.kategorija}},</span>
+			</td>
+		</tr>
+		
+		<tr ng-show="showAdvancedSearch==true">
+			<td>
+			<div class="dropdown">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			  </button>
+			  <div class="dropdown-menu">
+			    <a class="dropdown-item" ng-click="" ng-repeat="cat in loadedCategories">{{cat.kategorija}}</a>
+			  </div>
+			</div>
+			</td>
+		</tr>
+		
+		<tr ng-show="showAdvancedSearch==true">
+			<td>
+				Chose additional services:<span ng-repeat="s in serviceList">{{s.opcija}},</span>
+			</td>
+		</tr>
+		<tr ng-show="showAdvancedSearch==true">
+			<td>
+			<div class="dropdown">
+			  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+			  </button>
+			  <div class="dropdown-menu">
+			    <a class="dropdown-item" ng-click="" ng-repeat="services in loadedServices">{{services.opcija}}</a>
+			  </div>
+			</div>
+			</td>
+		</tr>
+		
+		
+		
 	</table>
 	<table>
 		<div>

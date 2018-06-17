@@ -4,9 +4,71 @@
 	angular.module('app').controller('coreController', coreController);
 
 	coreController.$inject = [ '$location', '$scope', '$rootScope', '$http',
-			'$cookies', '$window' ];
+			'$cookies', '$window', 'userService'];
 	function coreController($location, $scope, $rootScope, $http, $cookies,
-			$window) {
+			$window, userService) {
+		
+		$scope.typeList = [];
+		
+		$scope.addToTypeList = function(type){
+			$scope.typeList.push(type);
+		}
+		
+		$scope.serviceList = [];
+		
+		$scope.addToServiceList = function(service){
+			$scope.serviceList.push(service);
+		}
+		
+		$scope.catList = [];
+		
+		$scope.addToCatList = function(cat){
+			$scope.catList.push(cat);
+		}
+		
+		userService.getAllTypes(
+				function(info){
+					$scope.loadedTypes = info.data;
+				},
+				function(){
+					alert("Error loading accomodation types!!!");
+				}
+		)
+		
+		userService.getAllAditional(
+				function(info){
+					$scope.loadedServices = info.data;
+				},
+				function(){
+					alert("Error loading accomodation services!!!");
+				}
+		)
+		
+		userService.getAllKategorija(
+				function(info){
+					$scope.loadedCategories = info.data;
+				},
+				function(){
+					alert("Error loading accomodation categories!!!");
+				}
+		)
+		
+		$scope.showAdvancedSearch = false;
+		
+		$scope.advSearch = function(){
+			return "Advanced search";
+		}
+		$scope.profile = function(){
+            $location.path('/profile');
+		}
+		
+		$scope.toggleAdvancedSearch = function(){
+			$scope.showAdvancedSearch = !$scope.showAdvancedSearch;
+		}
+		
+		
+		
+		
 		var cc = this;
 		$scope.TOKEN_KEY = "jwtToken";
 		$scope.logout = $("#logoutBtn");

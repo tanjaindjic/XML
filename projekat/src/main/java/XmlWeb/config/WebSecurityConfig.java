@@ -136,7 +136,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/success", 
                 "/confirm/**",
                 "/success/**",
-                "/api/smestaj"
+                "/api/smestaj",
+                "/api/iznajmljivanje",
+                "/api/sobe",
+                "/api/dodatneUsluge",
+                "/api/tipService",
+                "/api/kategorija"
         
                 
             )
