@@ -59,6 +59,8 @@
 	width: 15%
 }
 
+
+
 .goreDoleList{
 	float:left  !important;
 	padding: 0 !important;
@@ -81,11 +83,15 @@
 }
 
 .gornjaIvica{
-	border-top: 1px solid #4f4f4f;
-	padding-left: 3px  !important;
-	padding-right: 3px !important;
+	padding-left: 5px  !important;
+	padding-right: 5px !important;
 	padding-top: 5px !important;
 	padding-bottom: 5px !important;
+    width: 250px;
+}
+
+.gornjaIvica:nth-child(odd) {
+    background-color: olive !important;
 }
 
 .gornjaIvicaChat{
@@ -104,17 +110,17 @@
 .goreDoleListCentar{
     float:left  !important;
     padding: 0 !important;
-    color: blue;
     cursor: pointer;
     text-transform: uppercase;
     vertical-align: top !important;
     list-style-type: none !important;
-    border: 1px solid #4f4f4f;
     display: block;
     margin-right: 3%;
-
+    width: 250px;
     margin-left: 3%;
 }
+
+
 
 .goreDoleListCentarRezervacije{
 	float:left  !important;
@@ -149,7 +155,7 @@
 }
 
 .tudjiChat{
-    background-color: aqua;
+    background-color: olive;
 }
 
 /* Style the tab //#eeeeee */

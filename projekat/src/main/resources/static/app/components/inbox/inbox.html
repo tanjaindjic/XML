@@ -5,34 +5,29 @@
     </br>
 
 
-    <ul class="goreDoleList">
-        <li class="pomeri">
-            <a ng-click="goToState('core.inbox')"> INBOX </a>
-        </li>
-        <li class="gornjaIvica">
-            <a ng-click="goToState('core.reservations')"> RESERVATIONS </a>
-        </li>
-        <li class="gornjaIvica">
-            <a ng-click="goToState('core.editProfile')"> EDIT PROFILE </a>
-        </li>
-        <li class="gornjaIvica">
-            <a ng-click="goToState('core.profile')"> PROFILE </a>
-        </li>
-    </ul>
+    <div class="tab">
+        <button class="tablinks" ng-click="goToState('core.inbox')" >INBOX</button>
+        <button class="tablinks" ng-click="goToState('core.reservations')" >RESERVATIONS</button>
+        <button class="tablinks" ng-click="goToState('core.editProfile')" >EDIT PROFILE</button>
+        <button class="tablinks" ng-click="goToState('core.profile')" >PROFILE</button>
+    </div>
+
+<div class="centar">
 
 
-    <h3 class="centar">CHAT : </h3>
+    <h2 class="olive">CHAT : </h2>
 
+    </br>
 
 
     <ul class="goreDoleListCentar" >
 
 
-       <li ng-repeat="korisnik in korisnici track by $index" class="gornjaIvica">
-           <a ng-click="selectChat(korisnik.id)">{{korisnik.username}}</a>
+       <li ng-repeat="korisnik in korisnici track by $index" class="gornjaIvica" ng-click="selectChat(korisnik.id)">
+           <a >{{korisnik.username}}</a>
        </li>
     </ul>
 
-
+</div>
 
 </div>

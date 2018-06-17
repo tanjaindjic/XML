@@ -5,20 +5,12 @@
     </br>
 
 
-    <ul class="goreDoleList">
-        <li class="pomeri">
-            <a ng-click="goToState('core.inbox')"> INBOX </a>
-        </li>
-        <li class="gornjaIvica">
-            <a ng-click="goToState('core.reservations')"> RESERVATIONS </a>
-        </li>
-        <li class="gornjaIvica">
-            <a ng-click="goToState('core.editProfile')"> EDIT PROFILE </a>
-        </li>
-        <li class="gornjaIvica">
-            <a ng-click="goToState('core.profile')"> PROFILE </a>
-        </li>
-    </ul>
+    <div class="tab">
+        <button class="tablinks" ng-click="goToState('core.inbox')" >INBOX</button>
+        <button class="tablinks" ng-click="goToState('core.reservations')" >RESERVATIONS</button>
+        <button class="tablinks" ng-click="goToState('core.editProfile')" >EDIT PROFILE</button>
+        <button class="tablinks" ng-click="goToState('core.profile')" >PROFILE</button>
+    </div>
 
 
     <h3 class="centar">RESERVATIONS : </h3>

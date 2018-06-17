@@ -5,55 +5,51 @@
     </br>
 
 
-    <ul class="goreDoleList">
-        <li class="pomeri">
-            <a ng-click="goToState('core.inbox')"> INBOX </a>
-        </li>
-        <li class="gornjaIvica">
-            <a ng-click="goToState('core.reservations')"> RESERVATIONS </a>
-        </li>
-        <li class="gornjaIvica">
-            <a ng-click="goToState('core.editProfile')"> EDIT PROFILE </a>
-        </li>
-        <li class="gornjaIvica">
-            <a ng-click="goToState('core.profile')"> PROFILE </a>
-        </li>
-    </ul>
+    <div class="tab">
+        <button class="tablinks" ng-click="goToState('core.inbox')" >INBOX</button>
+        <button class="tablinks" ng-click="goToState('core.reservations')" >RESERVATIONS</button>
+        <button class="tablinks" ng-click="goToState('core.editProfile')" >EDIT PROFILE</button>
+        <button class="tablinks" ng-click="goToState('core.profile')" >PROFILE</button>
+    </div>
+
+    <div class="centar">
+
+        <h3 class="olive">CHAT : </h3>
+
+        </br>
 
 
-    <h3 class="centar">CHAT : </h3>
+        <ul class="goreDoleListChat" >
 
 
+            <li ng-repeat="message in messages track by $index" class="gornjaIvicaChat">
 
-    <ul class="goreDoleListChat" >
+                <a ng-if="message.posiljalac.id == userId" >{{message.posiljalac.username}} : {{message.tekst}} </a>
+                <a ng-if="message.posiljalac.id != userId"  class="tudjiChat">{{message.posiljalac.username}} : {{message.tekst}} </a>
+            </li>
 
+            <li>
+                </br>
+            </li>
 
-        <li ng-repeat="message in messages track by $index" class="gornjaIvicaChat">
+            <li>
+                  <textarea  rows="4" cols="120" ng-model="novaPoruka"></textarea>
+            </li>
 
-            <a ng-if="message.posiljalac.id == userId" >{{message.posiljalac.username}} : {{message.tekst}} </a>
-            <a ng-if="message.posiljalac.id != userId"  class="tudjiChat">{{message.posiljalac.username}} : {{message.tekst}} </a>
-        </li>
+            <li>
+                </br>
+            </li>
 
-        <li>
-            </br>
-        </li>
-
-        <li>
-              <textarea  rows="4" cols="120" ng-model="novaPoruka"></textarea>
-        </li>
-
-        <li>
-            </br>
-        </li>
-
-        <li>
-            <button  type="submit"  ng-click="sendMessage(novaPoruka)">Send message </button>
-        </li>
-    </ul>
-    </br>
+            <li>
+                <button  type="submit"  ng-click="sendMessage(novaPoruka)">Send message </button>
+            </li>
+        </ul>
+        </br>
 
 
-    </br>
+        </br>
+
+    </div>
 
 
 
