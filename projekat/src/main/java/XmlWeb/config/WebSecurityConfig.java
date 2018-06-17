@@ -28,6 +28,11 @@ import XmlWeb.security.JwtTokenUtil;
 import XmlWeb.service.JwtUserDetailsService;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
+
+//KONFIGURISANO NA NIVOU ROLA, PERMSIJE ODRADJENE PREKO INTERCEPTORA I CUSTOM ANOTACIJA
+
+
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -84,7 +89,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.DELETE,"/requests/**/**/**").hasRole("ADMIN")
             .antMatchers("/user").hasAnyRole("ADMIN", "USER")
             .antMatchers("/user/block/**").hasRole("ADMIN")
-            //mora sa permisijama
+
             
             
             // Un-secure H2 Database
