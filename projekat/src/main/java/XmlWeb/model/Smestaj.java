@@ -29,7 +29,7 @@ public class Smestaj {
     @ManyToMany
     private List<DodatneUsluge> dodatneUsluge;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Slika> slike;
 
     private String opis;

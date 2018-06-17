@@ -14,8 +14,13 @@ public class Slika {
 
     public Slika() {
     }
+    
+    public Slika(String uri) {
+		super();
+		this.uri = uri;
+	}
 
-    public Long getId() {
+	public Long getId() {
         return id;
     }
 

@@ -4,9 +4,43 @@
 	angular.module('app').controller('coreController', coreController);
 
 	coreController.$inject = [ '$location', '$scope', '$rootScope', '$http',
-			'$cookies', '$window', 'userService'];
+			'$cookies', '$window', 'userService', '$state', 'DataTransfer'];
 	function coreController($location, $scope, $rootScope, $http, $cookies,
-			$window, userService) {
+			$window, userService, $state, DataTransfer) {
+		
+		$scope.searchResults = null;
+		$scope.searchDTO = {};
+		$scope.searchSmestaji = function(){
+			
+			$scope.searchDTO.types =$scope.typeList;
+			$scope.searchDTO.services = $scope.serviceList;
+			$scope.searchDTO.cats = $scope.catList;
+			if($scope.showAdvancedSearch == false){
+				userService.getAllSmestajiSimple($scope.searchDTO, 
+					function(info){
+						$scope.searchResults = info.data;
+						DataTransfer.setSmestajDetails(info.data);
+						$state.go('core.searchResults');
+					},
+					function(){
+						alert("Error loading search results!!!");
+					}	
+				)
+			}
+			else{
+				userService.getAllSmestajiAdvanced($scope.searchDTO, 
+					function(info){
+						$scope.searchResults = info.data;
+						DataTransfer.setSmestajDetails(info.data);
+						$state.go('core.searchResults');
+					},
+					function(){
+						alert("Error loading search results!!!");
+					}	
+					)
+			}
+			
+		}
 		
 		$scope.typeList = [];
 		
@@ -56,7 +90,9 @@
 		$scope.showAdvancedSearch = false;
 		
 		$scope.advSearch = function(){
+			if($scope.showAdvancedSearch == false)
 			return "Advanced search";
+			return "Cancel";
 		}
 		$scope.profile = function(){
             $location.path('/profile');

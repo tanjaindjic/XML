@@ -14,6 +14,12 @@
 			 controller: 'coreController',
 			 controllerAs: 'cc'
 		 })
+		 .state('core.searchResults', {
+			 url: 'searchRes',
+			 templateUrl: 'app/components/searchResults/searchResults.html',
+			 controller: 'searchResultsController',
+			 controllerAs: 'searchResultsController'
+		 })
 		 .state('core.home', {
 			 url: 'home',
 			 templateUrl: 'app/components/home/home.html',

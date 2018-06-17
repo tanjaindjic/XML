@@ -2,12 +2,14 @@ package XmlWeb;
 
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import XmlWeb.model.security.Permission;
-import XmlWeb.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Component;
 import XmlWeb.model.Korisnik;
 import XmlWeb.model.Poruka;
 import XmlWeb.model.Rezervacija;
+import XmlWeb.model.Slika;
 import XmlWeb.model.Smestaj;
 import XmlWeb.model.Soba;
 import XmlWeb.model.Enums.Role;
@@ -22,6 +25,14 @@ import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.model.Enums.StatusRezevacije;
 import XmlWeb.model.security.Authority;
 import XmlWeb.model.security.AuthorityName;
+import XmlWeb.model.security.Permission;
+import XmlWeb.repository.AuthorityRepository;
+import XmlWeb.repository.KorisnikRepository;
+import XmlWeb.repository.PermissionRepository;
+import XmlWeb.repository.PorukaRepository;
+import XmlWeb.repository.RezervacijaRepository;
+import XmlWeb.repository.SmestajRepository;
+import XmlWeb.repository.SobaRepository;
 
 
 @Component
@@ -112,11 +123,25 @@ public class StartData {
 
          Korisnik k1 = new Korisnik();
          k1.setId(idVlasnika);
+/*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
+         
+         ArrayList<Slika> slike = new ArrayList<>();
+         slike.add(new Slika("slika1"));
+         
+         /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
          Smestaj sm = new Smestaj();
          sm.setNaziv("Maldivi VIP");
          sm.setOpis("Najbolji smestaj");
          sm.setAdresa("Negde daleko");
+         sm.setGrad("Class Grad");
+         sm.setDrzava("Class Drzava");
+         sm.setZvezdice(5);
          sm.setVlasnik(k1);
+         
+         /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
+         sm.setSlike(slike);
+         /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
+
 
          sm = smestajRepository.save(sm);
 

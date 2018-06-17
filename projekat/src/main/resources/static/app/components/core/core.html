@@ -20,11 +20,11 @@
 	<hr/>
 	<table>
 		<tr>
-			<td class='whereTD'><input type='text' size='50' placeholder=" Where are you traveling to?" class='where'> </td>
-			<td class='dateTD'><input type='date' class='date' placeholder="From"></td>
-			<td class='dateTD'><input type='date' class='date' placeholder="To"></td>
-			<td class='peopleTD'><input type="number" class='people' placeholder="How many people?"></td>
-			<td class='buttonsTD'><button class='buttonP'>Search</button></td>
+			<td class='whereTD'><input ng-model="searchDTO.destination" type='text' size='50' placeholder=" Where are you traveling to?" class='where'> </td>
+			<td class='dateTD'><input ng-model="searchDTO.from" type='date' class='date' placeholder="From"></td>
+			<td class='dateTD'><input ng-model="searchDTO.to" type='date' class='date' placeholder="To"></td>
+			<td class='peopleTD'><input ng-model="searchDTO.howManyPeople" type="number" class='people' placeholder="How many people?"></td>
+			<td class='buttonsTD'><button class='buttonP' ng-click="searchSmestaji()">Search</button></td>
 			<td class='buttonsTD'><button class='buttonP' ng-click="toggleAdvancedSearch()">{{advSearch()}}</button></td>
 		</tr>	
 		

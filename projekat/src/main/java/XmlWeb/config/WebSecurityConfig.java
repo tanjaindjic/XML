@@ -118,7 +118,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(
                 HttpMethod.POST,
                 authenticationPath, 
-                "/register"
+                "/register",
+                "/api/smestaj/simplesearch",
+                "/api/smestaj/advancedsearch",
+                "/api/postFile",
+                "/api/getallfiles"
             )
 
            .antMatchers(
@@ -147,7 +151,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/sobe",
                 "/api/dodatneUsluge",
                 "/api/tipService",
-                "/api/kategorija"
+                "/api/kategorija",
+                "/api/files/**"
         
                 
             )

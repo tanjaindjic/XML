@@ -21,6 +21,22 @@ angular.module('app')
 	                url: '/api/kategorija',
 	            };
 	            $http(req).then(onSuccess, onError);
+        },
+        getAllSmestajiSimple: function(dto, onSuccess, onError) {
+	        var req = {
+	                method: 'POST',
+	                url:  '/api/smestaj/simplesearch',
+	                data: dto
+	            };
+	            $http(req).then(onSuccess, onError);
+        },
+        getAllSmestajiAdvanced: function(dto, onSuccess, onError) {
+	        var req = {
+	                method: 'POST',
+	                url: '/api/smestaj/advancedsearch',
+	                data: dto
+	            };
+	            $http(req).then(onSuccess, onError);
         }
     }
 });

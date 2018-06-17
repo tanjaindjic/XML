@@ -1,0 +1,48 @@
+<div>
+	<table class="table table-hover">
+	    <tbody>
+		    <tr>
+		    	<th>
+		    		Accomodation name	
+		    	</th>
+				<th>
+		    		Adress
+		    	</th>
+		    	<th>
+		    		City
+		    	</th>
+		    	<th>
+		    		Country
+		    	</th>
+		    	<th>
+		    		Category
+		    	</th>
+		    	<th>
+		    		Rateing
+		    	</th>
+		    </tr>
+	      <tr  ng-repeat="smestaj in toShow">
+	        <td>
+		        <span>{{smestaj.naziv}}</span>
+	        </td>
+	        <td>
+		        <span>{{smestaj.adresa}}</span>
+	        </td>
+	        <td>
+		        <span>{{smestaj.grad}}</span>
+	        </td>
+	        <td>
+		        <span>{{smestaj.drzava}}</span>
+	        </td>  
+	        <td>
+		        <span>{{smestaj.zvezdice}}</span>
+	        </td>
+	        <td>
+		        <span>{{smestaj.rejting}}</span>
+	        </td>
+	        
+	      </tr>
+	
+	    </tbody>
+	</table>
+</div>
