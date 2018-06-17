@@ -32,7 +32,7 @@
             <a ng-click="goToPlace(reservation.smestaj.id)"> Place : {{reservation.smestaj.naziv}}  </a>
 
             <button ng-if="prosaoDatum(reservation.datumOd, reservation.status)"  type="submit" class="delete" class="btn btn-primary" style="float: right !important;"  ng-confirm-click="Are you sure to cancel your reservation ?" confirmed-click="cancelReservation(reservation.id)" >
-                <img class="clearDelete" src="../../../assets/images/trash.png" width="20" height="20" title="Delete" alt="submit" />
+                <img class="clearDelete" src="../../../assets/images/trash.png" width="20" height="20" title="Delete" alt="Delete" />
             </button>
 
             <br/>

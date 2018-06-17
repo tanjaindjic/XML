@@ -89,17 +89,17 @@ public class StartData {
          adminAuthority.getUsers().add(k);
          authorityRepository.save(adminAuthority);
          System.out.println("dodao admira");
-         addUser("test", "test", "Minja", "Car1", "test@gmail.com" , Role.USER);
-         addUser("Mirko", "mirko", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
-         addUser("Slavko", "slavko", "Slavko", "Slavic", "slavko@gmail.com" , Role.AGENT);
+        Korisnik k1 =  addUser("test", "test", "Minja", "Car1", "test@gmail.com" , Role.USER);
+        Korisnik k2 = addUser("Mirko", "mirko", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
+        Korisnik k3 = addUser("Slavko", "slavko", "Slavko", "Slavic", "slavko@gmail.com" , Role.AGENT);
 //
-      /*  addMessage(2L, 3L, "Testiram poruke",1);
-         addMessage(3L, 2L, "Obrnut redosled",2);
-         addMessage(2L, 3L, "Evo poslao sam ti",3);
-         addMessage(2L, 4L, "Ziv si li Slavko ? ", 4);
+        addMessage(k1.getId(), k2.getId(), "Testiram poruke",1);
+         addMessage(k2.getId(), k1.getId(), "Obrnut redosled",2);
+         addMessage(k1.getId(), k2.getId(), "Evo poslao sam ti",3);
+         addMessage(k1.getId(), k3.getId(), "Ziv si li Slavko ? ", 4);
 //
-         addRezervacija(2l, 3l, 0);
-         addRezervacija(2l, 3l, 12);*/
+         addRezervacija(k1.getId(), k2.getId(), 0);
+         addRezervacija(k1.getId(), k2.getId(), 12);
 
 
 	 }
@@ -181,7 +181,7 @@ public class StartData {
 
      }
 
-	 public void addUser(String username, String password, String name, String last, String email, Role r){
+	 public Korisnik addUser(String username, String password, String name, String last, String email, Role r){
 
          Korisnik k = new Korisnik();
          k.setUsername(username);
@@ -208,10 +208,12 @@ public class StartData {
 
          l.add(a);
          k.setAuthorities(l);
-         korisnikRepo.save(k);
+         k = korisnikRepo.save(k);
          a.getUsers().add(k);
          authorityRepository.save(a);
          System.out.println("Dodao korisnika");
+
+         return k;
 
 
      }
