@@ -8,6 +8,24 @@
 	function coreController($location, $scope, $rootScope, $http, $cookies,
 			$window, userService) {
 		
+		$scope.typeList = [];
+		
+		$scope.addToTypeList = function(type){
+			$scope.typeList.push(type);
+		}
+		
+		$scope.serviceList = [];
+		
+		$scope.addToServiceList = function(service){
+			$scope.serviceList.push(service);
+		}
+		
+		$scope.catList = [];
+		
+		$scope.addToCatList = function(cat){
+			$scope.catList.push(cat);
+		}
+		
 		userService.getAllTypes(
 				function(info){
 					$scope.loadedTypes = info.data;
