@@ -24,10 +24,11 @@ public class RezervacijaController {
     @RequestMapping(method = RequestMethod.GET, value = "/reservation/{id}")
     public List<Rezervacija> getByUser(@PathVariable Long id){ return rs.getRezervacije(id); }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/reservation/smestaj/{id}")
+    public Long getSmestaj(@PathVariable Long id){ return rs.getSmestajId(id); }
+
     @RequestMapping(method = RequestMethod.POST, value = "/reservation/make")
-    public boolean reserve(@RequestBody RezervacijaDTO r){
-        return rs.rezervisi(r);
-    }
+    public boolean reserve(@RequestBody RezervacijaDTO r){ return rs.rezervisi(r); }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/reservation/update")
     public void update(@RequestBody RezStatusUpdateDTO rsud){ rs.updateStatus(rsud); }

@@ -26,8 +26,29 @@ public class RezervacijaService {
     @Autowired
     private SobaRepository sobaRepo;
 
+
+    public Long getSmestajId(Long rezervacijaId){
+
+        Long l = null;
+
+        Optional<Rezervacija> rezOp = rezRepo.findById(rezervacijaId);
+        if (rezOp.isPresent()){
+            Rezervacija r = rezOp.get();
+            l=r.getSmestaj().getId();
+        }
+
+        return l;
+    }
+
     public List<Rezervacija> getRezervacije(Long korisnikId){
-        return rezRepo.findByRezervisaoId(korisnikId);
+
+        System.out.println("GETUJE SVE REZERVACIJE");
+
+        List<Rezervacija> l = rezRepo.findByRezervisaoId(korisnikId);
+
+        System.out.println("USPEO DA GETUJE : " + l.size());
+
+        return l;
     }
 
     public List<Rezervacija> getRezervacijeAgent(Long idSmestaja){
@@ -37,25 +58,53 @@ public class RezervacijaService {
     @Transactional( readOnly = false, propagation = Propagation.REQUIRED)
     public boolean rezervisi(RezervacijaDTO rez){
 
+        System.out.println("UPAO U REZERVACIJA SERVICE");
+
         boolean b = false;
         Konverter k = new Konverter();
         boolean uzeto = false;
         Rezervacija r = k.converterRezervacije(rez);
         if(r!=null){
             Optional<Soba> sobaOp = sobaRepo.findById(r.getSoba().getId());
+
+            System.out.println("PROSAO KONVERTER");
+
             if (sobaOp.isPresent()){
+
+                System.out.println("NASAO SOBU");
+
                 Soba soba = sobaOp.get();
 
                 List<Rezervacija> iznajmljeno = soba.getRezervisano();
+
+
                 for (Rezervacija zauzeto: iznajmljeno) {
+
+                    System.out.println("NASAO REZERVACIJE");
+
                     if (((r.getDatumOd().compareTo(zauzeto.getDatumDo()) <0) && (r.getDatumDo().compareTo(zauzeto.getDatumDo())>0)) ||  ((zauzeto.getDatumOd().compareTo(r.getDatumDo()) <0) && zauzeto.getDatumDo().compareTo(r.getDatumDo())>0 ))
                         uzeto=true;
                 }
 
                 if(!uzeto){
+
+                    System.out.println("SLOBODNA JE");
+
+
+                    r =rezRepo.save(r);
+
+                    System.out.println("CUVA REZERVACIJU");
+
+
                     soba.getRezervisano().add(r);
+
+                    System.out.println("DODAJE REZERVACIJU U SOBU");
+
                     sobaRepo.save(soba);
-                    rezRepo.save(r);
+
+                    System.out.println("CUVA SOBU");
+
+
                     b=true;
 
                 }

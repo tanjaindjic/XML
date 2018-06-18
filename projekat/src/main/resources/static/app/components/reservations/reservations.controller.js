@@ -82,11 +82,16 @@
         $scope.username = "";
 
         var init = function (){
+
+            console.log("USAO U INIT");
             var temp=jwt_decode(getJwtToken()).jti; // Zameniti sa cookies.get('user') ili sta god kada bude login
 
-
+            console.log("GETOVAO ID TOKEN");
             $scope.userId = Number(temp);
             $scope.username=jwt_decode(getJwtToken()).sub;
+
+            console.log("GETOVAO USERNAME TOKEN");
+
             //$scope.userId= $cookies.get('id');
             //$scope.username= $cookies.get('username');
 
@@ -96,6 +101,8 @@
                 url: 'https://localhost:8096/reservation/'+$scope.userId,
                 headers : createAuthorizationTokenHeader()
             }).then(function successCallback(response) {
+
+                console.log("GETOVAO REZERVACIJE");
                 //toDateString() datumDo
                 $scope.temp=response.data;
 
@@ -110,6 +117,8 @@
                 $scope.rezervacije = $scope.temp;
 
             }, function errorCallback(response) {
+                console.log("FAILOVAO REZERVACIJE");
+
                 alert("Error occured check connection");
                 $location.path('/home');
             });
@@ -148,49 +157,79 @@
             $state.go('core.chat' , {"id" : $scope.userId, "id2" : id, "username" : $scope.username} );
         }
 
-        $scope.review = function (tekst, id, ocena, smestajId, rezervacija) {
+        $scope.review = function (tekst, id, ocena, rezervacija) {
 
-            var dto = {
-                "userId" : $scope.userId,
-                "rezervacijaId" : id,
-                "comment" : tekst,
-                "ocena" : ocena,
-                "smestajId": smestajId,
-                "userName" : $scope.username
-            };
 
-            console.log(dto);
 
+            var smestajId =0;
 
             $http({
-                method: 'POST',
-                url: 'https://us-central1-xmlcoment.cloudfunctions.net/sqlInsert',
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                data: dto
-            }).then(function successCallback(response) {
-
-
-            }, function errorCallback(response) {
-
-            });
-
-            $http({
-                method: 'POST',
-                url: 'https://localhost:8096/reservation/comment/'+id+'/'+ocena,
+                method: 'GET',
+                url: 'https://localhost:8096/reservation/smestaj/'+id,
                 headers : createAuthorizationTokenHeader()
             }).then(function successCallback(response) {
-                alert("Comment submitted and awaiting approval ");
+
+
+                smestajId=response.data;
+
+                if(smestajId>0){
+
+                    var dto = {
+                        "userId" : $scope.userId,
+                        "rezervacijaId" : id,
+                        "comment" : tekst,
+                        "ocena" : ocena,
+                        "smestajId": smestajId,
+                        "userName" : $scope.username
+                    };
+
+                    console.log(dto);
+
+
+                    $http({
+                        method: 'POST',
+                        url: 'https://us-central1-xmlcoment.cloudfunctions.net/sqlInsert',
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        data: dto
+                    }).then(function successCallback(response) {
+
+
+                    }, function errorCallback(response) {
+
+                    });
+
+                    $http({
+                        method: 'POST',
+                        url: 'https://localhost:8096/reservation/comment/'+id+'/'+ocena,
+                        headers : createAuthorizationTokenHeader()
+                    }).then(function successCallback(response) {
+                        alert("Comment submitted and awaiting approval ");
+
+                    }, function errorCallback(response) {
+                        alert("Error occured check connection");
+                        $location.path('/home');
+                    });
+
+
+                    rezervacija.ocena=ocena;
+                    rezervacija.ocenio=true;
+
+
+
+                }
+
+
+
+
 
             }, function errorCallback(response) {
-                alert("Error occured check connection");
-                $location.path('/home');
+
             });
 
 
-            rezervacija.ocena=ocena;
-            rezervacija.ocenio=true;
+
 
 
 

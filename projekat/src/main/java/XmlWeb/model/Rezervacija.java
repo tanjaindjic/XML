@@ -1,6 +1,9 @@
 package XmlWeb.model;
 
 import XmlWeb.model.Enums.StatusRezevacije;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,12 +19,15 @@ public class Rezervacija {
     @Enumerated(EnumType.STRING)
     private StatusRezevacije status;
 
+    @JsonBackReference
     @ManyToOne
     private Soba soba;
+
 
     @ManyToOne
     private Smestaj smestaj;
 
+    @JsonBackReference
     @ManyToOne
     private Korisnik rezervisao;
 

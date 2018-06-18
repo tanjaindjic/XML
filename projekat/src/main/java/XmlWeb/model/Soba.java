@@ -2,6 +2,8 @@ package XmlWeb.model;
 
 import XmlWeb.model.Enums.KategorijaSmestaja;
 import XmlWeb.model.Enums.DodatneUsluge;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
@@ -31,6 +33,7 @@ public class Soba {
     private List<Iznajmljivanje> iznajmljivanja;
 
     @OneToMany
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Rezervacija> rezervisano;
 
     @OneToMany
