@@ -217,6 +217,7 @@ public class StartData {
          k.setRole(r);
          k.setStatusNaloga(StatusKorisnika.AKTIVAN);
          k.setEmail(email);
+         k.setConfirmationToken("");
          k.setLastPasswordResetDate(new Date());
          k.setIzdaje(new ArrayList<>());
          k.setRezervacije(new ArrayList<>());

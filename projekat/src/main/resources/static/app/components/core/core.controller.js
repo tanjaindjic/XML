@@ -107,8 +107,6 @@
 		
 		var cc = this;
 		$scope.TOKEN_KEY = "jwtToken";
-		$scope.logout = $("#logoutBtn");
-		$scope.login = $("#loginBtn");
 		$scope.profile = function(){
             $location.path('/profile');
 		}
@@ -124,17 +122,10 @@
 		var init = function() {
 
 			if (getJwtToken()) {
-				$scope.login.hide();
-				$scope.logout.show();
-
                 $scope.profileShow = true;
-				$scope.reg.hide();
 				$scope.username = " " +jwt_decode(getJwtToken()).sub;
 		
 			} else{
-				$scope.login.show();
-				$scope.logout.hide();
-				$scope.reg.show();
                 $scope.profileShow = false;
 			}
 				
@@ -156,11 +147,9 @@
 		
 		$scope.logout = function(){
 			removeJwtToken();
-			$scope.login.show();
-			$scope.logout.hide();
-			$scope.reg.show();
-			
-			$location.path("/home")
+			$scope.profileShow = false;
+			$scope.username="";
+			$window.location="https://localhost:8096/#!/home";
 		}
 
 	}
