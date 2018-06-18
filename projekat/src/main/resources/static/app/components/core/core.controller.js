@@ -30,6 +30,81 @@
 					}
 			)*/
 		}
+
+        function getJwtToken() {
+            return localStorage.getItem($scope.TOKEN_KEY);
+        }
+
+        function createAuthorizationTokenHeader() {
+            var token = getJwtToken();
+            if (token) {
+                return {
+                    "Authorization" : "Bearer " + token
+                };
+            } else {
+                return {};
+            }
+        }
+
+
+
+        $scope.reserve =function(idSobe, idSmestaja, pocetnoVreme, krajnjeVreme){
+
+
+            var temp=jwt_decode(getJwtToken()).jti; // Zameniti sa cookies.get('user') ili sta god kada bude login
+
+			if(temp == null){
+				alert("Please login or register to make a reservation");
+                $location.path('/login');
+			}
+
+            $scope.userId = Number(temp);
+			if( $scope.userId == null ){
+                alert("Please login or register to make a reservation");
+                $location.path('/login');
+			}
+
+			var b = false;
+
+			if(idSmestaja)
+				if(idSobe)
+					if(pocetnoVreme)
+						if(krajnjeVreme)
+							if(idSobe>0)
+								if(idSmestaja>0)
+									b=true;
+
+
+			if(b){
+
+                var dto = {
+                    "idSobe" : idSobe,
+                    "idSmestaja" : idSmestaja,
+                    "idKorisnika" :   $scope.userId,
+                    "pocetnoVreme" : pocetnoVreme,
+                    "krajnjeVreme": krajnjeVreme
+                };
+
+
+                $http({
+                    method: 'POST',
+                    url: 'https://localhost:8096/reservation/make/',
+                    headers : createAuthorizationTokenHeader(),
+                    data: dto
+                }).then(function successCallback(response) {
+                   console.log("USPEO");
+                   alert("Reservation made successfully !");
+                   $location.path('/reservations');
+
+                }, function errorCallback(response) {
+                    alert("An error occurred the reservation was not made");
+
+                });
+
+			}
+
+
+		}
 		
 		$scope.swapPanel = function(p){
 			$scope.panelToShow = 0;
