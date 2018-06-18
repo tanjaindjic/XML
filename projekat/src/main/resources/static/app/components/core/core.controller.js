@@ -17,6 +17,14 @@
 		$scope.goHomeApp = function(){
 			$location.path('/home');
 			$scope.panelToShow = -1;
+			/*userService.mileTest(
+					function(info){
+						alert("jeeej");
+					},
+					function(){
+						
+					}
+			)*/
 		}
 		
 		$scope.swapPanel = function(p){
@@ -34,14 +42,14 @@
 		
 		$scope.showSemstaj = function(smestaj){
 			
-			$scope.smestajToShow = smestaj;
-			$scope.panelToShow = 1;
+			
 			userService.getAllReviewsBySmestaj(smestaj.id,
 					function(info){
-						console.log(info.data);
-						console.log("SHIIIIIT")
+						$scope.reviewsToShow = info.data;
+						$scope.smestajToShow = smestaj;
+						$scope.panelToShow = 1;
 					},
-					function(){
+					function(info){
 						
 					}
 			)

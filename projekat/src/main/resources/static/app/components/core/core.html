@@ -190,7 +190,29 @@
 			    </tbody>
 			</table>
 		  </div>
-		  <div class="col-sm-4">REVIEWS</div>
+		  <div class="col-sm-4">
+		  	<table class="table table-hover table-sm">
+		  		<tbody>
+			    	<tr>
+			    		<th>
+			    			Reviews
+			    		</th>
+			    		<th>
+			    			Scores
+			    		</th>
+			    	</tr>
+				      <tr  ng-repeat="rev in reviewsToShow">
+				        <td ng-click="">
+				        	<span>{{rev.comment}}</span>
+				        </td>
+				        <td ng-click="">
+				        	<span>{{rev.ocena}}</span>
+				        </td>
+				      </tr>
+			    </tbody>
+		  	
+		  	</table>
+		  </div>
 		</div> 
 		<div>
 			<ui-view></ui-view>

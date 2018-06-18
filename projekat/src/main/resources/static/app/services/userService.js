@@ -45,5 +45,42 @@ angular.module('app')
 	            };
 	            $http(req).then(onSuccess, onError);
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        /*,
+        mileTest: function(onSuccess, onError){
+        	var req = {
+                    method: 'POST',
+                    url: 'https://us-central1-xmlcoment.cloudfunctions.net/sqlInsert',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    data: {
+                        "userId" : "11111",
+                        "rezervacijaId" : "11111",
+                        "comment" : "11111",
+                        "ocena" : "11111",
+                        "smestajId": "11111"
+                    }
+                };
+	            $http(req).then(onSuccess, onError);
+        }*/
+        
+         
+        
     }
 });
