@@ -164,7 +164,9 @@
             $http({
                 method: 'POST',
                 url: 'https://us-central1-xmlcoment.cloudfunctions.net/sqlInsert',
-                headers : createAuthorizationTokenHeader(),
+                headers: {
+                    "Content-Type": "application/json"
+                },
                 data: dto
             }).then(function successCallback(response) {
 
