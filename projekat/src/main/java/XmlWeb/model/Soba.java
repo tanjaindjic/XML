@@ -15,12 +15,16 @@ public class Soba {
 
     private int brojLezaja;
 
+    //ovo polje sluzi samo za prikaz dodatnih usluga, pretragu radimo po dodatnim uslugama u smestaju
     @ManyToMany
     private List<DodatneUsluge> opcija;
 
+    //ovo polje je nebitno i moze se zanemariti za sad, jer imamo polje zvezdice u smestaju
     @ManyToOne
     private KategorijaSmestaja kategorija;
 
+    //ovo polje sluzi definisanje intervala u kojima je iznajmljivanje moguce, ukoliko vremenski interval nije ovde naveden, racuna se kao da 
+    //nije moguce rezervisati
     @OneToMany
     private List<Iznajmljivanje> iznajmljivanja;
 
@@ -34,7 +38,15 @@ public class Soba {
     }
 
 
-    public List<Rezervacija> getRezervisano() {
+    public Soba(int brojLezaja, List<DodatneUsluge> opcija, List<Cenovnik> cene) {
+		super();
+		this.brojLezaja = brojLezaja;
+		this.opcija = opcija;
+		this.cene = cene;
+	}
+
+
+	public List<Rezervacija> getRezervisano() {
         return rezervisano;
     }
 
