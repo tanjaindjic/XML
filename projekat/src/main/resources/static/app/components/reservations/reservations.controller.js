@@ -148,7 +148,7 @@
             $state.go('core.chat' , {"id" : $scope.userId, "id2" : id, "username" : $scope.username} );
         }
 
-        $scope.komentarisi = function (tekst, id) {
+        $scope.review = function (tekst, id, ocena) {
 
             var dto = {
                 "tekst" : tekst,

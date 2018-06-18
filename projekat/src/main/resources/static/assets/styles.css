@@ -121,6 +121,9 @@
 }
 
 
+.marginaDole{
+    margin-bottom: 20px;
+}
 
 .goreDoleListCentarRezervacije{
 	float:left  !important;
@@ -130,7 +133,6 @@
 	text-transform: uppercase;
 	vertical-align: top !important;
 	list-style-type: none !important;
-	border: 1px solid #4f4f4f;
 	display: block;
 	margin-right: 3%;
 
@@ -168,10 +170,27 @@
     margin-right: 50px;
 }
 
+.oliveJosMalo{
+    color: olive !important;
+    margin-right: 22px;
+}
+
 .olive{
     color: olive !important;
     margin-right: 20px;
 }
+
+
+.oliveJosDva{
+    color: olive !important;
+    margin-right: 46px;
+}
+
+.oliveManjeJedan{
+    color: olive !important;
+    margin-right: 13px;
+}
+
 
 /* Style the buttons that are used to open the tab content */
 .tab button {

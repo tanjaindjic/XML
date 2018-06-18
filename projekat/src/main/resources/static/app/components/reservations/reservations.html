@@ -13,43 +13,56 @@
     </div>
 
 
-    <h3 class="centar">RESERVATIONS : </h3>
+    <div class="centar">
+        <h2 class="olive">RESERVATIONS : </h2>
 
 
+        <ul class="goreDoleListCentarRezervacije" >
 
-    <ul class="goreDoleListCentarRezervacije" >
+            <li class="marginaDole" ng-repeat="reservation in rezervacije track by $index" >
 
-        <li ng-repeat="reservation in rezervacije track by $index" class="gornjaIvica">
+                <a ng-click="goToPlace(reservation.smestaj.id)"> <span class="olive" > Place :  </span>{{reservation.smestaj.naziv}}  </a>
 
-            <a ng-click="goToPlace(reservation.smestaj.id)"> Place : {{reservation.smestaj.naziv}}  </a>
+                <button ng-if="prosaoDatum(reservation.datumOd, reservation.status)"  type="submit" class="delete" class="btn btn-primary" style="float: right !important;"  ng-confirm-click="Are you sure to cancel your reservation ?" confirmed-click="cancelReservation(reservation.id)" >
+                    <img class="clearDelete" src="../../../assets/images/trash.png" width="20" height="20" title="Delete" alt="Delete" />
+                </button>
 
-            <button ng-if="prosaoDatum(reservation.datumOd, reservation.status)"  type="submit" class="delete" class="btn btn-primary" style="float: right !important;"  ng-confirm-click="Are you sure to cancel your reservation ?" confirmed-click="cancelReservation(reservation.id)" >
-                <img class="clearDelete" src="../../../assets/images/trash.png" width="20" height="20" title="Delete" alt="Delete" />
-            </button>
+                <button   type="submit" class="delete" class="btn btn-primary" style="float: right !important;"  ng-click="sendMessage(reservation.smestaj.vlasnik.id)" >
+                    <img class="clearDelete" src="../../../assets/images/message.png" width="20" height="20" title="Message" alt="Message" />
+                </button>
 
-            <br/>
-            <a> From : {{reservation.datumOdLepi}}</a>
-            <br/>
-            <a> To : {{reservation.datumDoLepi}}</a>
-            <br/>
-            <a> STATUS : {{reservation.status}} </a>
-            <br/>
-            <a> Comment : </a>
-            <br/>
-            <textarea  rows="4" cols="80" ng-model="komentar"></textarea>
-            <br/>
-            <button  type="submit"  ng-click="komentarisi(komentar, reservation.id)">Leave comment </button>
-            <button  type="submit"  ng-click="sendMessage(reservation.smestaj.vlasnik.id)">Send message </button>
+                <br/>
+                <a> <span class="oliveJosMalo" > From : </span>  {{reservation.datumOdLepi}}</a>
+                <br/>
+                <a>  <span class="oliveJosDva" >To : </span> {{reservation.datumDoLepi}}</a>
+                <br/>
+                <a> <span class="oliveManjeJedan" > STATUS : </span> {{reservation.status}} </a>
+                <br/>
+                <div ng-if="reservation.ocenio">
+                    <a> <span class="oliveJosMalo" > STARS : </span> {{reservation.ocena}} </a>
+                    <br/>
+                </div>
+                <div ng-if="!reservation.ocenio">
 
-        </li>
+                    <a class="olive">  Rating : </a> <jk-rating-stars  rating="ocena" ></jk-rating-stars>
+                    <br/>
+                    <a class="olive">  Comment : </a>
+                    <br/>
+                    <textarea  rows="4" cols="80" ng-model="komentar"></textarea>
+                    <br/>
+                    <button  type="submit"  ng-click="review(komentar, reservation.id, ocena)">Leave review </button>
+                    <br/>
+                </div>
 
-    </ul>
-    </br>
+            </li>
+
+        </ul>
+        </br>
 
 
-    </br>
+        </br>
 
-
+    </div>
 
 
 
