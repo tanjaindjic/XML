@@ -155,7 +155,8 @@
                 "rezervacijaId" : id,
                 "comment" : tekst,
                 "ocena" : ocena,
-                "smestajId": smestajId
+                "smestajId": smestajId,
+                "userName" : $scope.username
             };
 
             console.log(dto);
