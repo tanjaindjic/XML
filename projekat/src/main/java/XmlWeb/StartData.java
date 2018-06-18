@@ -11,14 +11,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import XmlWeb.model.*;
+import XmlWeb.model.Enums.*;
 import XmlWeb.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import XmlWeb.model.Enums.Role;
-import XmlWeb.model.Enums.StatusKorisnika;
-import XmlWeb.model.Enums.StatusRezevacije;
 import XmlWeb.model.security.Authority;
 import XmlWeb.model.security.AuthorityName;
 import XmlWeb.model.security.Permission;
@@ -53,6 +51,12 @@ public class StartData {
 
     @Autowired
     private KomentarRepository komentarRepository;
+
+    @Autowired
+    private TipSmestajaRepository tipSmestajaRepository;
+
+    @Autowired
+    private KategorijaRepository kategorijaRepository;
 
 
 	 @PostConstruct
@@ -105,6 +109,13 @@ public class StartData {
          addRezervacija(k1.getId(), k2.getId(), 0);
          addRezervacija(k1.getId(), k2.getId(), 12);
 
+         TipSmestaja tipSmestaja = new TipSmestaja();
+         tipSmestaja.setTip("Kuca");
+         tipSmestajaRepository.save(tipSmestaja);
+
+         KategorijaSmestaja kategorijaSmestaja = new KategorijaSmestaja();
+         kategorijaSmestaja.setKategorija("Vrh");
+         kategorijaRepository.save(kategorijaSmestaja);
 
 	 }
 

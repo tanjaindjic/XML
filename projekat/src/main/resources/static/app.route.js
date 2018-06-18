@@ -49,7 +49,7 @@
           templateUrl: 'app/components/inbox/inbox.html',
           controller: 'inboxController',
           controllerAs: 'ic'
-      })
+         })
           .state('core.reservations', {
               url: 'reservations',
               templateUrl: 'app/components/reservations/reservations.html',

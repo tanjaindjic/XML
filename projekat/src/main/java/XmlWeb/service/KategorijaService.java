@@ -17,4 +17,8 @@ public class KategorijaService {
 	public Collection<KategorijaSmestaja> getAllKategorija(){
 		return kategorijaRepository.findAll();
 	}
+
+    public void deleteKategorija(Long id) {
+		kategorijaRepository.deleteById(id);
+    }
 }

@@ -18,4 +18,7 @@ public class TipSmestajaService {
 		return tipRepository.findAll();
 	}
 
+    public void deleteTip(Long id) {
+		tipRepository.deleteById(id);
+    }
 }
