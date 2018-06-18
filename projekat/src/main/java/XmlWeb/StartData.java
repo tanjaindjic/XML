@@ -132,6 +132,7 @@ public class StartData {
          ArrayList<Soba> sobe = new ArrayList<>();
          ArrayList<Slika> slike = new ArrayList<>();
          slike.add(new Slika("slika1"));
+         slike.add(new Slika("slika2"));
          sobe.add(new Soba(5, new ArrayList<>(), new ArrayList<>()));
          sobe.add(new Soba(5, new ArrayList<>(), new ArrayList<>()));
          sobe.add(new Soba(5, new ArrayList<>(), new ArrayList<>()));

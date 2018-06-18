@@ -8,6 +8,17 @@
 	function coreController($location, $scope, $rootScope, $http, $cookies,
 			$window, userService, $state, DataTransfer) {
 		
+		$scope.smestajToShowPictureIndex=0;
+		$scope.pitcuresForward = function(){
+			$scope.smestajToShowPictureIndex = ($scope.smestajToShowPictureIndex + 1)%($scope.smestajToShow.sobe.length-1);
+			//console.log($scope.smestajToShowPictureIndex);
+		}
+		
+		$scope.goHomeApp = function(){
+			$location.path('/home');
+			$scope.panelToShow = -1;
+		}
+		
 		$scope.searchResults = null;
 		$scope.searchDTO = {};
 		$scope.panelToShow = -1;
