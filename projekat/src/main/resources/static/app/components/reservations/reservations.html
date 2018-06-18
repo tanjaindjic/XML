@@ -21,6 +21,8 @@
 
             <li class="marginaDole" ng-repeat="reservation in rezervacije track by $index" >
 
+                <br/>
+
                 <a ng-click="goToPlace(reservation.smestaj.id)"> <span class="olive" > Place :  </span>{{reservation.smestaj.naziv}}  </a>
 
                 <button ng-if="prosaoDatum(reservation.datumOd, reservation.status)"  type="submit" class="delete" class="btn btn-primary" style="float: right !important;"  ng-confirm-click="Are you sure to cancel your reservation ?" confirmed-click="cancelReservation(reservation.id)" >
@@ -38,20 +40,24 @@
                 <br/>
                 <a> <span class="oliveManjeJedan" > STATUS : </span> {{reservation.status}} </a>
                 <br/>
+                <br/>
                 <div ng-if="reservation.ocenio">
                     <a> <span class="oliveJosMalo" > STARS : </span> {{reservation.ocena}} </a>
                     <br/>
                 </div>
                 <div ng-if="!reservation.ocenio">
 
-                    <a class="olive">  Rating : </a> <jk-rating-stars  rating="ocena" ></jk-rating-stars>
+                    <a class="olive">  Rating : </a>
+                    <jk-rating-stars  rating="ocena" ></jk-rating-stars>
                     <br/>
+
                     <a class="olive">  Comment : </a>
                     <br/>
                     <textarea  rows="4" cols="80" ng-model="komentar"></textarea>
                     <br/>
                     <button  type="submit"  ng-click="review(komentar, reservation.id, ocena)">Leave review </button>
                     <br/>
+
                 </div>
 
             </li>
