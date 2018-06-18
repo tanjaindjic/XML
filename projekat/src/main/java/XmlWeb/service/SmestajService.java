@@ -25,7 +25,7 @@ public class SmestajService {
 	}
 	
 	public Collection<Smestaj> getAllSmestajAdv(SearchDTO ser){
-		return smestajRepository.findAdvancedSearch();
+		return smestajRepository.findAll();//findAdvancedSearch();
 	}
 
 }
