@@ -37,10 +37,10 @@
 		
 		$scope.searchResults = null;
 		$scope.searchDTO = {
-				"destination":"",
-				"from":"",
-				"to":"",
-				"howManyPeople":""
+				"destination":"MALDIVI VIP",
+				"from":new Date(1970, 1,1),
+				"to":new Date(1970, 12,12),
+				"howManyPeople":5
 				
 		};
 		$scope.panelToShow = -1;
