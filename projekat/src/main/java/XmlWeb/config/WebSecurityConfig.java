@@ -89,9 +89,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.DELETE,"/requests/**/**/**").hasRole("ADMIN")
             .antMatchers("/user").hasAnyRole("ADMIN", "USER")
             .antMatchers("/user/block/**").hasRole("ADMIN")
-
-            
-            
+            .antMatchers("/resources/**").permitAll()
+            .antMatchers("/css/**", "/assets/**", "/images/**").permitAll()
             // Un-secure H2 Database
             .antMatchers("/h2-console/**/**").permitAll()
 
@@ -160,7 +159,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             // Un-secure H2 Database (for testing purposes, H2 console shouldn't be unprotected in production)
             .and()
             .ignoring()
-            .antMatchers("/h2-console/**/**")
+            .antMatchers("/h2-console/**/**", "/**/*.js" )
         
         .and()
         .ignoring()
