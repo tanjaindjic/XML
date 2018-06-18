@@ -17,7 +17,7 @@
 *.ipr
 create.sql
 .project
-
+workspace.xml
 
 ### NetBeans ###
 /nbproject/private/
