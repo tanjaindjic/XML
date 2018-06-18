@@ -144,7 +144,7 @@ public class StartData {
          sm.setAdresa("Negde daleko");
          sm.setGrad("Class Grad");
          sm.setDrzava("Class Drzava");
-         sm.setZvezdice(5);
+         sm.setZvezdice(3);
          sm.setVlasnik(k1);
          
          

@@ -162,9 +162,11 @@
 		</div> 
 		 <div class="row" ng-show = "panelToShow == 1">
 		  <div class="col-sm-8">
-			<div>
-				details
-			</div>
+
+				<h3>{{smestajToShow.naziv}}</h3>
+				<i class="material-icons">location_on</i>{{smestajToShow.adresa}}, {{smestajToShow.grad}}, {{smestajToShow.drzava}} 
+				
+				<span ng-repeat="zvezdiceTrack in getNumberArray(smestajToShow.zvezdice) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-smestajToShow.zvezdice) track by $index"><i class="material-icons">star_border</i></span>
 		  </div>
 		  <div class="col-sm-4">
 				<img ng-click="pitcuresForward()" ng-src="/api/files/{{smestajToShow.slike[smestajToShowPictureIndex].uri}}.jpg" height="400" wight="500">
@@ -191,6 +193,9 @@
 			</table>
 		  </div>
 		  <div class="col-sm-4">
+		  	User score:
+		  	<span ng-repeat="zvezdiceTrack in getNumberArray(smestajToShow.rejting) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-smestajToShow.rejting) track by $index"><i class="material-icons">star_border</i></span>
+		  
 		  	<table class="table table-hover table-sm">
 		  		<tbody>
 			    	<tr>

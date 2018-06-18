@@ -8,6 +8,10 @@
 	function coreController($location, $scope, $rootScope, $http, $cookies,
 			$window, userService, $state, DataTransfer) {
 		
+		$scope.getNumberArray = function(num) {
+		    return new Array(num);   
+		}
+		
 		$scope.smestajToShowPictureIndex=0;
 		$scope.pitcuresForward = function(){
 			$scope.smestajToShowPictureIndex = ($scope.smestajToShowPictureIndex + 1)%($scope.smestajToShow.sobe.length-1);
@@ -76,8 +80,8 @@
 			else{
 				userService.getAllSmestajiAdvanced($scope.searchDTO, 
 					function(info){
-						$scope.searchResults = info.data;
-						$$scope.panelToShow = 0;
+					$scope.searchResults = info.data;
+					$scope.panelToShow = 0;
 						//DataTransfer.setSmestajDetails(info.data);
 						//$state.go('core.searchResults');
 					},
