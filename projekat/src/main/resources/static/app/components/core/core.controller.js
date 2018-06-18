@@ -53,6 +53,7 @@
 
             var temp=jwt_decode(getJwtToken()).jti; // Zameniti sa cookies.get('user') ili sta god kada bude login
 
+			console.log(temp);
 			if(temp == null){
 				alert("Please login or register to make a reservation");
                 $location.path('/login');
@@ -63,6 +64,7 @@
                 alert("Please login or register to make a reservation");
                 $location.path('/login');
 			}
+            console.log($scope.userId);
 
 			var b = false;
 
@@ -77,6 +79,8 @@
 
 			if(b){
 
+				console.log("USAO U DEO SA DTO");
+
                 var dto = {
                     "idSobe" : idSobe,
                     "idSmestaja" : idSmestaja,
@@ -85,6 +89,7 @@
                     "krajnjeVreme": krajnjeVreme
                 };
 
+                console.log(dto);
 
                 $http({
                     method: 'POST',
@@ -97,6 +102,7 @@
                    $location.path('/reservations');
 
                 }, function errorCallback(response) {
+                	console.log("FAILOVAO");
                     alert("An error occurred the reservation was not made");
 
                 });
