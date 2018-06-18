@@ -24,6 +24,13 @@ public interface SmestajRepository extends JpaRepository<Smestaj, Long> {
 			, nativeQuery = true)
 	List<Smestaj> findByNameAndSobaNumberSeats(String name, int size);
 	
+	@Query(value="SELECT DISTINCT SMESTAJ.ID, SMESTAJ.ADRESA, SMESTAJ.BROJ_OCENA, SMESTAJ.DRZAVA, SMESTAJ.GMAP_URL, SMESTAJ.GRAD, SMESTAJ.NAZIV, SMESTAJ.OPIS, SMESTAJ.REJTING, SMESTAJ.ZVEZDICE, SMESTAJ.TIP_ID, SMESTAJ.VLASNIK_ID"
+			+ "FROM SMESTAJ, SMESTAJ_SOBE, SOBA "
+			+ "WHERE SMESTAJ.ID=SMESTAJ_SOBE.SMESTAJ_ID AND SOBA.ID=SMESTAJ_SOBE.SOBE_ID AND "
+			+ "UPPER(SMESTAJ.NAZIV)=UPPER(?1) AND SOBA.BROJ_LEZAJA>=?2 AND SMESTAJ.ZVEZDICE = ?3"
+			, nativeQuery = true)
+	List<Smestaj> findByNameAndSobaNumberSeatsAndCategory(String name, int size, int category);
+	
 	/*
 	FUCKING SHIT
 	@Query(value = "SELECT DISTINCT SMESTAJ.ID, SMESTAJ.ADRESA\n, SMESTAJ.BROJ_OCENA, "

@@ -1,6 +1,7 @@
 package XmlWeb.model;
 
 import XmlWeb.model.Enums.DodatneUsluge;
+import XmlWeb.model.Enums.KategorijaSmestaja;
 import XmlWeb.model.Enums.TipSmestaja;
 
 import javax.persistence.*;
@@ -8,6 +9,33 @@ import java.util.List;
 
 @Entity
 public class Smestaj {
+	
+	public boolean validateCategories(List<DodatneUsluge> cats) {
+		boolean flag = false;
+		int rez = 0;
+		for(DodatneUsluge d:cats) {
+			flag = false;
+			for(DodatneUsluge d1:dodatneUsluge) {
+				if(d.getOpcija().equals(d1.getOpcija())) {
+					flag = true;
+				}
+			}
+			if(flag) rez++;
+		}
+		if(cats.size()==rez) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean validateTypes(List<TipSmestaja> tips) {
+		for(TipSmestaja t:tips) {
+			if(t.getTip().equals(tip)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
     @Id
     @GeneratedValue

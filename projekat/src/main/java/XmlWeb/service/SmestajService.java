@@ -26,11 +26,18 @@ public class SmestajService {
 		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeats(ser.getDestination(), ser.getHowManyPeople());
 		ArrayList<Smestaj> temp1 = new ArrayList<Smestaj>();
 		
+		boolean pom = true;
 		for(Smestaj s: temp) {
+			pom = true;
 			for(Soba soba:s.getSobe()) {
 				if(soba.validateDates(ser.getFrom(), ser.getTo())) {
-					temp1.add(s);
+					
+				}else {
+					pom = false;
 				}
+			}
+			if(!pom) {
+				temp1.add(s);
 			}
 		}
 		
@@ -38,7 +45,26 @@ public class SmestajService {
 	}
 	
 	public Collection<Smestaj> getAllSmestajAdv(SearchDTO ser){
-		return smestajRepository.findAll();//findAdvancedSearch();
+		System.out.println(ser);
+		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeatsAndCategory(ser.getDestination(), ser.getHowManyPeople(), 0);
+		ArrayList<Smestaj> temp1 = new ArrayList<Smestaj>();
+		
+		boolean pom = true;
+		for(Smestaj s: temp) {
+			pom = true;
+			for(Soba soba:s.getSobe()) {
+				if(soba.validateDates(ser.getFrom(), ser.getTo())) {
+					
+				}else {
+					pom = false;
+				}
+			}
+			if(!pom&&s.validateCategories(ser.getServices())&&s.validateTypes(ser.getTypes())) {
+				temp1.add(s);
+			}
+		}
+		
+		return temp1;
 	}
 
 }
