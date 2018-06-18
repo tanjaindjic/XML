@@ -10,6 +10,7 @@
 		
 		$scope.searchResults = null;
 		$scope.searchDTO = {};
+		$scope.showResultPanel = false;
 		$scope.searchSmestaji = function(){
 			
 			$scope.searchDTO.types =$scope.typeList;
@@ -19,8 +20,9 @@
 				userService.getAllSmestajiSimple($scope.searchDTO, 
 					function(info){
 						$scope.searchResults = info.data;
-						DataTransfer.setSmestajDetails(info.data);
-						$state.go('core.searchResults');
+						$scope.showResultPanel = true;
+						//DataTransfer.setSmestajDetails(info.data);
+						//$state.go('core.searchResults');
 					},
 					function(){
 						alert("Error loading search results!!!");
@@ -31,8 +33,9 @@
 				userService.getAllSmestajiAdvanced($scope.searchDTO, 
 					function(info){
 						$scope.searchResults = info.data;
-						DataTransfer.setSmestajDetails(info.data);
-						$state.go('core.searchResults');
+						$scope.showResultPanel = true;
+						//DataTransfer.setSmestajDetails(info.data);
+						//$state.go('core.searchResults');
 					},
 					function(){
 						alert("Error loading search results!!!");

@@ -83,10 +83,64 @@
 		
 	</table>
 	<table>
-		<div>
-			<ui-view>
+		<div ng-show="showResultPanel == true">
+			<table class="table table-hover" ng-show="showResultPanel == true">
+			    <tbody>
+				    <tr ng-show="showResultPanel == true">
+				    	<th>
+				    		Accomodation name	
+				    	</th>
+						<th>
+				    		Adress
+				    	</th>
+				    	<th>
+				    		City
+				    	</th>
+				    	<th>
+				    		Country
+				    	</th>
+				    	<th>
+				    		Category
+				    	</th>
+				    	<th>
+				    		Rating
+				    	</th>
+				    	<th>
+				    		Photo
+				    	</th>
+				    </tr>
+			      <tr  ng-repeat="smestaj in searchResults">
+			        <td>
+				        <span>{{smestaj.naziv}}</span>
+			        </td>
+			        <td>
+				        <span>{{smestaj.adresa}}</span>
+			        </td>
+			        <td>
+				        <span>{{smestaj.grad}}</span>
+			        </td>
+			        <td>
+				        <span>{{smestaj.drzava}}</span>
+			        </td>  
+			        <td>
+				        <span>{{smestaj.zvezdice}}</span>
+			        </td>
+			        <td>
+				        <span>{{smestaj.rejting}}</span>
+			        </td>
+			        
+			        <td>
+			        	<img ng-src="/api/files/{{smestaj.slike[0].uri}}.jpg" height="200" wight="250">
+			        </td>
+			        <td>
+			        	<button>Details</button>
+			        </td>
+			        
+			        
+			      </tr>
 			
-			</ui-view>
+			    </tbody>
+			</table>
 		</div>
 	</table>
 
