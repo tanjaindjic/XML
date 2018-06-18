@@ -1,7 +1,7 @@
 <div width='100%'>
 	<table width='100%'>
 		<tr>
-			<td class='heading'>PigInc. BOOKING </td>
+			<td class='heading' ng-click="goHomeApp()">PigInc. BOOKING </td>
 			<td class='buttonsTDP'>
 				<button class='buttonP'>Manage My Property</button> 
 				<button class='buttonR' ng-hide="profileShow" ng-click="register()" id="registerBtn">Register</button>
@@ -93,10 +93,10 @@
 		
 	</table>
 	<table>
-		<div ng-show="showResultPanel == true">
-			<table class="table table-hover" ng-show="showResultPanel == true">
+		<div ng-show="panelToShow == 0 ">
+			<table class="table table-hover" ng-show="panelToShow == 0 ">
 			    <tbody>
-				    <tr ng-show="showResultPanel == true">
+				    <tr ng-show="panelToShow == 0 ">
 				    	<th>
 				    		Accomodation name	
 				    	</th>
@@ -152,18 +152,40 @@
 			    </tbody>
 			</table>
 		</div>
-		 <div class="row">
-		  <div class="col-sm-9">
-			DETAILS
+		 <div class="row" ng-show = "panelToShow == 1">
+		  <div class="col-sm-8">
+			<div>
+				details
+			</div>
 		  </div>
-		  <div class="col-sm-3">REVIEWS</div>
+		  <div class="col-sm-4">
+				<img ng-click="pitcuresForward()" ng-src="/api/files/{{smestajToShow.slike[smestajToShowPictureIndex].uri}}.jpg" height="400" wight="500">
+		  </div>
 		</div> 
-		<div class="row">
-		  <div class="col-sm-6">SVE SOBE</div>
-		  <div class="col-sm-6"></div>
+		<div class="row" ng-show = "panelToShow == 1">
+		  <div class="col-sm-8">
+		  	<table class="table table-hover table-sm">
+			    <tbody>
+			    	<tr>
+			    		<th>
+			    			Persons per room
+			    		</th>
+			    	</tr>
+			      <tr  ng-repeat="room in smestajToShow.sobe">
+			        <td ng-click="">
+			        	<span>{{room.brojLezaja}}</span>
+			        </td>
+			        <td ng-click="">
+			        	<button>Reserve</button>
+			        </td>
+			      </tr>
+			    </tbody>
+			</table>
+		  </div>
+		  <div class="col-sm-4">REVIEWS</div>
 		</div> 
 		<div>
--			<ui-view></ui-view>
+			<ui-view></ui-view>
 		</div>
 	</table>
 

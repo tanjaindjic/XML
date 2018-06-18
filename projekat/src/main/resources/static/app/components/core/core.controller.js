@@ -8,9 +8,20 @@
 	function coreController($location, $scope, $rootScope, $http, $cookies,
 			$window, userService, $state, DataTransfer) {
 		
+		$scope.smestajToShowPictureIndex=0;
+		$scope.pitcuresForward = function(){
+			$scope.smestajToShowPictureIndex = ($scope.smestajToShowPictureIndex + 1)%($scope.smestajToShow.sobe.length-1);
+			//console.log($scope.smestajToShowPictureIndex);
+		}
+		
+		$scope.goHomeApp = function(){
+			$location.path('/home');
+			$scope.panelToShow = -1;
+		}
+		
 		$scope.searchResults = null;
 		$scope.searchDTO = {};
-		$scope.showResultPanel = false;
+		$scope.panelToShow = -1;
 		$scope.smestajToShow = null;
 		
 		$scope.isLast = function(index, list){
@@ -20,7 +31,7 @@
 		$scope.showSemstaj = function(smestaj){
 			
 			$scope.smestajToShow = smestaj;
-			$scope.showResultPanel = false;
+			$scope.panelToShow = 1;
 		}
 		
 		$scope.searchSmestaji = function(){
@@ -32,7 +43,7 @@
 				userService.getAllSmestajiSimple($scope.searchDTO, 
 					function(info){
 						$scope.searchResults = info.data;
-						$scope.showResultPanel = true;
+						$scope.panelToShow = 0;
 						//DataTransfer.setSmestajDetails(info.data);
 						//$state.go('core.searchResults');
 					},
@@ -45,7 +56,7 @@
 				userService.getAllSmestajiAdvanced($scope.searchDTO, 
 					function(info){
 						$scope.searchResults = info.data;
-						$scope.showResultPanel = true;
+						$$scope.panelToShow = 0;
 						//DataTransfer.setSmestajDetails(info.data);
 						//$state.go('core.searchResults');
 					},

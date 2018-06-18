@@ -34,7 +34,7 @@ public class Smestaj {
 
     private String opis;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Soba> sobe;
 
     @ManyToOne

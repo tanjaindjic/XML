@@ -127,10 +127,15 @@ public class StartData {
 
          Korisnik k1 = new Korisnik();
          k1.setId(idVlasnika);
-/*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
+         /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
          
+         ArrayList<Soba> sobe = new ArrayList<>();
          ArrayList<Slika> slike = new ArrayList<>();
          slike.add(new Slika("slika1"));
+         slike.add(new Slika("slika2"));
+         sobe.add(new Soba(5, new ArrayList<>(), new ArrayList<>()));
+         sobe.add(new Soba(5, new ArrayList<>(), new ArrayList<>()));
+         sobe.add(new Soba(5, new ArrayList<>(), new ArrayList<>()));
          
          /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
          Smestaj sm = new Smestaj();
@@ -142,8 +147,10 @@ public class StartData {
          sm.setZvezdice(5);
          sm.setVlasnik(k1);
          
+         
          /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
          sm.setSlike(slike);
+         sm.setSobe(sobe);
          /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
 
 
