@@ -3,7 +3,7 @@ angular.module('app')
 	$scope.toShow = DataTransfer.getSmestajDetails();
 	console.log($scope.toShow);
 	
-	
+	/*
 	$scope.userId={};
     $scope.user = {};
 
@@ -47,5 +47,5 @@ angular.module('app')
     }
 
 
-    init();
+    init();*/
 });
