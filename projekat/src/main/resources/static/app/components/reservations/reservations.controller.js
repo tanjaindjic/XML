@@ -148,7 +148,7 @@
             $state.go('core.chat' , {"id" : $scope.userId, "id2" : id, "username" : $scope.username} );
         }
 
-        $scope.review = function (tekst, id, ocena, smestajId) {
+        $scope.review = function (tekst, id, ocena, smestajId, rezervacija) {
 
             var dto = {
                 "userId" : $scope.userId,
@@ -170,17 +170,17 @@
                 data: dto
             }).then(function successCallback(response) {
 
-                $http({
-                    method: 'POST',
-                    url: 'https://localhost:8096/reservation/comment/'+id+'/'+ocena,
-                    headers : createAuthorizationTokenHeader()
-                }).then(function successCallback(response) {
-                    alert("Comment submitted and awaiting approval ");
 
-                }, function errorCallback(response) {
-                    alert("Error occured check connection");
-                    $location.path('/home');
-                });
+            }, function errorCallback(response) {
+
+            });
+
+            $http({
+                method: 'POST',
+                url: 'https://localhost:8096/reservation/comment/'+id+'/'+ocena,
+                headers : createAuthorizationTokenHeader()
+            }).then(function successCallback(response) {
+                alert("Comment submitted and awaiting approval ");
 
             }, function errorCallback(response) {
                 alert("Error occured check connection");
@@ -188,6 +188,8 @@
             });
 
 
+            rezervacija.ocena=ocena;
+            rezervacija.ocenio=true;
 
 
 
