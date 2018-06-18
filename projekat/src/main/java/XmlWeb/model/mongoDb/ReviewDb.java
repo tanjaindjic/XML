@@ -1,13 +1,9 @@
 package XmlWeb.model.mongoDb;
 
 
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 
 public class ReviewDb {
-	
+/*
 	private ReviewDb instance = null;
 	private String dbUri = "mongodb+srv://admin:admin@cluster0-v13re.mongodb.net/test?retryWrites=true";
 	private MongoCollection collection;
@@ -35,7 +31,8 @@ public class ReviewDb {
 	public void setCollection(MongoCollection collection) {
 		this.collection = collection;
 	}
-	
+
+	*/
 	
 
 }
