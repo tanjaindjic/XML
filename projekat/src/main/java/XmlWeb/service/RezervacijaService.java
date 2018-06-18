@@ -68,6 +68,21 @@ public class RezervacijaService {
         return b;
     }
 
+    public void addOcena(Long id, int ocena){
+        if(id >0)
+            if(ocena>=0 && ocena<=5){
+
+                Optional<Rezervacija> rezOp = rezRepo.findById(id);
+                if (rezOp.isPresent()){
+                    Rezervacija r =rezOp.get();
+                    r.setOcenio(true);
+                    r.setOcena(ocena);
+                    rezRepo.save(r);
+                }
+
+            }
+    }
+
     public void updateStatus(RezStatusUpdateDTO rsud ){
 
         Optional<Rezervacija> rezOp = rezRepo.findById(rsud.getId());

@@ -148,25 +148,46 @@
             $state.go('core.chat' , {"id" : $scope.userId, "id2" : id, "username" : $scope.username} );
         }
 
-        $scope.review = function (tekst, id, ocena) {
+        $scope.review = function (tekst, id, ocena, smestajId) {
 
             var dto = {
-                "tekst" : tekst,
-                "rezervacijaId" : id
+                "userId" : $scope.userId,
+                "rezervacijaId" : id,
+                "comment" : tekst,
+                "ocena" : ocena,
+                "smestajId": smestajId
             };
+
+            console.log(dto);
+
 
             $http({
                 method: 'POST',
-                url: 'https://localhost:8096/comments/add',
-                data: dto,
-                headers : createAuthorizationTokenHeader()
+                url: 'https://us-central1-xmlcoment.cloudfunctions.net/sqlInsert',
+                headers : createAuthorizationTokenHeader(),
+                data: dto
             }).then(function successCallback(response) {
-                alert("Comment submitted and awaiting approval ");
+
+                $http({
+                    method: 'POST',
+                    url: 'https://localhost:8096/reservation/comment/'+id+'/'+ocena,
+                    headers : createAuthorizationTokenHeader()
+                }).then(function successCallback(response) {
+                    alert("Comment submitted and awaiting approval ");
+
+                }, function errorCallback(response) {
+                    alert("Error occured check connection");
+                    $location.path('/home');
+                });
 
             }, function errorCallback(response) {
                 alert("Error occured check connection");
                 $location.path('/home');
             });
+
+
+
+
 
 
         }
