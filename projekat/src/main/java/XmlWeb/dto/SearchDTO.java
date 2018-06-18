@@ -10,6 +10,14 @@ import java.util.Date;
 
 public class SearchDTO {
 	
+	
+	
+	@Override
+	public String toString() {
+		return "SearchDTO [destination=" + destination + ", from=" + from + ", to=" + to + ", howManyPeople="
+				+ howManyPeople + "]";
+	}
+
 	private String destination;
 	
 	private Date from;

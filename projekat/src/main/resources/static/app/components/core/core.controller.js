@@ -36,7 +36,13 @@
 		}
 		
 		$scope.searchResults = null;
-		$scope.searchDTO = {};
+		$scope.searchDTO = {
+				"destination":"",
+				"from":"",
+				"to":"",
+				"howManyPeople":""
+				
+		};
 		$scope.panelToShow = -1;
 		$scope.smestajToShow = null;
 		
@@ -65,6 +71,7 @@
 			$scope.searchDTO.services = $scope.serviceList;
 			$scope.searchDTO.cats = $scope.catList;
 			if($scope.showAdvancedSearch == false){
+				
 				userService.getAllSmestajiSimple($scope.searchDTO, 
 					function(info){
 						$scope.searchResults = info.data;
