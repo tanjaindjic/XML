@@ -21,4 +21,11 @@ public class KategorijaService {
     public void deleteKategorija(Long id) {
 		kategorijaRepository.deleteById(id);
     }
+
+    public void addKateg(String tekst) {
+		KategorijaSmestaja k = new KategorijaSmestaja();
+		k.setKategorija(tekst);
+		System.out.println(tekst);
+		kategorijaRepository.save(k);
+    }
 }

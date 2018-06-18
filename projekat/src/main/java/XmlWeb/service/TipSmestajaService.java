@@ -21,4 +21,10 @@ public class TipSmestajaService {
     public void deleteTip(Long id) {
 		tipRepository.deleteById(id);
     }
+
+    public void addService(String tekst) {
+		TipSmestaja t = new TipSmestaja();
+		t.setTip(tekst);
+		tipRepository.save(t);
+    }
 }

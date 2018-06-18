@@ -18,4 +18,13 @@ public class DodatneUslugeService {
 		return dodtaneRepository.findAll();
 	}
 
+    public void deleteUsluga(Long id) {
+		dodtaneRepository.deleteById(id);
+    }
+
+	public void addUsluga(String tekst) {
+		DodatneUsluge d= new DodatneUsluge();
+		d.setOpcija(tekst);
+		dodtaneRepository.save(d);
+	}
 }

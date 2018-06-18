@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import XmlWeb.model.Soba;
 import XmlWeb.model.Enums.TipSmestaja;
@@ -35,6 +32,18 @@ public class TipSmestajaController {
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public void deleteTip(@PathVariable Long id){
 		tipService.deleteTip(id);
+	}
+
+	@RequestMapping(
+			value = "/api/tipService",
+			method = RequestMethod.POST,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public void addKategorija(@RequestBody String tekst){
+		System.out.println(tekst);
+		if(tekst.charAt(tekst.length() - 1)=='=')
+			tekst =tekst.substring(0, tekst.length() - 1);
+		System.out.println(tekst);
+		tipService.addService(tekst);
 	}
 
 }
