@@ -41,6 +41,9 @@ public class Smestaj {
     @GeneratedValue
     private Long id;
 
+    @Version
+    private int version;
+
     private String naziv;
 
     private String adresa;
@@ -81,6 +84,14 @@ public class Smestaj {
 
     public Long getId() {
         return id;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     public void setId(Long id) {

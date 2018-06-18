@@ -5,8 +5,10 @@ import XmlWeb.dto.RezStatusUpdateDTO;
 import XmlWeb.dto.RezervacijaDTO;
 import XmlWeb.model.Enums.StatusRezevacije;
 import XmlWeb.model.Rezervacija;
+import XmlWeb.model.Smestaj;
 import XmlWeb.model.Soba;
 import XmlWeb.repository.RezervacijaRepository;
+import XmlWeb.repository.SmestajRepository;
 import XmlWeb.repository.SobaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,9 @@ public class RezervacijaService {
 
     @Autowired
     private SobaRepository sobaRepo;
+
+    @Autowired
+    private SmestajRepository smRepo;
 
 
     public Long getSmestajId(Long rezervacijaId){
@@ -117,6 +122,7 @@ public class RezervacijaService {
         return b;
     }
 
+    @Transactional( readOnly = false, propagation = Propagation.REQUIRED)
     public void addOcena(Long id, int ocena){
         if(id >0)
             if(ocena>=0 && ocena<=5){
@@ -127,6 +133,20 @@ public class RezervacijaService {
                     r.setOcenio(true);
                     r.setOcena(ocena);
                     rezRepo.save(r);
+
+                    Smestaj s = r.getSmestaj();
+
+                    int broj = s.getBrojOcena();
+                    float prosecna = s.getRejting();
+                    if(broj ==0){
+                        s.setBrojOcena(1);
+                        s.setRejting(ocena);
+                    }else {
+                        float nova = (prosecna * broj + ocena) / (broj + 1);
+                        s.setBrojOcena(broj + 1);
+                        s.setRejting(nova);
+                    }
+                    smRepo.save(s);
                 }
 
             }
