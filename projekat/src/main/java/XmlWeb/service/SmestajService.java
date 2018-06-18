@@ -21,7 +21,7 @@ public class SmestajService {
 	
 	public Collection<Smestaj> getAllSmestajSimple(SearchDTO ser){
 		System.out.println(ser);
-		return smestajRepository.findSimpleSearch(ser.getFrom(), ser.getTo(), ser.getDestination(), ser.getHowManyPeople());
+		return smestajRepository.findAll();//findSimpleSearch(ser.getFrom(), ser.getTo(), ser.getDestination(), ser.getHowManyPeople());
 	}
 	
 	public Collection<Smestaj> getAllSmestajAdv(SearchDTO ser){

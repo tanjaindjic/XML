@@ -207,13 +207,19 @@
 		  		<tbody>
 			    	<tr>
 			    		<th>
-			    			Reviews
+			    			User
+			    		</th>
+			    		<th>
+			    			Review
 			    		</th>
 			    		<th>
 			    			Score
 			    		</th>
 			    	</tr>
 				      <tr  ng-repeat="rev in reviewsToShow">
+				        <td ng-click="">
+				        	<span>{{rev.userName}}</span>
+				        </td>
 				        <td ng-click="">
 				        	<span>{{rev.comment}}</span>
 				        </td>
