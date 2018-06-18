@@ -11,6 +11,18 @@
 		$scope.searchResults = null;
 		$scope.searchDTO = {};
 		$scope.showResultPanel = false;
+		$scope.smestajToShow = null;
+		
+		$scope.isLast = function(index, list){
+			if(index==list.length-1) return false;return true;
+		}
+		
+		$scope.showSemstaj = function(smestaj){
+			
+			$scope.smestajToShow = smestaj;
+			$scope.showResultPanel = false;
+		}
+		
 		$scope.searchSmestaji = function(){
 			
 			$scope.searchDTO.types =$scope.typeList;
