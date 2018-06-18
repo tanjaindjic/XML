@@ -56,8 +56,16 @@ public class ProjekatApplication {
 					registry.addMapping("/comments/**")
 							.allowedHeaders("Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers")
 							.allowedOrigins("https://localhost:8090");
-	                
-	            }
+
+                    registry.addMapping("/api/tipService/**")
+                            .allowedHeaders("Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers")
+                            .allowedOrigins("https://localhost:8090");
+
+					registry.addMapping("/api/kategorija/**")
+							.allowedHeaders("Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers")
+							.allowedOrigins("https://localhost:8090");
+
+				}
 	        };
 	    }
 
