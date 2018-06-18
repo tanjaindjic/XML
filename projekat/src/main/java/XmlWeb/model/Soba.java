@@ -4,6 +4,8 @@ import XmlWeb.model.Enums.KategorijaSmestaja;
 import XmlWeb.model.Enums.DodatneUsluge;
 
 import javax.persistence.*;
+
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -100,5 +102,20 @@ public class Soba {
 
     public void setCene(List<Cenovnik> cene) {
         this.cene = cene;
+    }
+    
+    public boolean validateDates(Date pocetak, Date kraj) {
+    	for(Rezervacija r:rezervisano) {
+    		if(r.getDatumDo().after(pocetak)||r.getDatumOd().before(kraj)) {
+    			return false;
+    		}
+    	}
+    	
+    	for(Iznajmljivanje i:iznajmljivanja) {
+    		if((i.getDatumDo().compareTo(kraj)>=0&&i.getDatumOd().compareTo(pocetak)<=0&&i.getMozePojedinacno()==true)||
+    				(i.getDatumDo().compareTo(kraj)==00&&i.getDatumOd().compareTo(pocetak)==0&&i.getMozePojedinacno()==false))
+    			return true;
+    	}
+    	return false;
     }
 }
