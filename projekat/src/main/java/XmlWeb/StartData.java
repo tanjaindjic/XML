@@ -133,9 +133,19 @@ public class StartData {
          ArrayList<Slika> slike = new ArrayList<>();
          slike.add(new Slika("slika1"));
          slike.add(new Slika("slika2"));
-         sobe.add(new Soba(5, new ArrayList<>(), new ArrayList<>()));
-         sobe.add(new Soba(5, new ArrayList<>(), new ArrayList<>()));
-         sobe.add(new Soba(5, new ArrayList<>(), new ArrayList<>()));
+         Soba temp = new Soba(5, new ArrayList<>(), new ArrayList<>());
+         Soba temp1 = new Soba(5, new ArrayList<>(), new ArrayList<>());
+         Soba temp2 = new Soba(5, new ArrayList<>(), new ArrayList<>());
+         ArrayList<Iznajmljivanje> iznajmljivanja = new ArrayList<>();
+         iznajmljivanja.add(new Iznajmljivanje(new Date(1262307661), new Date(1272307661), 1000L, true));
+         iznajmljivanja.add(new Iznajmljivanje(new Date(1262307661), new Date(1272307661), 1000L, true));
+         iznajmljivanja.add(new Iznajmljivanje(new Date(1262307661), new Date(1272307661), 1000L, true));
+         
+         temp.setIznajmljivanja(iznajmljivanja);
+         
+         sobe.add(temp);
+         sobe.add(temp1);
+         sobe.add(temp2);
          
          /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
          Smestaj sm = new Smestaj();

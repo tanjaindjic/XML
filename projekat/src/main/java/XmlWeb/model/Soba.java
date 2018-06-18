@@ -25,7 +25,7 @@ public class Soba {
 
     //ovo polje sluzi definisanje intervala u kojima je iznajmljivanje moguce, ukoliko vremenski interval nije ovde naveden, racuna se kao da 
     //nije moguce rezervisati
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     private List<Iznajmljivanje> iznajmljivanja;
 
     @OneToMany

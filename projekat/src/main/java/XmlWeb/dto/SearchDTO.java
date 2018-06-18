@@ -16,7 +16,7 @@ public class SearchDTO {
 	
 	private Date to;
 	
-	private Long howManyPeople;
+	private int howManyPeople;
 	
 	private List<TipSmestaja> types;
 	
@@ -28,7 +28,7 @@ public class SearchDTO {
 		super();
 	}
 
-	public SearchDTO(String destination, Date from, Date to, Long howManyPeople, List<TipSmestaja> types,
+	public SearchDTO(String destination, Date from, Date to, int howManyPeople, List<TipSmestaja> types,
 			List<DodatneUsluge> services, List<KategorijaSmestaja> cats) {
 		super();
 		this.destination = destination;
@@ -64,11 +64,11 @@ public class SearchDTO {
 		this.to = to;
 	}
 
-	public Long getHowManyPeople() {
+	public int getHowManyPeople() {
 		return howManyPeople;
 	}
 
-	public void setHowManyPeople(Long howManyPeople) {
+	public void setHowManyPeople(int howManyPeople) {
 		this.howManyPeople = howManyPeople;
 	}
 
@@ -95,8 +95,7 @@ public class SearchDTO {
 	public void setCats(List<KategorijaSmestaja> cats) {
 		this.cats = cats;
 	}
-	
-	
-	
+
+
 	
 }

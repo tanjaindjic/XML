@@ -25,8 +25,20 @@ public class Iznajmljivanje {
 
     public Iznajmljivanje() {
     }
+    
+    
 
-    public Long getId() {
+    public Iznajmljivanje(Date datumOd, Date datumDo, Long cena, Boolean mozePojedinacno) {
+		super();
+		this.datumOd = datumOd;
+		this.datumDo = datumDo;
+		this.cena = cena;
+		this.mozePojedinacno = mozePojedinacno;
+	}
+
+
+
+	public Long getId() {
         return id;
     }
 

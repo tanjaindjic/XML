@@ -20,11 +20,11 @@ public class SmestajService {
 	}
 	
 	public Collection<Smestaj> getAllSmestajSimple(SearchDTO ser){
-		return smestajRepository.findAll();
+		return smestajRepository.findAll();//findSimpleSearch(ser.getFrom(), ser.getTo(), ser.getDestination(), ser.getHowManyPeople());
 	}
 	
 	public Collection<Smestaj> getAllSmestajAdv(SearchDTO ser){
-		return smestajRepository.findAll();
+		return smestajRepository.findAdvancedSearch();
 	}
 
 }
