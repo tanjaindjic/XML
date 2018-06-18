@@ -19,6 +19,10 @@
 			$scope.panelToShow = -1;
 		}
 		
+		$scope.swapPanel = function(p){
+			$scope.panelToShow = 0;
+		}
+		
 		$scope.searchResults = null;
 		$scope.searchDTO = {};
 		$scope.panelToShow = -1;
@@ -32,6 +36,15 @@
 			
 			$scope.smestajToShow = smestaj;
 			$scope.panelToShow = 1;
+			userService.getAllReviewsBySmestaj(smestaj.id,
+					function(info){
+						console.log(info.data);
+						console.log("SHIIIIIT")
+					},
+					function(){
+						
+					}
+			)
 		}
 		
 		$scope.searchSmestaji = function(){

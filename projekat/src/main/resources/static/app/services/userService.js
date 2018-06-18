@@ -37,6 +37,13 @@ angular.module('app')
 	                data: dto
 	            };
 	            $http(req).then(onSuccess, onError);
+        },
+        getAllReviewsBySmestaj: function(id, onSuccess, onError){
+        	var req = {
+	                method: 'GET',
+	                url: 'https://us-central1-xmlcoment.cloudfunctions.net/getReviewsBySmestaj?smestajId='+id
+	            };
+	            $http(req).then(onSuccess, onError);
         }
     }
 });
