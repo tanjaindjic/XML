@@ -140,7 +140,19 @@ public class StartData {
          /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
          Smestaj sm = new Smestaj();
          sm.setNaziv("Maldivi VIP");
-         sm.setOpis("Najbolji smestaj");
+         sm.setOpis("Hotel Slavija je smešten u centru Beograda, u neposrednoj blizini raznovrsnih prodavnica i restorana. U ponudi ima besplatan bežični internet u zajedničkim prostorijama i svim smeštajnim jedinicama. Nalazi se na svega par koraka od Hrama Sv. Save, koji je jedna od najvažnijih gradskih znamenitosti.\n" + 
+         		"\n" + 
+         		"Sve smeštajne jedinice poseduju sopstveno kupatilo sa kadom ili tušem. Većina smeštajnih jedinica sadrži TV. Korišćenje hotelske garaže na raspolaganju je uz doplatu.\n" + 
+         		"\n" + 
+         		"Šetalište u Knez Mihailovoj ulici udaljeno je 15 minuta hoda. Drevna Kalemegdanska tvrđava i boemska četvrt Skadarlija udaljene su 2,5 km. Jezero Ada Ciganlija, poznato po mestima za noćni provod, udaljeno je 4 km od objekta.\n" + 
+         		"\n" + 
+         		"Stanica autobusa koji saobraća do Međunarodnog aerodroma Beograd, udaljenog 16 km, nalazi se dirketno ispred objekta. Tramvajska stanica na Trgu Slavija udaljena je 200 metara. Autobuska i Železnička stanica u Beogradu udaljene su 1,2 km od hotela Slavija.\n" + 
+         		"\n" + 
+         		"Prema nezavisnim recenzijama, naši gosti obožavaju ovaj deo destinacije Beograd.\n" + 
+         		"\n" + 
+         		"Gosti koji su ovde boravili pričaju o sledećim poznatim znamenitostima: Ada Ciganlija, Hram Sv. Save i Trg Republike.\n" + 
+         		"\n" + 
+         		"Govorimo vaš jezik! ");
          sm.setAdresa("Negde daleko");
          sm.setGrad("Class Grad");
          sm.setDrzava("Class Drzava");

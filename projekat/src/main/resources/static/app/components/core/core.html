@@ -163,10 +163,16 @@
 		 <div class="row" ng-show = "panelToShow == 1">
 		  <div class="col-sm-8">
 
-				<h3>{{smestajToShow.naziv}}</h3>
+				<h3>{{smestajToShow.naziv}}({{smestajToShow.tip}})</h3>
 				<i class="material-icons">location_on</i>{{smestajToShow.adresa}}, {{smestajToShow.grad}}, {{smestajToShow.drzava}} 
 				
 				<span ng-repeat="zvezdiceTrack in getNumberArray(smestajToShow.zvezdice) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-smestajToShow.zvezdice) track by $index"><i class="material-icons">star_border</i></span>
+		  		<h4>Description:</h4>
+		  		{{smestajToShow.opis}}
+		  		<h4>Services provided:</h4>
+		  		 <ul>
+				  <li ng-repeat="service in smestajToShow.dodatneUsluge">{{service.opcija}}</li>
+				</ul> 
 		  </div>
 		  <div class="col-sm-4">
 				<img ng-click="pitcuresForward()" ng-src="/api/files/{{smestajToShow.slike[smestajToShowPictureIndex].uri}}.jpg" height="400" wight="500">
@@ -174,6 +180,7 @@
 		</div> 
 		<div class="row" ng-show = "panelToShow == 1">
 		  <div class="col-sm-8">
+		  	<H4>Rooms</H4>
 		  	<table class="table table-hover table-sm">
 			    <tbody>
 			    	<tr>
@@ -193,7 +200,7 @@
 			</table>
 		  </div>
 		  <div class="col-sm-4">
-		  	User score:
+		  	<h4>User score:</h4>
 		  	<span ng-repeat="zvezdiceTrack in getNumberArray(smestajToShow.rejting) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-smestajToShow.rejting) track by $index"><i class="material-icons">star_border</i></span>
 		  
 		  	<table class="table table-hover table-sm">
@@ -203,7 +210,7 @@
 			    			Reviews
 			    		</th>
 			    		<th>
-			    			Scores
+			    			Score
 			    		</th>
 			    	</tr>
 				      <tr  ng-repeat="rev in reviewsToShow">

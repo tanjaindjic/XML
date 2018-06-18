@@ -32,6 +32,7 @@ public class Smestaj {
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Slika> slike;
 
+    @Column(length = 2084)
     private String opis;
 
     @OneToMany(cascade = CascadeType.PERSIST)
