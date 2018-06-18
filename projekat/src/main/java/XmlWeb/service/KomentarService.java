@@ -70,6 +70,18 @@ public class KomentarService {
         return komRepo.findByRezervacijaRezervisaoIdAndRezervacijaSobaId(osoba, soba);
     }
 
+    public List<Komentar> getUnpublished(){
+        return komRepo.findByOdobreno(false);
+    }
 
 
+    public void publishComment(Long id) {
+        Komentar k = komRepo.findById(id).get();
+        k.setOdobreno(true);
+        komRepo.save(k);
+    }
+
+    public void deleteKomentar(Long id) {
+        komRepo.deleteById(id);
+    }
 }

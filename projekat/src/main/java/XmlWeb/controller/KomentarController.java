@@ -29,6 +29,11 @@ public class KomentarController {
         ks.promeniStatus(id, b);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "/comments/{id}")
+    public void deleteOne(@PathVariable Long id) {
+         ks.deleteKomentar(id);
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/comments/{id}")
     public Komentar getOne(@PathVariable Long id) {
         return ks.getKomentar(id);
@@ -42,6 +47,15 @@ public class KomentarController {
     @RequestMapping(method = RequestMethod.GET, value = "accommodation/{id}/comments")
     public List<Komentar>  getCommentsSoba(@PathVariable Long id) {
         return ks.getKomentariBySoba(id);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/comments/unpublished")
+    public List<Komentar> getUnpublished(){
+        return ks.getUnpublished();
+    }
+    @RequestMapping(method = RequestMethod.GET, value = "/comments/publish/{id}")
+    public void publish(@PathVariable Long id){
+        ks.publishComment(id);
     }
 
 

@@ -10,29 +10,18 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import XmlWeb.model.*;
+import XmlWeb.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import XmlWeb.model.Korisnik;
-import XmlWeb.model.Poruka;
-import XmlWeb.model.Rezervacija;
-import XmlWeb.model.Slika;
-import XmlWeb.model.Smestaj;
-import XmlWeb.model.Soba;
 import XmlWeb.model.Enums.Role;
 import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.model.Enums.StatusRezevacije;
 import XmlWeb.model.security.Authority;
 import XmlWeb.model.security.AuthorityName;
 import XmlWeb.model.security.Permission;
-import XmlWeb.repository.AuthorityRepository;
-import XmlWeb.repository.KorisnikRepository;
-import XmlWeb.repository.PermissionRepository;
-import XmlWeb.repository.PorukaRepository;
-import XmlWeb.repository.RezervacijaRepository;
-import XmlWeb.repository.SmestajRepository;
-import XmlWeb.repository.SobaRepository;
 
 
 @Component
@@ -61,6 +50,10 @@ public class StartData {
 
     @Autowired
     private PermissionRepository permissionRepository;
+
+    @Autowired
+    private KomentarRepository komentarRepository;
+
 
 	 @PostConstruct
 	 public void initIt(){
@@ -174,6 +167,7 @@ public class StartData {
          r.setSoba(s);
 
          rezervacijaRepository.save(r);
+         addKomentar(r);
 
      }
 
@@ -242,5 +236,14 @@ public class StartData {
          return k;
 
 
+     }
+
+     public Komentar addKomentar(Rezervacija r){
+	     Komentar k = new Komentar();
+	     k.setOdobreno(false);
+	     k.setRezervacija(r);
+	     k.setTekst("TEST");
+         komentarRepository.save(k);
+         return k;
      }
 }
