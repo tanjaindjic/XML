@@ -50,20 +50,22 @@
 
         $scope.reserve =function(idSobe, idSmestaja, pocetnoVreme, krajnjeVreme){
 
+            var temp=null;
+            var noErr = true;
 
-            var temp=jwt_decode(getJwtToken()).jti; // Zameniti sa cookies.get('user') ili sta god kada bude login
-
-			console.log(temp);
-			if(temp == null){
-				alert("Please login or register to make a reservation");
-                $location.path('/login');
-			}
-
-            $scope.userId = Number(temp);
-			if( $scope.userId == null ){
+            try {
+            	temp=jwt_decode(getJwtToken()).jti; // Tanjino
+            }
+            catch(err) {
+            	noErr=false;
                 alert("Please login or register to make a reservation");
                 $location.path('/login');
-			}
+            }
+
+
+
+            $scope.userId = Number(temp);
+
             console.log($scope.userId);
 
 			var b = false;
@@ -77,7 +79,7 @@
 									b=true;
 
 
-			if(b){
+			if(b && noErr){
 
 				console.log("USAO U DEO SA DTO");
 
