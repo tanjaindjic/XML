@@ -75,6 +75,12 @@
 			templateUrl: 'app/components/profile/profile.html',
 			controller: 'profileController',
 			controllerAs: 'pc'
+		})
+		.state('core.agentAccomodation', {
+			url: 'agentAccomodation',
+			templateUrl: 'app/components/agentAccomodation/agentAccomodation.html',
+			controller: 'agentAccomodationController',
+			controllerAs: 'aac'
 		});
      /* $locationProvider.html5Mode({
     	  enabled: true,
