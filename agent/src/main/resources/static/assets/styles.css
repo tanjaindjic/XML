@@ -1,0 +1,227 @@
+.site{
+	background-color: #eeeeee;
+	font-size: medium;
+	color: black;
+}
+
+.white{
+	background-color:white !important;
+
+}
+.heading {
+	font-family: fantasy;
+	font-size: xx-large;
+	font-weight: bold;
+	color: olive;
+	width: 72%;
+}
+.buttonP{
+	background-color: white;
+    color: black;
+    border: 2px solid olive; 
+}
+.buttonR{
+	background-color: white;
+    color: black;
+    border: 2px solid black;
+}
+.buttonS{
+	background-color: white;
+    color: black;
+    border: 2px solid olive; 
+}
+.buttonsTD{
+	width: 8%;	
+}
+.buttonsTDP{
+	width: 28%;	
+}
+.whereTD{
+	width: 40%;	
+}
+.where{
+    background-color: white;
+    /*background-image: url('searchicon.png'); */
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    font-size: 18px;
+}
+.where:focus{	
+    border: 3px solid olive;
+}
+.dateTD{
+	width: 15%
+}
+.date{
+	
+}
+.peopleTD{
+	width: 15%
+}
+
+
+
+.goreDoleList{
+	float:left  !important;
+	padding: 0 !important;
+	color: blue;
+	cursor: pointer;
+	margin-top: 3%;
+	text-transform: uppercase;
+	vertical-align: top !important;
+	list-style-type: none !important;
+	border: 1px solid #4f4f4f;
+	display: block;
+	margin-right: 3%;
+}
+
+.pomeri{
+	padding-left: 3px  !important;
+	padding-right: 3px !important;
+	padding-top: 10px !important;
+	padding-bottom: 10px !important;
+}
+
+.gornjaIvica{
+	padding-left: 5px  !important;
+	padding-right: 5px !important;
+	padding-top: 5px !important;
+	padding-bottom: 5px !important;
+    width: 250px;
+}
+
+.gornjaIvica:nth-child(odd) {
+    background-color: olive !important;
+}
+
+.gornjaIvicaChat{
+    padding-left: 3px  !important;
+    padding-right: 3px !important;
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+}
+
+
+.centar{
+	margin-top: 10px;
+	margin-left: 3%;
+}
+
+.goreDoleListCentar{
+    float:left  !important;
+    padding: 0 !important;
+    cursor: pointer;
+    text-transform: uppercase;
+    vertical-align: top !important;
+    list-style-type: none !important;
+    display: block;
+    margin-right: 3%;
+    width: 250px;
+    margin-left: 3%;
+}
+
+
+.marginaDole{
+    margin-bottom: 20px;
+}
+
+.goreDoleListCentarRezervacije{
+	float:left  !important;
+	padding: 0 !important;
+	color: black;
+	cursor: pointer;
+	text-transform: uppercase;
+	vertical-align: top !important;
+	list-style-type: none !important;
+	display: block;
+	margin-right: 3%;
+
+	margin-left: 3%;
+}
+
+.zaSlanje{
+    margin-right: 3%;
+    margin-left: 3%;
+    margin-top:1%;
+    display:block;
+}
+
+.goreDoleListChat{
+    float:left  !important;
+    padding: 0 !important;
+    vertical-align: top !important;
+    list-style-type: none !important;
+    display: block;
+    margin-right: 3%;
+    margin-left: 3%;
+}
+
+.tudjiChat{
+    background-color: olive;
+}
+
+/* Style the tab //#eeeeee */
+.tab {
+	float: left;
+	border: 1px solid #ccc;
+	background-color: olive;
+	width: 15%;
+	height: 275px;
+    margin-right: 50px;
+}
+
+.oliveJosMalo{
+    color: olive !important;
+    margin-right: 22px;
+}
+
+.olive{
+    color: olive !important;
+    margin-right: 20px;
+}
+
+
+.oliveJosDva{
+    color: olive !important;
+    margin-right: 46px;
+}
+
+.oliveManjeJedan{
+    color: olive !important;
+    margin-right: 13px;
+}
+
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+	display: block;
+	background-color: inherit;
+	color: black;
+	padding: 22px 16px;
+	width: 100%;
+	border: none;
+	outline: none;
+	text-align: left;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+	background-color: #ddd;
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+	background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+	float: left;
+	padding: 0px 12px;
+	border: 1px solid #ccc;
+	width: 70%;
+	border-left: none;
+	height: 300px;
+}

@@ -1,0 +1,24 @@
+<div width='100%'>
+	<table width='100%'>
+		<tr>
+			<td class='heading' ng-click="goHomeApp()">PigInc. BOOKING - AGENT APP</td>
+			<td class='buttonsTDP'>
+				<button class='buttonR' ng-show="profileShow" ng-click="profile()" id="profileBtn">Profile</button>
+				<button class='buttonR' ng-show="profileShow" ng-click="logout()" id="logoutBtn">Log Out</button>
+			</td>
+			
+			
+			
+			
+		</tr>	
+	</table>
+	<hr/>
+	<label>Hello{{username}}! Manage your property and show us that it's perfect place to stay...</label><br>
+	<hr/>
+	<table>		
+		<div>
+			<ui-view></ui-view>
+		</div>
+	</table>
+
+</div>
