@@ -92,6 +92,7 @@
 		
 		
 	</table>
+	<br/>
 	<table>
 		<div ng-show="panelToShow == 0 ">
 			<table class="table table-hover" ng-show="panelToShow == 0 ">
@@ -163,13 +164,13 @@
 		 <div class="row" ng-show = "panelToShow == 1">
 		  <div class="col-sm-8">
 
-				<h3>{{smestajToShow.naziv}}({{smestajToShow.tip}})</h3>
+				<br/><h3>{{smestajToShow.naziv}}({{smestajToShow.tip}})</h3>
 				<i class="material-icons">location_on</i>{{smestajToShow.adresa}}, {{smestajToShow.grad}}, {{smestajToShow.drzava}} 
 				
 				<span ng-repeat="zvezdiceTrack in getNumberArray(smestajToShow.zvezdice) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-smestajToShow.zvezdice) track by $index"><i class="material-icons">star_border</i></span>
-		  		<h4>Description:</h4>
+		  		<br/><br/><h4>Description:</h4>
 		  		{{smestajToShow.opis}}
-		  		<h4>Services provided:</h4>
+		  		<br/><br/><h4>Services provided:</h4>
 		  		 <ul>
 				  <li ng-repeat="service in smestajToShow.dodatneUsluge">{{service.opcija}}</li>
 				</ul> 
@@ -177,7 +178,7 @@
 		  <div class="col-sm-4">
 				<img ng-click="pitcuresForward()" ng-src="/api/files/{{smestajToShow.slike[smestajToShowPictureIndex].uri}}.jpg" height="400" wight="500">
 		  </div>
-		</div> 
+		</div><br/> 
 		<div class="row" ng-show = "panelToShow == 1">
 		  <div class="col-sm-8">
 		  	<H4>Rooms</H4>

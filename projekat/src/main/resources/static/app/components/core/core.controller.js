@@ -115,7 +115,7 @@
 		}
 		
 		$scope.swapPanel = function(p){
-			$scope.panelToShow = 0;
+			$scope.panelToShow = p;
 		}
 		
 		$scope.searchResults = null;
@@ -159,6 +159,7 @@
 					function(info){
 						$scope.searchResults = info.data;
 						$scope.panelToShow = 0;
+						$location.path('/home');
 						//DataTransfer.setSmestajDetails(info.data);
 						//$state.go('core.searchResults');
 					},
@@ -170,8 +171,9 @@
 			else{
 				userService.getAllSmestajiAdvanced($scope.searchDTO, 
 					function(info){
-					$scope.searchResults = info.data;
-					$scope.panelToShow = 0;
+						$scope.searchResults = info.data;
+						$scope.panelToShow = 0;
+						$location.path('/home');
 						//DataTransfer.setSmestajDetails(info.data);
 						//$state.go('core.searchResults');
 					},
@@ -236,6 +238,7 @@
 			return "Cancel";
 		}
 		$scope.profile = function(){
+			$scope.panelToShow = -1;
             $location.path('/profile');
 		}
 		
@@ -249,6 +252,7 @@
 		var cc = this;
 		$scope.TOKEN_KEY = "jwtToken";
 		$scope.profile = function(){
+			$scope.panelToShow = -1;
             $location.path('/profile');
 		}
 
@@ -279,14 +283,17 @@
 		}
 		
 		$scope.login = function() {
+			$scope.panelToShow = -1;
 			$location.path('/login');
 		}
 		
 		$scope.register = function() {
+			$scope.swapPanel(-1);
 			$location.path('/register');
 		}
 		
 		$scope.logout = function(){
+			$scope.panelToShow = -1;
 			removeJwtToken();
 			$scope.profileShow = false;
 			$scope.username="";
