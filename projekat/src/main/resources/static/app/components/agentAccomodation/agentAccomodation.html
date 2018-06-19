@@ -1,0 +1,166 @@
+<div>
+
+
+    </br>
+    </br>
+
+
+    <div class="tab">
+        <button class="tablinks" ng-click="goToState('core.agentAccomodation')" >ADD ACCOMMODATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentAeservations')" >MAKE RESERVATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentChat')" >CHAT</button>
+        <button class="tablinks" ng-click="goToState('core.agentConfirmStay')" >CONFIRM STAY</button>
+    </div>
+
+ <div class="centar">
+
+        <h3 class="olive">ADD ACCOMMODATION : </h3>
+
+        </br>
+
+		<table>
+			<tr>
+				<td width='10%'></td>
+				<td width='20%'>Name:</td>
+				<td width='40%'><input type='text' ng-model='smestaj.naziv' size='40'/></td>
+				<td width='30%'></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Address:</td>
+				<td><input type='text' ng-model='smestaj.adresa' size='60'/></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>City:</td>
+				<td><input type='text' ng-model='smestaj.grad'/></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>State:</td>
+				<td><input type='text' ng-model='smestaj.drzava'/></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>GoogleMap URL:</td>
+				<td><input type='text' ng-model='smestaj.gmapUrl' size='60'/></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Stars:</td>
+				<td><form name="myForm">
+					  <label><input type="radio" ng-model="smestaj.zvezdice" value="5">5</label>
+					  <label><input type="radio" ng-model="smestaj.zvezdice" value="4">4</label>
+					  <label><input type="radio" ng-model="smestaj.zvezdice" value="3">3</label>
+					  <label><input type="radio" ng-model="smestaj.zvezdice" value="2">2</label>
+					  <label><input type="radio" ng-model="smestaj.zvezdice" value="1">1</label>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Type:</td>
+				<td><select ng-options="type as type.tip for type in types track by type" ng-model="smestaj.tip"></select></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Images:</td>
+				<td><input type="file" id="image" demo-file-model="uplImage" accept=".jpg, .png"/></td>
+				<td><input type="button" value='Upload image' ng-click='aac.uploadImage()'></td>
+			</tr>
+			<tr ng-repepat='img in smestaj.slike'>
+				<td></td>
+				<td></td>
+				<td><img src="img.uri"></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Additional:</td>
+				<td>
+					<select size='dodatne.size' ng-model="smestaj.dodatneUsluge" multiple>
+				      <option ng-repeat="option in dodatne" ng-value="option">{{option.opcija}}</option>
+				    </select>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td><input type="button" value='Add a room' ng-click='aac.addRoom()'></td>
+				<td></td>
+			</tr>
+			<tr ng-show='isAddingRoom'>
+				<td></td>
+				<td colspan='3'>
+					<div>
+						<table>
+							<tr>
+								<td>beds:</td>
+								<td><input type="number" ng-model='soba.brojLezaja'/></td>
+							</tr>
+							<tr>
+								<td>additional:</td>
+								<td>
+									<select size="dodatne.length" ng-model="soba.dodatneUsluge" multiple>
+								      <option ng-repeat="option in dodatne" ng-value="option.vrednost">{{option.naziv}}</option>
+								    </select>
+								</td>
+							</tr>
+							<tr>
+								<td>cathegory:</td>
+								<td><select ng-options="cath as cath.label for cath in caths track by cath.id" ng-model="soba.kategorija"></select></td>
+							</tr>
+							<tr>
+								<td>beds:</td>
+								<td><input type='text' ng-model='soba.brojLezaja'/></td>
+							</tr>
+							<tr ng-repeat='price in soba.cene'>
+								<td>{{price.datumOd}} - {{price.datumDo}}</td>
+								<td>--->{{price.cena}}</td>
+							</tr>
+							<tr>
+								<td>add price:</td>
+								<td><input type='button' ng-click='addPrice()'/></td>
+							</tr>
+							<tr ng-show='showAddPrice'>
+								<td>from:</td>
+								<td><input type="date" ng-model='cena.datumOd'/></td>
+							</tr>
+							<tr ng-show='showAddPrice'>
+								<td>to:</td>
+								<td><input type="date" ng-model='cena.datumDo'/></td>
+							</tr>
+							<tr ng-show='showAddPrice'>
+								<td>price:</td>
+								<td><input type="number" ng-model='cena.cena'/></td>
+							</tr>
+							<tr ng-show='showAddPrice'>
+								<td></td>
+								<td><input type="button" ng-click='aac.dodajCenu()'/></td>
+							</tr>
+							
+						</table>
+					</div>
+				</td>
+			</tr>
+		
+		</table>
+        
+        </br>
+
+
+        </br>
+
+    </div>
+
+
+
+
+
+</div>

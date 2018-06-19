@@ -1,19 +1,12 @@
 package XmlWeb;
 
-import XmlWeb.config.Read;
-import XmlWeb.controller.RequestController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.SpringVersion;
-import org.springframework.http.HttpMethod;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 
 @SpringBootApplication
 @EnableAsync
@@ -21,6 +14,14 @@ public class ProjekatApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjekatApplication.class, args);
+	/*	AdminService agentService = new AdminServiceLocator();
+		try {
+			AgentWs ad = agentService.getAdminPort();
+			System.out.println("radiiiiiiiiiiiiiiiiiiiiiii");
+		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 	}
 	
 	  @SuppressWarnings("deprecation")

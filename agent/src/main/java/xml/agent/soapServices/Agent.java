@@ -1,6 +1,6 @@
 package xml.agent.soapServices;
 
-import javax.jws.WebService;
+import javax.jws.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,12 +12,14 @@ import xml.agent.serviceWs.AgentWs;
         portName = "AdminPort",
         serviceName = "AdminService",
         targetNamespace = "http://agent-xml/wsdl",
-        endpointInterface = "org.xml.agent.ws.AgentWs")
+        endpointInterface = "xml.agent.serviceWs.AgentWs")
 public class Agent implements AgentWs{
 	@Autowired
     private SmestajRepository smestajRepo;
+	
+	@WebMethod
 	public Smestaj addSmestaj(Smestaj s) {
-		
+		smestajRepo.save(s);
 		return s;
 	}
 
