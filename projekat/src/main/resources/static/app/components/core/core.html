@@ -31,7 +31,7 @@
 		<tr ng-show="showAdvancedSearch==true">
 			<td>
 				Chose accomodation type:
-					<span ng-repeat="t in typeList">{{t.tip}}<i class="material-icons">delete</i>
+					<span ng-repeat="t in typeList">{{t.tip}}<i class="material-icons" ng-click = "deleteTypeIteam(t)">delete</i>
 					<span ng-show="isLast($index, typeList)">, </span>
 				</span>
 			</td>
@@ -51,7 +51,7 @@
 			<td>
 				Chose accomodation category:
 				<span ng-repeat="c in catList">
-					{{c.kategorija}}<i class="material-icons">delete</i>
+					{{c.kategorija}}<i class="material-icons" ng-click = "deleteCatIteam(c)">delete</i>
 					<span ng-show="isLast($index, catList)">, </span>
 				</span>
 			</td>
@@ -72,7 +72,7 @@
 		<tr ng-show="showAdvancedSearch==true">
 			<td>
 				Chose additional services:
-					<span ng-repeat="s in serviceList">{{s.opcija}}<i class="material-icons">delete</i>
+					<span ng-repeat="s in serviceList">{{s.opcija}}<i class="material-icons" ng-click = "deleteServiceIteam(s)">delete</i>
 					<span ng-show="isLast($index, serviceList)">, </span>
 				</span>
 			</td>

@@ -8,6 +8,8 @@
 	function coreController($location, $scope, $rootScope, $http, $cookies,
 			$window, userService, $state, DataTransfer) {
 		
+		
+		
 		$scope.getNumberArray = function(num) {
 		    return new Array(num);   
 		}
@@ -185,23 +187,7 @@
 			
 		}
 		
-		$scope.typeList = [];
 		
-		$scope.addToTypeList = function(type){
-			$scope.typeList.push(type);
-		}
-		
-		$scope.serviceList = [];
-		
-		$scope.addToServiceList = function(service){
-			$scope.serviceList.push(service);
-		}
-		
-		$scope.catList = [];
-		
-		$scope.addToCatList = function(cat){
-			$scope.catList.push(cat);
-		}
 		
 		userService.getAllTypes(
 				function(info){
@@ -298,6 +284,106 @@
 			$scope.profileShow = false;
 			$scope.username="";
 			$window.location="https://localhost:8096/#!/home";
+		}
+		
+		$scope.typeList = [];
+		
+		$scope.addToTypeList = function(type){
+			if(!ainTypes($scope.typeList, type)){
+				alert("Iteam already in list.")
+			}else{
+				$scope.typeList.push(type);
+			}
+			
+			
+		}
+		
+		$scope.serviceList = [];
+		
+		$scope.addToServiceList = function(service){
+			if(!ainServices($scope.serviceList, service)){
+				alert("Iteam already in list.")
+			}else{
+				$scope.serviceList.push(service);
+			}
+			
+		}
+		
+		$scope.catList = [];
+		
+		$scope.addToCatList = function(cat){
+			if(!ainCats($scope.catList, cat)){
+				alert("Iteam already in list.")
+			}else{
+				$scope.catList.push(cat);
+			}
+			
+		}
+		
+		$scope.deleteTypeIteam = function(t){
+			$scope.typeList.splice(ainAtTypes($scope.typeList, t),1);
+		}
+		
+		$scope.deleteCatIteam = function(t){
+			$scope.catList.splice(ainAtCats($scope.catList, t),1);
+		}
+		
+		$scope.deleteServiceIteam = function(t){
+			$scope.serviceList.splice(ainAtServices($scope.serviceList, t),1);
+		}
+		
+		function ainCats(arr, itm){
+			for(var i=0;i<arr.length;i++){
+				if(arr[i].kategorija==itm.kategorija){
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		function ainAtCats(arr, itm){
+			for(var i=0;i<arr.length;i++){
+				if(arr[i].kategorija==itm.kategorija){
+					return i;
+				}
+			}
+			return -1;
+		}
+		
+		function ainTypes(arr, itm){
+			for(var i=0;i<arr.length;i++){
+				if(arr[i].tip==itm.tip){
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		function ainAtTypes(arr, itm){
+			for(var i=0;i<arr.length;i++){
+				if(arr[i].tip==itm.tip){
+					return i;
+				}
+			}
+			return -1;
+		}
+		
+		function ainServices(arr, itm){
+			for(var i=0;i<arr.length;i++){
+				if(arr[i].opcija==itm.opcija){
+					return false;
+				}
+			}
+			return true;
+		}
+		
+		function ainAtServices(arr, itm){
+			for(var i=0;i<arr.length;i++){
+				if(arr[i].opcija==itm.opcija){
+					return i;
+				}
+			}
+			return -1;
 		}
 
 	}
