@@ -57,6 +57,9 @@ public class StartData {
 
     @Autowired
     private KategorijaRepository kategorijaRepository;
+    
+    @Autowired
+    private DodatneUslugeRepository dodatneRepository;
 
 
 	 @PostConstruct
@@ -116,7 +119,10 @@ public class StartData {
          KategorijaSmestaja kategorijaSmestaja = new KategorijaSmestaja();
          kategorijaSmestaja.setKategorija("Vrh");
          kategorijaRepository.save(kategorijaSmestaja);
-
+         
+         addSmestaj("Smestaj1", "Adresa1", "Grad1", "Drzava1", 1, 0, 1, 2, new Date(118, 1, 1), new Date(119 , 1, 1),100L);
+         addSmestaj("Smestaj2", "Adresa2", "Grad1", "Drzava2", 2, 2, 4, 1, new Date(117, 1, 1), new Date(118 , 1, 1),200L);
+         addSmestaj("Smestaj3", "Adresa3", "Grad3", "Drzava3", 5, 0, 4, 3, new Date(112, 1, 1), new Date(113 , 1, 1),2000L);
 	 }
 
 	 public void addRezervacija(Long idKorisnika, Long idVlasnika, int i){ // Nije potpuna, samo meni za testiranje
@@ -133,13 +139,13 @@ public class StartData {
          ArrayList<Slika> slike = new ArrayList<>();
          slike.add(new Slika("slika1"));
          slike.add(new Slika("slika2"));
-         Soba temp = new Soba(5, new ArrayList<>(), new ArrayList<>());
-         Soba temp1 = new Soba(5, new ArrayList<>(), new ArrayList<>());
-         Soba temp2 = new Soba(5, new ArrayList<>(), new ArrayList<>());
+         Soba temp = new Soba(1, new ArrayList<>(), new ArrayList<>());
+         Soba temp1 = new Soba(2, new ArrayList<>(), new ArrayList<>());
+         Soba temp2 = new Soba(3, new ArrayList<>(), new ArrayList<>());
          ArrayList<Iznajmljivanje> iznajmljivanja = new ArrayList<>();
-         iznajmljivanja.add(new Iznajmljivanje(new Date(1262307661), new Date(1272307661), 1000L, true));
-         iznajmljivanja.add(new Iznajmljivanje(new Date(1262307661), new Date(1272307661), 1000L, true));
-         iznajmljivanja.add(new Iznajmljivanje(new Date(1262307661), new Date(1272307661), 1000L, true));
+         iznajmljivanja.add(new Iznajmljivanje(new Date(118, 1, 1), new Date(119 , 1, 1), 1000L, true));
+         /*iznajmljivanja.add(new Iznajmljivanje(new Date(118, 1, 1), new Date(119 , 1, 1), 1000L, true));
+         iznajmljivanja.add(new Iznajmljivanje(new Date(118, 1, 1), new Date(119 , 1, 1), 1000L, true));*/
          
          temp.setIznajmljivanja(iznajmljivanja);
          
@@ -204,12 +210,54 @@ public class StartData {
 
          r.setDatumOd(date2);
 
-         r.setSoba(s);
+         r.setSoba(temp);
 
          rezervacijaRepository.save(r);
          addKomentar(r);
 
      }
+	 
+	 public void addSmestaj(String naziv, String adresa, String grad, String drzava, Integer zvezdice, int dodatne1, int dodatne2, int tipint, Date pocetak, Date kraj, Long cena) {
+		 Smestaj temp = new Smestaj();
+		 temp.setNaziv(naziv);
+		 temp.setAdresa(adresa);
+		 temp.setGrad(grad);
+		 temp.setDrzava(drzava);
+		 temp.setZvezdice(zvezdice);
+		 ArrayList<Slika> slike = new ArrayList<>();
+         slike.add(new Slika("slika1"));
+         slike.add(new Slika("slika2"));
+         temp.setSlike(slike);
+         temp.setOpis("Hotel Slavija je smešten u centru Beograda, u neposrednoj blizini raznovrsnih prodavnica i restorana. U ponudi ima besplatan bežični internet u zajedničkim prostorijama i svim smeštajnim jedinicama. Nalazi se na svega par koraka od Hrama Sv. Save, koji je jedna od najvažnijih gradskih znamenitosti.\n" + 
+          		"\n" + 
+          		"Sve smeštajne jedinice poseduju sopstveno kupatilo sa kadom ili tušem. Većina smeštajnih jedinica sadrži TV. Korišćenje hotelske garaže na raspolaganju je uz doplatu.\n" + 
+          		"\n" + 
+          		"Šetalište u Knez Mihailovoj ulici udaljeno je 15 minuta hoda. Drevna Kalemegdanska tvrđava i boemska četvrt Skadarlija udaljene su 2,5 km. Jezero Ada Ciganlija, poznato po mestima za noćni provod, udaljeno je 4 km od objekta.\n" + 
+          		"\n" + 
+          		"Stanica autobusa koji saobraća do Međunarodnog aerodroma Beograd, udaljenog 16 km, nalazi se dirketno ispred objekta. Tramvajska stanica na Trgu Slavija udaljena je 200 metara. Autobuska i Železnička stanica u Beogradu udaljene su 1,2 km od hotela Slavija.\n" + 
+          		"\n" + 
+          		"Prema nezavisnim recenzijama, naši gosti obožavaju ovaj deo destinacije Beograd.\n" + 
+          		"\n" + 
+          		"Gosti koji su ovde boravili pričaju o sledećim poznatim znamenitostima: Ada Ciganlija, Hram Sv. Save i Trg Republike.\n" + 
+          		"\n" + 
+          		"Govorimo vaš jezik! ");
+		 ArrayList<DodatneUsluge> dodatneSve = (ArrayList<DodatneUsluge>) dodatneRepository.findAll();
+		 temp.setDodatneUsluge(dodatneSve.subList(dodatne1, dodatne2));
+		 ArrayList<TipSmestaja> tipSve = (ArrayList<TipSmestaja>) tipSmestajaRepository.findAll();
+		 temp.setTip(tipSve.get(tipint));
+		 
+		 ArrayList<Soba> sobe = new ArrayList<>();
+		 Soba temps = new Soba(5, new ArrayList<>(), new ArrayList<>());
+         ArrayList<Iznajmljivanje> iznajmljivanja = new ArrayList<>();
+         iznajmljivanja.add(new Iznajmljivanje(pocetak, kraj, cena, true));
+         
+         temps.setIznajmljivanja(iznajmljivanja);
+         sobe.add(temps);
+         temp.setSobe(sobe);
+         
+         smestajRepository.save(temp);
+
+	 }
 
 	 public void addMessage(Long posiljalac, Long primalac, String tekst, int i){
 

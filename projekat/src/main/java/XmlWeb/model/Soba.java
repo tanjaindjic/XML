@@ -1,12 +1,14 @@
 package XmlWeb.model;
 
 import XmlWeb.model.Enums.KategorijaSmestaja;
+import XmlWeb.repository.RezervacijaRepository;
 import XmlWeb.model.Enums.DodatneUsluge;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -107,9 +109,13 @@ public class Soba {
         this.cene = cene;
     }
     
-    public boolean validateDates(Date pocetak, Date kraj) {
-    	for(Rezervacija r:rezervisano) {
-    		if(r.getDatumDo().after(pocetak)||r.getDatumOd().before(kraj)) {
+    public boolean validateDates(Date pocetak, Date kraj, RezervacijaRepository rezRepo) {
+    	ArrayList<Rezervacija> rezBaz = (ArrayList<Rezervacija>) rezRepo.findBySobaId(id);
+    	//System.out.println("Usao sam u sobu: "+id+"broj rezervacija je: "+rezBaz.size());
+    	for(Rezervacija r:rezBaz) {
+    		//System.out.println("Usao sam u rezervaciju---"+r.getDatumOd()+r.getDatumDo());
+    		if(r.getDatumDo().compareTo(pocetak)>=0&&r.getDatumOd().compareTo(kraj)<=0) {
+    			//System.out.println("Invalid datum because od RESERVATIONS");
     			return false;
     		}
     	}
@@ -119,6 +125,7 @@ public class Soba {
     				(i.getDatumDo().compareTo(kraj)==00&&i.getDatumOd().compareTo(pocetak)==0&&i.getMozePojedinacno()==false))
     			return true;
     	}
+    	//System.out.println("Invalid datum because od IZNAJMLJIVANJA");
     	return false;
     }
 }

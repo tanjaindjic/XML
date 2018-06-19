@@ -164,7 +164,7 @@
 		 <div class="row" ng-show = "panelToShow == 1">
 		  <div class="col-sm-8">
 
-				<br/><h3>{{smestajToShow.naziv}}({{smestajToShow.tip}})</h3>
+				<br/><h3>{{smestajToShow.naziv}}({{smestajToShow.tip.tip}})</h3>
 				<i class="material-icons">location_on</i>{{smestajToShow.adresa}}, {{smestajToShow.grad}}, {{smestajToShow.drzava}} 
 				
 				<span ng-repeat="zvezdiceTrack in getNumberArray(smestajToShow.zvezdice) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-smestajToShow.zvezdice) track by $index"><i class="material-icons">star_border</i></span>
