@@ -116,9 +116,9 @@ public class StartData {
          tipSmestaja.setTip("Kuca");
          tipSmestajaRepository.save(tipSmestaja);
 
-         KategorijaSmestaja kategorijaSmestaja = new KategorijaSmestaja();
+         /*KategorijaSmestaja kategorijaSmestaja = new KategorijaSmestaja();
          kategorijaSmestaja.setKategorija("Vrh");
-         kategorijaRepository.save(kategorijaSmestaja);
+         kategorijaRepository.save(kategorijaSmestaja);*/
          
          addSmestaj("Smestaj1", "Adresa1", "Grad1", "Drzava1", 1, 0, 1, 2, new Date(118, 1, 1), new Date(119 , 1, 1),100L);
          addSmestaj("Smestaj2", "Adresa2", "Grad1", "Drzava2", 2, 2, 4, 1, new Date(117, 1, 1), new Date(118 , 1, 1),200L);

@@ -52,21 +52,23 @@ public class SmestajService {
 	
 	public Collection<Smestaj> getAllSmestajAdv(SearchDTO ser){
 		System.out.println(ser);
-		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeatsAndCategory(ser.getDestination(), ser.getHowManyPeople(), 0);
+		ArrayList<Integer> tipovi = (ArrayList<Integer>) ser.getCatss();
+		System.out.println(tipovi);
+		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeatsAndCategory(ser.getDestination(), ser.getHowManyPeople(), tipovi.get(0), tipovi.get(1), tipovi.get(2), tipovi.get(3), tipovi.get(4), tipovi.get(5));
 		ArrayList<Smestaj> temp1 = new ArrayList<Smestaj>();
 		
 		boolean pom = false;
 		for(Smestaj s: temp) {
 			pom = false;
-			//System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
+			System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
 			for(Soba soba:s.getSobe()) {
-				//System.out.println("Usao sam u sobe u smestaju "+s.getNaziv()+" i bollean je: "+pom);
+				System.out.println("Usao sam u sobe u smestaju "+s.getNaziv()+" i bollean je: "+pom);
 				if(soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)) {
 					pom = true;
 				}
 			}
-			//System.out.println("Zavrsavam smestaj "+s.getNaziv()+" i bollean je: "+pom);
-			if(pom==true) {
+			System.out.println("Zavrsavam smestaj "+s.getNaziv()+" i bollean je: "+pom);
+			if(pom==true&&s.validateCategories(ser.getServices())&&s.validateTypes(ser.getTypes())) {
 				temp1.add(s);
 			}
 		}

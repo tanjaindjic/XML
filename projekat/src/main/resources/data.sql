@@ -12,6 +12,7 @@ INSERT INTO tip_smestaja (id, tip) VALUES (10001, 'hotel');
 INSERT INTO tip_smestaja (id, tip) VALUES (10002, 'bed&breakfast');
 INSERT INTO tip_smestaja (id, tip) VALUES (10003, 'apartman');
 
+/*OVO JE NEBITNO JER NE KORISTIMO VISE OVU TABELU*/
 INSERT INTO kategorija_smestaja (id, kategorija) VALUES (10001, 'No cattegory');
 INSERT INTO kategorija_smestaja (id, kategorija) VALUES (10002, '1 Star');
 INSERT INTO kategorija_smestaja (id, kategorija) VALUES (10003, '2 Star');

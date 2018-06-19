@@ -111,11 +111,11 @@ public class Soba {
     
     public boolean validateDates(Date pocetak, Date kraj, RezervacijaRepository rezRepo) {
     	ArrayList<Rezervacija> rezBaz = (ArrayList<Rezervacija>) rezRepo.findBySobaId(id);
-    	//System.out.println("Usao sam u sobu: "+id+"broj rezervacija je: "+rezBaz.size());
+    	System.out.println("Usao sam u sobu: "+id+"broj rezervacija je: "+rezBaz.size());
     	for(Rezervacija r:rezBaz) {
-    		//System.out.println("Usao sam u rezervaciju---"+r.getDatumOd()+r.getDatumDo());
+    		System.out.println("Usao sam u rezervaciju---"+r.getDatumOd()+r.getDatumDo());
     		if(r.getDatumDo().compareTo(pocetak)>=0&&r.getDatumOd().compareTo(kraj)<=0) {
-    			//System.out.println("Invalid datum because od RESERVATIONS");
+    			System.out.println("Invalid datum because od RESERVATIONS");
     			return false;
     		}
     	}
@@ -125,7 +125,7 @@ public class Soba {
     				(i.getDatumDo().compareTo(kraj)==00&&i.getDatumOd().compareTo(pocetak)==0&&i.getMozePojedinacno()==false))
     			return true;
     	}
-    	//System.out.println("Invalid datum because od IZNAJMLJIVANJA");
+    	System.out.println("Invalid datum because od IZNAJMLJIVANJA");
     	return false;
     }
 }

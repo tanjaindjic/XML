@@ -6,10 +6,41 @@ import XmlWeb.model.Enums.DodatneUsluge;
 import XmlWeb.model.Enums.KategorijaSmestaja;
 import XmlWeb.model.Enums.TipSmestaja;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class SearchDTO {
 	
+	public List<Integer> getCatss(){
+		ArrayList<Integer> retVal = new ArrayList<>();
+		retVal.add(-1);
+		retVal.add(-1);
+		retVal.add(-1);
+		retVal.add(-1);
+		retVal.add(-1);
+		retVal.add(-1);
+		for(KategorijaSmestaja k:cats) {
+			if(k.getKategorija().equals("No cattegory")) {
+				retVal.set(0, 0);
+			}
+			else if(k.getKategorija().equals("1 Star")) {
+				retVal.set(1, 1);
+			}
+			else if(k.getKategorija().equals("2 Star")) {
+				retVal.set(2, 2);
+			}
+			else if(k.getKategorija().equals("3 Star")) {
+				retVal.set(3, 3);
+			}
+			else if(k.getKategorija().equals("4 Star")) {
+				retVal.set(4, 4);
+			}
+			else if(k.getKategorija().equals("5 Star")) {
+				retVal.set(5, 5);
+			}
+		}
+		return retVal;
+	}
 	
 	
 	@Override

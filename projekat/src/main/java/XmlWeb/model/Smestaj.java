@@ -11,6 +11,7 @@ import java.util.List;
 public class Smestaj {
 	
 	public boolean validateCategories(List<DodatneUsluge> cats) {
+		if(cats.size()==0) return true;
 		boolean flag = false;
 		int rez = 0;
 		for(DodatneUsluge d:cats) {
@@ -29,8 +30,9 @@ public class Smestaj {
 	}
 	
 	public boolean validateTypes(List<TipSmestaja> tips) {
+		if(tips.size()==0) return true;
 		for(TipSmestaja t:tips) {
-			if(t.getTip().equals(tip)) {
+			if(t.getTip().equals(tip.getTip())) {
 				return true;
 			}
 		}

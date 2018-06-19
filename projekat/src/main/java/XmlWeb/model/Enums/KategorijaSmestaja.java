@@ -6,7 +6,21 @@ import javax.persistence.Id;
 
 @Entity
 public class KategorijaSmestaja {
-
+	/*
+	 * OVA TABELA SE NE KORISTI
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
     @Id
     @GeneratedValue
     private Long id;
