@@ -52,26 +52,25 @@ public class SmestajService {
 	
 	public Collection<Smestaj> getAllSmestajAdv(SearchDTO ser){
 		System.out.println(ser);
-		return smestajRepository.findAll();
-		/*ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeatsAndCategory(ser.getDestination(), ser.getHowManyPeople(), 0);
+		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeatsAndCategory(ser.getDestination(), ser.getHowManyPeople(), 0);
 		ArrayList<Smestaj> temp1 = new ArrayList<Smestaj>();
 		
-		boolean pom = true;
+		boolean pom = false;
 		for(Smestaj s: temp) {
-			pom = true;
+			pom = false;
+			//System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
 			for(Soba soba:s.getSobe()) {
-				if(soba.validateDates(ser.getFrom(), ser.getTo())) {
-					
-				}else {
-					pom = false;
+				//System.out.println("Usao sam u sobe u smestaju "+s.getNaziv()+" i bollean je: "+pom);
+				if(soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)) {
+					pom = true;
 				}
 			}
-			if(!pom&&s.validateCategories(ser.getServices())&&s.validateTypes(ser.getTypes())) {
+			//System.out.println("Zavrsavam smestaj "+s.getNaziv()+" i bollean je: "+pom);
+			if(pom==true) {
 				temp1.add(s);
 			}
 		}
-		
-		return temp1;*/
+		return temp1;
 	}
 
 }
