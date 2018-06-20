@@ -13,6 +13,9 @@ import javax.annotation.PostConstruct;
 import XmlWeb.model.*;
 import XmlWeb.model.Enums.*;
 import XmlWeb.repository.*;
+import XmlWeb.security.CertificateDTO;
+import XmlWeb.service.CertificateService;
+import XmlWeb.service.KeyStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -61,9 +64,35 @@ public class StartData {
     @Autowired
     private DodatneUslugeRepository dodatneRepository;
 
+    @Autowired
+    private KeyStoreService kss;
+
+    @Autowired
+    private CertificateService cs;
 
 	 @PostConstruct
 	 public void initIt(){
+         kss.createKeyStores();
+         kss.loadKeyStore("ksCa.jks", "passwordCa");
+         kss.loadKeyStore("ksNonCa.jks", "passwordNonCa");
+         //kss.readIssuerFromStore("admin");
+         // System.out.println(kss.getCertificates());
+
+         CertificateDTO dto = new CertificateDTO();
+         dto.setCommonName("admin");
+         dto.setId("1");
+         dto.setEmail("admir@admir.com");
+         dto.setGivenName("Admin");
+         dto.setSurname("Admin");
+         dto.setCountry("RS");
+         dto.setIsCa(true);
+         dto.setIssuerName("");
+         dto.setIssuerSerialNumber(null);
+         dto.setOrgName("Pig Inc BOOKING");
+         dto.setOrgNameUnit("Admin Sector");
+         dto.setPIB("");
+         dto.setAdresa("");
+         cs.generateCertificate(dto);
          //creating permissions and roles
          Permission readPermission = new Permission("READ", new ArrayList<Authority>());
          Permission writePermission = new Permission("WRITE", new ArrayList<Authority>());

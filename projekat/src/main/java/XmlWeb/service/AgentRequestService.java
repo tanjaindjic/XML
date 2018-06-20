@@ -1,9 +1,9 @@
 package XmlWeb.service;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.security.cert.CertificateException;
+import java.security.cert.CertificateFactory;
+import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.MultiPartEmail;
+import org.bouncycastle.util.io.pem.PemReader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,9 @@ public class AgentRequestService {
 
 	@Autowired
 	private EmailService emailService;
-	
+
+	@Autowired
+	private KeyStoreService kss;
 	
 	public void populateRepository(List<AgentRequest> allRequests) {
 		for (AgentRequest agentRequest : allRequests) {
@@ -116,24 +119,36 @@ public class AgentRequestService {
 	}
 
 	public void approveRequest(String crt, Long reqId, Long userId) {
-		System.out.println("dobijeni crt:");
-		System.out.println(crt);
 		// TODO Auto-generated method stub
 		Korisnik k = korisnikRepo.findById(userId).get();
 		k.setAktiviran(true);
 		k.setConfirmationToken("");
 		k.setStatusNaloga(StatusKorisnika.AKTIVAN);
 		korisnikRepo.save(k);
+
+		kss.loadKeyStore(1);
+		try {
+
+			kss.saveAgentCert(convertToX509Certificate(crt), k.getUsername());
+
+		} catch (CertificateException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			FileUtils.writeStringToFile(new File("PigIncCertificate.crt"), crt);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 		String subject = "Account Activation";
 		String text = "Your registration request was approved and your account is active now. Visit us on: https://localhost:8096";
 
 		EmailAttachment attachment = new EmailAttachment();
-		try {
-			FileUtils.writeStringToFile(new File("resources/PigIncCertificate.crt"), crt);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		attachment.setPath("resources/PigIncCertificate.crt");
+
+		attachment.setPath("PigIncCertificate.crt");
 		attachment.setDisposition(EmailAttachment.ATTACHMENT);
 		attachment.setDescription("Certificate for " + k.getFirstName() + " " + k.getLastName());
 		attachment.setName("PigIncCertificate");
@@ -156,20 +171,27 @@ public class AgentRequestService {
 			e.printStackTrace();
 		}
 
-
-
-/*
-
-		SimpleMailMessage registrationEmail = new SimpleMailMessage();
-		registrationEmail.setTo(k.getEmail());
-		registrationEmail.setSubject(subject);
-		registrationEmail.setText(text);
-		registrationEmail.setFrom("noreply@domain.com");
-
-		registrationEmail.
-		emailService.sendEmail(registrationEmail);
-		*/
 		agentReqService.deleteRequest(reqId);
+
+	}
+
+	public X509Certificate convertToX509Certificate(String pem) throws CertificateException, IOException {
+		InputStream in = null;
+		X509Certificate cert = null;
+		try {
+			byte[] certEntryBytes = pem.getBytes();
+			in = new ByteArrayInputStream(certEntryBytes);
+			CertificateFactory certFactory = CertificateFactory.getInstance("X.509");
+
+			cert = (X509Certificate) certFactory.generateCertificate(in);
+		} catch (CertificateException ex) {
+
+		} finally {
+			if (in != null) {
+				in.close();
+			}
+		}
+		return cert;
 	}
 	
 }
