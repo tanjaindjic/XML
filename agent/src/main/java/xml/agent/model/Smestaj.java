@@ -179,4 +179,12 @@ public class Smestaj {
     public void setBrojOcena(int brojOcena) {
         this.brojOcena = brojOcena;
     }
+
+	public static Smestaj convert(xmlWeb_smestaj.wsdl.Smestaj ss) {
+		Smestaj retVal = new Smestaj();
+		retVal.setAdresa(ss.getAdresa());
+		retVal.setBrojOcena(ss.getBrojOcena());
+		retVal.setNaziv(ss.getNaziv());		
+		return retVal;
+	}
 }

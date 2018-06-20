@@ -1,5 +1,7 @@
 package xml.agent.soapServices;
 
+import java.util.List;
+
 import javax.jws.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,12 @@ public class Agent implements AgentWs{
 	public Smestaj addSmestaj(Smestaj s) {
 		smestajRepo.save(s);
 		return s;
+	}
+
+	@Override
+	public List<Smestaj> getSmestajs() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
