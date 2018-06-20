@@ -1,5 +1,7 @@
 package XmlWeb;
 
+import javax.xml.ws.Endpoint;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -8,12 +10,15 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import XmlWeb.soapServices.impl.SmestajSoapImpl;
+
 @SpringBootApplication
 @EnableAsync
 public class ProjekatApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjekatApplication.class, args);
+	//	Endpoint.publish("http://localhost:4789/main/java/XmlWeb/soapServices/impl/smestajSoapImpl", new SmestajSoapImpl());
 	/*	AdminService agentService = new AdminServiceLocator();
 		try {
 			AgentWs ad = agentService.getAdminPort();
