@@ -41,7 +41,16 @@ public class CSRService {
 		KeyPair pair = keyGen.generateKeyPair();
 		X500NameBuilder x500NameBld = new X500NameBuilder(BCStyle.INSTANCE);
 
-	    x500NameBld.addRDN(BCStyle.UNIQUE_IDENTIFIER, kor.getUsername());
+	    x500NameBld.addRDN(BCStyle.UNIQUE_IDENTIFIER,  Long.toString(kor.getId()));
+		x500NameBld.addRDN(BCStyle.CN, kor.getUsername());
+		x500NameBld.addRDN(BCStyle.E, kor.getEmail());
+		x500NameBld.addRDN(BCStyle.SURNAME, kor.getLastName());
+		x500NameBld.addRDN(BCStyle.GIVENNAME, kor.getFirstName());
+		x500NameBld.addRDN(BCStyle.POSTAL_ADDRESS, kor.getAdresa());
+		x500NameBld.addRDN(BCStyle.SN, kor.getPIB());
+		x500NameBld.addRDN(BCStyle.O, "Pig Inc BOOKING");
+		x500NameBld.addRDN(BCStyle.OU, "Users Section");
+		x500NameBld.addRDN(BCStyle.C, "RS");
 
 	    X500Name subject = x500NameBld.build();
 		PKCS10CertificationRequestBuilder p10Builder = new JcaPKCS10CertificationRequestBuilder(
@@ -101,7 +110,7 @@ public class CSRService {
 
 	     
 
-	       username = getX500Field(BCStyle.UNIQUE_IDENTIFIER, x500Name);
+	       username = getX500Field(BCStyle.CN, x500Name);
 	    }
 	    return username;
 	}

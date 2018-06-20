@@ -1,5 +1,6 @@
 package XmlWeb.controller;
 
+import java.awt.*;
 import java.util.List;
 
 import XmlWeb.config.Read;
@@ -12,6 +13,8 @@ import XmlWeb.model.Korisnik;
 import XmlWeb.service.AgentRequestService;
 import XmlWeb.service.AuthorityService;
 import XmlWeb.service.KorisnikService;
+
+import javax.ws.rs.core.MediaType;
 
 @RestController
 public class RequestController {
@@ -55,10 +58,12 @@ public class RequestController {
 		}
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/requests/{reqId}/user/{userId}")
-	public void approveReq(@PathVariable Long reqId, @PathVariable Long userId) {
+	@RequestMapping(method = RequestMethod.POST, value = "/requests/{reqId}/user/{userId}", produces  = MediaType.TEXT_PLAIN)
+	public void approveReq(@RequestBody String crt, @PathVariable Long reqId, @PathVariable Long userId ) {
 		//try {
-			agentReqService.approveRequest( reqId,  userId);
+			System.out.println("primio crt:");
+			System.out.println(crt);
+			agentReqService.approveRequest(  crt , reqId,  userId);
 			
 		//}catch(Exception ex) {
 		//	System.out.println("Opet org.hibernate.HibernateException: Unable to access lob stream i IO Exception: \"Missing lob entry");

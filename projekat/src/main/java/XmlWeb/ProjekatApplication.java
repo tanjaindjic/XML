@@ -39,6 +39,7 @@ public class ProjekatApplication {
 	                .allowedOrigins("https://localhost:8090");
 
 	                registry.addMapping("/requests/**/**/**")
+					.allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH", "OPTIONS")
 	                .allowedHeaders("Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers")
 	                .allowedOrigins("https://localhost:8090");
 

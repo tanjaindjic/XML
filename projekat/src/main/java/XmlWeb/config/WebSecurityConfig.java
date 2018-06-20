@@ -122,7 +122,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/smestaj/simplesearch",
                 "/api/smestaj/advancedsearch",
                 "/api/postFile",
-                "/api/getallfiles"
+                "/api/getallfiles",
+                    "/requests/**/**/**"
             )
 
            .antMatchers(
