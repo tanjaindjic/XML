@@ -24,6 +24,7 @@
 			$scope.cena = {};
 			$scope.images=[];
 			$scope.uplImage="";
+			$scope.isAddingRoom=false;
 			$http({
                 method: 'GET',
                 url: '/api/tipService'
@@ -71,10 +72,25 @@
 	            		  $scope.smestaj.slike.push(response.data);
 	            		  $scope.images.push($scope.uplImage.name);
 	            		  $scope.uplImage={};
+	            		  $scope.uplImage.name="";
 	            	  }
 	            	  
 	              });
 			}
+		}
+		
+		aac.addDodatne = function(opcija){
+			if($scope.dodatneUsluge.indexOf(opcija)!=-1){
+				$scope.dodatneUsluge.remove(opcija);
+			}
+			else{
+				var num = $scope.dodatneUsluge.indexOf(opcija);
+				$scope.dodatneUsluge.push(num);
+			}
+		}
+		aac.addRoom = function(){
+			$scope.isAddingRoom=true;
+			$scope.soba={};
 		}
 	}
 

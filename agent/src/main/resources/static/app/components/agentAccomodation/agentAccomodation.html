@@ -73,10 +73,10 @@
 				<td><input type="file" id="image" demo-file-model="uplImage" accept=".jpg, .png"/></td>
 				<td><input type="button" value='Upload image' ng-click='aac.uploadImage()'></td>
 			</tr>
-			<tr ng-repepat='img in smestaj.slike'>
+			<tr ng-repepat='img in images'>
 				<td></td>
 				<td></td>
-				<td><img src="img.uri"></td>
+				<td>{{img}}</td>
 				<td></td>
 			</tr>
 			<tr>
@@ -85,7 +85,15 @@
 				<td>
 					<select size='dodatne.size' ng-model="smestaj.dodatneUsluge" multiple>
 				      <option ng-repeat="option in dodatne" ng-value="option">{{option.opcija}}</option>
-				    </select>
+				    </select>				
+				</td>
+				<td></td>
+			</tr>			
+			<tr ng-repeat="option in dodatne">
+				<td></td>
+				<td></td>
+				<td>					
+  					<input type="checkbox" value="option.opcija" ng-click="aac.addDodatne(option)"> {{option.opcija}}<br>			
 				</td>
 				<td></td>
 			</tr>
