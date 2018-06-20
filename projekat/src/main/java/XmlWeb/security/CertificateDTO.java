@@ -49,6 +49,10 @@ public class CertificateDTO {
             String sname = IETFUtils.valueToString(sn.getFirst().getValue());
             this.surname = sname;
 
+            RDN gn = subjName.getRDNs(BCStyle.GIVENNAME)[0];
+            String gname = IETFUtils.valueToString(gn.getFirst().getValue());
+            this.givenName = gname;
+
             RDN on = subjName.getRDNs(BCStyle.O)[0];
             String oname = IETFUtils.valueToString(on.getFirst().getValue());
             this.orgName = oname;
@@ -60,10 +64,6 @@ public class CertificateDTO {
             RDN con = subjName.getRDNs(BCStyle.C)[0];
             String conname = IETFUtils.valueToString(con.getFirst().getValue());
             this.country = conname;
-
-            RDN givn = subjName.getRDNs(BCStyle.GIVENNAME)[0];
-            String givname = IETFUtils.valueToString(givn.getFirst().getValue());
-            this.givenName = givenName;
 
             RDN en = subjName.getRDNs(BCStyle.E)[0];
             String emname = IETFUtils.valueToString(en.getFirst().getValue());
@@ -101,8 +101,9 @@ public class CertificateDTO {
     }
 
 
-    public CertificateDTO(String commonName, String surname, String orgName, String orgNameUnit, String givenName, String country, String email, 
+    public CertificateDTO(String id, String commonName, String surname, String orgName, String orgNameUnit, String givenName, String country, String email,
     		String isCa, String uid, String serialNumber, Date endDate, Date startDate, String issuerSerialNumber, String issuerName, String adresa, String PIB) {
+        this.id = id;
         this.commonName = commonName;
         this.surname = surname;
         this.orgName = orgName;

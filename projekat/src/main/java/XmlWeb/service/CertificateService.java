@@ -27,18 +27,27 @@ import java.util.List;
 
 import javax.xml.bind.DatatypeConverter;
 
+import XmlWeb.model.Enums.StatusKorisnika;
+import XmlWeb.model.Korisnik;
 import XmlWeb.security.CertificateDTO;
 import XmlWeb.security.CertificateGenerator;
 import XmlWeb.security.IssuerData;
 import XmlWeb.security.SubjectData;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.mail.EmailAttachment;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.MultiPartEmail;
 import org.bouncycastle.asn1.ASN1ObjectIdentifier;
 import org.bouncycastle.asn1.x500.RDN;
 import org.bouncycastle.asn1.x500.X500Name;
 import org.bouncycastle.asn1.x500.X500NameBuilder;
 import org.bouncycastle.asn1.x500.style.BCStyle;
+import org.bouncycastle.asn1.x500.style.IETFUtils;
 import org.bouncycastle.cert.CertIOException;
+import org.bouncycastle.cert.jcajce.JcaX509CertificateHolder;
 import org.bouncycastle.openssl.PEMParser;
+import org.bouncycastle.openssl.PEMWriter;
 import org.bouncycastle.openssl.jcajce.JcaPEMWriter;
 import org.bouncycastle.operator.OperatorCreationException;
 import org.bouncycastle.pkcs.PKCS10CertificationRequest;
@@ -59,7 +68,10 @@ public class CertificateService {
 
     private KeyPair keyPair;
 
-    
+    @Autowired
+    private KorisnikService korisnikService;
+
+
     public List<CertificateDTO> convertToDTO(List<X509Certificate> certificates) {
         ArrayList<CertificateDTO> certificateDTOS = new ArrayList<>();
         for (X509Certificate cert : certificates) {
@@ -164,8 +176,13 @@ public class CertificateService {
                 return "revoked";
             }
         }
-        X509Certificate certificate = keyStoreService.getCertificate(id);
-        if (certificate == null) {
+        boolean found = false;
+        for (X509Certificate certificate:keyStoreService.getCertificates()) {
+            if(certificate.getSerialNumber().toString().equals(id))
+                found = true;
+        }
+
+        if (!found) {
             return "undefined";
         }
 
@@ -206,12 +223,36 @@ public class CertificateService {
         return null;
     }
 
-    public void revoke(String id) {
-        X509Certificate certificate = keyStoreService.getCertificate(id);
+    public Boolean revoke(String id) {
+        System.out.println("usao u revoke");
+        X509Certificate certificate = null;
+
+        for (X509Certificate c :keyStoreService.getCertificates()) {
+            if (c.getSerialNumber().toString().equals(id)) {
+                certificate = c;
+                break;
+            }
+        }
+        if(certificate==null){
+            System.out.println("Nije nasao cert za revoke :(");
+            return false;
+        }
+        X500Name x500name = null;
+        try {
+            x500name = new JcaX509CertificateHolder(certificate).getSubject();
+        } catch (CertificateEncodingException e) {
+            e.printStackTrace();
+        }
+        RDN cn = x500name.getRDNs(BCStyle.CN)[0];
+        String username = IETFUtils.valueToString(cn.getFirst().getValue());
+        Korisnik k = korisnikService.getKorisnik(username);
+        k.setStatusNaloga(StatusKorisnika.NEPOTVRDJEN);
+        korisnikService.saveKorisnik(k);
+        generateCertFromUser(k);
         List<X509Certificate> certificates = new ArrayList<>();
 
         try {
-            File file = new File("./revocation.crl");
+            File file = new File("revocation.crl");
 
             if (!file.exists()) {
                 saveCRL(certificates, file);
@@ -223,7 +264,7 @@ public class CertificateService {
 
             for (X509Certificate cert : certificates) {
                 if (cert.getSerialNumber().equals(certificate.getSerialNumber())) {
-                    return;
+                    return true;
                 }
             }
 
@@ -243,10 +284,11 @@ public class CertificateService {
             certificates.addAll(revokeList);
             keyStoreService.deleteList(certificates);
             saveCRL(certificates, file);
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-
     }
 
     private void saveCRL(List<X509Certificate> certificates, File file) throws Exception {
@@ -274,11 +316,21 @@ public class CertificateService {
         revokeRecursion(certificates, childRevokeList, allCertificates);
     }
 
+
     
     public List<X509Certificate> readRevoked() {
         List<X509Certificate> certificates = new ArrayList<>();
-        File file = new File("./revocation.crl");
-        ObjectInputStream iis = null;
+        File file = new File("revocation.crl");
+
+        if (!file.exists()) {
+            try {
+                saveCRL(certificates, file);
+                return certificates;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+            ObjectInputStream iis = null;
         try {
             iis = new ObjectInputStream(new FileInputStream(file));
             certificates = (List<X509Certificate>) iis.readObject();
@@ -396,5 +448,59 @@ public class CertificateService {
         pemWriter.flush();
         pemWriter.close();
         return writer.toString();
+    }
+
+    public void generateCertFromUser(Korisnik k) {
+        k.setStatusNaloga(StatusKorisnika.NEPOTVRDJEN);
+        korisnikService.saveKorisnik(k);
+        CertificateDTO dto = new CertificateDTO(k.getId().toString(),k.getUsername(), k.getLastName(), "Pig Inc BOOKING", "User Section",
+                k.getFirstName(),"RS", k.getEmail(), "false", "", "", null, null,
+                "", "", k.getAdresa(), k.getPIB());
+        X509Certificate c = generateCertificate(dto);
+
+        StringWriter sw = new StringWriter();
+        String crtString;
+        try (PEMWriter pw = new PEMWriter(sw)) {
+            pw.writeObject(c);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        crtString =  sw.toString();
+
+        try {
+            FileUtils.writeStringToFile(new File("PigIncCertificate.crt"), crtString);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        String subject = "Account Update";
+        String text = "Your certificate has expired. Please provide new certificate from attachment to login successfully. Visit us on: https://localhost:8096";
+
+        EmailAttachment attachment = new EmailAttachment();
+
+        attachment.setPath("PigIncCertificate.crt");
+        attachment.setDisposition(EmailAttachment.ATTACHMENT);
+        attachment.setDescription("Certificate for " + k.getFirstName() + " " + k.getLastName());
+        attachment.setName("PigIncCertificate");
+
+        // Create the email message
+        MultiPartEmail email = new MultiPartEmail();
+        email.setHostName("smtp.gmail.com");
+        try {
+            //email.setAuthentication("pig.inc.ns@gmail.com","tanjaindjic");
+            email.setAuthentication("xmlbesp@gmail.com","Operisedolje!");
+            email.setSmtpPort(587);
+            email.setStartTLSRequired(true);
+            email.addTo(k.getEmail(), k.getFirstName() + " " + k.getLastName());
+            email.setFrom("noreply@domain.com", "Pig Inc BOOKING");
+            email.setSubject(subject);
+            email.setMsg(text);
+            email.attach(attachment);
+            email.send();
+
+        } catch (EmailException e) {
+            e.printStackTrace();
+        }
+
     }
 }

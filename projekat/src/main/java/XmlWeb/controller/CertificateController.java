@@ -2,6 +2,7 @@ package XmlWeb.controller;
 
 import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.model.Korisnik;
+import XmlWeb.security.CertificateDTO;
 import XmlWeb.service.CertificateService;
 import XmlWeb.service.KeyStoreService;
 import XmlWeb.service.KorisnikService;
@@ -20,6 +21,7 @@ import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 public class CertificateController {
@@ -32,6 +34,30 @@ public class CertificateController {
 
     @Autowired
     private KorisnikService ks;
+
+        @RequestMapping(value="/certificates", method= RequestMethod.GET)
+    public List<CertificateDTO> getCertificates(){
+            System.out.println(kss.getCertificatesDTO().size());
+        return kss.getCertificatesDTO();
+    }
+
+    @RequestMapping(value = "/certificates/check/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN)
+    public ResponseEntity<String> checkCertificate(@PathVariable String id) {
+        String respond = cs.check(id);
+        return new ResponseEntity<>(respond, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/certificates/revokeCert/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN)
+    public ResponseEntity<String> revoke(@PathVariable String id) {
+        String respond ;
+        if(cs.revoke(id)){
+            respond = "good";
+        }
+        else
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(respond, HttpStatus.OK);
+    }
+
 
     @RequestMapping(value="/certificates/upload/{username}", method= RequestMethod.POST)
     public ResponseEntity<HashMap> uploadAndCreateSF(@RequestBody MultipartFile file, @PathVariable String username) throws IOException, CertificateException {

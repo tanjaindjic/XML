@@ -128,9 +128,13 @@ public class AgentRequestService {
 
 		kss.loadKeyStore(1);
 		try {
-
+			System.out.println("pre cuvanja fff cert: " + kss.getCertificates().size());
 			kss.saveAgentCert(convertToX509Certificate(crt), k.getUsername());
-
+			System.out.println("posle cuvanja fff cert: " + kss.getCertificates().size());
+			System.out.println(kss.getCertificate(k.getUsername()));
+			System.out.println(kss.getCertificate("admin"));
+			kss.loadKeyStore(0);
+			kss.loadKeyStore(1);
 		} catch (CertificateException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
@@ -157,7 +161,8 @@ public class AgentRequestService {
 		MultiPartEmail email = new MultiPartEmail();
 		email.setHostName("smtp.gmail.com");
 		try {
-			email.setAuthentication("pig.inc.ns@gmail.com","tanjaindjic");
+			//email.setAuthentication("pig.inc.ns@gmail.com","tanjaindjic");
+			email.setAuthentication("xmlbesp@gmail.com","Operisedolje!");
 			email.setSmtpPort(587);
 			email.setStartTLSRequired(true);
 			email.addTo(k.getEmail(), k.getFirstName() + " " + k.getLastName());

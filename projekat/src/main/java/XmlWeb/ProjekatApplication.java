@@ -74,6 +74,10 @@ public class ProjekatApplication {
 					registry.addMapping("/certificates/**/**")
 							.allowedHeaders("Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers")
 							.allowedOrigins("https://localhost:8090");
+					registry.addMapping("/certificates")
+							.allowedHeaders("Content-Type, Access-Control-Allow-Origin, Access-Control-Allow-Headers")
+							.allowedOrigins("https://localhost:8090");
+
 
 				}
 	        };

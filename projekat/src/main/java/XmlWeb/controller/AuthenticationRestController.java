@@ -7,6 +7,7 @@ import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 
 import XmlWeb.model.Korisnik;
+import XmlWeb.service.CertificateService;
 import XmlWeb.service.KeyStoreService;
 import XmlWeb.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,10 @@ public class AuthenticationRestController {
     @Autowired
     private KeyStoreService keyStoreService;
 
+    @Autowired
+    private CertificateService certificateService;
+
+
     // @CrossOrigin(origins = "https://localhost:8090")
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
@@ -66,8 +71,11 @@ public class AuthenticationRestController {
         if(cert!=null) {
             Date today = new Date();
             if ((cert.getNotAfter().getTime() - today.getTime()) <= 0){
+                keyStoreService.delete(k.getUsername());
+                certificateService.generateCertFromUser( k);
+
                 System.out.println((cert.getNotAfter().getTime() - today.getTime()));
-                return null;
+
             }
 
         }

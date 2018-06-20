@@ -1,8 +1,6 @@
 package XmlWeb.service;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
@@ -58,10 +56,8 @@ public class KeyStoreService {
 
                 while (aliases.hasMoreElements()) {
                     String alias = aliases.nextElement();
+                    certificates.add(getCertificate(alias, i).get());
 
-                    if (keyStore.isKeyEntry(alias)) {
-                        certificates.add(getCertificate(alias, i).get());
-                    }
                 }
             }
 
@@ -73,7 +69,9 @@ public class KeyStoreService {
     }
 
     public List<CertificateDTO> getCertificatesDTO() {
+
         List<X509Certificate> certificates = getCertificates();
+
         List<CertificateDTO> certificateDTOS = new ArrayList<>();
         for (Certificate cert : certificates) {
             certificateDTOS.add(new CertificateDTO(cert));
@@ -289,19 +287,37 @@ public class KeyStoreService {
     public void loadKeyStore(int i) {
         if (i == 0) {
             loadKeyStore(PATH_CA, PASSWORD_CA);
+
         } else if (i == 1) {
             loadKeyStore(PATH_NONCA, PASSWORD_NONCA);
+
         }
     }
 
     public void saveAgentCert(X509Certificate x509Certificate, String username) {
         loadKeyStore(1);
         try {
+
             keyStore.setCertificateEntry(username, x509Certificate);
         } catch (KeyStoreException e) {
             e.printStackTrace();
         }
-        saveKeyStore(keyStoreName, keyStorePassword.toCharArray());
+        saveKeyStore(PATH_NONCA, PASSWORD_NONCA.toCharArray());
+        /*try {
+            OutputStream outputStream = new FileOutputStream(PATH_CA);
+            keyStore.store(outputStream, PASSWORD_NONCA.toCharArray());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
     }
 }
 

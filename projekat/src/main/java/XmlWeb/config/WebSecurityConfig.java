@@ -92,9 +92,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/comments/**").hasRole("ADMIN")
             .antMatchers("/resources/**").permitAll()
             .antMatchers("/css/**", "/assets/**", "/images/**").permitAll()
-            // Un-secure H2 Database
+             .antMatchers("/certificates").hasRole("ADMIN")
+             .antMatchers("/certificates/**/**").hasRole("ADMIN")
             .antMatchers("/h2-console/**/**").permitAll()
-                .antMatchers("/uploadCert").permitAll()
+            .antMatchers("/uploadCert").permitAll()
             .antMatchers("/auth/**").permitAll()
             .anyRequest().authenticated();
 
