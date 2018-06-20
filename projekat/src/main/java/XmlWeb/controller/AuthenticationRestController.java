@@ -1,10 +1,13 @@
 package XmlWeb.controller;
 
+import java.security.cert.X509Certificate;
+import java.util.Date;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
 import XmlWeb.model.Korisnik;
+import XmlWeb.service.KeyStoreService;
 import XmlWeb.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -49,13 +52,27 @@ public class AuthenticationRestController {
     @Autowired
     private KorisnikService korisnikService;
 
-   // @CrossOrigin(origins = "https://localhost:8090")
+    @Autowired
+    private KeyStoreService keyStoreService;
+
+    // @CrossOrigin(origins = "https://localhost:8090")
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
 
         authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         Korisnik k = korisnikService.getKorisnik(authenticationRequest.getUsername());
-        // Reload password post-security so we can generate the token
+
+        X509Certificate cert = keyStoreService.getCertificate(k.getUsername());
+        if(cert!=null) {
+            Date today = new Date();
+            if ((cert.getNotAfter().getTime() - today.getTime()) <= 0){
+                System.out.println((cert.getNotAfter().getTime() - today.getTime()));
+                return null;
+            }
+
+        }
+
+                // Reload password post-security so we can generate the token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails, k.getId());
 

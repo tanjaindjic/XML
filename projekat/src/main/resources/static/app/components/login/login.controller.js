@@ -34,7 +34,7 @@
                                   console.log("nepotvrdjen")
                                   $location.path("/uploadCert");
                               }
-                  			else $location.path("/home")
+                  else $state.go("core.home", {}, {reload:true})
             }, function errorCallback(response) {
                 console.log(response.data)
                 console.log(response)
