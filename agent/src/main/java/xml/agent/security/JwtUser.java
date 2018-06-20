@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 public class JwtUser implements UserDetails {
 
-	private final Long id;
+    private final Long id;
     private final String username;
     private final String firstname;
     private final String lastname;

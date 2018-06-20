@@ -4,11 +4,10 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
-import XmlWeb.model.Korisnik;
-import XmlWeb.service.KorisnikService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,18 +16,19 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import XmlWeb.model.Korisnik;
 import XmlWeb.security.AuthenticationException;
 import XmlWeb.security.JwtAuthenticationRequest;
 import XmlWeb.security.JwtAuthenticationResponse;
 import XmlWeb.security.JwtTokenUtil;
 import XmlWeb.security.JwtUser;
+import XmlWeb.service.KorisnikService;
 
 @RestController
 public class AuthenticationRestController {
@@ -38,6 +38,7 @@ public class AuthenticationRestController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
 
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
