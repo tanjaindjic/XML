@@ -10,39 +10,49 @@
 
 		var lc = this;
 
+	    $scope.TOKEN_KEY = "jwtToken"
+
 		$scope.goToState = function(state) {
 			$state.go(state, {
 				"id" : $scope.userId
 			});
 		}
 
+        var getStatus = function(id){
+        console.log("usao u status")
+            $http({
+                method: 'GET',
+                url: "https://localhost:8096/user/status/" + id,
+                headers: createAuthorizationTokenHeader()
+            }).then(function successCallback(response) {
+                var partsOfStr = response.data.split(',');
+                $scope.status = partsOfStr[0];
+                $scope.role = partsOfStr[1];
+                 console.log($scope.status)
+                  console.log($scope.role)
+                  if($scope.status=="NEPOTVRDJEN" && $scope.role=="AGENT"){
+                                  console.log("nepotvrdjen")
+                                  $location.path("/uploadCert");
+                              }
+                  			else $location.path("/home")
+            }, function errorCallback(response) {
+                console.log(response.data)
+                console.log(response)
+            });
+        }
 		var init = function() {
-			$scope.TOKEN_KEY = "jwtToken"
-			
-			$scope.login = $("#loginBtn");
-			$scope.reg = $("#registerBtn");
-			$scope.userInfo = $("#userInfo").hide();
-			$scope.logout = $("#logoutBtn").hide();
 
-			// INITIAL CALLS
-			// =============================================================
 			if (getJwtToken()) {
-				$scope.login.hide();
-				$scope.logout.show();
-				$scope.reg.hide();
-				$location.path("/home")
+			 console.log($scope.status)
+                              console.log($scope.role)
+			var id = jwt_decode(getJwtToken()).jti;
+            getStatus(id);
+
 			}
 
 		};
 
 		init();
-
-		/**
-		 * Created by stephan on 20.03.16.
-		 */
-
-		// FUNCTIONS
-		// =============================================================
 		function getJwtToken() {
 			return localStorage.getItem($scope.TOKEN_KEY);
 		}
@@ -55,51 +65,28 @@
 			localStorage.removeItem($scope.TOKEN_KEY);
 		}
 
-		function doLogin(loginData) {
-			console.log(JSON.stringify(loginData))
-			$http({
-				method : 'POST',
-				url : "https://localhost:8096/auth",
-				data : JSON.stringify(loginData)
-			}).then(function successCallback(response) {
-				console.log(response.data.token)
-				setJwtToken(response.data.token);
-				$scope.login.hide();
-				$scope.logout.show();
-				$scope.reg.hide();
-				var decoded = jwt_decode(response.data.token);
-				console.log(decoded);
-				$window.location.reload();
 
-			}, function errorCallback(response) {
-				$scope.message = "Bad credentials.";
-			});
 
-			/*
-			 * $.ajax({ url : "http://localhost:8096/#!/auth", type : "POST",
-			 * data : JSON.stringify(loginData), contentType :
-			 * "application/json; charset=utf-8", dataType : "json", success :
-			 * function(data, textStatus, jqXHR) {
-			 * 
-			 * setJwtToken(data.token); $scope.login.hide();
-			 * $scope.notLoggedIn.hide(); showTokenInformation();
-			 * showUserInformation(); }, error : function(jqXHR, textStatus,
-			 * errorThrown) { if (jqXHR.status === 401 || jqXHR.status === 403) {
-			 * $('#loginErrorModal').modal("show").find(".modal-body")
-			 * .empty().html( "<p>Message from server:<br>" +
-			 * jqXHR.responseText + "</p>"); } else { throw new Error("an
-			 * unexpected error occured: " + errorThrown); } } });
-			 */
-		}
+        function doLogin(loginData) {
+             $http({
+                    method: 'POST',
+                    url: "https://localhost:8096/auth",
+                    data : JSON.stringify(loginData)
+                }).then(function successCallback(response) {
 
-		function doLogout() {
-			removeJwtToken();
-			$scope.login.show();
-			$scope.logout.hide();
-			$scope.reg.show();
-		
-			$location.path("/home")
-		}
+                    setJwtToken(response.data.token);
+                    var id = jwt_decode(getJwtToken()).jti;
+                    getStatus(id);
+
+                }, function errorCallback(response) {
+                    $scope.message="Bad credentials."
+                });
+
+
+
+        }
+
+
 
 		function createAuthorizationTokenHeader() {
 			var token = getJwtToken();
@@ -129,7 +116,6 @@
 			doLogin(formData);
 		});
 
-		$("#logoutBtn").click(doLogout);
 
 		
 

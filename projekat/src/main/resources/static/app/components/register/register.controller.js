@@ -12,17 +12,13 @@
 
 		var init = function() {
 			$scope.TOKEN_KEY = "jwtToken"
-			$scope.login = $("#loginBtn");
-			$scope.reg = $("#registerBtn");
-			$scope.logout = $("#logoutBtn").hide();
+
 			$scope.message = "";
 
 			// INITIAL CALLS
 			// =============================================================
 			if (getJwtToken()) {
-				$scope.login.hide();
-				$scope.logout.show();
-				$scope.reg.hide();
+
 				$location.path("/home")
 			}
 
@@ -54,13 +50,7 @@
 
 		}
 
-		function doLogout() {
-			removeJwtToken();
-			$scope.login.show();
-			$scope.logout.hide();
-			$scope.reg.show();
-			$location.path("/home")
-		}
+
 
 		function createAuthorizationTokenHeader() {
 			var token = getJwtToken();
@@ -110,7 +100,7 @@
 			doRegister(formData);
 		});
 
-		$("#logoutBtn").click(doLogout);
+
 		
 
 		

@@ -123,7 +123,7 @@ public class AgentRequestService {
 		Korisnik k = korisnikRepo.findById(userId).get();
 		k.setAktiviran(true);
 		k.setConfirmationToken("");
-		k.setStatusNaloga(StatusKorisnika.AKTIVAN);
+		//k.setStatusNaloga(StatusKorisnika.AKTIVAN); OVO KAD UPLOADUJE PRVI PUT SVOJ SERTIFIKAT I UPOREDIMO SA NASOM VERZIJOM ;)
 		korisnikRepo.save(k);
 
 		kss.loadKeyStore(1);

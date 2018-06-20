@@ -38,6 +38,12 @@
 			 controller: 'succController',
 			 controllerAs: 'succ'
 		 })
+		 .state('core.uploadCert', {
+           				url: 'uploadCert',
+           				templateUrl: 'app/components/uploadCert/uploadCert.html',
+           				controller: 'uploadCertController',
+           				controllerAs: 'uc'
+           			})
 		 .state('core.register', {
 			 url: 'register',
 			 templateUrl: 'app/components/register/register.html',

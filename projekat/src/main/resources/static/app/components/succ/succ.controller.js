@@ -33,8 +33,13 @@
     			$timeout(timer, 1000);  
     		}
     		if(lastPart==3)
-    			$scope.message = "Your request is being processed by our administrators. Activation link will be sent to your email address after approval.";
-    			
+    			$scope.message = "Your request is being processed by our administrators. Certificate will be sent to your email address after approval.";
+
+    		if(lastPart==4){
+                $scope.message = "Your account is now active!"
+                document.getElementById("timer2").style.display = "block";
+                $timeout(timer, 1000);
+                		}
         };
         init();
 

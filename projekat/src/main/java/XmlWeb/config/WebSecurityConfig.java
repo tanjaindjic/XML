@@ -94,7 +94,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/css/**", "/assets/**", "/images/**").permitAll()
             // Un-secure H2 Database
             .antMatchers("/h2-console/**/**").permitAll()
-
+                .antMatchers("/uploadCert").permitAll()
             .antMatchers("/auth/**").permitAll()
             .anyRequest().authenticated();
 
@@ -123,7 +123,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/smestaj/advancedsearch",
                 "/api/postFile",
                 "/api/getallfiles",
-                    "/requests/**/**/**"
+                    "/requests/**/**/**",
+                    "/certificates/**/**"
             )
 
            .antMatchers(
@@ -153,7 +154,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/dodatneUsluge",
                 "/api/tipService",
                 "/api/kategorija",
-                "/api/files/**"
+                "/api/files/**", "/uploadCert"
         
                 
             )

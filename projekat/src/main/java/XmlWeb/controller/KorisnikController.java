@@ -1,5 +1,6 @@
 package XmlWeb.controller;
 
+import java.awt.*;
 import java.util.List;
 
 import XmlWeb.config.Read;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import XmlWeb.dto.KorisnikDTO;
 import XmlWeb.model.Korisnik;
 import XmlWeb.service.KorisnikService;
+
+import javax.ws.rs.core.MediaType;
 
 
 @RestController
@@ -55,6 +58,12 @@ public class KorisnikController {
 	@RequestMapping(method = RequestMethod.GET, value = "/user/block/{id}")
 	public void blockKorisnik(@PathVariable Long id){
 		 korisnikService.blockKorisnik(id);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/user/status/{id}", produces = MediaType.TEXT_PLAIN)
+	public String getStatusKorisnika(@PathVariable Long id){
+
+		return korisnikService.getKorisnik(id).getStatusNaloga().toString() + "," + korisnikService.getKorisnik(id).getRole().name();
 	}
 
 }
