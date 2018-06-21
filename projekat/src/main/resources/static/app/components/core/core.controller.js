@@ -122,9 +122,9 @@
 		
 		$scope.searchResults = null;
 		$scope.searchDTO = {
-				"destination":"MALDIVI VIP",
-				"from":new Date(1970, 1,1),
-				"to":new Date(1970, 12,12),
+				"destination":"smestaj1",
+				"from":new Date(2018, 3,3),
+				"to":new Date(2018, 5,5),
 				"howManyPeople":5
 				
 		};

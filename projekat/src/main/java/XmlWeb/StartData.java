@@ -155,8 +155,8 @@ public class StartData {
          kategorijaRepository.save(kategorijaSmestaja);*/
          
          addSmestaj("Smestaj1", "Adresa1", "Grad1", "Drzava1", 1, 0, 1, 2, new Date(118, 1, 1), new Date(119 , 1, 1),100L);
-         addSmestaj("Smestaj2", "Adresa2", "Grad1", "Drzava2", 2, 2, 4, 1, new Date(117, 1, 1), new Date(118 , 1, 1),200L);
-         addSmestaj("Smestaj3", "Adresa3", "Grad3", "Drzava3", 5, 0, 4, 3, new Date(112, 1, 1), new Date(113 , 1, 1),2000L);
+         addSmestaj("Smestaj1", "Adresa2", "Grad1", "Drzava2", 2, 2, 4, 1, new Date(118, 1, 1), new Date(119 , 1, 1),200L);
+         addSmestaj("Smestaj1", "Adresa3", "Grad3", "Drzava3", 5, 0, 4, 3, new Date(118, 1, 1), new Date(119 , 1, 1),2000L);
 	 }
 
 	 public void addRezervacija(Long idKorisnika, Long idVlasnika, int i){ // Nije potpuna, samo meni za testiranje
