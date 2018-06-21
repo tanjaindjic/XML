@@ -1,9 +1,17 @@
 package xml.agent;
 
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.scheduling.annotation.EnableAsync;
+import java.rmi.RemoteException;
+import java.util.ArrayList;
+
+import javax.xml.rpc.ServiceException;
+
 //import javax.xml.rpc.ServiceException;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
+
+import xml.agent.model.Smestaj;
+import xml.agent.repository.SmestajRepository;
 
 @SpringBootApplication
 @EnableAsync
@@ -29,8 +37,8 @@ public class AgentApplication {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
-		} catch (ServiceException e) {
+		*/	
+		/*} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}*/
