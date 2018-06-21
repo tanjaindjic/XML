@@ -120,7 +120,7 @@
 				    		Photo
 				    	</th>
 				    </tr>
-			      <tr  ng-repeat="smestaj in searchResults">
+			      <tr  ng-repeat="smestaj in searchResults|orderBy:naziv">
 			        <td>
 				        <span>{{smestaj.naziv}}</span>
 			        </td>

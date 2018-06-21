@@ -13,9 +13,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 import xml.agent.model.Smestaj;
 import xml.agent.repository.SmestajRepository;
-import xmlWeb_smestaj.wsdl.SmestajService;
-import xmlWeb_smestaj.wsdl.SmestajServiceLocator;
-import xmlWeb_smestaj.wsdl.SmestajSoap;
 
 @SpringBootApplication
 @EnableAsync
@@ -29,12 +26,12 @@ public class AgentApplication {
 		try {
 			SmestajSoap smestajSoap = smestajService.getSmestajPort();
 			SmestajRepository smestajRepo = null;
-		/*	try {
+			try {
 				Object o = smestajSoap.getSmestajs();
 				ArrayList<Smestaj> s0 = new ArrayList<Smestaj>();
 				/*for(xmlWeb_smestaj.wsdl.Smestaj ss : s){
 					s0.add(Smestaj.convert(ss));
-				}*/
+				}
 				smestajRepo.saveAll(s0);
 				System.out.println("radiiiii");
 			} catch (RemoteException e) {
@@ -42,9 +39,9 @@ public class AgentApplication {
 				e.printStackTrace();
 			}
 		*/	
-		} catch (ServiceException e) {
+		/*} catch (ServiceException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 	}
 }

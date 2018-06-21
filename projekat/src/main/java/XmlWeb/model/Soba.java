@@ -125,11 +125,11 @@ public class Soba {
     
     public boolean validateDates(Date pocetak, Date kraj, RezervacijaRepository rezRepo) {
     	ArrayList<Rezervacija> rezBaz = (ArrayList<Rezervacija>) rezRepo.findBySobaId(id);
-    	//System.out.println("Usao sam u sobu: "+id+"broj rezervacija je: "+rezBaz.size());
+    	System.out.println("Usao sam u sobu: "+id+"broj rezervacija je: "+rezBaz.size());
     	for(Rezervacija r:rezBaz) {
-    		//System.out.println("Usao sam u rezervaciju---"+r.getDatumOd()+r.getDatumDo());
+    		System.out.println("Usao sam u rezervaciju---"+r.getDatumOd()+r.getDatumDo());
     		if(r.getDatumDo().compareTo(pocetak)>=0&&r.getDatumOd().compareTo(kraj)<=0) {
-    			//System.out.println("Invalid datum because od RESERVATIONS");
+    			System.out.println("Invalid datum because od RESERVATIONS");
     			return false;
     		}
     	}
@@ -137,6 +137,7 @@ public class Soba {
     	cena = Long.MAX_VALUE;
     	boolean nasao = false;
     	for(Iznajmljivanje i:iznajmljivanja) {
+    		System.out.println("Usao sam u iznajmljivanje---"+i.getDatumOd()+i.getDatumDo());
     		if((i.getDatumDo().compareTo(kraj)>=0&&i.getDatumOd().compareTo(pocetak)<=0&&i.getMozePojedinacno()==true)||
     				(i.getDatumDo().compareTo(kraj)==00&&i.getDatumOd().compareTo(pocetak)==0&&i.getMozePojedinacno()==false))
     		{
@@ -144,7 +145,7 @@ public class Soba {
     			if(i.getCena()<cena) cena = i.getCena();
     		}
     	}
-    	//System.out.println("Invalid datum because od IZNAJMLJIVANJA");
+    	System.out.println("Invalid datum because od IZNAJMLJIVANJA"+nasao);
     	return nasao;
     }
 }

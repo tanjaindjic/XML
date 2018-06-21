@@ -37,15 +37,15 @@ public class SmestajService {
 		for(Smestaj s: temp) {
 			ArrayList<Soba> tempSobe = new ArrayList<>();
 			pom = false;
-			//System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
+			System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
 			for(Soba soba:s.getSobe()) {
-				//System.out.println("Usao sam u sobe u smestaju "+s.getNaziv()+" i bollean je: "+pom);
-				if(soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)) {
+				System.out.println("Usao sam u sobe u smestaju "+s.getNaziv()+" i bollean je: "+pom+"i soba ima mesta: "+soba.getBrojLezaja());
+				if(soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)&&soba.getBrojLezaja()>=ser.getHowManyPeople()) {
 					pom = true;
 					tempSobe.add(soba);
 				}
 			}
-			//System.out.println("Zavrsavam smestaj "+s.getNaziv()+" i bollean je: "+pom);
+			System.out.println("Zavrsavam smestaj "+s.getNaziv()+" i bollean je: "+pom+"kolko sam ubacio: "+tempSobe.size());
 			if(pom==true) {
 				temp1.add(s);
 				s.setSobe(tempSobe);
