@@ -33,18 +33,22 @@ public class SmestajService {
 		ArrayList<Smestaj> temp1 = new ArrayList<Smestaj>();
 		
 		boolean pom = false;
+		
 		for(Smestaj s: temp) {
+			ArrayList<Soba> tempSobe = new ArrayList<>();
 			pom = false;
 			//System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
 			for(Soba soba:s.getSobe()) {
 				//System.out.println("Usao sam u sobe u smestaju "+s.getNaziv()+" i bollean je: "+pom);
 				if(soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)) {
 					pom = true;
+					tempSobe.add(soba);
 				}
 			}
 			//System.out.println("Zavrsavam smestaj "+s.getNaziv()+" i bollean je: "+pom);
 			if(pom==true) {
 				temp1.add(s);
+				s.setSobe(tempSobe);
 			}
 		}
 		return temp1;

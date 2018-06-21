@@ -277,11 +277,16 @@ public class StartData {
 		 
 		 ArrayList<Soba> sobe = new ArrayList<>();
 		 Soba temps = new Soba(5, new ArrayList<>(), new ArrayList<>());
+		 Soba temps1 = new Soba(5, new ArrayList<>(), new ArrayList<>());
          ArrayList<Iznajmljivanje> iznajmljivanja = new ArrayList<>();
          iznajmljivanja.add(new Iznajmljivanje(pocetak, kraj, cena, true));
+         ArrayList<Iznajmljivanje> iznajmljivanja1 = new ArrayList<>();
+         iznajmljivanja.add(new Iznajmljivanje(new Date(120, 1, 1), new Date(121, 1, 1), cena, true));
          
          temps.setIznajmljivanja(iznajmljivanja);
+         temps1.setIznajmljivanja(iznajmljivanja1);
          sobe.add(temps);
+         sobe.add(temps1);
          temp.setSobe(sobe);
          
          smestajRepository.save(temp);

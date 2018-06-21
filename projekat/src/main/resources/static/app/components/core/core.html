@@ -188,10 +188,16 @@
 			    		<th>
 			    			Persons per room
 			    		</th>
+			    		<th>
+			    			Cost for choosen date
+			    		</th>
 			    	</tr>
 			      <tr  ng-repeat="room in smestajToShow.sobe">
 			        <td ng-click="">
 			        	<span>{{room.brojLezaja}}</span>
+			        </td>
+			        <td ng-click="">
+			        	<span>{{room.cena}}</span>
 			        </td>
 			        <td ng-click="reserve(room.id, smestajToShow.id, searchDTO.from, searchDTO.to)">
 			        	<button>Reserve</button>

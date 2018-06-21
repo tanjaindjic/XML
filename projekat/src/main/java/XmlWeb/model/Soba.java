@@ -18,8 +18,22 @@ public class Soba {
     @Id
     @GeneratedValue
     private Long id;
+    
+    @Transient
+    private Long cena;
+    
+    
 
-    private int brojLezaja;
+    public Long getCena() {
+		return cena;
+	}
+
+
+	public void setCena(Long cena) {
+		this.cena = cena;
+	}
+
+	private int brojLezaja;
 
     //ovo polje sluzi samo za prikaz dodatnih usluga, pretragu radimo po dodatnim uslugama u smestaju
     @ManyToMany
@@ -120,12 +134,17 @@ public class Soba {
     		}
     	}
     	
+    	cena = Long.MAX_VALUE;
+    	boolean nasao = false;
     	for(Iznajmljivanje i:iznajmljivanja) {
     		if((i.getDatumDo().compareTo(kraj)>=0&&i.getDatumOd().compareTo(pocetak)<=0&&i.getMozePojedinacno()==true)||
     				(i.getDatumDo().compareTo(kraj)==00&&i.getDatumOd().compareTo(pocetak)==0&&i.getMozePojedinacno()==false))
-    			return true;
+    		{
+    			nasao = true;
+    			if(i.getCena()<cena) cena = i.getCena();
+    		}
     	}
     	System.out.println("Invalid datum because od IZNAJMLJIVANJA");
-    	return false;
+    	return nasao;
     }
 }
