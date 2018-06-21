@@ -13,7 +13,7 @@ import XmlWeb.soapServices.SmestajSoap;
 @WebService(
         portName = "SmestajPort",
         serviceName = "SmestajService",
-        targetNamespace = "http://xmlWeb-smestaj/wsdl",
+        targetNamespace = "http://xmlWeb-smestaj/smestajSoap",
         endpointInterface = "XmlWeb.soapServices.SmestajSoap")
 public class SmestajSoapImpl implements SmestajSoap {
 
