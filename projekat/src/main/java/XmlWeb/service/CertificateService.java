@@ -54,15 +54,14 @@ import org.bouncycastle.pkcs.PKCS10CertificationRequest;
 import org.bouncycastle.util.io.pem.PemObject;
 import org.bouncycastle.util.io.pem.PemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 
 @Service
-public class CertificateService {
+public class    CertificateService {
     @Autowired
     private KeyStoreService keyStoreService;
 
@@ -85,6 +84,7 @@ public class CertificateService {
         // Serijski broj sertifikata
         int randomNum = 0 + (int) (Math.random() * 10000000);
         String sn = String.valueOf(randomNum);
+        System.out.println("admin s num: " + sn);
         certificateDTO.setSerialNumber(sn);
         System.out.println("provera issuera");
         System.out.println("issuer serial num: " + certificateDTO.getIssuerSerialNumber());
@@ -353,6 +353,23 @@ public class CertificateService {
 		    return sw.toString();
 		
 	}
+
+	public void sendAdminCerts(String token){
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            List<CertificateDTO> certs = keyStoreService.getAdminCertificatesDTO();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+                headers.add("Authorization", token);
+            HttpEntity<Object> requestEntity = new HttpEntity<Object>(certs,headers);
+            ResponseEntity<List<CertificateDTO>> rateResponse = restTemplate.exchange("https://localhost:8090/getAdminCerts",
+                    HttpMethod.POST, requestEntity,new ParameterizedTypeReference<List<CertificateDTO>>() {});
+
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     
     private String getX500Field(ASN1ObjectIdentifier asn1ObjectIdentifier, X500Name x500Name) {
 	    RDN[] rdnArray = x500Name.getRDNs(asn1ObjectIdentifier);
@@ -487,8 +504,8 @@ public class CertificateService {
         MultiPartEmail email = new MultiPartEmail();
         email.setHostName("smtp.gmail.com");
         try {
-            //email.setAuthentication("pig.inc.ns@gmail.com","tanjaindjic");
-            email.setAuthentication("xmlbesp@gmail.com","Operisedolje!");
+            email.setAuthentication("pig.inc.ns@gmail.com","tanjaindjic");
+            //email.setAuthentication("xmlbesp@gmail.com","Operisedolje!");
             email.setSmtpPort(587);
             email.setStartTLSRequired(true);
             email.addTo(k.getEmail(), k.getFirstName() + " " + k.getLastName());

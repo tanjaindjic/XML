@@ -78,21 +78,7 @@ public class StartData {
          //kss.readIssuerFromStore("admin");
          // System.out.println(kss.getCertificates());
 
-         CertificateDTO dto = new CertificateDTO();
-         dto.setCommonName("admin");
-         dto.setId("1");
-         dto.setEmail("admir@admir.com");
-         dto.setGivenName("Admin");
-         dto.setSurname("Admin");
-         dto.setCountry("RS");
-         dto.setIsCa(true);
-         dto.setIssuerName("");
-         dto.setIssuerSerialNumber(null);
-         dto.setOrgName("Pig Inc BOOKING");
-         dto.setOrgNameUnit("Admin Sector");
-         dto.setPIB("");
-         dto.setAdresa("");
-         cs.generateCertificate(dto);
+
          //creating permissions and roles
          Permission readPermission = new Permission("READ", new ArrayList<Authority>());
          Permission writePermission = new Permission("WRITE", new ArrayList<Authority>());
@@ -129,6 +115,25 @@ public class StartData {
          adminAuthority.getUsers().add(k);
          authorityRepository.save(adminAuthority);
          System.out.println("dodao admira");
+
+
+         CertificateDTO dto = new CertificateDTO();
+         dto.setCommonName(k.getUsername());
+         dto.setId(k.getId().toString());
+         dto.setEmail(k.getEmail());
+         dto.setGivenName(k.getFirstName());
+         dto.setSurname(k.getLastName());
+         dto.setCountry("RS");
+         dto.setIsCa(true);
+         dto.setIssuerName("");
+         dto.setIssuerSerialNumber(null);
+         dto.setOrgName("Pig Inc BOOKING");
+         dto.setOrgNameUnit("Admin Sector");
+         dto.setPIB("226883");
+         dto.setAdresa("admirova adresa");
+
+         cs.generateCertificate(dto);
+
         Korisnik k1 =  addUser("test", "test", "Minja", "Car1", "test@gmail.com" , Role.USER);
         Korisnik k2 = addUser("Mirko", "mirko", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
         Korisnik k3 = addUser("Slavko", "slavko", "Slavko", "Slavic", "slavko@gmail.com" , Role.AGENT);

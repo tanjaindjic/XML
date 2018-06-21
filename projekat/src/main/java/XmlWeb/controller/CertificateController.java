@@ -35,10 +35,16 @@ public class CertificateController {
     @Autowired
     private KorisnikService ks;
 
-        @RequestMapping(value="/certificates", method= RequestMethod.GET)
+    @RequestMapping(value="/certificates", method= RequestMethod.GET)
     public List<CertificateDTO> getCertificates(){
             System.out.println(kss.getCertificatesDTO().size());
         return kss.getCertificatesDTO();
+    }
+
+    @RequestMapping(value="/certificates/type/admin", method= RequestMethod.GET)
+    public List<CertificateDTO> getAdminCertificates(){
+        List<CertificateDTO> dtos =  kss.getAdminCertificatesDTO();
+        return dtos;
     }
 
     @RequestMapping(value = "/certificates/check/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN)

@@ -68,6 +68,7 @@ public class AuthenticationRestController {
         Korisnik k = korisnikService.getKorisnik(authenticationRequest.getUsername());
 
         X509Certificate cert = keyStoreService.getCertificate(k.getUsername());
+
         if(cert!=null) {
             Date today = new Date();
             if ((cert.getNotAfter().getTime() - today.getTime()) <= 0){
@@ -80,9 +81,12 @@ public class AuthenticationRestController {
 
         }
 
+
+
                 // Reload password post-security so we can generate the token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails, k.getId());
+
 
         // Return the token
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));

@@ -41,6 +41,11 @@ public class CertificateDTO {
         try {
             X500Name subjName = new JcaX509CertificateHolder((X509Certificate) cert).getSubject();
 
+            RDN ui = subjName.getRDNs(BCStyle.UNIQUE_IDENTIFIER)[0];
+            String uis = IETFUtils.valueToString(ui.getFirst().getValue());
+            this.id = uis;
+
+
             RDN cn = subjName.getRDNs(BCStyle.CN)[0];
             String cname = IETFUtils.valueToString(cn.getFirst().getValue());
             this.commonName = cname;
@@ -75,11 +80,11 @@ public class CertificateDTO {
             
             RDN adresa = subjName.getRDNs(BCStyle.POSTAL_ADDRESS)[0];
             String adresas = IETFUtils.valueToString(uidn.getFirst().getValue());
-            this.uid = adresas;
+            this.adresa = adresas;
             
             RDN pib = subjName.getRDNs(BCStyle.SN)[0];
             String pibs = IETFUtils.valueToString(uidn.getFirst().getValue());
-            this.uid = pibs;
+            this.PIB = pibs;
 
             this.serialNumber = String.valueOf(((X509Certificate) cert).getSerialNumber());
             this.startDate = ((X509Certificate) cert).getNotBefore();

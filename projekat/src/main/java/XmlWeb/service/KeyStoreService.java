@@ -319,5 +319,31 @@ public class KeyStoreService {
         }*/
 
     }
+
+    public List<CertificateDTO> getAdminCertificatesDTO() {
+        List<X509Certificate> certificates = new ArrayList<>();
+
+        try {
+                loadKeyStore(0);
+                Enumeration<String> aliases = keyStore.aliases();
+
+                while (aliases.hasMoreElements()) {
+                    String alias = aliases.nextElement();
+                    certificates.add(getCertificate(alias, 0).get());
+
+                }
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        List<CertificateDTO> certificateDTOS = new ArrayList<>();
+        for (Certificate cert : certificates) {
+            certificateDTOS.add(new CertificateDTO(cert));
+        }
+        System.out.println("Admin certificates size: " + certificateDTOS.size());
+        return certificateDTOS;
+    }
 }
 
