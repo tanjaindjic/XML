@@ -237,6 +237,11 @@ public class    CertificateService {
             System.out.println("Nije nasao cert za revoke :(");
             return false;
         }
+
+        if ( certificate.getBasicConstraints()!=-1) {
+            System.out.println("ne moze revoke admina");
+            return false;
+        }
         X500Name x500name = null;
         try {
             x500name = new JcaX509CertificateHolder(certificate).getSubject();

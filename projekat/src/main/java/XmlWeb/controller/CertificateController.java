@@ -55,12 +55,11 @@ public class CertificateController {
 
     @RequestMapping(value = "/certificates/revokeCert/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN)
     public ResponseEntity<String> revoke(@PathVariable String id) {
-        String respond ;
+        String respond = "failed";
         if(cs.revoke(id)){
             respond = "good";
         }
-        else
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
         return new ResponseEntity<>(respond, HttpStatus.OK);
     }
 
