@@ -1,30 +1,30 @@
 /**
- * DodatneUsluge.java
+ * KategorijaSmestaja.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.wsdl;
+package xmlWeb_smestaj.smestajSoap;
 
-public class DodatneUsluge  implements java.io.Serializable {
+public class KategorijaSmestaja  implements java.io.Serializable {
     private java.lang.Long id;
 
-    private java.lang.String opcija;
+    private java.lang.String kategorija;
 
-    public DodatneUsluge() {
+    public KategorijaSmestaja() {
     }
 
-    public DodatneUsluge(
+    public KategorijaSmestaja(
            java.lang.Long id,
-           java.lang.String opcija) {
+           java.lang.String kategorija) {
            this.id = id;
-           this.opcija = opcija;
+           this.kategorija = kategorija;
     }
 
 
     /**
-     * Gets the id value for this DodatneUsluge.
+     * Gets the id value for this KategorijaSmestaja.
      * 
      * @return id
      */
@@ -34,7 +34,7 @@ public class DodatneUsluge  implements java.io.Serializable {
 
 
     /**
-     * Sets the id value for this DodatneUsluge.
+     * Sets the id value for this KategorijaSmestaja.
      * 
      * @param id
      */
@@ -44,28 +44,28 @@ public class DodatneUsluge  implements java.io.Serializable {
 
 
     /**
-     * Gets the opcija value for this DodatneUsluge.
+     * Gets the kategorija value for this KategorijaSmestaja.
      * 
-     * @return opcija
+     * @return kategorija
      */
-    public java.lang.String getOpcija() {
-        return opcija;
+    public java.lang.String getKategorija() {
+        return kategorija;
     }
 
 
     /**
-     * Sets the opcija value for this DodatneUsluge.
+     * Sets the kategorija value for this KategorijaSmestaja.
      * 
-     * @param opcija
+     * @param kategorija
      */
-    public void setOpcija(java.lang.String opcija) {
-        this.opcija = opcija;
+    public void setKategorija(java.lang.String kategorija) {
+        this.kategorija = kategorija;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof DodatneUsluge)) return false;
-        DodatneUsluge other = (DodatneUsluge) obj;
+        if (!(obj instanceof KategorijaSmestaja)) return false;
+        KategorijaSmestaja other = (KategorijaSmestaja) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -77,9 +77,9 @@ public class DodatneUsluge  implements java.io.Serializable {
             ((this.id==null && other.getId()==null) || 
              (this.id!=null &&
               this.id.equals(other.getId()))) &&
-            ((this.opcija==null && other.getOpcija()==null) || 
-             (this.opcija!=null &&
-              this.opcija.equals(other.getOpcija())));
+            ((this.kategorija==null && other.getKategorija()==null) || 
+             (this.kategorija!=null &&
+              this.kategorija.equals(other.getKategorija())));
         __equalsCalc = null;
         return _equals;
     }
@@ -94,8 +94,8 @@ public class DodatneUsluge  implements java.io.Serializable {
         if (getId() != null) {
             _hashCode += getId().hashCode();
         }
-        if (getOpcija() != null) {
-            _hashCode += getOpcija().hashCode();
+        if (getKategorija() != null) {
+            _hashCode += getKategorija().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -103,10 +103,10 @@ public class DodatneUsluge  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(DodatneUsluge.class, true);
+        new org.apache.axis.description.TypeDesc(KategorijaSmestaja.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "dodatneUsluge"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "kategorijaSmestaja"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");
         elemField.setXmlName(new javax.xml.namespace.QName("", "id"));
@@ -115,8 +115,8 @@ public class DodatneUsluge  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("opcija");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "opcija"));
+        elemField.setFieldName("kategorija");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "kategorija"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

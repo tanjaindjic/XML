@@ -1,12 +1,32 @@
 package XmlWeb.model;
 
-import XmlWeb.model.Enums.DodatneUsluge;
-import XmlWeb.model.Enums.KategorijaSmestaja;
-import XmlWeb.model.Enums.TipSmestaja;
-
-import javax.persistence.*;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Version;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
+
+import XmlWeb.model.Enums.DodatneUsluge;
+import XmlWeb.model.Enums.TipSmestaja;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+
+})
+@XmlRootElement(name = "Smestaj")
 @Entity
 public class Smestaj {
 	
@@ -39,46 +59,57 @@ public class Smestaj {
 		return false;
 	}
 
+	@XmlElement(required = true)
     @Id
     @GeneratedValue
     private Long id;
 
     @Version
     private int version;
-
+    @XmlElement(required = true)
     private String naziv;
-
+    @XmlElement(required = true)
     private String adresa;
-
+    @XmlElement(required = true)
     private String grad;
-
+    @XmlElement(required = true)
     private String drzava;
 
     @Column(length = 2084)
     private String gmapUrl;
-
+    @XmlElement(required = true)
+    @Max(5)
+	@Min(0)
     private Integer zvezdice;
 
+    @XmlElement(required = true)
     @ManyToMany
     private List<DodatneUsluge> dodatneUsluge;
 
+    @XmlElement(required = true)
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Slika> slike;
 
+    @XmlElement(required = true)
     @Column(length = 2084)
     private String opis;
 
+    @XmlElement(required = true)
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Soba> sobe;
 
+    @XmlElement(required = true)
     @ManyToOne
     private TipSmestaja tip;
 
+    @XmlElement(required = true)
     @ManyToOne
     private Korisnik vlasnik;
 
+    @XmlElement(required = false)
     private float rejting;
 
+    @XmlElement(required = false)
     private int brojOcena;
 
     public Smestaj() {

@@ -18,15 +18,7 @@ public class ProjekatApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjekatApplication.class, args);
-		Endpoint.publish("http://localhost:4789/main/java/XmlWeb/soapServices/impl/smestajSoapImpl", new SmestajSoapImpl());
-	/*	AdminService agentService = new AdminServiceLocator();
-		try {
-			AgentWs ad = agentService.getAdminPort();
-			System.out.println("radiiiiiiiiiiiiiiiiiiiiiii");
-		} catch (ServiceException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
+	//	Endpoint.publish("http://localhost:4789/main/java/XmlWeb/soapServices/impl/smestajSoapImpl", new SmestajSoapImpl());
 	}
 	
 	  @SuppressWarnings("deprecation")

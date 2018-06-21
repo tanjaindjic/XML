@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="Smestaj">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="id" type="xs:long"/>
+        <xs:element name="version" type="xs:int"/>
+        <xs:element name="naziv" type="xs:string"/>
+        <xs:element name="adresa" type="xs:string"/>
+        <xs:element name="grad" type="xs:string"/>
+        <xs:element name="drzava" type="xs:string"/>
+        <xs:element name="gmapUrl" type="xs:string" minOccurs="0"/>
+        <xs:element name="zvezdice" type="xs:int"/>
+        <xs:element name="dodatneUsluge" type="dodatneUsluge" maxOccurs="unbounded"/>
+        <xs:element name="slike" type="slika" maxOccurs="unbounded"/>
+        <xs:element name="opis" type="xs:string"/>
+        <xs:element name="sobe" type="soba" maxOccurs="unbounded"/>
+        <xs:element name="tip" type="tipSmestaja"/>
+        <xs:element name="vlasnik" type="korisnik"/>
+        <xs:element name="rejting" type="xs:float"/>
+        <xs:element name="brojOcena" type="xs:int"/>
+      </xs:all>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="dodatneUsluge">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="opcija" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="slika">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="uri" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="soba">
+    <xs:sequence>
+      <xs:element name="brojLezaja" type="xs:int"/>
+      <xs:element name="cena" type="xs:long" minOccurs="0"/>
+      <xs:element name="cene" type="cenovnik" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="iznajmljivanja" type="iznajmljivanje" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="kategorija" type="kategorijaSmestaja" minOccurs="0"/>
+      <xs:element name="opcija" type="dodatneUsluge" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="rezervisano" type="rezervacija" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="cenovnik">
+    <xs:sequence>
+      <xs:element name="cena" type="xs:long" minOccurs="0"/>
+      <xs:element name="datumDo" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="datumOd" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="iznajmljivanje">
+    <xs:sequence>
+      <xs:element name="cena" type="xs:long" minOccurs="0"/>
+      <xs:element name="datumDo" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="datumOd" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="mozePojedinacno" type="xs:boolean" minOccurs="0"/>
+      <xs:element name="soba" type="soba" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="kategorijaSmestaja">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="kategorija" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rezervacija">
+    <xs:sequence>
+      <xs:element name="datumDo" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="datumOd" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="ocena" type="xs:int"/>
+      <xs:element name="ocenio" type="xs:boolean"/>
+      <xs:element name="rezervisao" type="korisnik" minOccurs="0"/>
+      <xs:element name="smestaj" minOccurs="0"/>
+      <xs:element name="soba" type="soba" minOccurs="0"/>
+      <xs:element name="status" type="statusRezevacije" minOccurs="0"/>
+      <xs:element name="version" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="korisnik">
+    <xs:sequence>
+      <xs:element name="adresa" type="xs:string" minOccurs="0"/>
+      <xs:element name="aktiviran" type="xs:boolean"/>
+      <xs:element name="authorities" type="authority" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="confirmationToken" type="xs:string" minOccurs="0"/>
+      <xs:element name="email" type="xs:string" minOccurs="0"/>
+      <xs:element name="firstName" type="xs:string" minOccurs="0"/>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="izdaje" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="lastName" type="xs:string" minOccurs="0"/>
+      <xs:element name="lastPasswordResetDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="PIB" type="xs:string" minOccurs="0"/>
+      <xs:element name="password" type="xs:string" minOccurs="0"/>
+      <xs:element name="rezervacije" type="rezervacija" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="role" type="role" minOccurs="0"/>
+      <xs:element name="statusNaloga" type="statusKorisnika" minOccurs="0"/>
+      <xs:element name="username" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="authority">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="name" type="authorityName" minOccurs="0"/>
+      <xs:element name="permissions" type="permission" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="users" type="korisnik" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="permission">
+    <xs:sequence>
+      <xs:element name="authorityList" type="authority" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="tipSmestaja">
+    <xs:sequence>
+      <xs:element name="id" type="xs:long" minOccurs="0"/>
+      <xs:element name="tip" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="authorityName">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ROLE_USER"/>
+      <xs:enumeration value="ROLE_ADMIN"/>
+      <xs:enumeration value="ROLE_AGENT"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="role">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ADMIN"/>
+      <xs:enumeration value="USER"/>
+      <xs:enumeration value="AGENT"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="statusKorisnika">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AKTIVAN"/>
+      <xs:enumeration value="BLOKIRAN"/>
+      <xs:enumeration value="NEPOTVRDJEN"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="statusRezevacije">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="CONFIRMED"/>
+      <xs:enumeration value="CANCELED"/>
+      <xs:enumeration value="ARRIVED"/>
+      <xs:enumeration value="REJECTED"/>
+      <xs:enumeration value="PENDING"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
+

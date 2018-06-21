@@ -112,8 +112,16 @@
 			<artifactId>commons-email</artifactId>
 			<version>1.5</version>
 		</dependency>
-
-
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+		    <version>3.2.4</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.cxf</groupId>
+		    <artifactId>cxf-rt-ws-security</artifactId>
+		    <version>3.2.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -1,30 +1,30 @@
 /**
- * Slika.java
+ * TipSmestaja.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.wsdl;
+package xmlWeb_smestaj.smestajSoap;
 
-public class Slika  implements java.io.Serializable {
+public class TipSmestaja  implements java.io.Serializable {
     private java.lang.Long id;
 
-    private java.lang.String uri;
+    private java.lang.String tip;
 
-    public Slika() {
+    public TipSmestaja() {
     }
 
-    public Slika(
+    public TipSmestaja(
            java.lang.Long id,
-           java.lang.String uri) {
+           java.lang.String tip) {
            this.id = id;
-           this.uri = uri;
+           this.tip = tip;
     }
 
 
     /**
-     * Gets the id value for this Slika.
+     * Gets the id value for this TipSmestaja.
      * 
      * @return id
      */
@@ -34,7 +34,7 @@ public class Slika  implements java.io.Serializable {
 
 
     /**
-     * Sets the id value for this Slika.
+     * Sets the id value for this TipSmestaja.
      * 
      * @param id
      */
@@ -44,28 +44,28 @@ public class Slika  implements java.io.Serializable {
 
 
     /**
-     * Gets the uri value for this Slika.
+     * Gets the tip value for this TipSmestaja.
      * 
-     * @return uri
+     * @return tip
      */
-    public java.lang.String getUri() {
-        return uri;
+    public java.lang.String getTip() {
+        return tip;
     }
 
 
     /**
-     * Sets the uri value for this Slika.
+     * Sets the tip value for this TipSmestaja.
      * 
-     * @param uri
+     * @param tip
      */
-    public void setUri(java.lang.String uri) {
-        this.uri = uri;
+    public void setTip(java.lang.String tip) {
+        this.tip = tip;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof Slika)) return false;
-        Slika other = (Slika) obj;
+        if (!(obj instanceof TipSmestaja)) return false;
+        TipSmestaja other = (TipSmestaja) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -77,9 +77,9 @@ public class Slika  implements java.io.Serializable {
             ((this.id==null && other.getId()==null) || 
              (this.id!=null &&
               this.id.equals(other.getId()))) &&
-            ((this.uri==null && other.getUri()==null) || 
-             (this.uri!=null &&
-              this.uri.equals(other.getUri())));
+            ((this.tip==null && other.getTip()==null) || 
+             (this.tip!=null &&
+              this.tip.equals(other.getTip())));
         __equalsCalc = null;
         return _equals;
     }
@@ -94,8 +94,8 @@ public class Slika  implements java.io.Serializable {
         if (getId() != null) {
             _hashCode += getId().hashCode();
         }
-        if (getUri() != null) {
-            _hashCode += getUri().hashCode();
+        if (getTip() != null) {
+            _hashCode += getTip().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -103,10 +103,10 @@ public class Slika  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Slika.class, true);
+        new org.apache.axis.description.TypeDesc(TipSmestaja.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "slika"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "tipSmestaja"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");
         elemField.setXmlName(new javax.xml.namespace.QName("", "id"));
@@ -115,8 +115,8 @@ public class Slika  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("uri");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "uri"));
+        elemField.setFieldName("tip");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "tip"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

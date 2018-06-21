@@ -5,25 +5,25 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.wsdl;
+package xmlWeb_smestaj.smestajSoap;
 
 public class Authority  implements java.io.Serializable {
     private java.lang.Long id;
 
-    private xmlWeb_smestaj.wsdl.AuthorityName name;
+    private xmlWeb_smestaj.smestajSoap.AuthorityName name;
 
-    private xmlWeb_smestaj.wsdl.Permission[] permissions;
+    private xmlWeb_smestaj.smestajSoap.Permission[] permissions;
 
-    private xmlWeb_smestaj.wsdl.Korisnik[] users;
+    private xmlWeb_smestaj.smestajSoap.Korisnik[] users;
 
     public Authority() {
     }
 
     public Authority(
            java.lang.Long id,
-           xmlWeb_smestaj.wsdl.AuthorityName name,
-           xmlWeb_smestaj.wsdl.Permission[] permissions,
-           xmlWeb_smestaj.wsdl.Korisnik[] users) {
+           xmlWeb_smestaj.smestajSoap.AuthorityName name,
+           xmlWeb_smestaj.smestajSoap.Permission[] permissions,
+           xmlWeb_smestaj.smestajSoap.Korisnik[] users) {
            this.id = id;
            this.name = name;
            this.permissions = permissions;
@@ -56,7 +56,7 @@ public class Authority  implements java.io.Serializable {
      * 
      * @return name
      */
-    public xmlWeb_smestaj.wsdl.AuthorityName getName() {
+    public xmlWeb_smestaj.smestajSoap.AuthorityName getName() {
         return name;
     }
 
@@ -66,7 +66,7 @@ public class Authority  implements java.io.Serializable {
      * 
      * @param name
      */
-    public void setName(xmlWeb_smestaj.wsdl.AuthorityName name) {
+    public void setName(xmlWeb_smestaj.smestajSoap.AuthorityName name) {
         this.name = name;
     }
 
@@ -76,7 +76,7 @@ public class Authority  implements java.io.Serializable {
      * 
      * @return permissions
      */
-    public xmlWeb_smestaj.wsdl.Permission[] getPermissions() {
+    public xmlWeb_smestaj.smestajSoap.Permission[] getPermissions() {
         return permissions;
     }
 
@@ -86,15 +86,15 @@ public class Authority  implements java.io.Serializable {
      * 
      * @param permissions
      */
-    public void setPermissions(xmlWeb_smestaj.wsdl.Permission[] permissions) {
+    public void setPermissions(xmlWeb_smestaj.smestajSoap.Permission[] permissions) {
         this.permissions = permissions;
     }
 
-    public xmlWeb_smestaj.wsdl.Permission getPermissions(int i) {
+    public xmlWeb_smestaj.smestajSoap.Permission getPermissions(int i) {
         return this.permissions[i];
     }
 
-    public void setPermissions(int i, xmlWeb_smestaj.wsdl.Permission _value) {
+    public void setPermissions(int i, xmlWeb_smestaj.smestajSoap.Permission _value) {
         this.permissions[i] = _value;
     }
 
@@ -104,7 +104,7 @@ public class Authority  implements java.io.Serializable {
      * 
      * @return users
      */
-    public xmlWeb_smestaj.wsdl.Korisnik[] getUsers() {
+    public xmlWeb_smestaj.smestajSoap.Korisnik[] getUsers() {
         return users;
     }
 
@@ -114,15 +114,15 @@ public class Authority  implements java.io.Serializable {
      * 
      * @param users
      */
-    public void setUsers(xmlWeb_smestaj.wsdl.Korisnik[] users) {
+    public void setUsers(xmlWeb_smestaj.smestajSoap.Korisnik[] users) {
         this.users = users;
     }
 
-    public xmlWeb_smestaj.wsdl.Korisnik getUsers(int i) {
+    public xmlWeb_smestaj.smestajSoap.Korisnik getUsers(int i) {
         return this.users[i];
     }
 
-    public void setUsers(int i, xmlWeb_smestaj.wsdl.Korisnik _value) {
+    public void setUsers(int i, xmlWeb_smestaj.smestajSoap.Korisnik _value) {
         this.users[i] = _value;
     }
 
@@ -198,7 +198,7 @@ public class Authority  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(Authority.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "authority"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "authority"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");
         elemField.setXmlName(new javax.xml.namespace.QName("", "id"));
@@ -209,14 +209,14 @@ public class Authority  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("name");
         elemField.setXmlName(new javax.xml.namespace.QName("", "name"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "authorityName"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "authorityName"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("permissions");
         elemField.setXmlName(new javax.xml.namespace.QName("", "permissions"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "permission"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "permission"));
         elemField.setMinOccurs(0);
         elemField.setNillable(true);
         elemField.setMaxOccursUnbounded(true);
@@ -224,7 +224,7 @@ public class Authority  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("users");
         elemField.setXmlName(new javax.xml.namespace.QName("", "users"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "korisnik"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "korisnik"));
         elemField.setMinOccurs(0);
         elemField.setNillable(true);
         elemField.setMaxOccursUnbounded(true);

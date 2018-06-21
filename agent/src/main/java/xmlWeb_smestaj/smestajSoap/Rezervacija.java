@@ -5,7 +5,7 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.wsdl;
+package xmlWeb_smestaj.smestajSoap;
 
 public class Rezervacija  implements java.io.Serializable {
     private java.util.Calendar datumDo;
@@ -18,13 +18,13 @@ public class Rezervacija  implements java.io.Serializable {
 
     private boolean ocenio;
 
-    private xmlWeb_smestaj.wsdl.Korisnik rezervisao;
+    private xmlWeb_smestaj.smestajSoap.Korisnik rezervisao;
 
-    private xmlWeb_smestaj.wsdl.Smestaj smestaj;
+    private java.lang.Object smestaj;
 
-    private xmlWeb_smestaj.wsdl.Soba soba;
+    private xmlWeb_smestaj.smestajSoap.Soba soba;
 
-    private xmlWeb_smestaj.wsdl.StatusRezevacije status;
+    private xmlWeb_smestaj.smestajSoap.StatusRezevacije status;
 
     private int version;
 
@@ -37,10 +37,10 @@ public class Rezervacija  implements java.io.Serializable {
            java.lang.Long id,
            int ocena,
            boolean ocenio,
-           xmlWeb_smestaj.wsdl.Korisnik rezervisao,
-           xmlWeb_smestaj.wsdl.Smestaj smestaj,
-           xmlWeb_smestaj.wsdl.Soba soba,
-           xmlWeb_smestaj.wsdl.StatusRezevacije status,
+           xmlWeb_smestaj.smestajSoap.Korisnik rezervisao,
+           java.lang.Object smestaj,
+           xmlWeb_smestaj.smestajSoap.Soba soba,
+           xmlWeb_smestaj.smestajSoap.StatusRezevacije status,
            int version) {
            this.datumDo = datumDo;
            this.datumOd = datumOd;
@@ -160,7 +160,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @return rezervisao
      */
-    public xmlWeb_smestaj.wsdl.Korisnik getRezervisao() {
+    public xmlWeb_smestaj.smestajSoap.Korisnik getRezervisao() {
         return rezervisao;
     }
 
@@ -170,7 +170,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @param rezervisao
      */
-    public void setRezervisao(xmlWeb_smestaj.wsdl.Korisnik rezervisao) {
+    public void setRezervisao(xmlWeb_smestaj.smestajSoap.Korisnik rezervisao) {
         this.rezervisao = rezervisao;
     }
 
@@ -180,7 +180,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @return smestaj
      */
-    public xmlWeb_smestaj.wsdl.Smestaj getSmestaj() {
+    public java.lang.Object getSmestaj() {
         return smestaj;
     }
 
@@ -190,7 +190,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @param smestaj
      */
-    public void setSmestaj(xmlWeb_smestaj.wsdl.Smestaj smestaj) {
+    public void setSmestaj(java.lang.Object smestaj) {
         this.smestaj = smestaj;
     }
 
@@ -200,7 +200,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @return soba
      */
-    public xmlWeb_smestaj.wsdl.Soba getSoba() {
+    public xmlWeb_smestaj.smestajSoap.Soba getSoba() {
         return soba;
     }
 
@@ -210,7 +210,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @param soba
      */
-    public void setSoba(xmlWeb_smestaj.wsdl.Soba soba) {
+    public void setSoba(xmlWeb_smestaj.smestajSoap.Soba soba) {
         this.soba = soba;
     }
 
@@ -220,7 +220,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @return status
      */
-    public xmlWeb_smestaj.wsdl.StatusRezevacije getStatus() {
+    public xmlWeb_smestaj.smestajSoap.StatusRezevacije getStatus() {
         return status;
     }
 
@@ -230,7 +230,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @param status
      */
-    public void setStatus(xmlWeb_smestaj.wsdl.StatusRezevacije status) {
+    public void setStatus(xmlWeb_smestaj.smestajSoap.StatusRezevacije status) {
         this.status = status;
     }
 
@@ -334,7 +334,7 @@ public class Rezervacija  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(Rezervacija.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "rezervacija"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "rezervacija"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("datumDo");
         elemField.setXmlName(new javax.xml.namespace.QName("", "datumDo"));
@@ -371,28 +371,28 @@ public class Rezervacija  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("rezervisao");
         elemField.setXmlName(new javax.xml.namespace.QName("", "rezervisao"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "korisnik"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "korisnik"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("smestaj");
         elemField.setXmlName(new javax.xml.namespace.QName("", "smestaj"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "smestaj"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "anyType"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("soba");
         elemField.setXmlName(new javax.xml.namespace.QName("", "soba"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "soba"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "soba"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("status");
         elemField.setXmlName(new javax.xml.namespace.QName("", "status"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "statusRezevacije"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "statusRezevacije"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

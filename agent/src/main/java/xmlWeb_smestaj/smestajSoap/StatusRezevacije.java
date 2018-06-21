@@ -1,37 +1,41 @@
 /**
- * Role.java
+ * StatusRezevacije.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.wsdl;
+package xmlWeb_smestaj.smestajSoap;
 
-public class Role implements java.io.Serializable {
+public class StatusRezevacije implements java.io.Serializable {
     private java.lang.String _value_;
     private static java.util.HashMap _table_ = new java.util.HashMap();
 
     // Constructor
-    protected Role(java.lang.String value) {
+    protected StatusRezevacije(java.lang.String value) {
         _value_ = value;
         _table_.put(_value_,this);
     }
 
-    public static final java.lang.String _ADMIN = "ADMIN";
-    public static final java.lang.String _USER = "USER";
-    public static final java.lang.String _AGENT = "AGENT";
-    public static final Role ADMIN = new Role(_ADMIN);
-    public static final Role USER = new Role(_USER);
-    public static final Role AGENT = new Role(_AGENT);
+    public static final java.lang.String _CONFIRMED = "CONFIRMED";
+    public static final java.lang.String _CANCELED = "CANCELED";
+    public static final java.lang.String _ARRIVED = "ARRIVED";
+    public static final java.lang.String _REJECTED = "REJECTED";
+    public static final java.lang.String _PENDING = "PENDING";
+    public static final StatusRezevacije CONFIRMED = new StatusRezevacije(_CONFIRMED);
+    public static final StatusRezevacije CANCELED = new StatusRezevacije(_CANCELED);
+    public static final StatusRezevacije ARRIVED = new StatusRezevacije(_ARRIVED);
+    public static final StatusRezevacije REJECTED = new StatusRezevacije(_REJECTED);
+    public static final StatusRezevacije PENDING = new StatusRezevacije(_PENDING);
     public java.lang.String getValue() { return _value_;}
-    public static Role fromValue(java.lang.String value)
+    public static StatusRezevacije fromValue(java.lang.String value)
           throws java.lang.IllegalArgumentException {
-        Role enumeration = (Role)
+        StatusRezevacije enumeration = (StatusRezevacije)
             _table_.get(value);
         if (enumeration==null) throw new java.lang.IllegalArgumentException();
         return enumeration;
     }
-    public static Role fromString(java.lang.String value)
+    public static StatusRezevacije fromString(java.lang.String value)
           throws java.lang.IllegalArgumentException {
         return fromValue(value);
     }
@@ -57,10 +61,10 @@ public class Role implements java.io.Serializable {
     }
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Role.class);
+        new org.apache.axis.description.TypeDesc(StatusRezevacije.class);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "role"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "statusRezevacije"));
     }
     /**
      * Return type metadata object

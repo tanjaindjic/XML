@@ -5,35 +5,39 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.wsdl;
+package xmlWeb_smestaj.smestajSoap;
 
 public class Soba  implements java.io.Serializable {
     private int brojLezaja;
 
-    private xmlWeb_smestaj.wsdl.Cenovnik[] cene;
+    private java.lang.Long cena;
+
+    private xmlWeb_smestaj.smestajSoap.Cenovnik[] cene;
 
     private java.lang.Long id;
 
-    private xmlWeb_smestaj.wsdl.Iznajmljivanje[] iznajmljivanja;
+    private xmlWeb_smestaj.smestajSoap.Iznajmljivanje[] iznajmljivanja;
 
-    private xmlWeb_smestaj.wsdl.KategorijaSmestaja kategorija;
+    private xmlWeb_smestaj.smestajSoap.KategorijaSmestaja kategorija;
 
-    private xmlWeb_smestaj.wsdl.DodatneUsluge[] opcija;
+    private xmlWeb_smestaj.smestajSoap.DodatneUsluge[] opcija;
 
-    private xmlWeb_smestaj.wsdl.Rezervacija[] rezervisano;
+    private xmlWeb_smestaj.smestajSoap.Rezervacija[] rezervisano;
 
     public Soba() {
     }
 
     public Soba(
            int brojLezaja,
-           xmlWeb_smestaj.wsdl.Cenovnik[] cene,
+           java.lang.Long cena,
+           xmlWeb_smestaj.smestajSoap.Cenovnik[] cene,
            java.lang.Long id,
-           xmlWeb_smestaj.wsdl.Iznajmljivanje[] iznajmljivanja,
-           xmlWeb_smestaj.wsdl.KategorijaSmestaja kategorija,
-           xmlWeb_smestaj.wsdl.DodatneUsluge[] opcija,
-           xmlWeb_smestaj.wsdl.Rezervacija[] rezervisano) {
+           xmlWeb_smestaj.smestajSoap.Iznajmljivanje[] iznajmljivanja,
+           xmlWeb_smestaj.smestajSoap.KategorijaSmestaja kategorija,
+           xmlWeb_smestaj.smestajSoap.DodatneUsluge[] opcija,
+           xmlWeb_smestaj.smestajSoap.Rezervacija[] rezervisano) {
            this.brojLezaja = brojLezaja;
+           this.cena = cena;
            this.cene = cene;
            this.id = id;
            this.iznajmljivanja = iznajmljivanja;
@@ -64,11 +68,31 @@ public class Soba  implements java.io.Serializable {
 
 
     /**
+     * Gets the cena value for this Soba.
+     * 
+     * @return cena
+     */
+    public java.lang.Long getCena() {
+        return cena;
+    }
+
+
+    /**
+     * Sets the cena value for this Soba.
+     * 
+     * @param cena
+     */
+    public void setCena(java.lang.Long cena) {
+        this.cena = cena;
+    }
+
+
+    /**
      * Gets the cene value for this Soba.
      * 
      * @return cene
      */
-    public xmlWeb_smestaj.wsdl.Cenovnik[] getCene() {
+    public xmlWeb_smestaj.smestajSoap.Cenovnik[] getCene() {
         return cene;
     }
 
@@ -78,15 +102,15 @@ public class Soba  implements java.io.Serializable {
      * 
      * @param cene
      */
-    public void setCene(xmlWeb_smestaj.wsdl.Cenovnik[] cene) {
+    public void setCene(xmlWeb_smestaj.smestajSoap.Cenovnik[] cene) {
         this.cene = cene;
     }
 
-    public xmlWeb_smestaj.wsdl.Cenovnik getCene(int i) {
+    public xmlWeb_smestaj.smestajSoap.Cenovnik getCene(int i) {
         return this.cene[i];
     }
 
-    public void setCene(int i, xmlWeb_smestaj.wsdl.Cenovnik _value) {
+    public void setCene(int i, xmlWeb_smestaj.smestajSoap.Cenovnik _value) {
         this.cene[i] = _value;
     }
 
@@ -116,7 +140,7 @@ public class Soba  implements java.io.Serializable {
      * 
      * @return iznajmljivanja
      */
-    public xmlWeb_smestaj.wsdl.Iznajmljivanje[] getIznajmljivanja() {
+    public xmlWeb_smestaj.smestajSoap.Iznajmljivanje[] getIznajmljivanja() {
         return iznajmljivanja;
     }
 
@@ -126,15 +150,15 @@ public class Soba  implements java.io.Serializable {
      * 
      * @param iznajmljivanja
      */
-    public void setIznajmljivanja(xmlWeb_smestaj.wsdl.Iznajmljivanje[] iznajmljivanja) {
+    public void setIznajmljivanja(xmlWeb_smestaj.smestajSoap.Iznajmljivanje[] iznajmljivanja) {
         this.iznajmljivanja = iznajmljivanja;
     }
 
-    public xmlWeb_smestaj.wsdl.Iznajmljivanje getIznajmljivanja(int i) {
+    public xmlWeb_smestaj.smestajSoap.Iznajmljivanje getIznajmljivanja(int i) {
         return this.iznajmljivanja[i];
     }
 
-    public void setIznajmljivanja(int i, xmlWeb_smestaj.wsdl.Iznajmljivanje _value) {
+    public void setIznajmljivanja(int i, xmlWeb_smestaj.smestajSoap.Iznajmljivanje _value) {
         this.iznajmljivanja[i] = _value;
     }
 
@@ -144,7 +168,7 @@ public class Soba  implements java.io.Serializable {
      * 
      * @return kategorija
      */
-    public xmlWeb_smestaj.wsdl.KategorijaSmestaja getKategorija() {
+    public xmlWeb_smestaj.smestajSoap.KategorijaSmestaja getKategorija() {
         return kategorija;
     }
 
@@ -154,7 +178,7 @@ public class Soba  implements java.io.Serializable {
      * 
      * @param kategorija
      */
-    public void setKategorija(xmlWeb_smestaj.wsdl.KategorijaSmestaja kategorija) {
+    public void setKategorija(xmlWeb_smestaj.smestajSoap.KategorijaSmestaja kategorija) {
         this.kategorija = kategorija;
     }
 
@@ -164,7 +188,7 @@ public class Soba  implements java.io.Serializable {
      * 
      * @return opcija
      */
-    public xmlWeb_smestaj.wsdl.DodatneUsluge[] getOpcija() {
+    public xmlWeb_smestaj.smestajSoap.DodatneUsluge[] getOpcija() {
         return opcija;
     }
 
@@ -174,15 +198,15 @@ public class Soba  implements java.io.Serializable {
      * 
      * @param opcija
      */
-    public void setOpcija(xmlWeb_smestaj.wsdl.DodatneUsluge[] opcija) {
+    public void setOpcija(xmlWeb_smestaj.smestajSoap.DodatneUsluge[] opcija) {
         this.opcija = opcija;
     }
 
-    public xmlWeb_smestaj.wsdl.DodatneUsluge getOpcija(int i) {
+    public xmlWeb_smestaj.smestajSoap.DodatneUsluge getOpcija(int i) {
         return this.opcija[i];
     }
 
-    public void setOpcija(int i, xmlWeb_smestaj.wsdl.DodatneUsluge _value) {
+    public void setOpcija(int i, xmlWeb_smestaj.smestajSoap.DodatneUsluge _value) {
         this.opcija[i] = _value;
     }
 
@@ -192,7 +216,7 @@ public class Soba  implements java.io.Serializable {
      * 
      * @return rezervisano
      */
-    public xmlWeb_smestaj.wsdl.Rezervacija[] getRezervisano() {
+    public xmlWeb_smestaj.smestajSoap.Rezervacija[] getRezervisano() {
         return rezervisano;
     }
 
@@ -202,15 +226,15 @@ public class Soba  implements java.io.Serializable {
      * 
      * @param rezervisano
      */
-    public void setRezervisano(xmlWeb_smestaj.wsdl.Rezervacija[] rezervisano) {
+    public void setRezervisano(xmlWeb_smestaj.smestajSoap.Rezervacija[] rezervisano) {
         this.rezervisano = rezervisano;
     }
 
-    public xmlWeb_smestaj.wsdl.Rezervacija getRezervisano(int i) {
+    public xmlWeb_smestaj.smestajSoap.Rezervacija getRezervisano(int i) {
         return this.rezervisano[i];
     }
 
-    public void setRezervisano(int i, xmlWeb_smestaj.wsdl.Rezervacija _value) {
+    public void setRezervisano(int i, xmlWeb_smestaj.smestajSoap.Rezervacija _value) {
         this.rezervisano[i] = _value;
     }
 
@@ -227,6 +251,9 @@ public class Soba  implements java.io.Serializable {
         boolean _equals;
         _equals = true && 
             this.brojLezaja == other.getBrojLezaja() &&
+            ((this.cena==null && other.getCena()==null) || 
+             (this.cena!=null &&
+              this.cena.equals(other.getCena()))) &&
             ((this.cene==null && other.getCene()==null) || 
              (this.cene!=null &&
               java.util.Arrays.equals(this.cene, other.getCene()))) &&
@@ -257,6 +284,9 @@ public class Soba  implements java.io.Serializable {
         __hashCodeCalc = true;
         int _hashCode = 1;
         _hashCode += getBrojLezaja();
+        if (getCena() != null) {
+            _hashCode += getCena().hashCode();
+        }
         if (getCene() != null) {
             for (int i=0;
                  i<java.lang.reflect.Array.getLength(getCene());
@@ -316,7 +346,7 @@ public class Soba  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(Soba.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "soba"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "soba"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("brojLezaja");
         elemField.setXmlName(new javax.xml.namespace.QName("", "brojLezaja"));
@@ -324,9 +354,16 @@ public class Soba  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("cena");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "cena"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("cene");
         elemField.setXmlName(new javax.xml.namespace.QName("", "cene"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "cenovnik"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "cenovnik"));
         elemField.setMinOccurs(0);
         elemField.setNillable(true);
         elemField.setMaxOccursUnbounded(true);
@@ -341,7 +378,7 @@ public class Soba  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("iznajmljivanja");
         elemField.setXmlName(new javax.xml.namespace.QName("", "iznajmljivanja"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "iznajmljivanje"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "iznajmljivanje"));
         elemField.setMinOccurs(0);
         elemField.setNillable(true);
         elemField.setMaxOccursUnbounded(true);
@@ -349,14 +386,14 @@ public class Soba  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("kategorija");
         elemField.setXmlName(new javax.xml.namespace.QName("", "kategorija"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "kategorijaSmestaja"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "kategorijaSmestaja"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("opcija");
         elemField.setXmlName(new javax.xml.namespace.QName("", "opcija"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "dodatneUsluge"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "dodatneUsluge"));
         elemField.setMinOccurs(0);
         elemField.setNillable(true);
         elemField.setMaxOccursUnbounded(true);
@@ -364,7 +401,7 @@ public class Soba  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("rezervisano");
         elemField.setXmlName(new javax.xml.namespace.QName("", "rezervisano"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "rezervacija"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "rezervacija"));
         elemField.setMinOccurs(0);
         elemField.setNillable(true);
         elemField.setMaxOccursUnbounded(true);

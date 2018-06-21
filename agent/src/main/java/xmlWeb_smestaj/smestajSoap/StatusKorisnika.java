@@ -5,7 +5,7 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.wsdl;
+package xmlWeb_smestaj.smestajSoap;
 
 public class StatusKorisnika implements java.io.Serializable {
     private java.lang.String _value_;
@@ -60,7 +60,7 @@ public class StatusKorisnika implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(StatusKorisnika.class);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "statusKorisnika"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "statusKorisnika"));
     }
     /**
      * Return type metadata object

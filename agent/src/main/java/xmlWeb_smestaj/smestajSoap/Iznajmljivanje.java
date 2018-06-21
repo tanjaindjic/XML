@@ -5,7 +5,7 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.wsdl;
+package xmlWeb_smestaj.smestajSoap;
 
 public class Iznajmljivanje  implements java.io.Serializable {
     private java.lang.Long cena;
@@ -18,7 +18,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
 
     private java.lang.Boolean mozePojedinacno;
 
-    private xmlWeb_smestaj.wsdl.Soba soba;
+    private xmlWeb_smestaj.smestajSoap.Soba soba;
 
     public Iznajmljivanje() {
     }
@@ -29,7 +29,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
            java.util.Calendar datumOd,
            java.lang.Long id,
            java.lang.Boolean mozePojedinacno,
-           xmlWeb_smestaj.wsdl.Soba soba) {
+           xmlWeb_smestaj.smestajSoap.Soba soba) {
            this.cena = cena;
            this.datumDo = datumDo;
            this.datumOd = datumOd;
@@ -144,7 +144,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
      * 
      * @return soba
      */
-    public xmlWeb_smestaj.wsdl.Soba getSoba() {
+    public xmlWeb_smestaj.smestajSoap.Soba getSoba() {
         return soba;
     }
 
@@ -154,7 +154,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
      * 
      * @param soba
      */
-    public void setSoba(xmlWeb_smestaj.wsdl.Soba soba) {
+    public void setSoba(xmlWeb_smestaj.smestajSoap.Soba soba) {
         this.soba = soba;
     }
 
@@ -226,7 +226,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(Iznajmljivanje.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "iznajmljivanje"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "iznajmljivanje"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("cena");
         elemField.setXmlName(new javax.xml.namespace.QName("", "cena"));
@@ -265,7 +265,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("soba");
         elemField.setXmlName(new javax.xml.namespace.QName("", "soba"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "soba"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "soba"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

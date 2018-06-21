@@ -5,14 +5,14 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.wsdl;
+package xmlWeb_smestaj.smestajSoap;
 
 public class Korisnik  implements java.io.Serializable {
     private java.lang.String adresa;
 
     private boolean aktiviran;
 
-    private xmlWeb_smestaj.wsdl.Authority[] authorities;
+    private xmlWeb_smestaj.smestajSoap.Authority[] authorities;
 
     private java.lang.String confirmationToken;
 
@@ -22,7 +22,7 @@ public class Korisnik  implements java.io.Serializable {
 
     private java.lang.Long id;
 
-    private xmlWeb_smestaj.wsdl.Smestaj[] izdaje;
+    private java.lang.Object[] izdaje;
 
     private java.lang.String lastName;
 
@@ -32,11 +32,11 @@ public class Korisnik  implements java.io.Serializable {
 
     private java.lang.String password;
 
-    private xmlWeb_smestaj.wsdl.Rezervacija[] rezervacije;
+    private xmlWeb_smestaj.smestajSoap.Rezervacija[] rezervacije;
 
-    private xmlWeb_smestaj.wsdl.Role role;
+    private xmlWeb_smestaj.smestajSoap.Role role;
 
-    private xmlWeb_smestaj.wsdl.StatusKorisnika statusNaloga;
+    private xmlWeb_smestaj.smestajSoap.StatusKorisnika statusNaloga;
 
     private java.lang.String username;
 
@@ -46,19 +46,19 @@ public class Korisnik  implements java.io.Serializable {
     public Korisnik(
            java.lang.String adresa,
            boolean aktiviran,
-           xmlWeb_smestaj.wsdl.Authority[] authorities,
+           xmlWeb_smestaj.smestajSoap.Authority[] authorities,
            java.lang.String confirmationToken,
            java.lang.String email,
            java.lang.String firstName,
            java.lang.Long id,
-           xmlWeb_smestaj.wsdl.Smestaj[] izdaje,
+           java.lang.Object[] izdaje,
            java.lang.String lastName,
            java.util.Calendar lastPasswordResetDate,
            java.lang.String PIB,
            java.lang.String password,
-           xmlWeb_smestaj.wsdl.Rezervacija[] rezervacije,
-           xmlWeb_smestaj.wsdl.Role role,
-           xmlWeb_smestaj.wsdl.StatusKorisnika statusNaloga,
+           xmlWeb_smestaj.smestajSoap.Rezervacija[] rezervacije,
+           xmlWeb_smestaj.smestajSoap.Role role,
+           xmlWeb_smestaj.smestajSoap.StatusKorisnika statusNaloga,
            java.lang.String username) {
            this.adresa = adresa;
            this.aktiviran = aktiviran;
@@ -124,7 +124,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @return authorities
      */
-    public xmlWeb_smestaj.wsdl.Authority[] getAuthorities() {
+    public xmlWeb_smestaj.smestajSoap.Authority[] getAuthorities() {
         return authorities;
     }
 
@@ -134,15 +134,15 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @param authorities
      */
-    public void setAuthorities(xmlWeb_smestaj.wsdl.Authority[] authorities) {
+    public void setAuthorities(xmlWeb_smestaj.smestajSoap.Authority[] authorities) {
         this.authorities = authorities;
     }
 
-    public xmlWeb_smestaj.wsdl.Authority getAuthorities(int i) {
+    public xmlWeb_smestaj.smestajSoap.Authority getAuthorities(int i) {
         return this.authorities[i];
     }
 
-    public void setAuthorities(int i, xmlWeb_smestaj.wsdl.Authority _value) {
+    public void setAuthorities(int i, xmlWeb_smestaj.smestajSoap.Authority _value) {
         this.authorities[i] = _value;
     }
 
@@ -232,7 +232,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @return izdaje
      */
-    public xmlWeb_smestaj.wsdl.Smestaj[] getIzdaje() {
+    public java.lang.Object[] getIzdaje() {
         return izdaje;
     }
 
@@ -242,15 +242,15 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @param izdaje
      */
-    public void setIzdaje(xmlWeb_smestaj.wsdl.Smestaj[] izdaje) {
+    public void setIzdaje(java.lang.Object[] izdaje) {
         this.izdaje = izdaje;
     }
 
-    public xmlWeb_smestaj.wsdl.Smestaj getIzdaje(int i) {
+    public java.lang.Object getIzdaje(int i) {
         return this.izdaje[i];
     }
 
-    public void setIzdaje(int i, xmlWeb_smestaj.wsdl.Smestaj _value) {
+    public void setIzdaje(int i, java.lang.Object _value) {
         this.izdaje[i] = _value;
     }
 
@@ -340,7 +340,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @return rezervacije
      */
-    public xmlWeb_smestaj.wsdl.Rezervacija[] getRezervacije() {
+    public xmlWeb_smestaj.smestajSoap.Rezervacija[] getRezervacije() {
         return rezervacije;
     }
 
@@ -350,15 +350,15 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @param rezervacije
      */
-    public void setRezervacije(xmlWeb_smestaj.wsdl.Rezervacija[] rezervacije) {
+    public void setRezervacije(xmlWeb_smestaj.smestajSoap.Rezervacija[] rezervacije) {
         this.rezervacije = rezervacije;
     }
 
-    public xmlWeb_smestaj.wsdl.Rezervacija getRezervacije(int i) {
+    public xmlWeb_smestaj.smestajSoap.Rezervacija getRezervacije(int i) {
         return this.rezervacije[i];
     }
 
-    public void setRezervacije(int i, xmlWeb_smestaj.wsdl.Rezervacija _value) {
+    public void setRezervacije(int i, xmlWeb_smestaj.smestajSoap.Rezervacija _value) {
         this.rezervacije[i] = _value;
     }
 
@@ -368,7 +368,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @return role
      */
-    public xmlWeb_smestaj.wsdl.Role getRole() {
+    public xmlWeb_smestaj.smestajSoap.Role getRole() {
         return role;
     }
 
@@ -378,7 +378,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @param role
      */
-    public void setRole(xmlWeb_smestaj.wsdl.Role role) {
+    public void setRole(xmlWeb_smestaj.smestajSoap.Role role) {
         this.role = role;
     }
 
@@ -388,7 +388,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @return statusNaloga
      */
-    public xmlWeb_smestaj.wsdl.StatusKorisnika getStatusNaloga() {
+    public xmlWeb_smestaj.smestajSoap.StatusKorisnika getStatusNaloga() {
         return statusNaloga;
     }
 
@@ -398,7 +398,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @param statusNaloga
      */
-    public void setStatusNaloga(xmlWeb_smestaj.wsdl.StatusKorisnika statusNaloga) {
+    public void setStatusNaloga(xmlWeb_smestaj.smestajSoap.StatusKorisnika statusNaloga) {
         this.statusNaloga = statusNaloga;
     }
 
@@ -570,7 +570,7 @@ public class Korisnik  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(Korisnik.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "korisnik"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "korisnik"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("adresa");
         elemField.setXmlName(new javax.xml.namespace.QName("", "adresa"));
@@ -587,7 +587,7 @@ public class Korisnik  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("authorities");
         elemField.setXmlName(new javax.xml.namespace.QName("", "authorities"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "authority"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "authority"));
         elemField.setMinOccurs(0);
         elemField.setNillable(true);
         elemField.setMaxOccursUnbounded(true);
@@ -623,7 +623,7 @@ public class Korisnik  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("izdaje");
         elemField.setXmlName(new javax.xml.namespace.QName("", "izdaje"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "smestaj"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "anyType"));
         elemField.setMinOccurs(0);
         elemField.setNillable(true);
         elemField.setMaxOccursUnbounded(true);
@@ -659,7 +659,7 @@ public class Korisnik  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("rezervacije");
         elemField.setXmlName(new javax.xml.namespace.QName("", "rezervacije"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "rezervacija"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "rezervacija"));
         elemField.setMinOccurs(0);
         elemField.setNillable(true);
         elemField.setMaxOccursUnbounded(true);
@@ -667,14 +667,14 @@ public class Korisnik  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("role");
         elemField.setXmlName(new javax.xml.namespace.QName("", "role"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "role"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "role"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("statusNaloga");
         elemField.setXmlName(new javax.xml.namespace.QName("", "statusNaloga"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "statusKorisnika"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "statusKorisnika"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

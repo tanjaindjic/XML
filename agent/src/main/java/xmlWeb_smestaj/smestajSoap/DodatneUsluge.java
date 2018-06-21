@@ -1,62 +1,30 @@
 /**
- * Permission.java
+ * DodatneUsluge.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.wsdl;
+package xmlWeb_smestaj.smestajSoap;
 
-public class Permission  implements java.io.Serializable {
-    private xmlWeb_smestaj.wsdl.Authority[] authorityList;
-
+public class DodatneUsluge  implements java.io.Serializable {
     private java.lang.Long id;
 
-    private java.lang.String name;
+    private java.lang.String opcija;
 
-    public Permission() {
+    public DodatneUsluge() {
     }
 
-    public Permission(
-           xmlWeb_smestaj.wsdl.Authority[] authorityList,
+    public DodatneUsluge(
            java.lang.Long id,
-           java.lang.String name) {
-           this.authorityList = authorityList;
+           java.lang.String opcija) {
            this.id = id;
-           this.name = name;
+           this.opcija = opcija;
     }
 
 
     /**
-     * Gets the authorityList value for this Permission.
-     * 
-     * @return authorityList
-     */
-    public xmlWeb_smestaj.wsdl.Authority[] getAuthorityList() {
-        return authorityList;
-    }
-
-
-    /**
-     * Sets the authorityList value for this Permission.
-     * 
-     * @param authorityList
-     */
-    public void setAuthorityList(xmlWeb_smestaj.wsdl.Authority[] authorityList) {
-        this.authorityList = authorityList;
-    }
-
-    public xmlWeb_smestaj.wsdl.Authority getAuthorityList(int i) {
-        return this.authorityList[i];
-    }
-
-    public void setAuthorityList(int i, xmlWeb_smestaj.wsdl.Authority _value) {
-        this.authorityList[i] = _value;
-    }
-
-
-    /**
-     * Gets the id value for this Permission.
+     * Gets the id value for this DodatneUsluge.
      * 
      * @return id
      */
@@ -66,7 +34,7 @@ public class Permission  implements java.io.Serializable {
 
 
     /**
-     * Sets the id value for this Permission.
+     * Sets the id value for this DodatneUsluge.
      * 
      * @param id
      */
@@ -76,28 +44,28 @@ public class Permission  implements java.io.Serializable {
 
 
     /**
-     * Gets the name value for this Permission.
+     * Gets the opcija value for this DodatneUsluge.
      * 
-     * @return name
+     * @return opcija
      */
-    public java.lang.String getName() {
-        return name;
+    public java.lang.String getOpcija() {
+        return opcija;
     }
 
 
     /**
-     * Sets the name value for this Permission.
+     * Sets the opcija value for this DodatneUsluge.
      * 
-     * @param name
+     * @param opcija
      */
-    public void setName(java.lang.String name) {
-        this.name = name;
+    public void setOpcija(java.lang.String opcija) {
+        this.opcija = opcija;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof Permission)) return false;
-        Permission other = (Permission) obj;
+        if (!(obj instanceof DodatneUsluge)) return false;
+        DodatneUsluge other = (DodatneUsluge) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -106,15 +74,12 @@ public class Permission  implements java.io.Serializable {
         __equalsCalc = obj;
         boolean _equals;
         _equals = true && 
-            ((this.authorityList==null && other.getAuthorityList()==null) || 
-             (this.authorityList!=null &&
-              java.util.Arrays.equals(this.authorityList, other.getAuthorityList()))) &&
             ((this.id==null && other.getId()==null) || 
              (this.id!=null &&
               this.id.equals(other.getId()))) &&
-            ((this.name==null && other.getName()==null) || 
-             (this.name!=null &&
-              this.name.equals(other.getName())));
+            ((this.opcija==null && other.getOpcija()==null) || 
+             (this.opcija!=null &&
+              this.opcija.equals(other.getOpcija())));
         __equalsCalc = null;
         return _equals;
     }
@@ -126,22 +91,11 @@ public class Permission  implements java.io.Serializable {
         }
         __hashCodeCalc = true;
         int _hashCode = 1;
-        if (getAuthorityList() != null) {
-            for (int i=0;
-                 i<java.lang.reflect.Array.getLength(getAuthorityList());
-                 i++) {
-                java.lang.Object obj = java.lang.reflect.Array.get(getAuthorityList(), i);
-                if (obj != null &&
-                    !obj.getClass().isArray()) {
-                    _hashCode += obj.hashCode();
-                }
-            }
-        }
         if (getId() != null) {
             _hashCode += getId().hashCode();
         }
-        if (getName() != null) {
-            _hashCode += getName().hashCode();
+        if (getOpcija() != null) {
+            _hashCode += getOpcija().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -149,19 +103,11 @@ public class Permission  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Permission.class, true);
+        new org.apache.axis.description.TypeDesc(DodatneUsluge.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "permission"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "dodatneUsluge"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("authorityList");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "authorityList"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "authority"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(true);
-        elemField.setMaxOccursUnbounded(true);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");
         elemField.setXmlName(new javax.xml.namespace.QName("", "id"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
@@ -169,8 +115,8 @@ public class Permission  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("name");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "name"));
+        elemField.setFieldName("opcija");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "opcija"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

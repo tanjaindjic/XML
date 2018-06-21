@@ -5,7 +5,7 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.wsdl;
+package xmlWeb_smestaj.smestajSoap;
 
 public class Cenovnik  implements java.io.Serializable {
     private java.lang.Long cena;
@@ -166,7 +166,7 @@ public class Cenovnik  implements java.io.Serializable {
         new org.apache.axis.description.TypeDesc(Cenovnik.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/wsdl", "cenovnik"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "cenovnik"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("cena");
         elemField.setXmlName(new javax.xml.namespace.QName("", "cena"));
