@@ -40,7 +40,7 @@
 		$scope.getZvezdiceNumber = function(kategorija){
 			//console.log("USO SAM!!!"+kategorija);
 			if(kategorija != undefined){
-				console.log(kategorija.kategorija.charAt(0));
+				//console.log(kategorija.kategorija.charAt(0));
 				return parseInt(kategorija.kategorija.charAt(0));
 			}else{
 				return 0;
@@ -49,6 +49,13 @@
 		
 		$scope.getNumberArray = function(num) {
 		    return new Array(num);   
+		}
+		
+		$scope.getNumberArrayFloat = function(num) {
+			if(num!=null){
+				var intvalue = Math.floor(num);
+			    return new Array(intvalue);   
+			}
 		}
 		
 		$scope.smestajToShowPictureIndex=0;

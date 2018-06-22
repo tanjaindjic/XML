@@ -67,6 +67,8 @@ public class SmestajService {
 		
 		boolean pom = false;
 		for(Smestaj s: temp) {
+			s.setMinCena(Long.MAX_VALUE);
+			s.setMaxCena(0L);
 			ArrayList<Soba> tempSobe = new ArrayList<>();
 			pom = false;
 			System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
@@ -75,6 +77,8 @@ public class SmestajService {
 				if(soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)) {
 					pom = true;
 					tempSobe.add(soba);
+					if(soba.getCena()>s.getMaxCena())s.setMaxCena(soba.getCena());
+					if(soba.getCena()<s.getMinCena())s.setMinCena(soba.getCena());
 				}
 			}
 			System.out.println("Zavrsavam smestaj "+s.getNaziv()+" i bollean je: "+pom);

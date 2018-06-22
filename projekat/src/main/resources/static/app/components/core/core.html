@@ -141,7 +141,10 @@
 				        <span ng-show="smestaj.minCena==smestaj.maxCena">{{smestaj.maxCena}}</span>
 			        </td>
 			        <td>
-				        <span>{{smestaj.kategorija.kategorija}}</span>
+				        <span>
+					        <span ng-repeat="zvezdiceTrack in getNumberArray(getZvezdiceNumber(smestaj.kategorija)) track by $index"><i class="material-icons">star</i></span>
+					        <span ng-repeat="zvezdiceTrack2 in getNumberArray(5-getZvezdiceNumber(smestaj.kategorija)) track by $index"><i class="material-icons">star_border</i></span>
+				        </span>
 			        </td>
 			        <td>
 				        <span>{{smestaj.rejting}}</span>
@@ -218,7 +221,7 @@
 		  </div>
 		  <div class="col-sm-4">
 		  	<h4>User score:</h4>
-		  	<span ng-repeat="zvezdiceTrack in getNumberArray(smestajToShow.rejting) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-smestajToShow.rejting) track by $index"><i class="material-icons">star_border</i></span>
+		  	<span ng-repeat="zvezdiceTrack in getNumberArrayFloat(smestajToShow.rejting) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArrayFloat(6-smestajToShow.rejting) track by $index"><i class="material-icons">star_border</i></span>
 		  
 		  	<table class="table table-hover table-sm">
 		  		<tbody>
