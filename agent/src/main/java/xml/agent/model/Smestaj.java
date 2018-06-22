@@ -1,6 +1,7 @@
 package xml.agent.model;
 
 
+
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,57 +12,168 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+import javax.persistence.Version;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 import xml.agent.model.Enums.DodatneUsluge;
+import xml.agent.model.Enums.KategorijaSmestaja;
 import xml.agent.model.Enums.TipSmestaja;
 
+
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "", propOrder = {
+
+})
+@XmlRootElement(name = "Smestaj")
 @Entity
 public class Smestaj {
+	
+	public boolean validateCategories(List<DodatneUsluge> cats) {
+		if(cats.size()==0) return true;
+		boolean flag = false;
+		int rez = 0;
+		for(DodatneUsluge d:cats) {
+			flag = false;
+			for(DodatneUsluge d1:dodatneUsluge) {
+				if(d.getOpcija().equals(d1.getOpcija())) {
+					flag = true;
+				}
+			}
+			if(flag) rez++;
+		}
+		if(cats.size()==rez) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean validateTypes(List<TipSmestaja> tips) {
+		if(tips.size()==0) return true;
+		for(TipSmestaja t:tips) {
+			if(t.getTip().equals(tip.getTip())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public boolean validateCategory(List<KategorijaSmestaja> tips) {
+		if(tips.size()==0) return true;
+		for(KategorijaSmestaja t:tips) {
+			if(t.getKategorija().equals(kategorija.getKategorija())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Transient
+	private Long minCena;
+	@Transient
+	private Long maxCena;
+	
+	
 
+	public Long getMinCena() {
+		return minCena;
+	}
+
+	public void setMinCena(Long minCena) {
+		this.minCena = minCena;
+	}
+
+	public Long getMaxCena() {
+		return maxCena;
+	}
+
+	public void setMaxCena(Long maxCena) {
+		this.maxCena = maxCena;
+	}
+
+	@XmlElement(required = true)
     @Id
     @GeneratedValue
     private Long id;
 
+    @Version
+    private int version;
+    @XmlElement(required = true)
     private String naziv;
-
+    @XmlElement(required = true)
     private String adresa;
-
+    @XmlElement(required = true)
     private String grad;
-
+    @XmlElement(required = true)
     private String drzava;
 
     @Column(length = 2084)
     private String gmapUrl;
+    /*@XmlElement(required = true)
+    @Max(5)
+	@Min(0)
+    private Integer zvezdice;*/
+    @XmlElement(required = true)
+    @ManyToOne
+    private KategorijaSmestaja kategorija;
 
-    private Integer zvezdice;
-
+    @XmlElement(required = true)
     @ManyToMany
     private List<DodatneUsluge> dodatneUsluge;
 
+    @XmlElement(required = true)
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Slika> slike;
 
+    @XmlElement(required = true)
     @Column(length = 2084)
     private String opis;
 
+    @XmlElement(required = true)
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<Soba> sobe;
 
+    @XmlElement(required = true)
     @ManyToOne
     private TipSmestaja tip;
 
+    @XmlElement(required = true)
     @ManyToOne
     private Korisnik vlasnik;
 
+    @XmlElement(required = false)
     private float rejting;
 
+    @XmlElement(required = false)
     private int brojOcena;
 
-    public Smestaj() {
+    
+    
+    public KategorijaSmestaja getKategorija() {
+		return kategorija;
+	}
+
+	public void setKategorija(KategorijaSmestaja kategorija) {
+		this.kategorija = kategorija;
+	}
+
+	public Smestaj() {
     }
 
     public Long getId() {
         return id;
+    }
+
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
 
     public void setId(Long id) {
@@ -108,13 +220,13 @@ public class Smestaj {
         this.gmapUrl = gmapUrl;
     }
 
-    public Integer getZvezdice() {
+    /*public Integer getZvezdice() {
         return zvezdice;
     }
 
     public void setZvezdice(Integer zvezdice) {
         this.zvezdice = zvezdice;
-    }
+    }*/
 
     public List<DodatneUsluge> getDodatneUsluge() {
         return dodatneUsluge;
@@ -179,6 +291,4 @@ public class Smestaj {
     public void setBrojOcena(int brojOcena) {
         this.brojOcena = brojOcena;
     }
-
-	
 }

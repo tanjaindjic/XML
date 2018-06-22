@@ -1,5 +1,7 @@
 package xml.agent.model;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,9 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import xml.agent.model.Enums.DodatneUsluge;
 import xml.agent.model.Enums.KategorijaSmestaja;
+import xml.agent.model.Enums.StatusRezevacije;
+import xml.agent.repository.RezervacijaRepository;
 
 @Entity
 public class Soba {
@@ -19,8 +27,22 @@ public class Soba {
     @Id
     @GeneratedValue
     private Long id;
+    
+    @Transient
+    private Long cena;
+    
+    
 
-    private int brojLezaja;
+    public Long getCena() {
+		return cena;
+	}
+
+
+	public void setCena(Long cena) {
+		this.cena = cena;
+	}
+
+	private int brojLezaja;
 
     //ovo polje sluzi samo za prikaz dodatnih usluga, pretragu radimo po dodatnim uslugama u smestaju
     @ManyToMany
@@ -36,6 +58,7 @@ public class Soba {
     private List<Iznajmljivanje> iznajmljivanja;
 
     @OneToMany
+    @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
     private List<Rezervacija> rezervisano;
 
     @OneToMany
@@ -107,5 +130,31 @@ public class Soba {
 
     public void setCene(List<Cenovnik> cene) {
         this.cene = cene;
+    }
+    
+    public boolean validateDates(Date pocetak, Date kraj, RezervacijaRepository rezRepo) {
+    	ArrayList<Rezervacija> rezBaz = (ArrayList<Rezervacija>) rezRepo.findBySobaId(id);
+    	//System.out.println("Usao sam u sobu: "+id+"broj rezervacija je: "+rezBaz.size());
+    	for(Rezervacija r:rezBaz) {
+    		//System.out.println("Usao sam u rezervaciju---"+r.getDatumOd()+r.getDatumDo());
+    		if(r.getDatumDo().compareTo(pocetak)>=0&&r.getDatumOd().compareTo(kraj)<=0&&(!r.getStatus().equals(StatusRezevacije.REJECTED))&&(!r.getStatus().equals(StatusRezevacije.CANCELED))) {
+    			//System.out.println("Invalid datum because od RESERVATIONS");
+    			return false;
+    		}
+    	}
+    	
+    	cena = Long.MAX_VALUE;
+    	boolean nasao = false;
+    	for(Iznajmljivanje i:iznajmljivanja) {
+    		//System.out.println("Usao sam u iznajmljivanje---"+i.getDatumOd()+i.getDatumDo());
+    		if((i.getDatumDo().compareTo(kraj)>=0&&i.getDatumOd().compareTo(pocetak)<=0&&i.getMozePojedinacno()==true)||
+    				(i.getDatumDo().compareTo(kraj)==00&&i.getDatumOd().compareTo(pocetak)==0&&i.getMozePojedinacno()==false))
+    		{
+    			nasao = true;
+    			if(i.getCena()<cena) cena = i.getCena();
+    		}
+    	}
+    	//System.out.println("Nasao sam iznajmljivanje i ono je: "+nasao);
+    	return nasao;
     }
 }

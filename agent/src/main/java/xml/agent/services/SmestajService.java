@@ -1,4 +1,4 @@
-package XmlWeb.service;
+package xml.agent.services;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import XmlWeb.dto.SearchDTO;
-import XmlWeb.model.Smestaj;
-import XmlWeb.model.Soba;
-import XmlWeb.repository.RezervacijaRepository;
-import XmlWeb.repository.SmestajRepository;
+import xml.agent.model.Smestaj;
+import xml.agent.model.Soba;
+import xml.agent.repository.RezervacijaRepository;
+import xml.agent.repository.SmestajRepository;
+
+
 
 @Service
 public class SmestajService {
@@ -28,8 +30,8 @@ public class SmestajService {
 	}
 	
 	public Collection<Smestaj> getAllSmestajSimple(SearchDTO ser){
-		System.out.println(ser);
-		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeats(ser.getDestination(), ser.getHowManyPeople(), ser.getGrad(), ser.getDrzava(), ser.getAdressa());
+		//System.out.println(ser);
+		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeats(ser.getDestination(), ser.getHowManyPeople());
 		ArrayList<Smestaj> temp1 = new ArrayList<Smestaj>();
 		
 		boolean pom = false;
@@ -62,7 +64,7 @@ public class SmestajService {
 		System.out.println(ser);
 		ArrayList<Integer> tipovi = (ArrayList<Integer>) ser.getCatss();
 		System.out.println(tipovi);
-		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeats(ser.getDestination(), ser.getHowManyPeople(), ser.getGrad(), ser.getDrzava(), ser.getAdressa());
+		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeatsAndCategory(ser.getDestination(), ser.getHowManyPeople(), tipovi.get(0), tipovi.get(1), tipovi.get(2), tipovi.get(3), tipovi.get(4), tipovi.get(5));
 		ArrayList<Smestaj> temp1 = new ArrayList<Smestaj>();
 		
 		boolean pom = false;

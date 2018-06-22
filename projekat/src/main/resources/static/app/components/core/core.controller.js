@@ -166,7 +166,10 @@
 		
 		$scope.searchResults = null;
 		$scope.searchDTO = {
-				"destination":"smestaj1",
+				"destination":"",
+				"grad":"",
+				"drzava":"",
+				"adressa":"",
 				"from":new Date(2018, 3,3),
 				"to":new Date(2018, 5,5),
 				"howManyPeople":5
@@ -264,7 +267,7 @@
 		
 		$scope.advSearch = function(){
 			if($scope.showAdvancedSearch == false)
-			return "Advanced search";
+			return "Advanced";
 			return "Cancel";
 		}
 		$scope.profile = function(){

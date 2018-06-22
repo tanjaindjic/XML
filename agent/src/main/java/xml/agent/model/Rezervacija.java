@@ -1,6 +1,6 @@
 package xml.agent.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+
 import xml.agent.model.Enums.StatusRezevacije;
 
 
@@ -101,8 +102,8 @@ public class Rezervacija {
         return datumOd;
     }
 
-    public void setDatumOd(Date datumOd) {
-        this.datumOd = datumOd;
+    public void setDatumOd(java.util.Date date) {
+        this.datumOd = date;
     }
 
     public Date getDatumDo() {
