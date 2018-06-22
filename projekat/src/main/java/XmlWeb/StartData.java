@@ -206,7 +206,8 @@ public class StartData {
          sm.setAdresa("Negde daleko");
          sm.setGrad("Class Grad");
          sm.setDrzava("Class Drzava");
-         sm.setZvezdice(3);
+         ArrayList<KategorijaSmestaja> kats = (ArrayList<KategorijaSmestaja>) kategorijaRepository.findAll();
+         sm.setKategorija(kats.get(1));
          sm.setVlasnik(k1);
          
          
@@ -257,7 +258,8 @@ public class StartData {
 		 temp.setAdresa(adresa);
 		 temp.setGrad(grad);
 		 temp.setDrzava(drzava);
-		 temp.setZvezdice(zvezdice);
+		 ArrayList<KategorijaSmestaja> kats = (ArrayList<KategorijaSmestaja>) kategorijaRepository.findAll();
+		 temp.setKategorija(kats.get(zvezdice));
 		 ArrayList<Slika> slike = new ArrayList<>();
          slike.add(new Slika("slika1"));
          slike.add(new Slika("slika2"));

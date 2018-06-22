@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import XmlWeb.model.Enums.DodatneUsluge;
+import XmlWeb.model.Enums.KategorijaSmestaja;
 import XmlWeb.model.Enums.TipSmestaja;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -77,10 +78,13 @@ public class Smestaj {
 
     @Column(length = 2084)
     private String gmapUrl;
-    @XmlElement(required = true)
+    /*@XmlElement(required = true)
     @Max(5)
 	@Min(0)
-    private Integer zvezdice;
+    private Integer zvezdice;*/
+    @XmlElement(required = true)
+    @ManyToOne
+    private KategorijaSmestaja kategorija;
 
     @XmlElement(required = true)
     @ManyToMany
@@ -112,7 +116,17 @@ public class Smestaj {
     @XmlElement(required = false)
     private int brojOcena;
 
-    public Smestaj() {
+    
+    
+    public KategorijaSmestaja getKategorija() {
+		return kategorija;
+	}
+
+	public void setKategorija(KategorijaSmestaja kategorija) {
+		this.kategorija = kategorija;
+	}
+
+	public Smestaj() {
     }
 
     public Long getId() {
@@ -171,13 +185,13 @@ public class Smestaj {
         this.gmapUrl = gmapUrl;
     }
 
-    public Integer getZvezdice() {
+    /*public Integer getZvezdice() {
         return zvezdice;
     }
 
     public void setZvezdice(Integer zvezdice) {
         this.zvezdice = zvezdice;
-    }
+    }*/
 
     public List<DodatneUsluge> getDodatneUsluge() {
         return dodatneUsluge;
