@@ -28,8 +28,8 @@ public class SmestajService {
 	}
 	
 	public Collection<Smestaj> getAllSmestajSimple(SearchDTO ser){
-		//System.out.println(ser);
-		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeats(ser.getDestination(), ser.getHowManyPeople());
+		System.out.println(ser);
+		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeats(ser.getDestination(), ser.getHowManyPeople(), ser.getGrad(), ser.getDrzava(), ser.getAdressa());
 		ArrayList<Smestaj> temp1 = new ArrayList<Smestaj>();
 		
 		boolean pom = false;
@@ -62,7 +62,7 @@ public class SmestajService {
 		System.out.println(ser);
 		ArrayList<Integer> tipovi = (ArrayList<Integer>) ser.getCatss();
 		System.out.println(tipovi);
-		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeatsAndCategory(ser.getDestination(), ser.getHowManyPeople(), tipovi.get(0), tipovi.get(1), tipovi.get(2), tipovi.get(3), tipovi.get(4), tipovi.get(5));
+		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeats(ser.getDestination(), ser.getHowManyPeople(), ser.getGrad(), ser.getDrzava(), ser.getAdressa());
 		ArrayList<Smestaj> temp1 = new ArrayList<Smestaj>();
 		
 		boolean pom = false;

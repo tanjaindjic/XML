@@ -43,13 +43,25 @@ public class SearchDTO {
 	}
 	
 	
+	
+
 	@Override
 	public String toString() {
-		return "SearchDTO [destination=" + destination + ", from=" + from + ", to=" + to + ", howManyPeople="
-				+ howManyPeople + "]";
+		return "SearchDTO [destination=" + destination + ", grad=" + grad + ", drzava=" + drzava + ", adressa="
+				+ adressa + ", from=" + from + ", to=" + to + ", howManyPeople=" + howManyPeople + ", types=" + types
+				+ ", services=" + services + ", cats=" + cats + "]";
 	}
 
+
+
+
 	private String destination;
+	
+	private String grad;
+	
+	private String drzava;
+	
+	private String adressa;
 	
 	private Date from;
 	
@@ -66,6 +78,39 @@ public class SearchDTO {
 	public SearchDTO() {
 		super();
 	}
+	
+	
+	
+
+	public String getAdressa() {
+		return adressa;
+	}
+
+
+	public void setAdressa(String adressa) {
+		this.adressa = adressa;
+	}
+
+
+	public String getGrad() {
+		return grad;
+	}
+
+
+	public void setGrad(String grad) {
+		this.grad = grad;
+	}
+
+
+	public String getDrzava() {
+		return drzava;
+	}
+
+
+	public void setDrzava(String drzava) {
+		this.drzava = drzava;
+	}
+
 
 	public SearchDTO(String destination, Date from, Date to, int howManyPeople, List<TipSmestaja> types,
 			List<DodatneUsluge> services, List<KategorijaSmestaja> cats) {
