@@ -1,30 +1,30 @@
 /**
- * KategorijaSmestaja.java
+ * Slika.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.model;
 
-public class KategorijaSmestaja  implements java.io.Serializable {
+public class Slika  implements java.io.Serializable {
     private java.lang.Long id;
 
-    private java.lang.String kategorija;
+    private java.lang.String uri;
 
-    public KategorijaSmestaja() {
+    public Slika() {
     }
 
-    public KategorijaSmestaja(
+    public Slika(
            java.lang.Long id,
-           java.lang.String kategorija) {
+           java.lang.String uri) {
            this.id = id;
-           this.kategorija = kategorija;
+           this.uri = uri;
     }
 
 
     /**
-     * Gets the id value for this KategorijaSmestaja.
+     * Gets the id value for this Slika.
      * 
      * @return id
      */
@@ -34,7 +34,7 @@ public class KategorijaSmestaja  implements java.io.Serializable {
 
 
     /**
-     * Sets the id value for this KategorijaSmestaja.
+     * Sets the id value for this Slika.
      * 
      * @param id
      */
@@ -44,28 +44,28 @@ public class KategorijaSmestaja  implements java.io.Serializable {
 
 
     /**
-     * Gets the kategorija value for this KategorijaSmestaja.
+     * Gets the uri value for this Slika.
      * 
-     * @return kategorija
+     * @return uri
      */
-    public java.lang.String getKategorija() {
-        return kategorija;
+    public java.lang.String getUri() {
+        return uri;
     }
 
 
     /**
-     * Sets the kategorija value for this KategorijaSmestaja.
+     * Sets the uri value for this Slika.
      * 
-     * @param kategorija
+     * @param uri
      */
-    public void setKategorija(java.lang.String kategorija) {
-        this.kategorija = kategorija;
+    public void setUri(java.lang.String uri) {
+        this.uri = uri;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof KategorijaSmestaja)) return false;
-        KategorijaSmestaja other = (KategorijaSmestaja) obj;
+        if (!(obj instanceof Slika)) return false;
+        Slika other = (Slika) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -77,9 +77,9 @@ public class KategorijaSmestaja  implements java.io.Serializable {
             ((this.id==null && other.getId()==null) || 
              (this.id!=null &&
               this.id.equals(other.getId()))) &&
-            ((this.kategorija==null && other.getKategorija()==null) || 
-             (this.kategorija!=null &&
-              this.kategorija.equals(other.getKategorija())));
+            ((this.uri==null && other.getUri()==null) || 
+             (this.uri!=null &&
+              this.uri.equals(other.getUri())));
         __equalsCalc = null;
         return _equals;
     }
@@ -94,8 +94,8 @@ public class KategorijaSmestaja  implements java.io.Serializable {
         if (getId() != null) {
             _hashCode += getId().hashCode();
         }
-        if (getKategorija() != null) {
-            _hashCode += getKategorija().hashCode();
+        if (getUri() != null) {
+            _hashCode += getUri().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -103,10 +103,10 @@ public class KategorijaSmestaja  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(KategorijaSmestaja.class, true);
+        new org.apache.axis.description.TypeDesc(Slika.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "kategorijaSmestaja"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "slika"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");
         elemField.setXmlName(new javax.xml.namespace.QName("", "id"));
@@ -115,8 +115,8 @@ public class KategorijaSmestaja  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("kategorija");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "kategorija"));
+        elemField.setFieldName("uri");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "uri"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

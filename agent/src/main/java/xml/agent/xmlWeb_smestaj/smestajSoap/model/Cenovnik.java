@@ -1,13 +1,13 @@
 /**
- * Iznajmljivanje.java
+ * Cenovnik.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.model;
 
-public class Iznajmljivanje  implements java.io.Serializable {
+public class Cenovnik  implements java.io.Serializable {
     private java.lang.Long cena;
 
     private java.util.Calendar datumDo;
@@ -16,31 +16,23 @@ public class Iznajmljivanje  implements java.io.Serializable {
 
     private java.lang.Long id;
 
-    private java.lang.Boolean mozePojedinacno;
-
-    private xmlWeb_smestaj.smestajSoap.Soba soba;
-
-    public Iznajmljivanje() {
+    public Cenovnik() {
     }
 
-    public Iznajmljivanje(
+    public Cenovnik(
            java.lang.Long cena,
            java.util.Calendar datumDo,
            java.util.Calendar datumOd,
-           java.lang.Long id,
-           java.lang.Boolean mozePojedinacno,
-           xmlWeb_smestaj.smestajSoap.Soba soba) {
+           java.lang.Long id) {
            this.cena = cena;
            this.datumDo = datumDo;
            this.datumOd = datumOd;
            this.id = id;
-           this.mozePojedinacno = mozePojedinacno;
-           this.soba = soba;
     }
 
 
     /**
-     * Gets the cena value for this Iznajmljivanje.
+     * Gets the cena value for this Cenovnik.
      * 
      * @return cena
      */
@@ -50,7 +42,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
 
 
     /**
-     * Sets the cena value for this Iznajmljivanje.
+     * Sets the cena value for this Cenovnik.
      * 
      * @param cena
      */
@@ -60,7 +52,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
 
 
     /**
-     * Gets the datumDo value for this Iznajmljivanje.
+     * Gets the datumDo value for this Cenovnik.
      * 
      * @return datumDo
      */
@@ -70,7 +62,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
 
 
     /**
-     * Sets the datumDo value for this Iznajmljivanje.
+     * Sets the datumDo value for this Cenovnik.
      * 
      * @param datumDo
      */
@@ -80,7 +72,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
 
 
     /**
-     * Gets the datumOd value for this Iznajmljivanje.
+     * Gets the datumOd value for this Cenovnik.
      * 
      * @return datumOd
      */
@@ -90,7 +82,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
 
 
     /**
-     * Sets the datumOd value for this Iznajmljivanje.
+     * Sets the datumOd value for this Cenovnik.
      * 
      * @param datumOd
      */
@@ -100,7 +92,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
 
 
     /**
-     * Gets the id value for this Iznajmljivanje.
+     * Gets the id value for this Cenovnik.
      * 
      * @return id
      */
@@ -110,7 +102,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
 
 
     /**
-     * Sets the id value for this Iznajmljivanje.
+     * Sets the id value for this Cenovnik.
      * 
      * @param id
      */
@@ -118,50 +110,10 @@ public class Iznajmljivanje  implements java.io.Serializable {
         this.id = id;
     }
 
-
-    /**
-     * Gets the mozePojedinacno value for this Iznajmljivanje.
-     * 
-     * @return mozePojedinacno
-     */
-    public java.lang.Boolean getMozePojedinacno() {
-        return mozePojedinacno;
-    }
-
-
-    /**
-     * Sets the mozePojedinacno value for this Iznajmljivanje.
-     * 
-     * @param mozePojedinacno
-     */
-    public void setMozePojedinacno(java.lang.Boolean mozePojedinacno) {
-        this.mozePojedinacno = mozePojedinacno;
-    }
-
-
-    /**
-     * Gets the soba value for this Iznajmljivanje.
-     * 
-     * @return soba
-     */
-    public xmlWeb_smestaj.smestajSoap.Soba getSoba() {
-        return soba;
-    }
-
-
-    /**
-     * Sets the soba value for this Iznajmljivanje.
-     * 
-     * @param soba
-     */
-    public void setSoba(xmlWeb_smestaj.smestajSoap.Soba soba) {
-        this.soba = soba;
-    }
-
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof Iznajmljivanje)) return false;
-        Iznajmljivanje other = (Iznajmljivanje) obj;
+        if (!(obj instanceof Cenovnik)) return false;
+        Cenovnik other = (Cenovnik) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -181,13 +133,7 @@ public class Iznajmljivanje  implements java.io.Serializable {
               this.datumOd.equals(other.getDatumOd()))) &&
             ((this.id==null && other.getId()==null) || 
              (this.id!=null &&
-              this.id.equals(other.getId()))) &&
-            ((this.mozePojedinacno==null && other.getMozePojedinacno()==null) || 
-             (this.mozePojedinacno!=null &&
-              this.mozePojedinacno.equals(other.getMozePojedinacno()))) &&
-            ((this.soba==null && other.getSoba()==null) || 
-             (this.soba!=null &&
-              this.soba.equals(other.getSoba())));
+              this.id.equals(other.getId())));
         __equalsCalc = null;
         return _equals;
     }
@@ -211,22 +157,16 @@ public class Iznajmljivanje  implements java.io.Serializable {
         if (getId() != null) {
             _hashCode += getId().hashCode();
         }
-        if (getMozePojedinacno() != null) {
-            _hashCode += getMozePojedinacno().hashCode();
-        }
-        if (getSoba() != null) {
-            _hashCode += getSoba().hashCode();
-        }
         __hashCodeCalc = false;
         return _hashCode;
     }
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Iznajmljivanje.class, true);
+        new org.apache.axis.description.TypeDesc(Cenovnik.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "iznajmljivanje"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "cenovnik"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("cena");
         elemField.setXmlName(new javax.xml.namespace.QName("", "cena"));
@@ -252,20 +192,6 @@ public class Iznajmljivanje  implements java.io.Serializable {
         elemField.setFieldName("id");
         elemField.setXmlName(new javax.xml.namespace.QName("", "id"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("mozePojedinacno");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "mozePojedinacno"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
-        elemField.setMinOccurs(0);
-        elemField.setNillable(false);
-        typeDesc.addFieldDesc(elemField);
-        elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("soba");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "soba"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "soba"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

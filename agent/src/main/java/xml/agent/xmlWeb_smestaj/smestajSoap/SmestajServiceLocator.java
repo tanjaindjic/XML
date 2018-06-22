@@ -5,9 +5,14 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap;
 
-public class SmestajServiceLocator extends org.apache.axis.client.Service implements xmlWeb_smestaj.smestajSoap.SmestajService {
+import javax.xml.ws.WebServiceClient;
+
+import org.apache.axis.client.Service;
+
+@WebServiceClient(name = "SmestajServiceLocator", targetNamespace = "https://agent.soap.smestaj", wsdlLocation = "https://localhost:8096/services/smestajService?wsdl")
+public class SmestajServiceLocator extends Service implements SmestajService {
 
     public SmestajServiceLocator() {
     }
@@ -22,7 +27,7 @@ public class SmestajServiceLocator extends org.apache.axis.client.Service implem
     }
 
     // Use to get a proxy class for SmestajPort
-    private java.lang.String SmestajPort_address = "https://localhost:8096/services/smestajService";
+    private java.lang.String SmestajPort_address = "https://localhost:8096/services/smestajService?wsdl";
 
     public java.lang.String getSmestajPortAddress() {
         return SmestajPort_address;
@@ -39,7 +44,7 @@ public class SmestajServiceLocator extends org.apache.axis.client.Service implem
         SmestajPortWSDDServiceName = name;
     }
 
-    public xmlWeb_smestaj.smestajSoap.SmestajSoap getSmestajPort() throws javax.xml.rpc.ServiceException {
+    public SmestajSoap getSmestajPort() throws javax.xml.rpc.ServiceException {
        java.net.URL endpoint;
         try {
             endpoint = new java.net.URL(SmestajPort_address);
@@ -50,9 +55,9 @@ public class SmestajServiceLocator extends org.apache.axis.client.Service implem
         return getSmestajPort(endpoint);
     }
 
-    public xmlWeb_smestaj.smestajSoap.SmestajSoap getSmestajPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
+    public SmestajSoap getSmestajPort(java.net.URL portAddress) throws javax.xml.rpc.ServiceException {
         try {
-            xmlWeb_smestaj.smestajSoap.SmestajServiceSoapBindingStub _stub = new xmlWeb_smestaj.smestajSoap.SmestajServiceSoapBindingStub(portAddress, this);
+            SmestajServiceSoapBindingStub _stub = new SmestajServiceSoapBindingStub(portAddress, this);
             _stub.setPortName(getSmestajPortWSDDServiceName());
             return _stub;
         }
@@ -72,8 +77,8 @@ public class SmestajServiceLocator extends org.apache.axis.client.Service implem
      */
     public java.rmi.Remote getPort(Class serviceEndpointInterface) throws javax.xml.rpc.ServiceException {
         try {
-            if (xmlWeb_smestaj.smestajSoap.SmestajSoap.class.isAssignableFrom(serviceEndpointInterface)) {
-                xmlWeb_smestaj.smestajSoap.SmestajServiceSoapBindingStub _stub = new xmlWeb_smestaj.smestajSoap.SmestajServiceSoapBindingStub(new java.net.URL(SmestajPort_address), this);
+            if (SmestajSoap.class.isAssignableFrom(serviceEndpointInterface)) {
+                SmestajServiceSoapBindingStub _stub = new SmestajServiceSoapBindingStub(new java.net.URL(SmestajPort_address), this);
                 _stub.setPortName(getSmestajPortWSDDServiceName());
                 return _stub;
             }

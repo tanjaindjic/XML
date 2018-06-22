@@ -5,14 +5,16 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.model;
+
+import xml.agent.xmlWeb_smestaj.smestajSoap.security.Authority;
 
 public class Korisnik  implements java.io.Serializable {
     private java.lang.String adresa;
 
     private boolean aktiviran;
 
-    private xmlWeb_smestaj.smestajSoap.Authority[] authorities;
+    private Authority[] authorities;
 
     private java.lang.String confirmationToken;
 
@@ -32,11 +34,11 @@ public class Korisnik  implements java.io.Serializable {
 
     private java.lang.String password;
 
-    private xmlWeb_smestaj.smestajSoap.Rezervacija[] rezervacije;
+    private Rezervacija[] rezervacije;
 
-    private xmlWeb_smestaj.smestajSoap.Role role;
+    private Role role;
 
-    private xmlWeb_smestaj.smestajSoap.StatusKorisnika statusNaloga;
+    private StatusKorisnika statusNaloga;
 
     private java.lang.String username;
 
@@ -46,7 +48,7 @@ public class Korisnik  implements java.io.Serializable {
     public Korisnik(
            java.lang.String adresa,
            boolean aktiviran,
-           xmlWeb_smestaj.smestajSoap.Authority[] authorities,
+           Authority[] authorities,
            java.lang.String confirmationToken,
            java.lang.String email,
            java.lang.String firstName,
@@ -56,9 +58,9 @@ public class Korisnik  implements java.io.Serializable {
            java.util.Calendar lastPasswordResetDate,
            java.lang.String PIB,
            java.lang.String password,
-           xmlWeb_smestaj.smestajSoap.Rezervacija[] rezervacije,
-           xmlWeb_smestaj.smestajSoap.Role role,
-           xmlWeb_smestaj.smestajSoap.StatusKorisnika statusNaloga,
+           Rezervacija[] rezervacije,
+           Role role,
+           StatusKorisnika statusNaloga,
            java.lang.String username) {
            this.adresa = adresa;
            this.aktiviran = aktiviran;
@@ -124,7 +126,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @return authorities
      */
-    public xmlWeb_smestaj.smestajSoap.Authority[] getAuthorities() {
+    public Authority[] getAuthorities() {
         return authorities;
     }
 
@@ -134,15 +136,15 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @param authorities
      */
-    public void setAuthorities(xmlWeb_smestaj.smestajSoap.Authority[] authorities) {
+    public void setAuthorities(Authority[] authorities) {
         this.authorities = authorities;
     }
 
-    public xmlWeb_smestaj.smestajSoap.Authority getAuthorities(int i) {
+    public Authority getAuthorities(int i) {
         return this.authorities[i];
     }
 
-    public void setAuthorities(int i, xmlWeb_smestaj.smestajSoap.Authority _value) {
+    public void setAuthorities(int i, Authority _value) {
         this.authorities[i] = _value;
     }
 
@@ -340,7 +342,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @return rezervacije
      */
-    public xmlWeb_smestaj.smestajSoap.Rezervacija[] getRezervacije() {
+    public Rezervacija[] getRezervacije() {
         return rezervacije;
     }
 
@@ -350,15 +352,15 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @param rezervacije
      */
-    public void setRezervacije(xmlWeb_smestaj.smestajSoap.Rezervacija[] rezervacije) {
+    public void setRezervacije(Rezervacija[] rezervacije) {
         this.rezervacije = rezervacije;
     }
 
-    public xmlWeb_smestaj.smestajSoap.Rezervacija getRezervacije(int i) {
+    public Rezervacija getRezervacije(int i) {
         return this.rezervacije[i];
     }
 
-    public void setRezervacije(int i, xmlWeb_smestaj.smestajSoap.Rezervacija _value) {
+    public void setRezervacije(int i, Rezervacija _value) {
         this.rezervacije[i] = _value;
     }
 
@@ -368,7 +370,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @return role
      */
-    public xmlWeb_smestaj.smestajSoap.Role getRole() {
+    public Role getRole() {
         return role;
     }
 
@@ -378,7 +380,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @param role
      */
-    public void setRole(xmlWeb_smestaj.smestajSoap.Role role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 
@@ -388,7 +390,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @return statusNaloga
      */
-    public xmlWeb_smestaj.smestajSoap.StatusKorisnika getStatusNaloga() {
+    public StatusKorisnika getStatusNaloga() {
         return statusNaloga;
     }
 
@@ -398,7 +400,7 @@ public class Korisnik  implements java.io.Serializable {
      * 
      * @param statusNaloga
      */
-    public void setStatusNaloga(xmlWeb_smestaj.smestajSoap.StatusKorisnika statusNaloga) {
+    public void setStatusNaloga(StatusKorisnika statusNaloga) {
         this.statusNaloga = statusNaloga;
     }
 

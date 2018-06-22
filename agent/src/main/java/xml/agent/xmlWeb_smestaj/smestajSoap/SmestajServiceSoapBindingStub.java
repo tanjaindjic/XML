@@ -5,13 +5,35 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap;
 
-public class SmestajServiceSoapBindingStub extends org.apache.axis.client.Stub implements xmlWeb_smestaj.smestajSoap.SmestajSoap {
-    private java.util.Vector cachedSerClasses = new java.util.Vector();
-    private java.util.Vector cachedSerQNames = new java.util.Vector();
-    private java.util.Vector cachedSerFactories = new java.util.Vector();
-    private java.util.Vector cachedDeserFactories = new java.util.Vector();
+import java.util.Enumeration;
+import java.util.Vector;
+
+import org.apache.axis.client.Stub;
+
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.Cenovnik;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.DodatneUsluge;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.Iznajmljivanje;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.KategorijaSmestaja;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.Korisnik;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.Rezervacija;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.Role;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.Slika;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.Smestaj;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.Soba;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.StatusKorisnika;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.StatusRezevacije;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.TipSmestaja;
+import xml.agent.xmlWeb_smestaj.smestajSoap.security.Authority;
+import xml.agent.xmlWeb_smestaj.smestajSoap.security.AuthorityName;
+import xml.agent.xmlWeb_smestaj.smestajSoap.security.Permission;
+
+public class SmestajServiceSoapBindingStub extends Stub implements SmestajSoap {
+    private Vector cachedSerClasses = new Vector();
+    private Vector cachedSerQNames = new Vector();
+    private Vector cachedSerFactories = new Vector();
+    private Vector cachedDeserFactories = new Vector();
 
     static org.apache.axis.description.OperationDesc [] _operations;
 
@@ -65,42 +87,42 @@ public class SmestajServiceSoapBindingStub extends org.apache.axis.client.Stub i
             java.lang.Class simplelistdf = org.apache.axis.encoding.ser.SimpleListDeserializerFactory.class;
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", ">Smestaj");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.Smestaj.class;
+            cls = Smestaj.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "authority");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.Authority.class;
+            cls = Authority.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "authorityName");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.AuthorityName.class;
+            cls = AuthorityName.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(enumsf);
             cachedDeserFactories.add(enumdf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "cenovnik");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.Cenovnik.class;
+            cls = Cenovnik.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "dodatneUsluge");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.DodatneUsluge.class;
+            cls = DodatneUsluge.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "getSmestajs");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.GetSmestajs.class;
+            cls = GetSmestajs.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -116,77 +138,77 @@ public class SmestajServiceSoapBindingStub extends org.apache.axis.client.Stub i
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "iznajmljivanje");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.Iznajmljivanje.class;
+            cls = Iznajmljivanje.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "kategorijaSmestaja");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.KategorijaSmestaja.class;
+            cls = KategorijaSmestaja.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "korisnik");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.Korisnik.class;
+            cls = Korisnik.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "permission");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.Permission.class;
+            cls = Permission.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "rezervacija");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.Rezervacija.class;
+            cls = Rezervacija.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "role");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.Role.class;
+            cls = Role.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(enumsf);
             cachedDeserFactories.add(enumdf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "slika");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.Slika.class;
+            cls = Slika.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "soba");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.Soba.class;
+            cls = Soba.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "statusKorisnika");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.StatusKorisnika.class;
+            cls = StatusKorisnika.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(enumsf);
             cachedDeserFactories.add(enumdf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "statusRezevacije");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.StatusRezevacije.class;
+            cls = StatusRezevacije.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(enumsf);
             cachedDeserFactories.add(enumdf);
 
             qName = new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "tipSmestaja");
             cachedSerQNames.add(qName);
-            cls = xmlWeb_smestaj.smestajSoap.TipSmestaja.class;
+            cls = TipSmestaja.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -214,7 +236,7 @@ public class SmestajServiceSoapBindingStub extends org.apache.axis.client.Stub i
             if (super.cachedPortName != null) {
                 _call.setPortName(super.cachedPortName);
             }
-            java.util.Enumeration keys = super.cachedProperties.keys();
+            Enumeration keys = super.cachedProperties.keys();
             while (keys.hasMoreElements()) {
                 java.lang.String key = (java.lang.String) keys.nextElement();
                 _call.setProperty(key, super.cachedProperties.get(key));

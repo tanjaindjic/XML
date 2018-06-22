@@ -1,30 +1,30 @@
 /**
- * Slika.java
+ * DodatneUsluge.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.model;
 
-public class Slika  implements java.io.Serializable {
+public class DodatneUsluge  implements java.io.Serializable {
     private java.lang.Long id;
 
-    private java.lang.String uri;
+    private java.lang.String opcija;
 
-    public Slika() {
+    public DodatneUsluge() {
     }
 
-    public Slika(
+    public DodatneUsluge(
            java.lang.Long id,
-           java.lang.String uri) {
+           java.lang.String opcija) {
            this.id = id;
-           this.uri = uri;
+           this.opcija = opcija;
     }
 
 
     /**
-     * Gets the id value for this Slika.
+     * Gets the id value for this DodatneUsluge.
      * 
      * @return id
      */
@@ -34,7 +34,7 @@ public class Slika  implements java.io.Serializable {
 
 
     /**
-     * Sets the id value for this Slika.
+     * Sets the id value for this DodatneUsluge.
      * 
      * @param id
      */
@@ -44,28 +44,28 @@ public class Slika  implements java.io.Serializable {
 
 
     /**
-     * Gets the uri value for this Slika.
+     * Gets the opcija value for this DodatneUsluge.
      * 
-     * @return uri
+     * @return opcija
      */
-    public java.lang.String getUri() {
-        return uri;
+    public java.lang.String getOpcija() {
+        return opcija;
     }
 
 
     /**
-     * Sets the uri value for this Slika.
+     * Sets the opcija value for this DodatneUsluge.
      * 
-     * @param uri
+     * @param opcija
      */
-    public void setUri(java.lang.String uri) {
-        this.uri = uri;
+    public void setOpcija(java.lang.String opcija) {
+        this.opcija = opcija;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof Slika)) return false;
-        Slika other = (Slika) obj;
+        if (!(obj instanceof DodatneUsluge)) return false;
+        DodatneUsluge other = (DodatneUsluge) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -77,9 +77,9 @@ public class Slika  implements java.io.Serializable {
             ((this.id==null && other.getId()==null) || 
              (this.id!=null &&
               this.id.equals(other.getId()))) &&
-            ((this.uri==null && other.getUri()==null) || 
-             (this.uri!=null &&
-              this.uri.equals(other.getUri())));
+            ((this.opcija==null && other.getOpcija()==null) || 
+             (this.opcija!=null &&
+              this.opcija.equals(other.getOpcija())));
         __equalsCalc = null;
         return _equals;
     }
@@ -94,8 +94,8 @@ public class Slika  implements java.io.Serializable {
         if (getId() != null) {
             _hashCode += getId().hashCode();
         }
-        if (getUri() != null) {
-            _hashCode += getUri().hashCode();
+        if (getOpcija() != null) {
+            _hashCode += getOpcija().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -103,10 +103,10 @@ public class Slika  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(Slika.class, true);
+        new org.apache.axis.description.TypeDesc(DodatneUsluge.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "slika"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "dodatneUsluge"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");
         elemField.setXmlName(new javax.xml.namespace.QName("", "id"));
@@ -115,8 +115,8 @@ public class Slika  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("uri");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "uri"));
+        elemField.setFieldName("opcija");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "opcija"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

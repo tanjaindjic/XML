@@ -5,10 +5,10 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.security;
 
 public class Permission  implements java.io.Serializable {
-    private xmlWeb_smestaj.smestajSoap.Authority[] authorityList;
+    private Authority[] authorityList;
 
     private java.lang.Long id;
 
@@ -18,7 +18,7 @@ public class Permission  implements java.io.Serializable {
     }
 
     public Permission(
-           xmlWeb_smestaj.smestajSoap.Authority[] authorityList,
+           Authority[] authorityList,
            java.lang.Long id,
            java.lang.String name) {
            this.authorityList = authorityList;
@@ -32,7 +32,7 @@ public class Permission  implements java.io.Serializable {
      * 
      * @return authorityList
      */
-    public xmlWeb_smestaj.smestajSoap.Authority[] getAuthorityList() {
+    public Authority[] getAuthorityList() {
         return authorityList;
     }
 
@@ -42,15 +42,15 @@ public class Permission  implements java.io.Serializable {
      * 
      * @param authorityList
      */
-    public void setAuthorityList(xmlWeb_smestaj.smestajSoap.Authority[] authorityList) {
+    public void setAuthorityList(Authority[] authorityList) {
         this.authorityList = authorityList;
     }
 
-    public xmlWeb_smestaj.smestajSoap.Authority getAuthorityList(int i) {
+    public Authority getAuthorityList(int i) {
         return this.authorityList[i];
     }
 
-    public void setAuthorityList(int i, xmlWeb_smestaj.smestajSoap.Authority _value) {
+    public void setAuthorityList(int i, Authority _value) {
         this.authorityList[i] = _value;
     }
 

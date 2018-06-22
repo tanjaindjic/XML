@@ -1,30 +1,30 @@
 /**
- * DodatneUsluge.java
+ * TipSmestaja.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.model;
 
-public class DodatneUsluge  implements java.io.Serializable {
+public class TipSmestaja  implements java.io.Serializable {
     private java.lang.Long id;
 
-    private java.lang.String opcija;
+    private java.lang.String tip;
 
-    public DodatneUsluge() {
+    public TipSmestaja() {
     }
 
-    public DodatneUsluge(
+    public TipSmestaja(
            java.lang.Long id,
-           java.lang.String opcija) {
+           java.lang.String tip) {
            this.id = id;
-           this.opcija = opcija;
+           this.tip = tip;
     }
 
 
     /**
-     * Gets the id value for this DodatneUsluge.
+     * Gets the id value for this TipSmestaja.
      * 
      * @return id
      */
@@ -34,7 +34,7 @@ public class DodatneUsluge  implements java.io.Serializable {
 
 
     /**
-     * Sets the id value for this DodatneUsluge.
+     * Sets the id value for this TipSmestaja.
      * 
      * @param id
      */
@@ -44,28 +44,28 @@ public class DodatneUsluge  implements java.io.Serializable {
 
 
     /**
-     * Gets the opcija value for this DodatneUsluge.
+     * Gets the tip value for this TipSmestaja.
      * 
-     * @return opcija
+     * @return tip
      */
-    public java.lang.String getOpcija() {
-        return opcija;
+    public java.lang.String getTip() {
+        return tip;
     }
 
 
     /**
-     * Sets the opcija value for this DodatneUsluge.
+     * Sets the tip value for this TipSmestaja.
      * 
-     * @param opcija
+     * @param tip
      */
-    public void setOpcija(java.lang.String opcija) {
-        this.opcija = opcija;
+    public void setTip(java.lang.String tip) {
+        this.tip = tip;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof DodatneUsluge)) return false;
-        DodatneUsluge other = (DodatneUsluge) obj;
+        if (!(obj instanceof TipSmestaja)) return false;
+        TipSmestaja other = (TipSmestaja) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -77,9 +77,9 @@ public class DodatneUsluge  implements java.io.Serializable {
             ((this.id==null && other.getId()==null) || 
              (this.id!=null &&
               this.id.equals(other.getId()))) &&
-            ((this.opcija==null && other.getOpcija()==null) || 
-             (this.opcija!=null &&
-              this.opcija.equals(other.getOpcija())));
+            ((this.tip==null && other.getTip()==null) || 
+             (this.tip!=null &&
+              this.tip.equals(other.getTip())));
         __equalsCalc = null;
         return _equals;
     }
@@ -94,8 +94,8 @@ public class DodatneUsluge  implements java.io.Serializable {
         if (getId() != null) {
             _hashCode += getId().hashCode();
         }
-        if (getOpcija() != null) {
-            _hashCode += getOpcija().hashCode();
+        if (getTip() != null) {
+            _hashCode += getTip().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -103,10 +103,10 @@ public class DodatneUsluge  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(DodatneUsluge.class, true);
+        new org.apache.axis.description.TypeDesc(TipSmestaja.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "dodatneUsluge"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "tipSmestaja"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");
         elemField.setXmlName(new javax.xml.namespace.QName("", "id"));
@@ -115,8 +115,8 @@ public class DodatneUsluge  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("opcija");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "opcija"));
+        elemField.setFieldName("tip");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "tip"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

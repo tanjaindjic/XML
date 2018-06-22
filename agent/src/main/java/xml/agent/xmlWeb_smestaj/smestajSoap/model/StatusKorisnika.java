@@ -1,37 +1,37 @@
 /**
- * AuthorityName.java
+ * StatusKorisnika.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.model;
 
-public class AuthorityName implements java.io.Serializable {
+public class StatusKorisnika implements java.io.Serializable {
     private java.lang.String _value_;
     private static java.util.HashMap _table_ = new java.util.HashMap();
 
     // Constructor
-    protected AuthorityName(java.lang.String value) {
+    protected StatusKorisnika(java.lang.String value) {
         _value_ = value;
         _table_.put(_value_,this);
     }
 
-    public static final java.lang.String _ROLE_USER = "ROLE_USER";
-    public static final java.lang.String _ROLE_ADMIN = "ROLE_ADMIN";
-    public static final java.lang.String _ROLE_AGENT = "ROLE_AGENT";
-    public static final AuthorityName ROLE_USER = new AuthorityName(_ROLE_USER);
-    public static final AuthorityName ROLE_ADMIN = new AuthorityName(_ROLE_ADMIN);
-    public static final AuthorityName ROLE_AGENT = new AuthorityName(_ROLE_AGENT);
+    public static final java.lang.String _AKTIVAN = "AKTIVAN";
+    public static final java.lang.String _BLOKIRAN = "BLOKIRAN";
+    public static final java.lang.String _NEPOTVRDJEN = "NEPOTVRDJEN";
+    public static final StatusKorisnika AKTIVAN = new StatusKorisnika(_AKTIVAN);
+    public static final StatusKorisnika BLOKIRAN = new StatusKorisnika(_BLOKIRAN);
+    public static final StatusKorisnika NEPOTVRDJEN = new StatusKorisnika(_NEPOTVRDJEN);
     public java.lang.String getValue() { return _value_;}
-    public static AuthorityName fromValue(java.lang.String value)
+    public static StatusKorisnika fromValue(java.lang.String value)
           throws java.lang.IllegalArgumentException {
-        AuthorityName enumeration = (AuthorityName)
+        StatusKorisnika enumeration = (StatusKorisnika)
             _table_.get(value);
         if (enumeration==null) throw new java.lang.IllegalArgumentException();
         return enumeration;
     }
-    public static AuthorityName fromString(java.lang.String value)
+    public static StatusKorisnika fromString(java.lang.String value)
           throws java.lang.IllegalArgumentException {
         return fromValue(value);
     }
@@ -57,10 +57,10 @@ public class AuthorityName implements java.io.Serializable {
     }
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(AuthorityName.class);
+        new org.apache.axis.description.TypeDesc(StatusKorisnika.class);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "authorityName"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "statusKorisnika"));
     }
     /**
      * Return type metadata object

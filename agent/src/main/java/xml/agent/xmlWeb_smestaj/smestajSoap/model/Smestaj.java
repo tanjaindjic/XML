@@ -5,7 +5,8 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.model;
+
 
 public class Smestaj  implements java.io.Serializable {
     private long id;
@@ -24,17 +25,17 @@ public class Smestaj  implements java.io.Serializable {
 
     private int zvezdice;
 
-    private xmlWeb_smestaj.smestajSoap.DodatneUsluge[] dodatneUsluge;
+    private DodatneUsluge[] dodatneUsluge;
 
-    private xmlWeb_smestaj.smestajSoap.Slika[] slike;
+    private Slika[] slike;
 
     private java.lang.String opis;
 
-    private xmlWeb_smestaj.smestajSoap.Soba[] sobe;
+    private Soba[] sobe;
 
-    private xmlWeb_smestaj.smestajSoap.TipSmestaja tip;
+    private TipSmestaja tip;
 
-    private xmlWeb_smestaj.smestajSoap.Korisnik vlasnik;
+    private Korisnik vlasnik;
 
     private float rejting;
 
@@ -52,12 +53,12 @@ public class Smestaj  implements java.io.Serializable {
            java.lang.String drzava,
            java.lang.String gmapUrl,
            int zvezdice,
-           xmlWeb_smestaj.smestajSoap.DodatneUsluge[] dodatneUsluge,
-           xmlWeb_smestaj.smestajSoap.Slika[] slike,
+           DodatneUsluge[] dodatneUsluge,
+           Slika[] slike,
            java.lang.String opis,
-           xmlWeb_smestaj.smestajSoap.Soba[] sobe,
-           xmlWeb_smestaj.smestajSoap.TipSmestaja tip,
-           xmlWeb_smestaj.smestajSoap.Korisnik vlasnik,
+           Soba[] sobe,
+           TipSmestaja tip,
+           Korisnik vlasnik,
            float rejting,
            int brojOcena) {
            this.id = id;
@@ -244,7 +245,7 @@ public class Smestaj  implements java.io.Serializable {
      * 
      * @return dodatneUsluge
      */
-    public xmlWeb_smestaj.smestajSoap.DodatneUsluge[] getDodatneUsluge() {
+    public DodatneUsluge[] getDodatneUsluge() {
         return dodatneUsluge;
     }
 
@@ -254,15 +255,15 @@ public class Smestaj  implements java.io.Serializable {
      * 
      * @param dodatneUsluge
      */
-    public void setDodatneUsluge(xmlWeb_smestaj.smestajSoap.DodatneUsluge[] dodatneUsluge) {
+    public void setDodatneUsluge(DodatneUsluge[] dodatneUsluge) {
         this.dodatneUsluge = dodatneUsluge;
     }
 
-    public xmlWeb_smestaj.smestajSoap.DodatneUsluge getDodatneUsluge(int i) {
+    public DodatneUsluge getDodatneUsluge(int i) {
         return this.dodatneUsluge[i];
     }
 
-    public void setDodatneUsluge(int i, xmlWeb_smestaj.smestajSoap.DodatneUsluge _value) {
+    public void setDodatneUsluge(int i, DodatneUsluge _value) {
         this.dodatneUsluge[i] = _value;
     }
 
@@ -272,7 +273,7 @@ public class Smestaj  implements java.io.Serializable {
      * 
      * @return slike
      */
-    public xmlWeb_smestaj.smestajSoap.Slika[] getSlike() {
+    public Slika[] getSlike() {
         return slike;
     }
 
@@ -282,15 +283,15 @@ public class Smestaj  implements java.io.Serializable {
      * 
      * @param slike
      */
-    public void setSlike(xmlWeb_smestaj.smestajSoap.Slika[] slike) {
+    public void setSlike(Slika[] slike) {
         this.slike = slike;
     }
 
-    public xmlWeb_smestaj.smestajSoap.Slika getSlike(int i) {
+    public Slika getSlike(int i) {
         return this.slike[i];
     }
 
-    public void setSlike(int i, xmlWeb_smestaj.smestajSoap.Slika _value) {
+    public void setSlike(int i, Slika _value) {
         this.slike[i] = _value;
     }
 
@@ -320,7 +321,7 @@ public class Smestaj  implements java.io.Serializable {
      * 
      * @return sobe
      */
-    public xmlWeb_smestaj.smestajSoap.Soba[] getSobe() {
+    public Soba[] getSobe() {
         return sobe;
     }
 
@@ -330,15 +331,15 @@ public class Smestaj  implements java.io.Serializable {
      * 
      * @param sobe
      */
-    public void setSobe(xmlWeb_smestaj.smestajSoap.Soba[] sobe) {
+    public void setSobe(Soba[] sobe) {
         this.sobe = sobe;
     }
 
-    public xmlWeb_smestaj.smestajSoap.Soba getSobe(int i) {
+    public Soba getSobe(int i) {
         return this.sobe[i];
     }
 
-    public void setSobe(int i, xmlWeb_smestaj.smestajSoap.Soba _value) {
+    public void setSobe(int i, Soba _value) {
         this.sobe[i] = _value;
     }
 
@@ -348,7 +349,7 @@ public class Smestaj  implements java.io.Serializable {
      * 
      * @return tip
      */
-    public xmlWeb_smestaj.smestajSoap.TipSmestaja getTip() {
+    public TipSmestaja getTip() {
         return tip;
     }
 
@@ -358,7 +359,7 @@ public class Smestaj  implements java.io.Serializable {
      * 
      * @param tip
      */
-    public void setTip(xmlWeb_smestaj.smestajSoap.TipSmestaja tip) {
+    public void setTip(TipSmestaja tip) {
         this.tip = tip;
     }
 
@@ -368,7 +369,7 @@ public class Smestaj  implements java.io.Serializable {
      * 
      * @return vlasnik
      */
-    public xmlWeb_smestaj.smestajSoap.Korisnik getVlasnik() {
+    public Korisnik getVlasnik() {
         return vlasnik;
     }
 
@@ -378,7 +379,7 @@ public class Smestaj  implements java.io.Serializable {
      * 
      * @param vlasnik
      */
-    public void setVlasnik(xmlWeb_smestaj.smestajSoap.Korisnik vlasnik) {
+    public void setVlasnik(Korisnik vlasnik) {
         this.vlasnik = vlasnik;
     }
 

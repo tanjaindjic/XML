@@ -5,12 +5,15 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.model;
+
+import java.util.Calendar;
+
 
 public class Rezervacija  implements java.io.Serializable {
-    private java.util.Calendar datumDo;
+    private Calendar datumDo;
 
-    private java.util.Calendar datumOd;
+    private Calendar datumOd;
 
     private java.lang.Long id;
 
@@ -18,13 +21,13 @@ public class Rezervacija  implements java.io.Serializable {
 
     private boolean ocenio;
 
-    private xmlWeb_smestaj.smestajSoap.Korisnik rezervisao;
+    private Korisnik rezervisao;
 
     private java.lang.Object smestaj;
 
-    private xmlWeb_smestaj.smestajSoap.Soba soba;
+    private Soba soba;
 
-    private xmlWeb_smestaj.smestajSoap.StatusRezevacije status;
+    private StatusRezevacije status;
 
     private int version;
 
@@ -32,15 +35,15 @@ public class Rezervacija  implements java.io.Serializable {
     }
 
     public Rezervacija(
-           java.util.Calendar datumDo,
-           java.util.Calendar datumOd,
+           Calendar datumDo,
+           Calendar datumOd,
            java.lang.Long id,
            int ocena,
            boolean ocenio,
-           xmlWeb_smestaj.smestajSoap.Korisnik rezervisao,
+           Korisnik rezervisao,
            java.lang.Object smestaj,
-           xmlWeb_smestaj.smestajSoap.Soba soba,
-           xmlWeb_smestaj.smestajSoap.StatusRezevacije status,
+           Soba soba,
+           StatusRezevacije status,
            int version) {
            this.datumDo = datumDo;
            this.datumOd = datumOd;
@@ -60,7 +63,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @return datumDo
      */
-    public java.util.Calendar getDatumDo() {
+    public Calendar getDatumDo() {
         return datumDo;
     }
 
@@ -70,7 +73,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @param datumDo
      */
-    public void setDatumDo(java.util.Calendar datumDo) {
+    public void setDatumDo(Calendar datumDo) {
         this.datumDo = datumDo;
     }
 
@@ -80,7 +83,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @return datumOd
      */
-    public java.util.Calendar getDatumOd() {
+    public Calendar getDatumOd() {
         return datumOd;
     }
 
@@ -90,7 +93,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @param datumOd
      */
-    public void setDatumOd(java.util.Calendar datumOd) {
+    public void setDatumOd(Calendar datumOd) {
         this.datumOd = datumOd;
     }
 
@@ -160,7 +163,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @return rezervisao
      */
-    public xmlWeb_smestaj.smestajSoap.Korisnik getRezervisao() {
+    public Korisnik getRezervisao() {
         return rezervisao;
     }
 
@@ -170,7 +173,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @param rezervisao
      */
-    public void setRezervisao(xmlWeb_smestaj.smestajSoap.Korisnik rezervisao) {
+    public void setRezervisao(Korisnik rezervisao) {
         this.rezervisao = rezervisao;
     }
 
@@ -200,7 +203,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @return soba
      */
-    public xmlWeb_smestaj.smestajSoap.Soba getSoba() {
+    public Soba getSoba() {
         return soba;
     }
 
@@ -210,7 +213,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @param soba
      */
-    public void setSoba(xmlWeb_smestaj.smestajSoap.Soba soba) {
+    public void setSoba(Soba soba) {
         this.soba = soba;
     }
 
@@ -220,7 +223,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @return status
      */
-    public xmlWeb_smestaj.smestajSoap.StatusRezevacije getStatus() {
+    public StatusRezevacije getStatus() {
         return status;
     }
 
@@ -230,7 +233,7 @@ public class Rezervacija  implements java.io.Serializable {
      * 
      * @param status
      */
-    public void setStatus(xmlWeb_smestaj.smestajSoap.StatusRezevacije status) {
+    public void setStatus(StatusRezevacije status) {
         this.status = status;
     }
 

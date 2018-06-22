@@ -1,5 +1,6 @@
 package xml.agent.controller;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -29,6 +29,8 @@ import xml.agent.security.JwtAuthenticationResponse;
 import xml.agent.security.JwtTokenUtil;
 import xml.agent.security.JwtUser;
 import xml.agent.services.KorisnikService;
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.Smestaj;
+import xml.agent.xmlWeb_smestaj.smestajSoap.ostoja.ServiceSoapLocal;
 
 @RestController
 public class AuthenticationRestController {
@@ -49,12 +51,16 @@ public class AuthenticationRestController {
 
     @Autowired
     private KorisnikService korisnikService;
+    
+    @Autowired
+    private ServiceSoapLocal smestajServiceL;
 
    // @CrossOrigin(origins = "https://localhost:8090")
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
-
-        authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
+    	List<Smestaj> smestaji = smestajServiceL.getSmestajs();
+    	System.out.println("smestajiiiiiiiiiiiiiiiiiiii");
+    	authenticate(authenticationRequest.getUsername(), authenticationRequest.getPassword());
         Korisnik k = korisnikService.getKorisnik(authenticationRequest.getUsername());
         // Reload password post-security so we can generate the token
         final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());

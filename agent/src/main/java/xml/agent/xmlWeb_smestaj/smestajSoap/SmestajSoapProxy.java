@@ -1,8 +1,8 @@
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap;
 
-public class SmestajSoapProxy implements xmlWeb_smestaj.smestajSoap.SmestajSoap {
+public class SmestajSoapProxy implements SmestajSoap {
   private String _endpoint = null;
-  private xmlWeb_smestaj.smestajSoap.SmestajSoap smestajSoap = null;
+  private SmestajSoap smestajSoap = null;
   
   public SmestajSoapProxy() {
     _initSmestajSoapProxy();
@@ -15,7 +15,7 @@ public class SmestajSoapProxy implements xmlWeb_smestaj.smestajSoap.SmestajSoap 
   
   private void _initSmestajSoapProxy() {
     try {
-      smestajSoap = (new xmlWeb_smestaj.smestajSoap.SmestajServiceLocator()).getSmestajPort();
+      smestajSoap = (new SmestajServiceLocator()).getSmestajPort();
       if (smestajSoap != null) {
         if (_endpoint != null)
           ((javax.xml.rpc.Stub)smestajSoap)._setProperty("javax.xml.rpc.service.endpoint.address", _endpoint);
@@ -38,7 +38,7 @@ public class SmestajSoapProxy implements xmlWeb_smestaj.smestajSoap.SmestajSoap 
     
   }
   
-  public xmlWeb_smestaj.smestajSoap.SmestajSoap getSmestajSoap() {
+  public SmestajSoap getSmestajSoap() {
     if (smestajSoap == null)
       _initSmestajSoapProxy();
     return smestajSoap;

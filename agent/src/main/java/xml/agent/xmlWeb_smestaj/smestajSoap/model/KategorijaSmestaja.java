@@ -1,30 +1,30 @@
 /**
- * TipSmestaja.java
+ * KategorijaSmestaja.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.model;
 
-public class TipSmestaja  implements java.io.Serializable {
+public class KategorijaSmestaja  implements java.io.Serializable {
     private java.lang.Long id;
 
-    private java.lang.String tip;
+    private java.lang.String kategorija;
 
-    public TipSmestaja() {
+    public KategorijaSmestaja() {
     }
 
-    public TipSmestaja(
+    public KategorijaSmestaja(
            java.lang.Long id,
-           java.lang.String tip) {
+           java.lang.String kategorija) {
            this.id = id;
-           this.tip = tip;
+           this.kategorija = kategorija;
     }
 
 
     /**
-     * Gets the id value for this TipSmestaja.
+     * Gets the id value for this KategorijaSmestaja.
      * 
      * @return id
      */
@@ -34,7 +34,7 @@ public class TipSmestaja  implements java.io.Serializable {
 
 
     /**
-     * Sets the id value for this TipSmestaja.
+     * Sets the id value for this KategorijaSmestaja.
      * 
      * @param id
      */
@@ -44,28 +44,28 @@ public class TipSmestaja  implements java.io.Serializable {
 
 
     /**
-     * Gets the tip value for this TipSmestaja.
+     * Gets the kategorija value for this KategorijaSmestaja.
      * 
-     * @return tip
+     * @return kategorija
      */
-    public java.lang.String getTip() {
-        return tip;
+    public java.lang.String getKategorija() {
+        return kategorija;
     }
 
 
     /**
-     * Sets the tip value for this TipSmestaja.
+     * Sets the kategorija value for this KategorijaSmestaja.
      * 
-     * @param tip
+     * @param kategorija
      */
-    public void setTip(java.lang.String tip) {
-        this.tip = tip;
+    public void setKategorija(java.lang.String kategorija) {
+        this.kategorija = kategorija;
     }
 
     private java.lang.Object __equalsCalc = null;
     public synchronized boolean equals(java.lang.Object obj) {
-        if (!(obj instanceof TipSmestaja)) return false;
-        TipSmestaja other = (TipSmestaja) obj;
+        if (!(obj instanceof KategorijaSmestaja)) return false;
+        KategorijaSmestaja other = (KategorijaSmestaja) obj;
         if (obj == null) return false;
         if (this == obj) return true;
         if (__equalsCalc != null) {
@@ -77,9 +77,9 @@ public class TipSmestaja  implements java.io.Serializable {
             ((this.id==null && other.getId()==null) || 
              (this.id!=null &&
               this.id.equals(other.getId()))) &&
-            ((this.tip==null && other.getTip()==null) || 
-             (this.tip!=null &&
-              this.tip.equals(other.getTip())));
+            ((this.kategorija==null && other.getKategorija()==null) || 
+             (this.kategorija!=null &&
+              this.kategorija.equals(other.getKategorija())));
         __equalsCalc = null;
         return _equals;
     }
@@ -94,8 +94,8 @@ public class TipSmestaja  implements java.io.Serializable {
         if (getId() != null) {
             _hashCode += getId().hashCode();
         }
-        if (getTip() != null) {
-            _hashCode += getTip().hashCode();
+        if (getKategorija() != null) {
+            _hashCode += getKategorija().hashCode();
         }
         __hashCodeCalc = false;
         return _hashCode;
@@ -103,10 +103,10 @@ public class TipSmestaja  implements java.io.Serializable {
 
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(TipSmestaja.class, true);
+        new org.apache.axis.description.TypeDesc(KategorijaSmestaja.class, true);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "tipSmestaja"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "kategorijaSmestaja"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");
         elemField.setXmlName(new javax.xml.namespace.QName("", "id"));
@@ -115,8 +115,8 @@ public class TipSmestaja  implements java.io.Serializable {
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
-        elemField.setFieldName("tip");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "tip"));
+        elemField.setFieldName("kategorija");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "kategorija"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

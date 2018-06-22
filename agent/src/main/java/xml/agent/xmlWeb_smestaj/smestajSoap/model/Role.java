@@ -1,37 +1,37 @@
 /**
- * StatusKorisnika.java
+ * Role.java
  *
  * This file was auto-generated from WSDL
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.model;
 
-public class StatusKorisnika implements java.io.Serializable {
+public class Role implements java.io.Serializable {
     private java.lang.String _value_;
     private static java.util.HashMap _table_ = new java.util.HashMap();
 
     // Constructor
-    protected StatusKorisnika(java.lang.String value) {
+    protected Role(java.lang.String value) {
         _value_ = value;
         _table_.put(_value_,this);
     }
 
-    public static final java.lang.String _AKTIVAN = "AKTIVAN";
-    public static final java.lang.String _BLOKIRAN = "BLOKIRAN";
-    public static final java.lang.String _NEPOTVRDJEN = "NEPOTVRDJEN";
-    public static final StatusKorisnika AKTIVAN = new StatusKorisnika(_AKTIVAN);
-    public static final StatusKorisnika BLOKIRAN = new StatusKorisnika(_BLOKIRAN);
-    public static final StatusKorisnika NEPOTVRDJEN = new StatusKorisnika(_NEPOTVRDJEN);
+    public static final java.lang.String _ADMIN = "ADMIN";
+    public static final java.lang.String _USER = "USER";
+    public static final java.lang.String _AGENT = "AGENT";
+    public static final Role ADMIN = new Role(_ADMIN);
+    public static final Role USER = new Role(_USER);
+    public static final Role AGENT = new Role(_AGENT);
     public java.lang.String getValue() { return _value_;}
-    public static StatusKorisnika fromValue(java.lang.String value)
+    public static Role fromValue(java.lang.String value)
           throws java.lang.IllegalArgumentException {
-        StatusKorisnika enumeration = (StatusKorisnika)
+        Role enumeration = (Role)
             _table_.get(value);
         if (enumeration==null) throw new java.lang.IllegalArgumentException();
         return enumeration;
     }
-    public static StatusKorisnika fromString(java.lang.String value)
+    public static Role fromString(java.lang.String value)
           throws java.lang.IllegalArgumentException {
         return fromValue(value);
     }
@@ -57,10 +57,10 @@ public class StatusKorisnika implements java.io.Serializable {
     }
     // Type metadata
     private static org.apache.axis.description.TypeDesc typeDesc =
-        new org.apache.axis.description.TypeDesc(StatusKorisnika.class);
+        new org.apache.axis.description.TypeDesc(Role.class);
 
     static {
-        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "statusKorisnika"));
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://xmlWeb-smestaj/smestajSoap", "role"));
     }
     /**
      * Return type metadata object

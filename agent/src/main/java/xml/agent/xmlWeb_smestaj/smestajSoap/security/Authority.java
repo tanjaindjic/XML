@@ -5,25 +5,28 @@
  * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
  */
 
-package xmlWeb_smestaj.smestajSoap;
+package xml.agent.xmlWeb_smestaj.smestajSoap.security;
+
+import xml.agent.xmlWeb_smestaj.smestajSoap.model.Korisnik;
+
 
 public class Authority  implements java.io.Serializable {
     private java.lang.Long id;
 
-    private xmlWeb_smestaj.smestajSoap.AuthorityName name;
+    private AuthorityName name;
 
-    private xmlWeb_smestaj.smestajSoap.Permission[] permissions;
+    private Permission[] permissions;
 
-    private xmlWeb_smestaj.smestajSoap.Korisnik[] users;
+    private Korisnik[] users;
 
     public Authority() {
     }
 
     public Authority(
            java.lang.Long id,
-           xmlWeb_smestaj.smestajSoap.AuthorityName name,
-           xmlWeb_smestaj.smestajSoap.Permission[] permissions,
-           xmlWeb_smestaj.smestajSoap.Korisnik[] users) {
+           AuthorityName name,
+           Permission[] permissions,
+           Korisnik[] users) {
            this.id = id;
            this.name = name;
            this.permissions = permissions;
@@ -56,7 +59,7 @@ public class Authority  implements java.io.Serializable {
      * 
      * @return name
      */
-    public xmlWeb_smestaj.smestajSoap.AuthorityName getName() {
+    public AuthorityName getName() {
         return name;
     }
 
@@ -66,7 +69,7 @@ public class Authority  implements java.io.Serializable {
      * 
      * @param name
      */
-    public void setName(xmlWeb_smestaj.smestajSoap.AuthorityName name) {
+    public void setName(AuthorityName name) {
         this.name = name;
     }
 
@@ -76,7 +79,7 @@ public class Authority  implements java.io.Serializable {
      * 
      * @return permissions
      */
-    public xmlWeb_smestaj.smestajSoap.Permission[] getPermissions() {
+    public Permission[] getPermissions() {
         return permissions;
     }
 
@@ -86,15 +89,15 @@ public class Authority  implements java.io.Serializable {
      * 
      * @param permissions
      */
-    public void setPermissions(xmlWeb_smestaj.smestajSoap.Permission[] permissions) {
+    public void setPermissions(Permission[] permissions) {
         this.permissions = permissions;
     }
 
-    public xmlWeb_smestaj.smestajSoap.Permission getPermissions(int i) {
+    public Permission getPermissions(int i) {
         return this.permissions[i];
     }
 
-    public void setPermissions(int i, xmlWeb_smestaj.smestajSoap.Permission _value) {
+    public void setPermissions(int i, Permission _value) {
         this.permissions[i] = _value;
     }
 
@@ -104,7 +107,7 @@ public class Authority  implements java.io.Serializable {
      * 
      * @return users
      */
-    public xmlWeb_smestaj.smestajSoap.Korisnik[] getUsers() {
+    public Korisnik[] getUsers() {
         return users;
     }
 
@@ -114,15 +117,15 @@ public class Authority  implements java.io.Serializable {
      * 
      * @param users
      */
-    public void setUsers(xmlWeb_smestaj.smestajSoap.Korisnik[] users) {
+    public void setUsers(Korisnik[] users) {
         this.users = users;
     }
 
-    public xmlWeb_smestaj.smestajSoap.Korisnik getUsers(int i) {
+    public Korisnik getUsers(int i) {
         return this.users[i];
     }
 
-    public void setUsers(int i, xmlWeb_smestaj.smestajSoap.Korisnik _value) {
+    public void setUsers(int i, Korisnik _value) {
         this.users[i] = _value;
     }
 
