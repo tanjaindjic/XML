@@ -1,3 +1,4 @@
+/*
 package XmlWeb.config;
 
 import XmlWeb.model.Korisnik;
@@ -18,7 +19,8 @@ import java.io.IOException;
 
 @Component
 public class PermissionsInterceptor extends HandlerInterceptorAdapter {
-   /* @Pointcut("execution(* *(..))")
+   */
+/* @Pointcut("execution(* *(..))")
     public void anyMethod() {
         System.out.println("POINTCUUUUUUUUUUUUUUUUUUT");
     }
@@ -27,7 +29,8 @@ public class PermissionsInterceptor extends HandlerInterceptorAdapter {
     public Object invoke(final ProceedingJoinPoint pjp, final Read read) throws Throwable {
         System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAaaa");
         return  pjp.proceed();
-    }*/
+    }*//*
+
 
     @Autowired
     private KorisnikRepository korisnikRepository;
@@ -243,4 +246,4 @@ public class PermissionsInterceptor extends HandlerInterceptorAdapter {
 
         return true;
     }
-}
+}*/
