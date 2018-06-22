@@ -39,6 +39,7 @@ public class StorageService {
 			Path file = rootLocation.resolve(filename);
 			Resource resource = new UrlResource(file.toUri());
 			if (resource.exists() || resource.isReadable()) {
+				System.out.println(file.toString());
 				return resource;
 			} else {
 				System.out.println(file.toString());

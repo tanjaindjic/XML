@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -20,6 +21,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 import XmlWeb.model.Enums.DodatneUsluge;
+import XmlWeb.model.Enums.KategorijaSmestaja;
 import XmlWeb.model.Enums.TipSmestaja;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -58,6 +60,39 @@ public class Smestaj {
 		}
 		return false;
 	}
+	
+	public boolean validateCategory(List<KategorijaSmestaja> tips) {
+		if(tips.size()==0) return true;
+		for(KategorijaSmestaja t:tips) {
+			if(t.getKategorija().equals(kategorija.getKategorija())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Transient
+	private Long minCena;
+	@Transient
+	private Long maxCena;
+	
+	
+
+	public Long getMinCena() {
+		return minCena;
+	}
+
+	public void setMinCena(Long minCena) {
+		this.minCena = minCena;
+	}
+
+	public Long getMaxCena() {
+		return maxCena;
+	}
+
+	public void setMaxCena(Long maxCena) {
+		this.maxCena = maxCena;
+	}
 
 	@XmlElement(required = true)
     @Id
@@ -77,10 +112,13 @@ public class Smestaj {
 
     @Column(length = 2084)
     private String gmapUrl;
-    @XmlElement(required = true)
+    /*@XmlElement(required = true)
     @Max(5)
 	@Min(0)
-    private Integer zvezdice;
+    private Integer zvezdice;*/
+    @XmlElement(required = true)
+    @ManyToOne
+    private KategorijaSmestaja kategorija;
 
     @XmlElement(required = true)
     @ManyToMany
@@ -112,7 +150,17 @@ public class Smestaj {
     @XmlElement(required = false)
     private int brojOcena;
 
-    public Smestaj() {
+    
+    
+    public KategorijaSmestaja getKategorija() {
+		return kategorija;
+	}
+
+	public void setKategorija(KategorijaSmestaja kategorija) {
+		this.kategorija = kategorija;
+	}
+
+	public Smestaj() {
     }
 
     public Long getId() {
@@ -171,13 +219,13 @@ public class Smestaj {
         this.gmapUrl = gmapUrl;
     }
 
-    public Integer getZvezdice() {
+    /*public Integer getZvezdice() {
         return zvezdice;
     }
 
     public void setZvezdice(Integer zvezdice) {
         this.zvezdice = zvezdice;
-    }
+    }*/
 
     public List<DodatneUsluge> getDodatneUsluge() {
         return dodatneUsluge;

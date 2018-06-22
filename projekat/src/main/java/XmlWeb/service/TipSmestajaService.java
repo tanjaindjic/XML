@@ -26,5 +26,6 @@ public class TipSmestajaService {
 		TipSmestaja t = new TipSmestaja();
 		t.setTip(tekst);
 		tipRepository.save(t);
+		System.out.println("id: " + t.getId());
     }
 }

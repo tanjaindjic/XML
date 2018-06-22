@@ -8,10 +8,54 @@
 	function coreController($location, $scope, $rootScope, $http, $cookies,
 			$window, userService, $state, DataTransfer) {
 		
+		$scope.priceRange = function(sobe){
+			
+		}
 		
+		$scope.setOrderBy = function(s){
+			if(s!='delegate')
+			{
+				$scope.setedOrderBy = s;
+				$scope.setedOrderByBool = !$scope.setedOrderByBool;
+			}else{
+				$scope.setedOrderBy = $scope.sortFn;
+				$scope.setedOrderByBool = !$scope.setedOrderByBool;
+			}
+		}
+		
+		$scope.setedOrderBy = '';
+		$scope.setedOrderByBool = true;
+		
+		$scope.sortFn = function(kategorija){
+			//console.log(kategorija);
+			if(kategorija != undefined){
+				console.log(kategorija.kategorija.kategorija.charAt(0));
+				return parseInt(kategorija.kategorija.kategorija.charAt(0));
+			}else{
+				//console.log("UNDEFINED");
+				return 0;
+			}
+		}
+		
+		$scope.getZvezdiceNumber = function(kategorija){
+			//console.log("USO SAM!!!"+kategorija);
+			if(kategorija != undefined){
+				//console.log(kategorija.kategorija.charAt(0));
+				return parseInt(kategorija.kategorija.charAt(0));
+			}else{
+				return 0;
+			}
+		}
 		
 		$scope.getNumberArray = function(num) {
 		    return new Array(num);   
+		}
+		
+		$scope.getNumberArrayFloat = function(num) {
+			if(num!=null){
+				var intvalue = Math.floor(num);
+			    return new Array(intvalue);   
+			}
 		}
 		
 		$scope.smestajToShowPictureIndex=0;

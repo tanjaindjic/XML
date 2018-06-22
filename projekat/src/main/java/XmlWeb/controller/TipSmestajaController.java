@@ -1,7 +1,10 @@
 package XmlWeb.controller;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
+import org.hibernate.JDBCException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -30,8 +33,19 @@ public class TipSmestajaController {
 			value = "/api/tipService/{id}",
 			method = RequestMethod.DELETE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public void deleteTip(@PathVariable Long id){
-		tipService.deleteTip(id);
+	public ResponseEntity<Map> deleteTip(@PathVariable Long id){
+		HashMap<String, String> map = new HashMap();
+		try {
+			tipService.deleteTip(id);
+		}catch (Exception ex){
+			System.out.println("message: " + ex.getMessage());
+			if(ex.getMessage().contains("constraint")){
+				map.put("text", "Error. This type is in use.");
+				return new ResponseEntity<Map>(map, HttpStatus.OK);
+			}
+		}
+		map.put("text", "Success!");
+		return new ResponseEntity<Map>(map, HttpStatus.OK);
 	}
 
 	@RequestMapping(

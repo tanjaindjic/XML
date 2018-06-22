@@ -170,5 +170,11 @@ public class RezervacijaService {
         return rezervacije;
     }
 
+    public Rezervacija getRez(Long id) {
+        return rezRepo.findById(id).get();
+    }
 
+    public void saveRez(Rezervacija r) {
+        rezRepo.save(r);
+    }
 }

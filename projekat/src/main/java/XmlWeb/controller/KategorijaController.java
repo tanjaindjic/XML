@@ -1,6 +1,8 @@
 package XmlWeb.controller;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,8 +35,20 @@ public class KategorijaController {
 			value = "/api/kategorija/{id}",
 			method = RequestMethod.DELETE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public void deleteKategorija(@PathVariable Long id){
-		kategorijaService.deleteKategorija(id);
+	public ResponseEntity<Map> deleteKategorija(@PathVariable Long id){
+
+		HashMap<String, String> map = new HashMap();
+		try {
+			kategorijaService.deleteKategorija(id);
+		}catch (Exception ex){
+			System.out.println("message: " + ex.getMessage());
+			if(ex.getMessage().contains("constraint")){
+				map.put("text", "Error. This type is in use.");
+				return new ResponseEntity<Map>(map, HttpStatus.OK);
+			}
+		}
+		map.put("text", "Success!");
+		return new ResponseEntity<Map>(map, HttpStatus.OK);
 	}
 
 	@RequestMapping(

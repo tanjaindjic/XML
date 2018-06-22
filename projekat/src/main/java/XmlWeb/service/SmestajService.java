@@ -28,7 +28,7 @@ public class SmestajService {
 	}
 	
 	public Collection<Smestaj> getAllSmestajSimple(SearchDTO ser){
-		System.out.println(ser);
+		//System.out.println(ser);
 		ArrayList<Smestaj> temp = (ArrayList<Smestaj>) smestajRepository.findByNameAndSobaNumberSeats(ser.getDestination(), ser.getHowManyPeople());
 		ArrayList<Smestaj> temp1 = new ArrayList<Smestaj>();
 		
@@ -36,16 +36,20 @@ public class SmestajService {
 		
 		for(Smestaj s: temp) {
 			ArrayList<Soba> tempSobe = new ArrayList<>();
+			s.setMinCena(Long.MAX_VALUE);
+			s.setMaxCena(0L);
 			pom = false;
-			System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
+			//System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
 			for(Soba soba:s.getSobe()) {
-				System.out.println("Usao sam u sobe u smestaju "+s.getNaziv()+" i bollean je: "+pom+"i soba ima mesta: "+soba.getBrojLezaja());
+				//System.out.println("Usao sam u sobe u smestaju "+s.getNaziv()+" i bollean je: "+soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)+"i soba ima mesta: "+soba.getBrojLezaja());
 				if(soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)&&soba.getBrojLezaja()>=ser.getHowManyPeople()) {
 					pom = true;
 					tempSobe.add(soba);
+					if(soba.getCena()>s.getMaxCena())s.setMaxCena(soba.getCena());
+					if(soba.getCena()<s.getMinCena())s.setMinCena(soba.getCena());
 				}
 			}
-			System.out.println("Zavrsavam smestaj "+s.getNaziv()+" i bollean je: "+pom+"kolko sam ubacio: "+tempSobe.size());
+			//System.out.println("Zavrsavam smestaj "+s.getNaziv()+" i bollean je: "+pom+"kolko sam ubacio: "+tempSobe.size());
 			if(pom==true) {
 				temp1.add(s);
 				s.setSobe(tempSobe);
@@ -63,17 +67,24 @@ public class SmestajService {
 		
 		boolean pom = false;
 		for(Smestaj s: temp) {
+			s.setMinCena(Long.MAX_VALUE);
+			s.setMaxCena(0L);
+			ArrayList<Soba> tempSobe = new ArrayList<>();
 			pom = false;
 			System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
 			for(Soba soba:s.getSobe()) {
 				System.out.println("Usao sam u sobe u smestaju "+s.getNaziv()+" i bollean je: "+pom);
 				if(soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)) {
 					pom = true;
+					tempSobe.add(soba);
+					if(soba.getCena()>s.getMaxCena())s.setMaxCena(soba.getCena());
+					if(soba.getCena()<s.getMinCena())s.setMinCena(soba.getCena());
 				}
 			}
 			System.out.println("Zavrsavam smestaj "+s.getNaziv()+" i bollean je: "+pom);
-			if(pom==true&&s.validateCategories(ser.getServices())&&s.validateTypes(ser.getTypes())) {
+			if(pom==true&&s.validateCategories(ser.getServices())&&s.validateTypes(ser.getTypes())&&s.validateCategory(ser.getCats())) {
 				temp1.add(s);
+				s.setSobe(tempSobe);
 			}
 		}
 		return temp1;

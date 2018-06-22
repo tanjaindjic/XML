@@ -110,17 +110,20 @@
 				    	<th>
 				    		Country
 				    	</th>
-				    	<th>
+				    	<th ng-click="setOrderBy('minCena')">
+				    		Price range
+				    	</th>
+				    	<th  ng-click="setOrderBy('delegate')">
 				    		Category
 				    	</th>
-				    	<th>
+				    	<th ng-click="setOrderBy('rejting')">
 				    		Rating
 				    	</th>
 				    	<th>
 				    		Photo
 				    	</th>
 				    </tr>
-			      <tr  ng-repeat="smestaj in searchResults|orderBy:orderByParameter">
+			      <tr  ng-repeat="smestaj in searchResults|orderBy:setedOrderBy:setedOrderByBool">
 			        <td>
 				        <span>{{smestaj.naziv}}</span>
 			        </td>
@@ -134,7 +137,14 @@
 				        <span>{{smestaj.drzava}}</span>
 			        </td>  
 			        <td>
-				        <span>{{smestaj.zvezdice}}</span>
+				        <span ng-hide="smestaj.minCena==smestaj.maxCena">{{smestaj.minCena}}-{{smestaj.maxCena}}</span>
+				        <span ng-show="smestaj.minCena==smestaj.maxCena">{{smestaj.maxCena}}</span>
+			        </td>
+			        <td>
+				        <span>
+					        <span ng-repeat="zvezdiceTrack in getNumberArray(getZvezdiceNumber(smestaj.kategorija)) track by $index"><i class="material-icons">star</i></span>
+					        <span ng-repeat="zvezdiceTrack2 in getNumberArray(5-getZvezdiceNumber(smestaj.kategorija)) track by $index"><i class="material-icons">star_border</i></span>
+				        </span>
 			        </td>
 			        <td>
 				        <span>{{smestaj.rejting}}</span>
@@ -164,10 +174,10 @@
 		 <div class="row" ng-show = "panelToShow == 1">
 		  <div class="col-sm-8">
 
-				<br/><h3>{{smestajToShow.naziv}}({{smestajToShow.tip.tip}})</h3>
+				<br/><h3>{{smestajToShow.naziv}}<span ng-show="smestajToShow.tip.tip!=null&&smestajToShow.tip.tip!=''">(</span>{{smestajToShow.tip.tip}}<span ng-show="smestajToShow.tip.tip!=null&&smestajToShow.tip.tip!=''">)</span></h3>
 				<i class="material-icons">location_on</i>{{smestajToShow.adresa}}, {{smestajToShow.grad}}, {{smestajToShow.drzava}} 
 				
-				<span ng-repeat="zvezdiceTrack in getNumberArray(smestajToShow.zvezdice) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-smestajToShow.zvezdice) track by $index"><i class="material-icons">star_border</i></span>
+				<span ng-repeat="zvezdiceTrack in getNumberArray(getZvezdiceNumber(smestajToShow.kategorija)) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-getZvezdiceNumber(smestajToShow.kategorija)) track by $index"><i class="material-icons">star_border</i></span>
 		  		<br/><br/><h4>Description:</h4>
 		  		{{smestajToShow.opis}}
 		  		<br/><br/><h4>Services provided:</h4>
@@ -195,6 +205,9 @@
 			      <tr  ng-repeat="room in smestajToShow.sobe">
 			        <td ng-click="">
 			        	<span>{{room.brojLezaja}}</span>
+			        	<span ng-hide="room.opcija.length==0">(<span ng-repeat="opcijaa in room.opcija">{{room.opcija.opcija}}
+			        		<span ng-show="isLast($index, room.opcija">, </span>
+			        	</span>)</span>
 			        </td>
 			        <td ng-click="">
 			        	<span>{{room.cena}}</span>
@@ -208,7 +221,7 @@
 		  </div>
 		  <div class="col-sm-4">
 		  	<h4>User score:</h4>
-		  	<span ng-repeat="zvezdiceTrack in getNumberArray(smestajToShow.rejting) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-smestajToShow.rejting) track by $index"><i class="material-icons">star_border</i></span>
+		  	<span ng-repeat="zvezdiceTrack in getNumberArrayFloat(smestajToShow.rejting) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArrayFloat(6-smestajToShow.rejting) track by $index"><i class="material-icons">star_border</i></span>
 		  
 		  	<table class="table table-hover table-sm">
 		  		<tbody>
@@ -223,7 +236,7 @@
 			    			Score
 			    		</th>
 			    	</tr>
-				      <tr  ng-repeat="rev in reviewsToShow">
+				      <tr  ng-show="rev.approved==1" ng-repeat="rev in reviewsToShow">
 				        <td ng-click="">
 				        	<span>{{rev.userName}}</span>
 				        </td>

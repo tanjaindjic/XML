@@ -14,7 +14,7 @@ public class KategorijaSmestaja {
 	 * 
 	 * 
 	 * 
-	 * 
+	 * OR DOES IT?
 	 * 
 	 * 
 	 * 
