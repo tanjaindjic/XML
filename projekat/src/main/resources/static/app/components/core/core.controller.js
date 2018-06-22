@@ -8,7 +8,14 @@
 	function coreController($location, $scope, $rootScope, $http, $cookies,
 			$window, userService, $state, DataTransfer) {
 		
-		
+		$scope.getZvezdiceNumber = function(kategorija){
+			if(kategorija != undefined){
+				console.log(kategorija.kategorija.charAt(0));
+				return parseInt(kategorija.kategorija.charAt(0));
+			}else{
+				return 0;
+			}
+		}
 		
 		$scope.getNumberArray = function(num) {
 		    return new Array(num);   

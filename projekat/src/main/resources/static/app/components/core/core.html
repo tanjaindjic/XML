@@ -120,7 +120,7 @@
 				    		Photo
 				    	</th>
 				    </tr>
-			      <tr  ng-repeat="smestaj in searchResults|orderBy:orderByParameter">
+			      <tr  ng-repeat="smestaj in searchResults">
 			        <td>
 				        <span>{{smestaj.naziv}}</span>
 			        </td>
@@ -134,7 +134,7 @@
 				        <span>{{smestaj.drzava}}</span>
 			        </td>  
 			        <td>
-				        <span>{{smestaj.zvezdice}}</span>
+				        <span>{{smestaj.kategorija.kategorija}}</span>
 			        </td>
 			        <td>
 				        <span>{{smestaj.rejting}}</span>
@@ -167,7 +167,7 @@
 				<br/><h3>{{smestajToShow.naziv}}({{smestajToShow.tip.tip}})</h3>
 				<i class="material-icons">location_on</i>{{smestajToShow.adresa}}, {{smestajToShow.grad}}, {{smestajToShow.drzava}} 
 				
-				<span ng-repeat="zvezdiceTrack in getNumberArray(smestajToShow.zvezdice) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-smestajToShow.zvezdice) track by $index"><i class="material-icons">star_border</i></span>
+				<span ng-repeat="zvezdiceTrack in getNumberArray(getZvezdiceNumber(smestajToShow.kategorija)) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-getZvezdiceNumber(smestajToShow.kategorija)) track by $index"><i class="material-icons">star_border</i></span>
 		  		<br/><br/><h4>Description:</h4>
 		  		{{smestajToShow.opis}}
 		  		<br/><br/><h4>Services provided:</h4>
