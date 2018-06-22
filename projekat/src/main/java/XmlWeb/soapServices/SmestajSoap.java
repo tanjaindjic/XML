@@ -7,7 +7,7 @@ import javax.jws.WebService;
 
 import XmlWeb.model.Smestaj;
 
-@WebService(name="SmestajSoap", targetNamespace = "http://xmlWeb-smestaj/smestajSoap")
+@WebService(name="SmestajService", targetNamespace = "http://xmlWeb-smestaj/smestajSoap")
 public interface SmestajSoap {
 	
 	 List<Smestaj> getSmestajs();
