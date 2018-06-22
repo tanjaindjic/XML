@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
 
+import XmlWeb.config.*;
 import XmlWeb.model.Korisnik;
 import XmlWeb.service.CertificateService;
 import XmlWeb.service.KeyStoreService;
@@ -61,6 +62,7 @@ public class AuthenticationRestController {
 
 
     // @CrossOrigin(origins = "https://localhost:8090")
+
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
 

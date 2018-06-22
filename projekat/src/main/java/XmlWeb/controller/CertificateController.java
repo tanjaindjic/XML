@@ -1,5 +1,7 @@
 package XmlWeb.controller;
 
+import XmlWeb.config.AdminRead;
+import XmlWeb.config.AdminWrite;
 import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.model.Korisnik;
 import XmlWeb.security.CertificateDTO;
@@ -35,24 +37,28 @@ public class CertificateController {
     @Autowired
     private KorisnikService ks;
 
+    @AdminRead
     @RequestMapping(value="/certificates", method= RequestMethod.GET)
     public List<CertificateDTO> getCertificates(){
             System.out.println(kss.getCertificatesDTO().size());
         return kss.getCertificatesDTO();
     }
 
+    @AdminRead
     @RequestMapping(value="/certificates/type/admin", method= RequestMethod.GET)
     public List<CertificateDTO> getAdminCertificates(){
         List<CertificateDTO> dtos =  kss.getAdminCertificatesDTO();
         return dtos;
     }
 
+    @AdminRead
     @RequestMapping(value = "/certificates/check/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN)
     public ResponseEntity<String> checkCertificate(@PathVariable String id) {
         String respond = cs.check(id);
         return new ResponseEntity<>(respond, HttpStatus.OK);
     }
 
+    @AdminWrite
     @RequestMapping(value = "/certificates/revokeCert/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN)
     public ResponseEntity<String> revoke(@PathVariable String id) {
         String respond = "failed";
@@ -64,6 +70,7 @@ public class CertificateController {
     }
 
 
+    @AdminWrite
     @RequestMapping(value="/certificates/upload/{username}", method= RequestMethod.POST)
     public ResponseEntity<HashMap> uploadAndCreateSF(@RequestBody MultipartFile file, @PathVariable String username) throws IOException, CertificateException {
         HashMap<String, String> map = new HashMap<>();

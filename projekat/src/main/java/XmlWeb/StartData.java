@@ -80,21 +80,37 @@ public class StartData {
 
 
          //creating permissions and roles
-         Permission readPermission = new Permission("READ", new ArrayList<Authority>());
-         Permission writePermission = new Permission("WRITE", new ArrayList<Authority>());
-         permissionRepository.save(readPermission);
-         permissionRepository.save(writePermission);
+         Permission adreadPermission = new Permission("ADMINREAD", new ArrayList<Authority>());
+         Permission adwritePermission = new Permission("ADMINWRITE", new ArrayList<Authority>());
+         Permission agreadPermission = new Permission("AGENTREAD", new ArrayList<Authority>());
+         Permission agwritePermission = new Permission("AGENTWRITE", new ArrayList<Authority>());
+         Permission ureadPermission = new Permission("USERREAD", new ArrayList<Authority>());
+         Permission uwritePermission = new Permission("USERWRITE", new ArrayList<Authority>());
+         permissionRepository.save(adreadPermission);
+         permissionRepository.save(adwritePermission);
+         permissionRepository.save(agreadPermission);
+         permissionRepository.save(agwritePermission);
+         permissionRepository.save(ureadPermission);
+         permissionRepository.save(uwritePermission);
         //za sad samo ove 2 permisije
-         Authority adminAuthority = new Authority(AuthorityName.ROLE_ADMIN, new ArrayList<>(), Arrays.asList(readPermission, writePermission));
-         Authority agentAuthority = new Authority(AuthorityName.ROLE_AGENT, new ArrayList<>(), Arrays.asList(readPermission, writePermission));
-         Authority userAuthority = new Authority(AuthorityName.ROLE_USER, new ArrayList<>(), Arrays.asList(readPermission));
+         Authority adminAuthority = new Authority(AuthorityName.ROLE_ADMIN, new ArrayList<>(), Arrays.asList(adreadPermission, adwritePermission));
+         Authority agentAuthority = new Authority(AuthorityName.ROLE_AGENT, new ArrayList<>(), Arrays.asList(agreadPermission, agwritePermission));
+         Authority userAuthority = new Authority(AuthorityName.ROLE_USER, new ArrayList<>(), Arrays.asList(ureadPermission, uwritePermission));
          authorityRepository.save(adminAuthority);
          authorityRepository.save(agentAuthority);
          authorityRepository.save(userAuthority);
-         readPermission.setAuthorityList(Arrays.asList(adminAuthority, agentAuthority, userAuthority));
-         writePermission.setAuthorityList(Arrays.asList(adminAuthority, agentAuthority));
-         permissionRepository.save(readPermission);
-         permissionRepository.save(writePermission);
+         adreadPermission.setAuthorityList(Arrays.asList(adminAuthority));
+         adwritePermission.setAuthorityList(Arrays.asList(adminAuthority));
+         permissionRepository.save(adreadPermission);
+         permissionRepository.save(adwritePermission);
+         agreadPermission.setAuthorityList(Arrays.asList(agentAuthority));
+         agwritePermission.setAuthorityList(Arrays.asList(agentAuthority));
+         permissionRepository.save(agreadPermission);
+         permissionRepository.save(agwritePermission);
+         ureadPermission.setAuthorityList(Arrays.asList(userAuthority));
+         uwritePermission.setAuthorityList(Arrays.asList(userAuthority));
+         permissionRepository.save(ureadPermission);
+         permissionRepository.save(ureadPermission);
 
          Korisnik k = new Korisnik();
          k.setUsername("admin");
