@@ -1,6 +1,7 @@
 package XmlWeb.model;
 
 import XmlWeb.model.Enums.KategorijaSmestaja;
+import XmlWeb.model.Enums.StatusRezevacije;
 import XmlWeb.repository.RezervacijaRepository;
 import XmlWeb.model.Enums.DodatneUsluge;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -128,7 +129,7 @@ public class Soba {
     	//System.out.println("Usao sam u sobu: "+id+"broj rezervacija je: "+rezBaz.size());
     	for(Rezervacija r:rezBaz) {
     		//System.out.println("Usao sam u rezervaciju---"+r.getDatumOd()+r.getDatumDo());
-    		if(r.getDatumDo().compareTo(pocetak)>=0&&r.getDatumOd().compareTo(kraj)<=0) {
+    		if(r.getDatumDo().compareTo(pocetak)>=0&&r.getDatumOd().compareTo(kraj)<=0&&(!r.getStatus().equals(StatusRezevacije.REJECTED))&&(!r.getStatus().equals(StatusRezevacije.CANCELED))) {
     			//System.out.println("Invalid datum because od RESERVATIONS");
     			return false;
     		}
@@ -145,7 +146,7 @@ public class Soba {
     			if(i.getCena()<cena) cena = i.getCena();
     		}
     	}
-    	//System.out.println("Invalid datum because od IZNAJMLJIVANJA"+nasao);
+    	//System.out.println("Nasao sam iznajmljivanje i ono je: "+nasao);
     	return nasao;
     }
 }

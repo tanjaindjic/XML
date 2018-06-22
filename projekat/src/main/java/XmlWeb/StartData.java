@@ -265,7 +265,7 @@ public class StartData {
 
          r.setDatumOd(date2);
 
-         r.setSoba(temp);
+         r.setSoba(temp2);
 
          rezervacijaRepository.save(r);
          addKomentar(r);

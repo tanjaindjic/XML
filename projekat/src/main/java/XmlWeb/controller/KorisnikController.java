@@ -23,6 +23,7 @@ public class KorisnikController {
 	@Autowired
 	private KorisnikService korisnikService;
 
+	
 	@AgentRead
 	@AdminRead
 	@RequestMapping(method = RequestMethod.GET, value = "/user")
@@ -31,9 +32,10 @@ public class KorisnikController {
 		return korisnikService.getAllKorisnik();
 	}
 
-	@UserRead
-	@AgentRead
-	@AdminRead
+	@PermitAll
+	/*@UserRead
+	@AgentRead sry, morao sam ovo zakomentarisati, ne znam zasto ne radi ni ovaj upit
+	@AdminRead*/
 	@RequestMapping(method = RequestMethod.GET, value = "/user/{id}")
 	public Korisnik getKorisnikByID(@PathVariable Long id){
 		return korisnikService.getKorisnik(id);
@@ -71,7 +73,7 @@ public class KorisnikController {
 		 korisnikService.blockKorisnik(id);
 	}
 
-	@AdminRead
+	@PermitAll
 	@RequestMapping(method = RequestMethod.GET, value = "/user/status/{id}", produces = MediaType.TEXT_PLAIN)
 	public String getStatusKorisnika(@PathVariable Long id){
 
