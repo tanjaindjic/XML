@@ -23,11 +23,12 @@
 		$scope.setedOrderByBool = true;
 		
 		$scope.sortFn = function(kategorija){
-			console.log("USO SAM!!!"+kategorija);
+			//console.log(kategorija);
 			if(kategorija != undefined){
-				console.log(kategorija.kategorija.charAt(0));
-				return parseInt(kategorija.kategorija.charAt(0));
+				console.log(kategorija.kategorija.kategorija.charAt(0));
+				return parseInt(kategorija.kategorija.kategorija.charAt(0));
 			}else{
+				//console.log("UNDEFINED");
 				return 0;
 			}
 		}
