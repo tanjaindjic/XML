@@ -1,3 +1,4 @@
+/*
 
 package XmlWeb.config;
 
@@ -18,3 +19,4 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     }
 }
 
+*/
