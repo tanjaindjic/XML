@@ -164,7 +164,7 @@
 		 <div class="row" ng-show = "panelToShow == 1">
 		  <div class="col-sm-8">
 
-				<br/><h3>{{smestajToShow.naziv}}({{smestajToShow.tip.tip}})</h3>
+				<br/><h3>{{smestajToShow.naziv}}<span ng-show="smestajToShow.tip.tip!=null&&smestajToShow.tip.tip!=''">(</span>{{smestajToShow.tip.tip}}<span ng-show="smestajToShow.tip.tip!=null&&smestajToShow.tip.tip!=''">)</span></h3>
 				<i class="material-icons">location_on</i>{{smestajToShow.adresa}}, {{smestajToShow.grad}}, {{smestajToShow.drzava}} 
 				
 				<span ng-repeat="zvezdiceTrack in getNumberArray(getZvezdiceNumber(smestajToShow.kategorija)) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArray(5-getZvezdiceNumber(smestajToShow.kategorija)) track by $index"><i class="material-icons">star_border</i></span>
@@ -195,6 +195,9 @@
 			      <tr  ng-repeat="room in smestajToShow.sobe">
 			        <td ng-click="">
 			        	<span>{{room.brojLezaja}}</span>
+			        	<span ng-hide="room.opcija.length==0">(<span ng-repeat="opcijaa in room.opcija">{{room.opcija.opcija}}
+			        		<span ng-show="isLast($index, room.opcija">, </span>
+			        	</span>)</span>
 			        </td>
 			        <td ng-click="">
 			        	<span>{{room.cena}}</span>

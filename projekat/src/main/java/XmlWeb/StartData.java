@@ -178,10 +178,14 @@ public class StartData {
          Soba temp2 = new Soba(3, new ArrayList<>(), new ArrayList<>());
          ArrayList<Iznajmljivanje> iznajmljivanja = new ArrayList<>();
          iznajmljivanja.add(new Iznajmljivanje(new Date(118, 1, 1), new Date(119 , 1, 1), 1000L, true));
-         /*iznajmljivanja.add(new Iznajmljivanje(new Date(118, 1, 1), new Date(119 , 1, 1), 1000L, true));
-         iznajmljivanja.add(new Iznajmljivanje(new Date(118, 1, 1), new Date(119 , 1, 1), 1000L, true));*/
+         ArrayList<Iznajmljivanje> iznajmljivanja1 = new ArrayList<>();
+         iznajmljivanja1.add(new Iznajmljivanje(new Date(118, 1, 1), new Date(119 , 1, 1), 1100L, true));
+         ArrayList<Iznajmljivanje> iznajmljivanja2 = new ArrayList<>();
+         iznajmljivanja2.add(new Iznajmljivanje(new Date(118, 1, 1), new Date(119 , 1, 1), 1200L, true));
          
          temp.setIznajmljivanja(iznajmljivanja);
+         temp1.setIznajmljivanja(iznajmljivanja1);
+         temp2.setIznajmljivanja(iznajmljivanja2);
          
          sobe.add(temp);
          sobe.add(temp1);
