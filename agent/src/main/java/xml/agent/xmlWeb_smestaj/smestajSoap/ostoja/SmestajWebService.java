@@ -19,13 +19,9 @@ public class SmestajWebService extends Service
 {
 
     private final static URL SmestajWebService_WSDL_LOCATION;
-    private final static WebServiceException SmestajWebService_EXCEPTION;									//random gadjam, zastp si ovo ovako nazvala? - pa samo sam isla na find-replace onoga iz vaseg koda
-    private final static QName SmestajWebService_QNAME = new QName("http://xmlWeb-smestaj/smestajSoap", "smestajService");//ovo?mhm
-// ali stvarno ne verujem, sve nam je isto.......cek nesto da vidim -ok, mozda ono pre ?wsdl treba da je == sa onim sto sam random pitao
-   //ne znam vise - poludecu i ja 
-    //nista, hvala ti puno, probacu ja da nadjem do cega je,, posalji mi oba projekta u zipu please, la
-   // milos.ostojic747@gmail.com, mada mislim da vec imas
-    //ok, saljem
+    private final static WebServiceException SmestajWebService_EXCEPTION;									
+    private final static QName SmestajWebService_QNAME = new QName("http://xmlWeb-smestaj/smestajSoap", "smestajService");
+
     static {
         URL url = null;
         WebServiceException e = null;

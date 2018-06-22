@@ -10,10 +10,6 @@ import javax.xml.ws.ResponseWrapper;
 
 import xml.agent.xmlWeb_smestaj.smestajSoap.model.Smestaj;
 
-//odoh da guglam, izacicu ako mi racunar bude prespor --- da li si negde instancirala SmestajSth koji nam pravi problem?, tj ovaj ovde :)
-//nisam nigde
-//voleo bih da jesi, jer bih onda nasao problem, fuck
-//nije nigde ocigledno
 @WebService(name = "SmestajService", targetNamespace = "http://agent.xml.soap/smestaj")
 public interface SmestajService {
 	@WebMethod
