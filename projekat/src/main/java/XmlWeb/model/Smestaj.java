@@ -59,6 +59,16 @@ public class Smestaj {
 		}
 		return false;
 	}
+	
+	public boolean validateCategory(List<KategorijaSmestaja> tips) {
+		if(tips.size()==0) return true;
+		for(KategorijaSmestaja t:tips) {
+			if(t.getKategorija().equals(kategorija.getKategorija())) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	@XmlElement(required = true)
     @Id
