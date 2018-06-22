@@ -84,9 +84,7 @@ public class ReadInterceptor extends HandlerInterceptorAdapter {
                     logger.warn("couldn't find bearer string, will ignore the header");
                 }
             }
-        }else {
-                System.out.println("handler nije HandlerMehtod nego " + handler.getClass());
-            }
+        }
 
         return true;
     }

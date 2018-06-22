@@ -36,5 +36,11 @@ public class RezervacijaController {
     @RequestMapping(method = RequestMethod.POST, value = "/reservation/comment/{id}/{ocena}")
     public void comment(@PathVariable Long id, @PathVariable int ocena  ){ rs.addOcena(id, ocena); }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/reservation/setBoolean/{id}")
+    public void setBoolean(@PathVariable Long id){
+        Rezervacija r = rs.getRez(id);
+        r.setOcenio(false);
+        rs.saveRez(r);
+    }
 
 }
