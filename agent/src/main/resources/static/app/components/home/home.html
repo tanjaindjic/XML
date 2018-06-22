@@ -1,0 +1,57 @@
+<div>
+
+
+    </br>
+    </br>
+
+
+    <div class="tab">
+        <button class="tablinks" ng-click="goToState('core.home')" >MY ACCOMMODATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentAccomodation')" >ADD ACCOMMODATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentReservations')" >MAKE RESERVATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentChat')" >CHAT</button>
+        <button class="tablinks" ng-click="goToState('core.agentConfirmStay')" >CONFIRM STAY</button>
+    </div>
+
+ <div class="centar">
+
+        <h3 class="olive">MY ACCOMMODATIONS : </h3>
+
+        </br>
+
+		<table>
+			<tr>
+				<td width='10%'></td>
+				<td width='10%'>Name</td>
+				<td width='10%'>Address</td>
+				<td width='10%'>City</td>
+				<td width='10%'>State</td>
+				<td width='30%'>Description</td>
+				<td width='10%'></td>
+				<td width='10%'></td>
+			</tr>
+			<tr ng-repeat='acom in all'>
+				<td width='10%'></td>
+				<td width='10%'>{{acom.naziv}}</td>
+				<td width='10%'>{{acom.adresa}}</td>
+				<td width='10%'>{{acom.grad}}</td>
+				<td width='10%'>{{acom.drzava}}</td>
+				<td width='30%'>{{acom.opis}}</td>
+				<td width='10%'><a class='aHome' ng-click='hc.edit(acom)'>edit</a></td>
+				<td width='10%'></td>
+			</tr>
+		</table>
+			
+        
+        </br>
+
+
+        </br>
+
+    </div>
+
+
+
+
+
+</div>

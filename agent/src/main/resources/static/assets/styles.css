@@ -225,3 +225,14 @@
 	border-left: none;
 	height: 300px;
 }
+.aHome{
+	background-color: olive;
+    color: white;
+    padding: 7px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.aHome:hover, .aHome:active {
+    background-color: #ddd;
+}

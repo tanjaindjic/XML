@@ -55,23 +55,18 @@
 			console.log(JSON.stringify(loginData))
 			$http({
 				method : 'POST',
-				url : "https://localhost:8096/auth",
+				url : "https://localhost:8097/auth",
 				data : JSON.stringify(loginData)
 			}).then(function successCallback(response) {
 				console.log(response.data.token)
 				setJwtToken(response.data.token);
-				$scope.login.hide();
+			/*	$scope.login.hide();
 				$scope.logout.show();
-				$scope.reg.hide();
+				$scope.reg.hide();*/
 				var decoded = jwt_decode(response.data.token);
 				console.log(decoded);
 				$window.location.reload();
-				$http({
-					method : 'GET',
-					url : "https://localhost:8097/reloadDB"
-				}).then(function successCallback(response) {
-					
-				});
+				
 			}, function errorCallback(response) {
 				$scope.message = "Bad credentials.";
 			});
