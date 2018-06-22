@@ -1,0 +1,30 @@
+package xml.agent.controller;
+
+import java.util.Collection;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import xml.agent.model.Soba;
+import xml.agent.services.SobaService;
+
+
+@RestController
+public class SobaController {
+	
+	@Autowired
+	private SobaService sobaService;
+
+	@RequestMapping(
+			value = "/api/sobe",
+			method = RequestMethod.GET,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Collection<Soba>> getAllSoba(){
+		return new ResponseEntity<Collection<Soba>>(sobaService.getAllSoba(), HttpStatus.OK);
+	}
+}
