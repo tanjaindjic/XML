@@ -63,6 +63,7 @@ public class AuthenticationRestController {
 
     // @CrossOrigin(origins = "https://localhost:8090")
 
+    @PermitAll
     @RequestMapping(value = "/auth", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest) throws AuthenticationException {
 

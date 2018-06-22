@@ -235,7 +235,10 @@ public class PermissionsInterceptor extends HandlerInterceptorAdapter {
                } else {
                    logger.warn("couldn't find bearer string, will ignore the header");
                }
-           }
+
+           } else if(method.hasMethodAnnotation(PermitAll.class)) {
+                return true;
+            }
         }
 
         return true;

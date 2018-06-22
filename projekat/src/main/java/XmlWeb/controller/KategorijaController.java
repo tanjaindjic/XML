@@ -22,7 +22,7 @@ public class KategorijaController {
 	
 	@Autowired
 	private KategorijaService kategorijaService;
-
+	@PermitAll
 	@RequestMapping(
 			value = "/api/kategorija",
 			method = RequestMethod.GET,

@@ -21,7 +21,7 @@ public class DodatneUslugeController {
 	@Autowired
 	private DodatneUslugeService dodatneService;
 
-
+	@PermitAll
 	@RequestMapping(
 			value = "/api/dodatneUsluge",
 			method = RequestMethod.GET,
