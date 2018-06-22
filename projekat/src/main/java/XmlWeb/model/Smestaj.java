@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -68,6 +69,29 @@ public class Smestaj {
 			}
 		}
 		return false;
+	}
+	
+	@Transient
+	private Long minCena;
+	@Transient
+	private Long maxCena;
+	
+	
+
+	public Long getMinCena() {
+		return minCena;
+	}
+
+	public void setMinCena(Long minCena) {
+		this.minCena = minCena;
+	}
+
+	public Long getMaxCena() {
+		return maxCena;
+	}
+
+	public void setMaxCena(Long maxCena) {
+		this.maxCena = maxCena;
 	}
 
 	@XmlElement(required = true)

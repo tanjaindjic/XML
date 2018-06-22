@@ -8,6 +8,10 @@
 	function coreController($location, $scope, $rootScope, $http, $cookies,
 			$window, userService, $state, DataTransfer) {
 		
+		$scope.priceRange = function(sobe){
+			
+		}
+		
 		$scope.setOrderBy = function(s){
 			if(s!='delegate')
 			{

@@ -110,6 +110,9 @@
 				    	<th>
 				    		Country
 				    	</th>
+				    	<th ng-click="setOrderBy('minCena')">
+				    		Price range
+				    	</th>
 				    	<th  ng-click="setOrderBy('delegate')">
 				    		Category
 				    	</th>
@@ -133,6 +136,10 @@
 			        <td>
 				        <span>{{smestaj.drzava}}</span>
 			        </td>  
+			        <td>
+				        <span ng-hide="smestaj.minCena==smestaj.maxCena">{{smestaj.minCena}}-{{smestaj.maxCena}}</span>
+				        <span ng-show="smestaj.minCena==smestaj.maxCena">{{smestaj.maxCena}}</span>
+			        </td>
 			        <td>
 				        <span>{{smestaj.kategorija.kategorija}}</span>
 			        </td>
