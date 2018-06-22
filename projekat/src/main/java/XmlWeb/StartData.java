@@ -154,9 +154,9 @@ public class StartData {
          kategorijaSmestaja.setKategorija("Vrh");
          kategorijaRepository.save(kategorijaSmestaja);*/
          
-         addSmestaj("Smestaj1", "Adresa1", "Grad1", "Drzava1", 1, 0, 1, 2, new Date(118, 1, 1), new Date(119 , 1, 1),100L);
-         addSmestaj("Smestaj1", "Adresa2", "Grad1", "Drzava2", 2, 2, 4, 1, new Date(118, 1, 1), new Date(119 , 1, 1),200L);
-         addSmestaj("Smestaj1", "Adresa3", "Grad3", "Drzava3", 5, 0, 4, 3, new Date(118, 1, 1), new Date(119 , 1, 1),2000L);
+         addSmestaj("Smestaj1", "Adresa1", "Grad1", "Drzava1", 1, 0, 1, 2, new Date(118, 1, 1), new Date(119 , 1, 1),100L, (float)3.5);
+         addSmestaj("Smestaj1", "Adresa2", "Grad1", "Drzava2", 2, 2, 4, 1, new Date(118, 1, 1), new Date(119 , 1, 1),200L, (float)2.6);
+         addSmestaj("Smestaj1", "Adresa3", "Grad3", "Drzava3", 5, 0, 4, 3, new Date(118, 1, 1), new Date(119 , 1, 1),2000L, (float)4.5);
 	 }
 
 	 public void addRezervacija(Long idKorisnika, Long idVlasnika, int i){ // Nije potpuna, samo meni za testiranje
@@ -252,12 +252,13 @@ public class StartData {
 
      }
 	 
-	 public void addSmestaj(String naziv, String adresa, String grad, String drzava, Integer zvezdice, int dodatne1, int dodatne2, int tipint, Date pocetak, Date kraj, Long cena) {
+	 public void addSmestaj(String naziv, String adresa, String grad, String drzava, Integer zvezdice, int dodatne1, int dodatne2, int tipint, Date pocetak, Date kraj, Long cena, float rejting) {
 		 Smestaj temp = new Smestaj();
 		 temp.setNaziv(naziv);
 		 temp.setAdresa(adresa);
 		 temp.setGrad(grad);
 		 temp.setDrzava(drzava);
+		 temp.setRejting(rejting);
 		 ArrayList<KategorijaSmestaja> kats = (ArrayList<KategorijaSmestaja>) kategorijaRepository.findAll();
 		 temp.setKategorija(kats.get(zvezdice));
 		 ArrayList<Slika> slike = new ArrayList<>();

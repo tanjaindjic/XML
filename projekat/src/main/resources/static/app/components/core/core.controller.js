@@ -8,7 +8,32 @@
 	function coreController($location, $scope, $rootScope, $http, $cookies,
 			$window, userService, $state, DataTransfer) {
 		
+		$scope.setOrderBy = function(s){
+			if(s!='delegate')
+			{
+				$scope.setedOrderBy = s;
+				$scope.setedOrderByBool = !$scope.setedOrderByBool;
+			}else{
+				$scope.setedOrderBy = $scope.sortFn;
+				$scope.setedOrderByBool = !$scope.setedOrderByBool;
+			}
+		}
+		
+		$scope.setedOrderBy = '';
+		$scope.setedOrderByBool = true;
+		
+		$scope.sortFn = function(kategorija){
+			console.log("USO SAM!!!"+kategorija);
+			if(kategorija != undefined){
+				console.log(kategorija.kategorija.charAt(0));
+				return parseInt(kategorija.kategorija.charAt(0));
+			}else{
+				return 0;
+			}
+		}
+		
 		$scope.getZvezdiceNumber = function(kategorija){
+			//console.log("USO SAM!!!"+kategorija);
 			if(kategorija != undefined){
 				console.log(kategorija.kategorija.charAt(0));
 				return parseInt(kategorija.kategorija.charAt(0));

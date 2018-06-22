@@ -110,17 +110,17 @@
 				    	<th>
 				    		Country
 				    	</th>
-				    	<th>
+				    	<th  ng-click="setOrderBy('delegate')">
 				    		Category
 				    	</th>
-				    	<th>
+				    	<th ng-click="setOrderBy('rejting')">
 				    		Rating
 				    	</th>
 				    	<th>
 				    		Photo
 				    	</th>
 				    </tr>
-			      <tr  ng-repeat="smestaj in searchResults">
+			      <tr  ng-repeat="smestaj in searchResults|orderBy:setedOrderBy:setedOrderByBool">
 			        <td>
 				        <span>{{smestaj.naziv}}</span>
 			        </td>
