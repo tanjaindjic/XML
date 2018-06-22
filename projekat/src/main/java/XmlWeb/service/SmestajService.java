@@ -41,7 +41,7 @@ public class SmestajService {
 			pom = false;
 			//System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
 			for(Soba soba:s.getSobe()) {
-				//System.out.println("Usao sam u sobe u smestaju "+s.getNaziv()+" i bollean je: "+soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)+"i soba ima mesta: "+soba.getBrojLezaja());
+				
 				if(soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)&&soba.getBrojLezaja()>=ser.getHowManyPeople()) {
 					pom = true;
 					tempSobe.add(soba);
@@ -74,7 +74,7 @@ public class SmestajService {
 			System.out.println("Usao sam u smestaje "+s.getNaziv()+" i bollean je: "+pom);
 			for(Soba soba:s.getSobe()) {
 				System.out.println("Usao sam u sobe u smestaju "+s.getNaziv()+" i bollean je: "+pom);
-				if(soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository)) {
+				if(soba.validateDates(ser.getFrom(), ser.getTo(), reservationRepository) &&soba.getBrojLezaja()>=ser.getHowManyPeople()) {
 					pom = true;
 					tempSobe.add(soba);
 					if(soba.getCena()>s.getMaxCena())s.setMaxCena(soba.getCena());

@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import XmlWeb.config.AdminWrite;
+import XmlWeb.config.AgentWrite;
 import org.hibernate.JDBCException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,7 +30,7 @@ public class TipSmestajaController {
 	public ResponseEntity<Collection<TipSmestaja>> getAllSoba(){
 		return new ResponseEntity<Collection<TipSmestaja>>(tipService.getTipSmestajaAll(), HttpStatus.OK);
 	}
-
+	@AdminWrite
 	@RequestMapping(
 			value = "/api/tipService/{id}",
 			method = RequestMethod.DELETE,
@@ -48,6 +50,7 @@ public class TipSmestajaController {
 		return new ResponseEntity<Map>(map, HttpStatus.OK);
 	}
 
+	@AdminWrite
 	@RequestMapping(
 			value = "/api/tipService",
 			method = RequestMethod.POST,

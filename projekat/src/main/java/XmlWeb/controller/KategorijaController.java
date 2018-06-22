@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import XmlWeb.config.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,7 +22,7 @@ public class KategorijaController {
 	
 	@Autowired
 	private KategorijaService kategorijaService;
-	
+	@PermitAll
 	@RequestMapping(
 			value = "/api/kategorija",
 			method = RequestMethod.GET,
@@ -31,6 +32,7 @@ public class KategorijaController {
 	}
 
 
+	@AdminWrite
 	@RequestMapping(
 			value = "/api/kategorija/{id}",
 			method = RequestMethod.DELETE,
@@ -51,6 +53,7 @@ public class KategorijaController {
 		return new ResponseEntity<Map>(map, HttpStatus.OK);
 	}
 
+	@AdminWrite
 	@RequestMapping(
 				value = "/api/kategorija",
 				method = RequestMethod.POST,

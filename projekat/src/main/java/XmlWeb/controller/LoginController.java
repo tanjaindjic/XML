@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletResponse;
 
+import XmlWeb.config.*;
 import XmlWeb.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,12 +17,19 @@ public class LoginController {
 	
 	@Autowired
 	private LoginService loginService;
-	
+
+    @UserRead
+    @AgentRead
+    @AdminRead
 	@RequestMapping(method = RequestMethod.GET, value = "/login")
     public void redirect(HttpServletResponse response) throws IOException{
 		System.out.println("uso u kontroler");
         loginService.redirect(response);
     }
+
+    @UserWrite
+    @AgentWrite
+    @AdminWrite
     @RequestMapping(method = RequestMethod.POST, value = "/login") 
     public void login(){
     	System.out.println(loginService.login());

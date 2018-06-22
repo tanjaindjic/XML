@@ -2,6 +2,7 @@ package XmlWeb.controller;
 
 import java.util.Collection;
 
+import XmlWeb.config.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,7 +20,7 @@ public class IznajmljivanjeController {
 	
 	@Autowired
 	private IznajmljivanjeService iznService;
-	
+	@PermitAll
 	@RequestMapping(
 			value = "/api/iznajmljivanje",
 			method = RequestMethod.GET,

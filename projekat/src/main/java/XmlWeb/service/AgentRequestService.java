@@ -7,25 +7,18 @@ import java.security.cert.X509Certificate;
 import java.util.ArrayList;
 import java.util.List;
 
-import XmlWeb.config.Read;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.mail.EmailAttachment;
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.MultiPartEmail;
-import org.bouncycastle.util.io.pem.PemReader;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Service;
 
 import XmlWeb.dto.AgentRequestDTO;
 import XmlWeb.model.AgentRequest;
 import XmlWeb.model.Korisnik;
-import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.repository.AgentRequestRepository;
 import XmlWeb.repository.KorisnikRepository;
-
-import javax.mail.Session;
-import javax.mail.internet.MimeMessage;
 
 
 @Service
@@ -63,7 +56,6 @@ public class AgentRequestService {
 		agentRequestRepository.save(req);
 	}
 
-	@Read
 	public List<AgentRequestDTO> makeDTORequests(){
 		ArrayList<AgentRequestDTO> list = new ArrayList<>();
 		for (AgentRequest ar : agentRequestRepository.findAll()) {

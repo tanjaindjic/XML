@@ -145,7 +145,7 @@
                     headers : createAuthorizationTokenHeader(),
                     data: dto
                 }).then(function successCallback(response) {
-                   console.log("USPEO");
+                   console.log("USPEO");$scope.swapPanel(-1);
                    alert("Reservation made successfully !");
                    $location.path('/reservations');
 

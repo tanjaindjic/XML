@@ -1,9 +1,8 @@
 package XmlWeb.controller;
 
-import java.awt.*;
 import java.util.List;
 
-import XmlWeb.config.Read;
+import XmlWeb.config.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,7 +35,8 @@ public class RequestController {
 		return agentReqService.getAllRequests();
 		
 	}
-	@Read
+
+	@AdminWrite
 	@CrossOrigin(origins = "https://localhost:8090")
 	@RequestMapping(method = RequestMethod.GET, value = "/dtorequests")
 	public List<AgentRequestDTO> getDTORequests() {
@@ -44,7 +44,8 @@ public class RequestController {
 		return agentReqService.makeDTORequests();
 		
 	}
-	
+
+	@AdminWrite
 	@RequestMapping(method = RequestMethod.DELETE, value = "/requests/{reqId}/user/{userId}")
 	public void deleteReq(@PathVariable Long reqId, @PathVariable Long userId){
 		try {
@@ -57,7 +58,8 @@ public class RequestController {
 			System.out.println("Opet org.hibernate.HibernateException: Unable to access lob stream i IO Exception: \"Missing lob entry");
 		}
 	}
-	
+
+	@AdminWrite
 	@RequestMapping(method = RequestMethod.POST, value = "/requests/{reqId}/user/{userId}", produces  = MediaType.TEXT_PLAIN)
 	public void approveReq(@RequestBody String crt, @PathVariable Long reqId, @PathVariable Long userId ) {
 		//try {
