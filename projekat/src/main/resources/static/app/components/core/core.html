@@ -233,7 +233,7 @@
 			    			Score
 			    		</th>
 			    	</tr>
-				      <tr  ng-repeat="rev in reviewsToShow">
+				      <tr  ng-show="rev.approved==1" ng-repeat="rev in reviewsToShow">
 				        <td ng-click="">
 				        	<span>{{rev.userName}}</span>
 				        </td>
