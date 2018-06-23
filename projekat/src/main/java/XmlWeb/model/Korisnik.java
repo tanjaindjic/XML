@@ -40,17 +40,17 @@ public class Korisnik {
     
     @Column(name = "FIRSTNAME", length = 50)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 2, max = 50)
     private String firstName;
 
     @Column(name = "LASTNAME", length = 50)
     @NotNull
-    @Size(min = 4, max = 50)
+    @Size(min = 2, max = 50)
     private String lastName;
     
     @Column(name = "PASSWORD", length = 100)
     @NotNull
-    @Size(min = 4, max = 100)
+    @Size(min = 8, max = 100)
     private String password;
 
     @Column(name = "LASTPASSWORDRESETDATE")
