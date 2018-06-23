@@ -186,25 +186,26 @@
                     console.log(dto);
 
 
-                    $http({
-                        method: 'POST',
-                        url: 'https://us-central1-xmlcoment.cloudfunctions.net/sqlInsert',
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        data: dto
-                    }).then(function successCallback(response) {
-
-
-                    }, function errorCallback(response) {
-
-                    });
+                    
 
                     $http({
                         method: 'POST',
                         url: 'https://localhost:8096/reservation/comment/'+id+'/'+ocena,
                         headers : createAuthorizationTokenHeader()
                     }).then(function successCallback(response) {
+                    	$http({
+                            method: 'POST',
+                            url: 'https://us-central1-xmlcoment.cloudfunctions.net/sqlInsert',
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            data: dto
+                        }).then(function successCallback(response) {
+
+
+                        }, function errorCallback(response) {
+
+                        });
                         alert("Comment submitted and awaiting approval ");
 
                     }, function errorCallback(response) {
