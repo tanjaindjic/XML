@@ -60,8 +60,8 @@
 		
 		$scope.smestajToShowPictureIndex=0;
 		$scope.pitcuresForward = function(){
-			$scope.smestajToShowPictureIndex = ($scope.smestajToShowPictureIndex + 1)%($scope.smestajToShow.sobe.length-1);
-			//console.log($scope.smestajToShowPictureIndex);
+			$scope.smestajToShowPictureIndex = ($scope.smestajToShowPictureIndex + 1)%($scope.smestajToShow.slike.length);
+			console.log($scope.smestajToShowPictureIndex);
 		}
 		
 		$scope.goHomeApp = function(){
