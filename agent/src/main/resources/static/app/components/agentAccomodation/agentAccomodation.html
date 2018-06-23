@@ -74,91 +74,27 @@
 				<td><input type="file" id="image" demo-file-model="uplImage" accept=".jpg, .png"/></td>
 				<td><input type="button" value='Upload image' ng-click='aac.uploadImage()'></td>
 			</tr>
-			<tr ng-repepat='img in images'>
-				<td></td>
-				<td></td>
-				<td>{{img}}</td>
-				<td></td>
-			</tr>
 			<tr>
+				<td></td>
+				<td></td>
+				<td>uploaded:</td>
+				<td>{{images}}</td>
+			</tr>		
+			<tr >
 				<td></td>
 				<td>Additional:</td>
-				<td>
-					<select size='dodatne.size' ng-model="smestaj.dodatneUsluge" multiple>
-				      <option ng-repeat="option in dodatne" ng-value="option">{{option.opcija}}</option>
-				    </select>				
+				<td >	
+				 	<div ng-repeat="option in dodatne">				
+  					<input type="checkbox" value="option.opcija" ng-click="aac.addDodatne(option)"> {{option.opcija}}<br>
+  					</div>			
 				</td>
 				<td></td>
-			</tr>			
-			<tr ng-repeat="option in dodatne">
+			</tr><tr>
 				<td></td>
 				<td></td>
-				<td>					
-  					<input type="checkbox" value="option.opcija" ng-click="aac.addDodatne(option)"> {{option.opcija}}<br>			
-				</td>
+				<td><br/><br/><br/><button class='buttonP' ng-click="aac.addSmestaj()" >Add Accommodation</button></td>
 				<td></td>
 			</tr>
-			<tr>
-				<td></td>
-				<td></td>
-				<td><input type="button" value='Add a room' ng-click='aac.addRoom()'></td>
-				<td></td>
-			</tr>
-			<tr ng-show='isAddingRoom'>
-				<td></td>
-				<td colspan='3'>
-					<div>
-						<table>
-							<tr>
-								<td>beds:</td>
-								<td><input type="number" ng-model='soba.brojLezaja'/></td>
-							</tr>
-							<tr>
-								<td>additional:</td>
-								<td>
-									<select size="dodatne.length" ng-model="soba.dodatneUsluge" multiple>
-								      <option ng-repeat="option in dodatne" ng-value="option.vrednost">{{option.naziv}}</option>
-								    </select>
-								</td>
-							</tr>
-							<tr>
-								<td>cathegory:</td>
-								<td><select ng-options="cath as cath.label for cath in caths track by cath.id" ng-model="soba.kategorija"></select></td>
-							</tr>
-							<tr>
-								<td>beds:</td>
-								<td><input type='text' ng-model='soba.brojLezaja'/></td>
-							</tr>
-							<tr ng-repeat='price in soba.cene'>
-								<td>{{price.datumOd}} - {{price.datumDo}}</td>
-								<td>--->{{price.cena}}</td>
-							</tr>
-							<tr>
-								<td>add price:</td>
-								<td><input type='button' ng-click='addPrice()'/></td>
-							</tr>
-							<tr ng-show='showAddPrice'>
-								<td>from:</td>
-								<td><input type="date" ng-model='cena.datumOd'/></td>
-							</tr>
-							<tr ng-show='showAddPrice'>
-								<td>to:</td>
-								<td><input type="date" ng-model='cena.datumDo'/></td>
-							</tr>
-							<tr ng-show='showAddPrice'>
-								<td>price:</td>
-								<td><input type="number" ng-model='cena.cena'/></td>
-							</tr>
-							<tr ng-show='showAddPrice'>
-								<td></td>
-								<td><input type="button" ng-click='aac.dodajCenu()'/></td>
-							</tr>
-							
-						</table>
-					</div>
-				</td>
-			</tr>
-		
 		</table>
         
         </br>

@@ -22,8 +22,9 @@
 			$scope.smestaj.slike = [];
 			$scope.soba = {};
 			$scope.cena = {};
-			$scope.images=[];
-			$scope.uplImage="";
+			$rootScope.images="";
+			$scope.dodatneUsluge=[];
+			$scope.uplImage={};
 			$scope.isAddingRoom=false;
 			$http({
                 method: 'GET',
@@ -31,7 +32,7 @@
               }).then(function successCallback(response) {
             	  if(response.data!=undefined){
             		  var tipovi = response.data
-            		  for(var i=1; i<=tipovi.length; i++){
+            		  for(var i=0; i<tipovi.length; i++){
             			  $scope.types.push(tipovi[i]);
             		  }
             	  }
@@ -44,7 +45,7 @@
               }).then(function successCallback(response) {
             	  if(response.data!=undefined){
             		  var dod = response.data;
-            		  for(var i=1; i<=dod.length; i++){
+            		  for(var i=0; i<dod.length; i++){
             			  $scope.dodatne.push(dod[i]);
             		  }
             	  }
@@ -57,7 +58,7 @@
 
 
 		aac.uploadImage = function(){
-			if($scope.uplImage!=undefined){
+			if($scope.uplImage!=undefined && $scope.uplImage!=""){
 				var file = $scope.uplImage;
 	        	var fileFormData = new FormData();
 	            fileFormData.append('file', file);
@@ -70,7 +71,9 @@
 	              }).then(function successCallback(response) {
 	            	  if(response.data!=""){
 	            		  $scope.smestaj.slike.push(response.data);
-	            		  $scope.images.push($scope.uplImage.name);
+	            		  if($rootScope.images!="")
+	            			  $rootScope.images = $rootScope.images+', ';
+	            		  $rootScope.images= $rootScope.images + $scope.uplImage.name;
 	            		  $scope.uplImage={};
 	            		  $scope.uplImage.name="";
 	            	  }
@@ -81,11 +84,12 @@
 		
 		aac.addDodatne = function(opcija){
 			if($scope.dodatneUsluge.indexOf(opcija)!=-1){
-				$scope.dodatneUsluge.remove(opcija);
+				var num = $scope.dodatneUsluge.indexOf(opcija);
+				$scope.dodatneUsluge.splice(num, 1)
 			}
 			else{
 				var num = $scope.dodatneUsluge.indexOf(opcija);
-				$scope.dodatneUsluge.push(num);
+				$scope.dodatneUsluge.push(opcija);
 			}
 		}
 		aac.addRoom = function(){

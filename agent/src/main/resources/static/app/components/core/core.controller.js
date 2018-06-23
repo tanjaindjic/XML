@@ -78,7 +78,7 @@
 			removeJwtToken();
 			$scope.profileShow = false;
 			$scope.username="";
-			$window.location="https://localhost:8097/#!/home";
+			$window.location="https://localhost:8097/#!/login";
 		}
 		
 		$scope.typeList = [];
