@@ -1,0 +1,83 @@
+<div>
+
+
+    </br>
+    </br>
+
+
+    <div class="tab">
+        <button class="tablinks" ng-click="goToState('core.home')" >MY ACCOMMODATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentAccomodation')" >ADD ACCOMMODATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentReservations')" >MAKE RESERVATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentChat')" >CHAT</button>
+        <button class="tablinks" ng-click="goToState('core.agentConfirmStay')" >CONFIRM STAY</button>
+    </div>
+
+ <div class="centar">
+
+        <h3 class="olive">EDIT ACCOMMODATION : </h3>
+
+        </br>
+
+		<table>
+			<tr ng-repeat='acom in all'>
+				<td width='10%'></td>
+				<td width='10%'>{{smestaj.naziv}}</td>
+				<td width='10%'>{{smestaj.adresa}}</td>
+				<td width='10%'>{{smestaj.grad}}</td>
+				<td width='10%'>{{smestaj.drzava}}</td>
+				<td width='30%'>{{smestaj.opis}}</td>
+				<td width='10%'></td>
+				<td width='10%'></td>
+			</tr>
+		</table>
+		
+		 <h3 class="olive">ADD ROOM: </h3>
+		 
+		 <br/>
+		 
+		 <table>
+			<tr>
+				<td>beds:</td>
+				<td><input type="number" ng-model='soba.brojLezaja'/></td>
+			</tr>
+			<tr>
+				<td>additional:</td>
+				<td>
+					<select size="dodatne.length" ng-model="soba.dodatneUsluge" multiple>
+				      <option ng-repeat="option in dodatne" ng-value="option.vrednost">{{option.naziv}}</option>
+				    </select>
+				</td>
+			</tr>
+			<tr>
+				<td>cathegory:</td>
+				<td><select ng-options="cath as cath.kategorija for cath in caths track by cath" ng-model="soba.kategorija"></select></td>
+			</tr>	
+			<tr>
+				<td>price:</td>
+				<td><input type="number" ng-model='soba.cena'/></td>
+			</tr>	
+			<tr>
+				<td></td>
+				<td><button ng-click='ec.addRoom()'>add room</button></td>
+			</tr>
+			
+		</table>
+
+        </br><br/>
+		
+		
+		prikaz svih soba i mogucnost dodavanja termina u svaku
+        
+        </br>
+
+
+        </br>
+
+    </div>
+
+
+
+
+
+</div>

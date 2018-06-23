@@ -5,7 +5,7 @@
 		.module('app')
         .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function($stateProvider, $urlRouterProvider, $locationProvider) {
 
-      $urlRouterProvider.otherwise("/login");
+      $urlRouterProvider.otherwise("/home");
 
       $stateProvider
 		 .state('core', {
@@ -31,6 +31,12 @@
 			templateUrl: 'app/components/agentAccomodation/agentAccomodation.html',
 			controller: 'agentAccomodationController',
 			controllerAs: 'aac'
+		})		 
+		.state('core.edit', {
+			url: 'edit',
+			templateUrl: 'app/components/edit/edit.html',
+			controller: 'editController',
+			controllerAs: 'ec'
 		});
      /* $locationProvider.html5Mode({
     	  enabled: true,

@@ -1,11 +1,12 @@
 package xml.agent.dto;
 
+
+
 import java.util.Date;
 import java.util.List;
 
 import xml.agent.model.Enums.StatusKorisnika;
 import xml.agent.model.security.Authority;
-
 
 
 public class AgentRequestDTO {
