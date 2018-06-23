@@ -19,28 +19,70 @@
 
         </br>
 
-		<table>
-			<tr>
-				<td width='5%'></td>
-				<td width='10%'>Name</td>
-				<td width='15%'>Address</td>
-				<td width='10%'>City</td>
-				<td width='10%'>State</td>
-				<td width='30%'>Description</td>
-				<td width='10%'></td>
-				<td width='10%'></td>
-			</tr>
-			<tr ng-repeat='acom in all'>
-				<td width='10%'></td>
-				<td width='10%'>{{acom.naziv}}</td>
-				<td width='10%'>{{acom.adresa}}</td>
-				<td width='10%'>{{acom.grad}}</td>
-				<td width='10%'>{{acom.drzava}}</td>
-				<td width='30%'>{{acom.opis}}</td>
-				<td width='10%'><a class='aHome' ng-click='hc.edit(acom)'>edit</a></td>
-				<td width='10%'></td>
-			</tr>
-		</table>
+		<div>
+			<table class="tableHome">
+			    <tbody>
+				    <tr>
+				    	<th width='15%'>
+				    		Name	
+				    	</th>
+						<th width='10%'>
+				    		Adress
+				    	</th>
+				    	<th width='10%'>
+				    		City
+				    	</th>
+				    	<th width='10%'>
+				    		Country
+				    	</th>
+				    	<th width='10%'>
+				    		Category
+				    	</th>
+				    	<th width='8%'>
+				    		Rating
+				    	</th>
+				    	<th width='35%'>
+				    		Photo
+				    	</th>
+				    	<th width='5%'>
+				    		
+				    	</th>
+				    </tr>
+			      <tr  ng-repeat="smestaj in all">
+			        <td>
+				        <span>{{smestaj.naziv}}</span>
+			        </td>
+			        <td>
+				        <span>{{smestaj.adresa}}</span>
+			        </td>
+			        <td>
+				        <span>{{smestaj.grad}}</span>
+			        </td>
+			        <td>
+				        <span>{{smestaj.drzava}}</span>
+			        </td>  
+			        <td>
+				        <span>{{smestaj.kategorija.kategorija}}</span>
+			        </td>
+			        <td>
+				        <span>{{smestaj.rejting}}</span>
+			        </td>
+			        
+				    <td>
+				        <div class='imgHome' ng-repeat='img in smestaj.slike'>
+				       		<img ng-src="/api/files/{{img.uri}}.jpg" height="50" wight="60">
+				        </div>			        	
+			        </td>
+			        <td>
+			        	<button ng-click='hc.edit(smestaj)'>edit</button>
+			        </td>
+			        
+			        
+			      </tr>
+			
+			    </tbody>
+			</table>
+		</div>
 			
         
         </br>

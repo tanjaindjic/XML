@@ -148,7 +148,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/dodatneUsluge",
                 "/api/tipService",
                 "/api/kategorija",
-                "/api/files/**", "/uploadCert"
+                "/api/files/**", "/uploadCert",
+                "/api/agent/**/smestaj"
         
                 
             )

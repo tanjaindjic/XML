@@ -2,15 +2,16 @@ package xml.agent.services;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import XmlWeb.dto.SearchDTO;
 import xml.agent.model.Smestaj;
 import xml.agent.model.Soba;
 import xml.agent.repository.RezervacijaRepository;
 import xml.agent.repository.SmestajRepository;
+import XmlWeb.dto.SearchDTO;
 
 
 
@@ -90,6 +91,14 @@ public class SmestajService {
 			}
 		}
 		return temp1;
+	}
+
+	public Smestaj dodajSmestaj(Smestaj smestaj) {
+		return smestajRepository.save(smestaj);
+	}
+
+	public List<Smestaj> getAgentSmestaj(String username) {
+		return smestajRepository.findByVlasnikUsername(username);
 	}
 
 }

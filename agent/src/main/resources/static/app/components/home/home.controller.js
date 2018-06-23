@@ -39,7 +39,6 @@
         	$cookies.put("edit", JSON.stringify(acom));
             $location.path('/edit');	
         }
-        
     }
 
 })();

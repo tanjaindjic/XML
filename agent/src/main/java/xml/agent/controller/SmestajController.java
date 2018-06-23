@@ -22,7 +22,14 @@ public class SmestajController {
 	
 	@Autowired
 	private SmestajService smestajService;
-
+	
+	@RequestMapping(
+			value = "/api/smestaj",
+			method = RequestMethod.POST,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Smestaj> dodajSmestaj(Smestaj smestaj){
+		return new ResponseEntity<Smestaj>(smestajService.dodajSmestaj(smestaj), HttpStatus.OK);
+	}
 	@RequestMapping(
 			value = "/api/smestaj",
 			method = RequestMethod.GET,

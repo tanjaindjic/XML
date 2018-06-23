@@ -236,3 +236,13 @@
 .aHome:hover, .aHome:active {
     background-color: #ddd;
 }
+.tableHome{
+	width='100%'
+}
+.imgHome{
+	float: left;
+    padding-left: 5px;
+}
+.imgHome:hover{
+	transform: scale(5);
+}
