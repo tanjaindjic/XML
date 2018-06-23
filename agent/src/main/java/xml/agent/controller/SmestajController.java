@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import XmlWeb.dto.SearchDTO;
 import xml.agent.dto.SmestajDTO;
 import xml.agent.model.Slika;
 import xml.agent.model.Smestaj;
 import xml.agent.services.KorisnikService;
 import xml.agent.services.SlikaService;
 import xml.agent.services.SmestajService;
-import XmlWeb.dto.SearchDTO;
 
 @RestController
 public class SmestajController {
