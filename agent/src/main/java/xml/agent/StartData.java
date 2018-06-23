@@ -90,7 +90,6 @@ public class StartData {
          authorityRepository.save(adminAuthority);
          authorityRepository.save(agentAuthority);
          authorityRepository.save(userAuthority);
-         
 
          Korisnik k = new Korisnik();
          k.setUsername("admin");
