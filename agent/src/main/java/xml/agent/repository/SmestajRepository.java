@@ -2,6 +2,7 @@ package xml.agent.repository;
 
 
 
+import java.util.Collection;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,6 +27,16 @@ public interface SmestajRepository extends JpaRepository<Smestaj, Long> {
 			+ "UPPER(SMESTAJ.NAZIV)=UPPER(?1) AND SOBA.BROJ_LEZAJA>=?2"
 			, nativeQuery = true)
 	List<Smestaj> findByNameAndSobaNumberSeatsAndCategory(String name, int size, int c0, int c1, int c2, int c3, int c4, int c5);
+	
+/*	@Query(value="SELECT DISTINCT SMESTAJ.VERSION, SMESTAJ.ID, SMESTAJ.ADRESA, SMESTAJ.BROJ_OCENA, SMESTAJ.DRZAVA, SMESTAJ.GMAP_URL, SMESTAJ.GRAD, SMESTAJ.NAZIV, SMESTAJ.OPIS, SMESTAJ.REJTING, SMESTAJ.KATEGORIJA_KATEGORIJA, SMESTAJ.TIP_TIP, SMESTAJ.VLASNIK_USERNAME "
+			+ " FROM SMESTAJ, SMESTAJ_VLASNIK, KORISNIK "
+			+ "WHERE SMESTAJ.VLASNIK=SMESTAJ_SOBE.SMESTAJ_ID AND SOBA.ID=SMESTAJ_SOBE.SOBE_ID AND "
+			+ "UPPER(SMESTAJ.NAZIV)=UPPER(?1)"
+			, nativeQuery = true)*/
+	List<Smestaj> findByVlasnikUsername(String username);
+
+
+
 	
 	/*
 	FUCKING SHIT

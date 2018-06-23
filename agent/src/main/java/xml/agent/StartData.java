@@ -110,12 +110,12 @@ public class StartData {
          korisnikRepo.save(k);
          adminAuthority.getUsers().add(k);
          authorityRepository.save(adminAuthority);
-         System.out.println("dodao admira");
+         System.out.println("dodao admina");
 
 
 
         Korisnik k1 =  addUser("test", "test", "Minja", "Car1", "test@gmail.com" , Role.USER);
-        Korisnik k2 = addUser("Mirko", "mirko", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
+        Korisnik k2 = addUser("agent", "agent", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
         Korisnik k3 = addUser("Slavko", "slavko", "Slavko", "Slavic", "slavko@gmail.com" , Role.AGENT);
 //
         addMessage(k1.getId(), k2.getId(), "Testiram poruke",1);

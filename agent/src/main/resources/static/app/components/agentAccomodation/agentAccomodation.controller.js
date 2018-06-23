@@ -25,6 +25,7 @@
 			$rootScope.images="";
 			$scope.dodatneUsluge=[];
 			$scope.uplImage={};
+			$scope.kateg = [];
 			$scope.isAddingRoom=false;
 			$http({
                 method: 'GET',
@@ -47,6 +48,20 @@
             		  var dod = response.data;
             		  for(var i=0; i<dod.length; i++){
             			  $scope.dodatne.push(dod[i]);
+            		  }
+            	  }
+            	  
+              });
+
+			$scope.dodatne = [];
+			$http({
+                method: 'GET',
+                url: '/api/kategorija'
+              }).then(function successCallback(response) {
+            	  if(response.data!=undefined){
+            		  var dod = response.data;
+            		  for(var i=0; i<dod.length; i++){
+            			  $scope.kateg.push(dod[i]);
             		  }
             	  }
             	  
@@ -92,9 +107,22 @@
 				$scope.dodatneUsluge.push(opcija);
 			}
 		}
-		aac.addRoom = function(){
-			$scope.isAddingRoom=true;
-			$scope.soba={};
+		aac.addSmestaj = function(){
+			$http({
+                method: 'POST',
+                url: '/api/smestaj',
+                data: $scope.smestaj
+              }).then(function successCallback(response) {
+            	  if(response.data!=""){
+            		  $scope.smestaj.slike.push(response.data);
+            		  if($rootScope.images!="")
+            			  $rootScope.images = $rootScope.images+', ';
+            		  $rootScope.images= $rootScope.images + $scope.uplImage.name;
+            		  $scope.uplImage={};
+            		  $scope.uplImage.name="";
+            	  }
+            	  
+              });
 		}
 	}
 

@@ -53,12 +53,8 @@
 			<tr>
 				<td></td>
 				<td>Stars:</td>
-				<td><form name="myForm">
-					  <label><input type="radio" ng-model="smestaj.zvezdice" value="5">5</label>
-					  <label><input type="radio" ng-model="smestaj.zvezdice" value="4">4</label>
-					  <label><input type="radio" ng-model="smestaj.zvezdice" value="3">3</label>
-					  <label><input type="radio" ng-model="smestaj.zvezdice" value="2">2</label>
-					  <label><input type="radio" ng-model="smestaj.zvezdice" value="1">1</label>
+				<td><form name="myForm" ng-model='smestaj.kategorija'>
+						<label ng-repeat='k in kateg'><input type="radio" ng-model="smestaj.kategorija" ng-value="k">{{k.kategorija}} &nbsp &nbsp</label>
 				</td>
 				<td></td>
 			</tr>
