@@ -48,6 +48,7 @@ public class UploadController {
 			//message = "You successfully uploaded " + file.getOriginalFilename() + "!";
 			return ResponseEntity.status(HttpStatus.OK).body(new UploadDTO(message));
 		} catch (Exception e) {
+			e.printStackTrace();
 			message = "FAIL to upload " + file.getOriginalFilename() + "!";
 			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new UploadDTO(message));
 		}

@@ -90,7 +90,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/h2-console/**/**").permitAll()
                 .antMatchers("/uploadCert").permitAll()
             .antMatchers("/auth/**").permitAll()
-            .antMatchers(HttpMethod.POST,"/api/smestaj").hasRole("AGENT")
+            .antMatchers(HttpMethod.POST,"/api/postFile").permitAll()
+            .antMatchers(HttpMethod.POST,"/api/smestaj").permitAll()
+        
             .anyRequest().authenticated();
 
         // Custom JWT based security filter
@@ -114,13 +116,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 HttpMethod.POST,
                 authenticationPath, 
                 "/register",
-                "/api/smestaj/simplesearch",
-                "/api/smestaj/advancedsearch",
+                "/api/smestaj",
+                "/api/smestaj/**",
                 "/api/postFile",
                 "/api/getallfiles",
                     "/requests/**/**/**",
-                    "/certificates/**/**",
-                    "/api/smestaj"
+                    "/certificates/**/**"
+                    
             )
 
            .antMatchers(

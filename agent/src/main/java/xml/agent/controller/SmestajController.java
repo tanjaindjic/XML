@@ -14,13 +14,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import XmlWeb.dto.SearchDTO;
 import xml.agent.dto.SmestajDTO;
 import xml.agent.model.Slika;
 import xml.agent.model.Smestaj;
 import xml.agent.services.KorisnikService;
 import xml.agent.services.SlikaService;
 import xml.agent.services.SmestajService;
-import XmlWeb.dto.SearchDTO;
 
 @RestController
 public class SmestajController {
@@ -38,7 +38,7 @@ public class SmestajController {
 			method = RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Smestaj> dodajSmestaj(SmestajDTO sdto){
+	public ResponseEntity<Smestaj> dodajSmestaj(@RequestBody SmestajDTO sdto){
 		Smestaj smestaj = new Smestaj();
 		smestaj.generateFromDTO(sdto);
 		smestaj.setVlasnik(korisnikService.findByUsername(sdto.getUsername()));

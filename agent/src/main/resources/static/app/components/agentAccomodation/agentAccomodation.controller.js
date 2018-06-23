@@ -36,7 +36,8 @@
 			$scope.secretMessage="";
 			$http({
                 method: 'GET',
-                url: '/api/tipService'
+                url: '/api/tipService',
+                headers : createAuthorizationTokenHeader()
               }).then(function successCallback(response) {
             	  if(response.data!=undefined){
             		  var tipovi = response.data
@@ -124,10 +125,11 @@
 			$scope.smestaj.username = jwt_decode(getJwtToken()).sub;
 			var data = $scope.smestaj;
 			data.dodatneUsluge = $scope.dodatneUsluge;
+			console.log(JSON.stringify(data))
 			$http({
                 method: 'POST',
                 url: '/api/smestaj',
-                data: data,
+                data: JSON.stringify(data),
                 headers : createAuthorizationTokenHeader()
               }).then(function successCallback(response) {
             	  if(response.data!=""){
