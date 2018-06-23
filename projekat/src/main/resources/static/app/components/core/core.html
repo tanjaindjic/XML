@@ -154,7 +154,7 @@
 			        </td>
 			        
 			        <td>
-			        	<img ng-src="/api/files/{{smestaj.slike[0].uri}}.jpg" height="200" wight="250">
+			        	<img ng-src="/api/files/{{smestaj.slike[0].uri}}" height="200" wight="250">
 			        </td>
 			        <td>
 			        	<button ng-click = "showSemstaj(smestaj)">Details</button>
@@ -189,7 +189,7 @@
 				</ul> 
 		  </div>
 		  <div class="col-sm-4">
-				<img ng-click="pitcuresForward()" ng-src="/api/files/{{smestajToShow.slike[smestajToShowPictureIndex].uri}}.jpg" height="400" wight="500">
+				<img ng-click="pitcuresForward()" ng-src="/api/files/{{smestajToShow.slike[smestajToShowPictureIndex].uri}}" height="400" wight="500">
 		  </div>
 		</div><br/> 
 		<div class="row" ng-show = "panelToShow == 1">
@@ -224,7 +224,7 @@
 		  </div>
 		  <div class="col-sm-4">
 		  	<h4>User score:</h4>
-		  	<span ng-repeat="zvezdiceTrack in getNumberArrayFloat(smestajToShow.rejting) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArrayFloat(6-smestajToShow.rejting) track by $index"><i class="material-icons">star_border</i></span>
+		  	<span ng-repeat="zvezdiceTrack in getNumberArrayFloat(smestajToShow.rejting) track by $index"><i class="material-icons">star</i></span><span ng-repeat="zvezdiceTrack2 in getNumberArrayFloat(5-smestajToShow.rejting) track by $index"><i class="material-icons">star_border</i></span>
 		  <span>{{smestajToShow.rejting}}</span>
 		  	<table class="table table-hover table-sm">
 		  		<tbody>

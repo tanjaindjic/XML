@@ -187,8 +187,8 @@ public class StartData {
          
          ArrayList<Soba> sobe = new ArrayList<>();
          ArrayList<Slika> slike = new ArrayList<>();
-         slike.add(new Slika("slika1"));
-         slike.add(new Slika("slika2"));
+         slike.add(new Slika("slika1.jpg"));
+         slike.add(new Slika("slika2.jpg"));
          Soba temp = new Soba(1, new ArrayList<>(), new ArrayList<>());
          Soba temp1 = new Soba(2, new ArrayList<>(), new ArrayList<>());
          Soba temp2 = new Soba(3, new ArrayList<>(), new ArrayList<>());
@@ -282,8 +282,8 @@ public class StartData {
 		 ArrayList<KategorijaSmestaja> kats = (ArrayList<KategorijaSmestaja>) kategorijaRepository.findAll();
 		 temp.setKategorija(kats.get(zvezdice));
 		 ArrayList<Slika> slike = new ArrayList<>();
-         slike.add(new Slika("slika1"));
-         slike.add(new Slika("slika2"));
+         slike.add(new Slika("slika1.jpg"));
+         slike.add(new Slika("slika2.jpg"));
          temp.setSlike(slike);
          temp.setOpis("Hotel Slavija je smešten u centru Beograda, u neposrednoj blizini raznovrsnih prodavnica i restorana. U ponudi ima besplatan bežični internet u zajedničkim prostorijama i svim smeštajnim jedinicama. Nalazi se na svega par koraka od Hrama Sv. Save, koji je jedna od najvažnijih gradskih znamenitosti.\n" + 
           		"\n" + 
