@@ -11,9 +11,13 @@
         function getJwtToken() {
             return localStorage.getItem($scope.TOKEN_KEY);
         }
-
+        $scope.goToState = function(state) {
+			$state.go(state, {
+				"id" : $scope.userId
+			});
+		}
         function createAuthorizationTokenHeader() {
-            var token = getJwtToken();
+        	var token = getJwtToken();
             if (token) {
                 return {
                     "Authorization" : "Bearer " + token
@@ -45,7 +49,6 @@
 			return localStorage.getItem($scope.TOKEN_KEY);
 		}
 		var init = function() {
-
 			if (getJwtToken()) {
                 $scope.profileShow = true;
 				$scope.username = " " +jwt_decode(getJwtToken()).sub;

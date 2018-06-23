@@ -118,7 +118,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/postFile",
                 "/api/getallfiles",
                     "/requests/**/**/**",
-                    "/certificates/**/**"
+                    "/certificates/**/**",
+                    "/api/smestaj"
             )
 
            .antMatchers(
@@ -149,7 +150,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/tipService",
                 "/api/kategorija",
                 "/api/files/**", "/uploadCert",
-                "/api/agent/**/smestaj"
+                "/api/agent/**/smestaj",
+                "/api/smestaj/**"
         
                 
             )

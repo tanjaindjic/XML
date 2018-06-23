@@ -2,6 +2,7 @@ package xml.agent.model;
 
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -20,6 +21,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import xml.agent.dto.SmestajDTO;
 import xml.agent.model.Enums.DodatneUsluge;
 import xml.agent.model.Enums.KategorijaSmestaja;
 import xml.agent.model.Enums.TipSmestaja;
@@ -291,4 +293,24 @@ public class Smestaj {
     public void setBrojOcena(int brojOcena) {
         this.brojOcena = brojOcena;
     }
+
+	public void generateFromDTO(SmestajDTO sdto) {
+		this.setAdresa(sdto.getAdresa());
+		this.setNaziv(sdto.getNaziv());
+		this.setDrzava(sdto.getDrzava());
+		this.setGrad(sdto.getGrad());
+		this.setBrojOcena(0);
+		this.setDodatneUsluge(sdto.getDodatneUsluge());	
+		this.setGmapUrl(sdto.getGmapUrl());
+		this.setKategorija(sdto.getKategorija());	
+		this.setMaxCena(sdto.getMaxCena());	
+		this.setMinCena(sdto.getMinCena());	
+		this.setOpis(sdto.getOpis());
+		this.setRejting(0);
+		this.setSlike(new ArrayList<Slika>());
+		this.setSobe(new ArrayList<Soba>());
+		this.setTip(sdto.getTip());
+		this.setVlasnik(null);
+		
+	}
 }

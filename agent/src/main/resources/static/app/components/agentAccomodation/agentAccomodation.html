@@ -46,6 +46,12 @@
 			</tr>
 			<tr>
 				<td></td>
+				<td>Description:</td>
+				<td><textarea rows="4" cols="50" ng-model='smestaj.opis'></textarea></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
 				<td>GoogleMap URL:</td>
 				<td><input type='text' ng-model='smestaj.gmapUrl' size='60'/></td>
 				<td></td>
@@ -62,6 +68,15 @@
 				<td></td>
 				<td>Type:</td>
 				<td><select ng-options="type as type.tip for type in types track by type" ng-model="smestaj.tip"></select></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>Price:</td>
+				<td>
+					max:&nbsp<input type='number' size='6' ng-model='smestaj.maxCena' /><br/>
+					min:&nbsp<input type='number' size='6' ng-model='smestaj.minCena' />
+				</td>
 				<td></td>
 			</tr>
 			<tr>
@@ -89,13 +104,13 @@
 				<td></td>
 				<td></td>
 				<td><br/><br/><br/><button class='buttonP' ng-click="aac.addSmestaj()" >Add Accommodation</button></td>
-				<td></td>
+				<td ng-show='showMessage'>{{secretMessage}}</td>
 			</tr>
 		</table>
         
         </br>
 
-
+		
         </br>
 
     </div>

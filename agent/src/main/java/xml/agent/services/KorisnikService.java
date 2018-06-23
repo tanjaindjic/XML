@@ -109,4 +109,8 @@ public class KorisnikService {
 		return korisnikRepo.findByConfirmationToken(confirmationToken);
 	}
 
+	public Korisnik findByUsername(String username) {
+		return korisnikRepo.findByUsernameIgnoreCase(username);
+	}
+
 }

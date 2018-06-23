@@ -5,12 +5,17 @@
 		.module('app')
 		.controller('homeController', homeController);
 
-    homeController.$inject = ['$location', '$scope', '$rootScope','$http', '$cookies', '$window'];
-    function homeController($location, $scope, $rootScope, $http, $cookies, $window) {
+    homeController.$inject = ['$location', '$scope', '$rootScope','$http', '$cookies', '$window', '$state'];
+    function homeController($location, $scope, $rootScope, $http, $cookies, $window, $state) {
     	var hc = this;
     	function getJwtToken() {
             return localStorage.getItem($scope.TOKEN_KEY);
         }
+    	$scope.goToState = function(state) {
+			$state.go(state, {
+				"id" : $scope.userId
+			});
+		}
     	var init = function(){
     		var username = "";
     		if (getJwtToken()) {
@@ -36,7 +41,7 @@
         init();
         
         hc.edit = function(acom){
-        	$cookies.put("edit", JSON.stringify(acom));
+        	$cookies.put("edit", acom.id);
             $location.path('/edit');	
         }
     }

@@ -4,9 +4,9 @@
 	angular.module('app').controller('loginController', loginController);
 
 	loginController.$inject = [ '$location', '$scope', '$rootScope', '$http',
-			'$window', '$cookies', '$stateParams', '$state', '$timeout' ];
+			'$window', '$cookies', '$stateParams', '$state', '$timeout' , '$state'];
 	function loginController($location, $scope, $rootScope, $http, $window,
-			$cookies, $stateParams, $state, $timeout) {
+			$cookies, $stateParams, $state, $timeout, $state) {
 
 		var lc = this;
 

@@ -15,8 +15,13 @@
 				"id" : $scope.userId
 			});
 		}
-
+		function getJwtToken() {
+            return localStorage.getItem($scope.TOKEN_KEY);
+        }
 		var init = function() {
+			if(!getJwtToken()){
+				location.path('/login');
+			}
 			$scope.types = [];
 			$scope.smestaj = {};
 			$scope.smestaj.slike = [];
@@ -27,6 +32,8 @@
 			$scope.uplImage={};
 			$scope.kateg = [];
 			$scope.isAddingRoom=false;
+			$scope.showMessage=false;
+			$scope.secretMessage="";
 			$http({
                 method: 'GET',
                 url: '/api/tipService'
@@ -85,7 +92,7 @@
 	                data: fileFormData
 	              }).then(function successCallback(response) {
 	            	  if(response.data!=""){
-	            		  $scope.smestaj.slike.push(response.data);
+	            		  $scope.smestaj.slike.push(response.data.message);
 	            		  if($rootScope.images!="")
 	            			  $rootScope.images = $rootScope.images+', ';
 	            		  $rootScope.images= $rootScope.images + $scope.uplImage.name;
@@ -108,10 +115,18 @@
 			}
 		}
 		aac.addSmestaj = function(){
+			if($scope.smestaj.naziv=="" || $scope.smestaj.adresa=="" || $scope.smestaj.grad=="" || $scope.smestaj.drzava=="" ||
+					$scope.smestaj.kategorija=={} || $scope.smestaj.tip=={} || $scope.smestaj.naziv=="" || $scope.smestaj.slike.length==0){
+				$scope.showMessage=true;
+				$scope.secretMessage="All data needed and at least one picture";
+				return;
+			}
+			$scope.smestaj.username = jwt_decode(getJwtToken()).sub;
+			var data = $scope.smestaj;
 			$http({
                 method: 'POST',
                 url: '/api/smestaj',
-                data: $scope.smestaj
+                data: data
               }).then(function successCallback(response) {
             	  if(response.data!=""){
             		  $scope.smestaj.slike.push(response.data);

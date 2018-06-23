@@ -3,6 +3,7 @@ package xml.agent.services;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -99,6 +100,12 @@ public class SmestajService {
 
 	public List<Smestaj> getAgentSmestaj(String username) {
 		return smestajRepository.findByVlasnikUsername(username);
+	}
+
+	public Smestaj getSmestajByID(Long id) {
+		Optional<Smestaj> retVal = null;
+		retVal = smestajRepository.findById(id);
+		return retVal.get();
 	}
 
 }
