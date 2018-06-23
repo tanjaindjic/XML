@@ -87,10 +87,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.OPTIONS).anonymous()
             .antMatchers("/dtorequests").hasRole("ADMIN")
             .antMatchers(HttpMethod.DELETE,"/requests/**/**/**").hasRole("ADMIN")
-            .antMatchers("/user").hasAnyRole("ADMIN", "USER")
+            .antMatchers("/user").hasAnyRole("ADMIN", "USER", "AGENT")
+            .antMatchers("/user/**").hasAnyRole("ADMIN", "USER", "AGENT")
             .antMatchers("/user/block/**").hasRole("ADMIN")
             .antMatchers("/comments/**").hasRole("ADMIN")
             .antMatchers("/resources/**").permitAll()
+            .antMatchers("**/**.js").permitAll()
             .antMatchers("/css/**", "/assets/**", "/images/**").permitAll()
             .antMatchers("/reservation/setBoolean/**").hasRole("ADMIN")
             .antMatchers("/certificates").hasRole("ADMIN")
@@ -98,8 +100,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/h2-console/**/**").permitAll()
             .antMatchers("/uploadCert").permitAll()
             .antMatchers("/auth/**").permitAll()
-            .antMatchers("/services/**").permitAll()
-            .anyRequest().authenticated();
+            .antMatchers("/services/**").permitAll();
+           
 
         // Custom JWT based security filter
         JwtAuthorizationTokenFilter authenticationTokenFilter = new JwtAuthorizationTokenFilter(userDetailsService(), jwtTokenUtil, tokenHeader);
@@ -159,7 +161,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/tipService",
                 "/api/kategorija",
                 "/api/files/**", "/uploadCert",
-                "/services/**"
+                "/services/**",
+                "/resources/**"
         
                 
             )

@@ -18,7 +18,7 @@
                 $timeout(timer, 1000);
             }else $location.path("/login")
         }
-        
+       
       
         
         
@@ -40,6 +40,11 @@
                 document.getElementById("timer2").style.display = "block";
                 $timeout(timer, 1000);
                 		}
+    		if(lastPart==5){
+                $scope.message = "Administrator accounts are enabled only in Admin Section."
+                document.getElementById("timer3").style.display = "block";
+                document.getElementById("success").style.display = "none";
+    		}
         };
         init();
 

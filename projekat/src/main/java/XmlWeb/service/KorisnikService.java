@@ -20,6 +20,9 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.nulabinc.zxcvbn.Strength;
+import com.nulabinc.zxcvbn.Zxcvbn;
+
 import XmlWeb.dodatno.Konverter;
 import XmlWeb.dto.KorisnikDTO;
 import XmlWeb.dto.RegisterDTO;
@@ -96,6 +99,8 @@ public class KorisnikService {
 				kor.setIzdaje(id.getIzdaje());
 				kor.setAktiviran(id.isAktiviran());
 				kor.setRole(id.getRole());
+				kor.setAuthorities(id.getAuthorities());
+				kor.setLastPasswordResetDate(id.getLastPasswordResetDate());
 			}
 
 			korisnikRepo.save(kor);
@@ -136,18 +141,25 @@ public class KorisnikService {
 			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
 		}
 
+		if(regDetails.getUsername().trim().length()<4) {
+			map.put("text", "Username is too short.");
+			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
+		}
 		if (!regDetails.getPassword1().equals(regDetails.getPassword2())) {
 			map.put("text", "Passwords don't match.");
 			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
 		}
+		if(regDetails.getPassword1().trim().length()<8) {
+			map.put("text", "Password is too short.");
+			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
+		}
 
-		/*
-		 * Zxcvbn passwordCheck = new Zxcvbn(); Strength strength =
-		 * passwordCheck.measure(regDetails.getPassword1()); if (strength.getScore() <
-		 * 1) {
-		 * map.put("text","Your password is too weak. Please choose a stronger one.");
-		 * return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED); }
-		 */
+		
+		  Zxcvbn passwordCheck = new Zxcvbn(); 
+		 Strength strength =  passwordCheck.measure(regDetails.getPassword1()); if (strength.getScore() <  1) {
+		  map.put("text","Your password is too weak. Please choose a stronger one.");
+		  return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED); }
+		 
 		Korisnik novi = new Korisnik();
 		novi.setAktiviran(false);
 		List<Authority> l = new ArrayList<>();

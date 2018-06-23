@@ -34,6 +34,9 @@
                                   console.log("nepotvrdjen")
                                   $location.path("/uploadCert");
                               }
+                  else if($scope.role=="ADMIN"){
+                	  $location.path("/success/5")
+                  }
                   else $state.go("core.home", {}, {reload:true})
             }, function errorCallback(response) {
                 console.log(response.data)

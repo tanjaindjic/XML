@@ -150,9 +150,9 @@ public class StartData {
 
          cs.generateCertificate(dto);
 
-        Korisnik k1 =  addUser("test", "test", "Minja", "Car1", "test@gmail.com" , Role.USER);
-        Korisnik k2 = addUser("Mirko", "mirko", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
-        Korisnik k3 = addUser("Slavko", "slavko", "Slavko", "Slavic", "slavko@gmail.com" , Role.AGENT);
+        Korisnik k1 =  addUser("test", "testtest", "Minja", "Car1", "test@gmail.com" , Role.USER);
+        Korisnik k2 = addUser("Mirko", "mirkomirko", "Mirko", "Mirkovic", "mirko@gmail.com" , Role.AGENT);
+        Korisnik k3 = addUser("Slavko", "slavkoslavko", "Slavko", "Slavic", "slavko@gmail.com" , Role.AGENT);
 //
         addMessage(k1.getId(), k2.getId(), "Testiram poruke",1);
          addMessage(k2.getId(), k1.getId(), "Obrnut redosled",2);
@@ -365,6 +365,8 @@ public class StartData {
          k.setLastPasswordResetDate(new Date());
          k.setIzdaje(new ArrayList<>());
          k.setRezervacije(new ArrayList<>());
+         k.setLastPasswordResetDate(new Date());
+         
          List l = new ArrayList<>();
          Authority a;
          //OVO SAM IZMENILA JER CE BITI ZAKUCANE ROLE NEMA STA DA SE DODAJE SAMO DA NADJE ODGOVARAJUCU IZ REPOSITORY
@@ -375,7 +377,7 @@ public class StartData {
          else
              a = authorityRepository.findByName(AuthorityName.ROLE_ADMIN);
 
-
+         System.out.println(a.getName());
          l.add(a);
          k.setAuthorities(l);
          k = korisnikRepo.save(k);
