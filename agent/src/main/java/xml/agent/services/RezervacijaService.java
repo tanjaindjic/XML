@@ -180,4 +180,11 @@ public class RezervacijaService {
     public void saveRez(Rezervacija r) {
         rezRepo.save(r);
     }
+
+	public List<Rezervacija> getPending() {
+		// TODO Auto-generated method stub
+		 List<Rezervacija> rezervacije = new ArrayList<>();
+	        rezRepo.findByStatus(StatusRezevacije.PENDING).forEach(rezervacije::add);
+	        return rezervacije;
+	}
 }

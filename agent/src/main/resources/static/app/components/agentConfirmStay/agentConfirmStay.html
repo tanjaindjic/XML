@@ -1,0 +1,20 @@
+<div>
+	<ul>
+		
+		<li ng-repeat="rez in all track by rez.id">
+		<p> Accommodation: {{rez.smestaj.naziv}}</p>
+		<p> Room ID: {{rez.soba.id}}</p>
+		<p> Guest: {{rez.rezervisao.firstName}}  {{rez.rezervisao.lastName}} </p>
+		<p> From:  {{rez.datumOd | date:'yyyy-MM-dd'}} To: {{rez.datumDo | date:'yyyy-MM-dd'}}</p>
+		<p> Room Price: {{rez.soba.cena}}</p>
+		
+		<br>
+		<span><button ng-click="approve(rez.id)">Approve</button>         <button ng-click="decline(rez.id)">Decline</button></span>
+		</li>
+		<br>
+		
+		
+	</ul>
+	
+
+</div>

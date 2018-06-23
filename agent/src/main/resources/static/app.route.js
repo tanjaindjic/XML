@@ -32,6 +32,19 @@
 			controller: 'agentAccomodationController',
 			controllerAs: 'aac'
 		})		 
+		.state('core.agentReservations', {
+			url: 'agentReservations',
+			templateUrl: 'app/components/agentReservations/agentReservations.html',
+			controller: 'agentReservationsController',
+			controllerAs: 'arc'
+		})	
+				 
+		.state('core.agentConfirmStay', {
+			url: 'agentConfirmStay',
+			templateUrl: 'app/components/agentConfirmStay/agentConfirmStay.html',
+			controller: 'agentConfirmStayController',
+			controllerAs: 'acsc'
+		})		
 		.state('core.edit', {
 			url: 'edit',
 			templateUrl: 'app/components/edit/edit.html',

@@ -28,6 +28,10 @@ public class RezervacijaController {
     public List<Rezervacija> getAll(){
         return rs.getAll();
     }
+    @RequestMapping(method = RequestMethod.GET, value = "/reservation/pending")
+    public List<Rezervacija> getPending(){
+        return rs.getPending();
+    }
  
     @RequestMapping(method = RequestMethod.GET, value = "/reservation/{id}")
     public List<Rezervacija> getByUser(@PathVariable Long id){ return rs.getRezervacije(id); }

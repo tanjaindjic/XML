@@ -1,0 +1,37 @@
+<div>
+
+<form name="myForm">
+    <label for="repeatSelect"> Select Accommodation: </label>
+	<select ng-options="s as s.naziv for s in all track by s.id"  ng-model="selectedSmestaj"></select>
+	<span>   Room:   </span>
+	<select ng-options="so as so.id for so in selectedSmestaj track by so.id"  ng-model="selectedSoba"></select>
+	<p>   Price: {{selectedSoba.cena}}    </p> <p>   Beds: {{selectedSoba.brojLezaja}}   </p> <p>   Category: {{selectedSoba.kategorija}}    </p>
+	<p>Extra Services:</p>
+	<ul>
+		
+		<li ng-repeat="ser in selectedSoba.opcija">{{ser.opcija}}</li>
+	</ul>
+
+	<p>Price List:</p>
+	<ul>
+		
+		<li ng-repeat="pr in selectedSoba.cene">From: {{pr.datumOd}} To: {{pr.datumDo}} Price: {{pr.cena}}</li>
+	</ul>
+	<p>Not Available: </p>
+	<ul>
+		
+		<li ng-repeat="re in selectedSoba.rezervisano">From: {{re.datumOd}} To: {{re.datumDo}} Price: {{re.cena}}</li>
+	</ul>
+	<br>
+	<span>   Available:   </span>
+	<select ng-options="iz as iz.id for iz in selectedSoba.iznajmljivanje track by iz.id"  ng-model="period"> From: {{iz.datumOd}} To: {{iz.datumDo}} Price: {{iz.cena}} </select>
+	<br>
+	
+	<br><br>
+	<button ng-click="makeRes()">Make Reservation</button>
+	
+	</form>
+	
+			
+  
+</div>

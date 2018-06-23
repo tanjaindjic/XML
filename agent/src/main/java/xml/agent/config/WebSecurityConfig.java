@@ -81,7 +81,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers(HttpMethod.OPTIONS).anonymous()
             .antMatchers("/dtorequests").hasRole("ADMIN")
             .antMatchers(HttpMethod.DELETE,"/requests/**/**/**").hasRole("ADMIN")
-            .antMatchers("/user").hasAnyRole("ADMIN", "USER")
+            .antMatchers("/user").hasAnyRole("ADMIN","AGENT", "USER")
+            .antMatchers("/user/**").hasAnyRole("ADMIN","AGENT", "USER")
             .antMatchers("/user/block/**").hasRole("ADMIN")
             .antMatchers("/comments/**").hasRole("ADMIN")
             .antMatchers("/resources/**").permitAll()
@@ -92,7 +93,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/auth/**").permitAll()
             .antMatchers(HttpMethod.POST,"/api/postFile").permitAll()
             .antMatchers(HttpMethod.POST,"/api/smestaj").permitAll()
-        
+            .antMatchers(HttpMethod.POST,"/reservation/**").hasRole("AGENT")
+            .antMatchers(HttpMethod.GET,"/reservation/**").hasRole("AGENT")
             .anyRequest().authenticated();
 
         // Custom JWT based security filter
@@ -121,6 +123,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/postFile",
                 "/api/getallfiles",
                     "/requests/**/**/**",
+                    "/makeReservation",
                     "/certificates/**/**"
                     
             )
@@ -153,8 +156,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/tipService",
                 "/api/kategorija",
                 "/api/files/**", "/uploadCert",
-                "/api/agent/**/smestaj",
-                "/api/smestaj/**"
+                "/api/agent/**/smestaj","/makeReservation",
+                "/api/smestaj/**",
+                "user/**"
         
                 
             )

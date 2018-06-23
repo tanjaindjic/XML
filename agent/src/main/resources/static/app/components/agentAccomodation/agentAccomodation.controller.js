@@ -143,7 +143,10 @@
             	  
               });
 		}
-		
+		function getJwtToken() {
+            return localStorage.getItem($scope.TOKEN_KEY);
+        }
+
 		function createAuthorizationTokenHeader() {
             var token = getJwtToken();
             if (token) {
