@@ -154,7 +154,7 @@
 			        </td>
 			        
 			        <td>
-			        	<img ng-src="/api/files/{{smestaj.slike[0].uri}}.jpg" height="200" wight="250">
+			        	<img ng-src="/api/files/{{smestaj.slike[0].uri}}" height="200" wight="250">
 			        </td>
 			        <td>
 			        	<button ng-click = "showSemstaj(smestaj)">Details</button>
@@ -189,7 +189,7 @@
 				</ul> 
 		  </div>
 		  <div class="col-sm-4">
-				<img ng-click="pitcuresForward()" ng-src="/api/files/{{smestajToShow.slike[smestajToShowPictureIndex].uri}}.jpg" height="400" wight="500">
+				<img ng-click="pitcuresForward()" ng-src="/api/files/{{smestajToShow.slike[smestajToShowPictureIndex].uri}}" height="400" wight="500">
 		  </div>
 		</div><br/> 
 		<div class="row" ng-show = "panelToShow == 1">
