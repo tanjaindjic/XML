@@ -38,7 +38,7 @@ public class SmestajController {
 			method = RequestMethod.POST,
 			produces = MediaType.APPLICATION_JSON_VALUE,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Smestaj> dodajSmestaj(SmestajDTO sdto){
+	public ResponseEntity<Smestaj> dodajSmestaj(@RequestBody SmestajDTO sdto){
 		Smestaj smestaj = new Smestaj();
 		smestaj.generateFromDTO(sdto);
 		smestaj.setVlasnik(korisnikService.findByUsername(sdto.getUsername()));

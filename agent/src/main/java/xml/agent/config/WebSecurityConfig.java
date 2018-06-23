@@ -90,7 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/h2-console/**/**").permitAll()
                 .antMatchers("/uploadCert").permitAll()
             .antMatchers("/auth/**").permitAll()
-            .antMatchers(HttpMethod.POST,"/api/smestaj").hasRole("AGENT")
+            .antMatchers("/api/**").permitAll()
             .anyRequest().authenticated();
 
         // Custom JWT based security filter

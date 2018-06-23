@@ -54,7 +54,7 @@
               }).then(function successCallback(response) {
             	  if(response.data!=undefined){
             		  var dod = response.data;
-            		  for(var i=1; i<=dod.length; i++){
+            		  for(var i=0; i<dod.length; i++){
             			  $scope.dodatne.push(dod[i]);
             		  }
             	  }
