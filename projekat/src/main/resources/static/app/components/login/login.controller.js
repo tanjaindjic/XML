@@ -35,7 +35,9 @@
                                   $location.path("/uploadCert");
                               }
                   else if($scope.role=="ADMIN"){
+                	  removeJwtToken();
                 	  $location.path("/success/5")
+                	 
                   }
                   else $state.go("core.home", {}, {reload:true})
             }, function errorCallback(response) {

@@ -153,6 +153,10 @@ public class KorisnikService {
 			map.put("text", "Password is too short.");
 			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
 		}
+		if(regDetails.getPib().trim().length()<9) {
+			map.put("text", "PIB is too short.");
+			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
+		}
 
 		
 		  Zxcvbn passwordCheck = new Zxcvbn(); 
@@ -288,13 +292,26 @@ public class KorisnikService {
 			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
 		}
 
-		/*
-		 * Zxcvbn passwordCheck = new Zxcvbn(); Strength strength =
-		 * passwordCheck.measure(regDetails.getPassword1()); if (strength.getScore() <
-		 * 1) {
-		 * map.put("text","Your password is too weak. Please choose a stronger one.");
-		 * return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED); }
-		 */
+		if(regDetails.getUsername().trim().length()<4) {
+			map.put("text", "Username is too short.");
+			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
+		}
+
+		if(regDetails.getPassword1().trim().length()<8) {
+			map.put("text", "Password is too short.");
+			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
+		}
+		if(regDetails.getPib().trim().length()<9) {
+			map.put("text", "PIB is too short.");
+			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
+		}
+
+		
+		  Zxcvbn passwordCheck = new Zxcvbn(); 
+		 Strength strength =  passwordCheck.measure(regDetails.getPassword1()); if (strength.getScore() <  1) {
+		  map.put("text","Your password is too weak. Please choose a stronger one.");
+		  return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED); }
+		 
 		Korisnik novi = new Korisnik();
 		novi.setAktiviran(false);
 		List<Authority> l = new ArrayList<>();

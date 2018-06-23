@@ -78,14 +78,26 @@
 								return;
 							}
 							if (document.getElementById("agentCheck").checked
-									&& ($form.find('input[name="pib"]').val()
-											.trim() == "" || $form.find(
-											'input[name="adresa"]').val()
-											.trim() == "")) {
+									&& ($form.find('input[name="pib"]').val().trim() == "" || $form.find('input[name="adresa"]').val().trim() == "")) {
 								$scope.message = "Agents must provide PIB and Adress information.";
 								return;
+								
+							}
+							
+							if(document.getElementById("agentCheck").checked){
+								if($form.find('input[name="pib"]').val().trim().match(/^[0-9]+$/) != null){
+									if($form.find('input[name="pib"]').val().trim().length<9){
+										$scope.message = "PIB must contain exactly 9 digits. ";
+										return;
+									}
+								}else{
+									$scope.message = "PIB must contain exactly 9 digits. ";
+									return;
+								}
+									
 							}
 
+							$scope.message="";
 							var formData = {
 
 								"firstname" : $form.find(

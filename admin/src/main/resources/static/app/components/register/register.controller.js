@@ -35,37 +35,23 @@
 			return localStorage.getItem($scope.TOKEN_KEY);
 		}
 
-		function doRegister(regData) {
+		
+			function doRegister(regData) {
 			console.log(JSON.stringify(regData))
-
-			$.ajax({
+			$http({
+				method : 'POST',
 				url : "https://localhost:8096/register/admin",
-				type : "POST",
-				data : JSON.stringify(regData),
-				contentType : "application/json; charset=utf-8",
-				dataType : "json",
-				headers : createAuthorizationTokenHeader(),
-				success : function(data, textStatus, jqXHR) {
-					window.location = data.Location;
-				},
-				error : function(data, textStatus, jqXHR) {
-					console.log(data)
-					console.log(textStatus)
-				}
+				data : JSON.stringify(regData)
+			}).then(function successCallback(response) {
 
+				$location.path("/success/1") 
+			}, function errorCallback(response) {
+				$scope.message = response.data.text;
+				console.log(response)
 			});
-			/*
-			 * $http({ method: 'POST', url:
-			 * "https://localhost:8096/register/admin", data :
-			 * JSON.stringify(regData) }).then(function
-			 * successCallback(response) {
-			 * 
-			 * $location.path("/success/1") }, function errorCallback(response) {
-			 * console.log(response) console.log(response.data.text)
-			 * $scope.message = response.data.text; });
-			 */
+			}
 
-		}
+		
 
 		
 
@@ -91,7 +77,22 @@
 				$scope.message = "Passwords don't match";
 				return;
 			}
+			if($form.find('input[name="pib"]').val().trim().match(/^[0-9]+$/) != null){
+				if($form.find('input[name="pib"]').val().trim().length<9){
+					$scope.message = "PIB must contain exactly 9 digits!";
+					return;
+				}
+			}else{
+				$scope.message = "PIB must contain exactly 9 digits. ";
+				return;
+			}
+			
+			if($form.find('input[name="pib"]').val().trim() == "" || $form.find('input[name="adresa"]').val().trim() == ""){
+				$scope.message = "Agents must provide PIB and Adress information.";
+				return;
+			}
 
+			$scope.message="";
 			var formData = {
 				"firstname" : $form.find('input[name="firstname"]').val(),
 				"lastname" : $form.find('input[name="lastname"]').val(),
