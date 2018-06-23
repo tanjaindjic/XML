@@ -123,10 +123,12 @@
 			}
 			$scope.smestaj.username = jwt_decode(getJwtToken()).sub;
 			var data = $scope.smestaj;
+			data.dodatneUsluge = $scope.dodatneUsluge;
 			$http({
                 method: 'POST',
                 url: '/api/smestaj',
-                data: data
+                data: data,
+                headers : createAuthorizationTokenHeader()
               }).then(function successCallback(response) {
             	  if(response.data!=""){
             		  $scope.smestaj.slike.push(response.data);
@@ -139,6 +141,17 @@
             	  
               });
 		}
+		
+		function createAuthorizationTokenHeader() {
+            var token = getJwtToken();
+            if (token) {
+                return {
+                    "Authorization" : "Bearer " + token
+                };
+            } else {
+                return {};
+            }
+        }
 	}
 
 })();

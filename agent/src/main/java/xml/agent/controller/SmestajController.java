@@ -36,7 +36,8 @@ public class SmestajController {
 	@RequestMapping(
 			value = "/api/smestaj",
 			method = RequestMethod.POST,
-			produces = MediaType.APPLICATION_JSON_VALUE)
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Smestaj> dodajSmestaj(SmestajDTO sdto){
 		Smestaj smestaj = new Smestaj();
 		smestaj.generateFromDTO(sdto);
@@ -50,7 +51,8 @@ public class SmestajController {
 	@RequestMapping(
 			value = "/api/smestaj/{id}",
 			method = RequestMethod.GET,
-			produces = MediaType.APPLICATION_JSON_VALUE)
+			produces = MediaType.APPLICATION_JSON_VALUE,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Smestaj> getSmestajByID(@PathVariable Long id){
 		return new ResponseEntity<Smestaj>(smestajService.getSmestajByID(id), HttpStatus.OK);
 	}
