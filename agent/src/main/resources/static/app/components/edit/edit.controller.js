@@ -150,7 +150,7 @@
             		  var izn = response.data;
             		  izn.datumOd = sklopiDatume(response.data.datumOd);
             		  izn.datumDo = sklopiDatume(response.data.datumDo);
-            		  $scope.zaRent.iznajmljivanje.push(izn);
+            		  $scope.zaRent.iznajmljivanja.push(izn);
             		  $scope.messageRent = "";
             	  }
             	  
