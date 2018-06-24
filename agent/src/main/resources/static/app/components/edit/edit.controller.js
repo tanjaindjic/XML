@@ -16,6 +16,20 @@
 				"id" : $scope.userId
 			});
 		}
+    	var setMinDate = function(){
+        	var today = new Date();
+        	var dd = today.getDate();
+        	var mm = today.getMonth()+1; //January is 0!
+        	var yyyy = today.getFullYear();
+        	 if(dd<10){
+        	        dd='0'+dd
+        	    } 
+        	    if(mm<10){
+        	        mm='0'+mm
+        	    } 
+
+        	return yyyy+'-'+mm+'-'+dd; 
+        }
     	var init = function(){
     		if (getJwtToken()) {
                 $scope.profileShow = true;
@@ -27,6 +41,7 @@
     		$scope.zaRent = {};
     		$scope.messageRent = "";
     		$scope.rent = {};
+    		$scope.today = setMinDate();
     		$http({
                 method: 'GET',
                 url: '/api/smestaj/'+editId
@@ -76,8 +91,21 @@
         };
         init();
         
-        
+        ec.setMinDo = function(){
+        	var today = new Date($scope.rent.datumOd);
+        	var dd = today.getDate();
+        	var mm = today.getMonth()+1; //January is 0!
+        	var yyyy = today.getFullYear();
+        	 if(dd<10){
+        	        dd='0'+dd
+        	    } 
+        	    if(mm<10){
+        	        mm='0'+mm
+        	    } 
 
+        	$scope.minDo = yyyy+'-'+mm+'-'+dd; 
+        }
+        
 		ec.addDodatne = function(opcija){
 			if($scope.dodatneUsluge.indexOf(opcija)!=-1){
 				var num = $scope.dodatneUsluge.indexOf(opcija);
@@ -108,6 +136,7 @@
             	  if(response.data!=""){
             		$scope.soba={};
             		$scope.smestaj.sobe.push(response.data);
+            		$scope.sveSobe.push(response.data);
             	  }
             	  
               });
@@ -121,12 +150,15 @@
         	}
         }
         var sklopiDatume = function(dat){    		
-    		var currentTime = new Date(parseInt(dat));
+    		/*var currentTime = new Date(parseInt(dat));
     		var month = currentTime.getMonth() + 1;
     		var day = currentTime.getDate();
     		var year = currentTime.getFullYear();
     		var date = day + "/" + month + "/" + year;
-    		return date;
+    		return date;*/
+        	var myDate = new Date(dat);
+        	return myDate.getDate() + "\\" +  (myDate.getMonth()+1) + "\\" + myDate.getFullYear();
+        	
         }
         ec.goBack=function(){
         	$scope.allRooms = true;
@@ -153,7 +185,9 @@
             		  $scope.zaRent.iznajmljivanja.push(izn);
             		  $scope.messageRent = "";
             	  }
-            	  
+            	  else{
+            		  $scope.messageRent = "Allready exists rent for that period."
+            	  }
               });
         }
         

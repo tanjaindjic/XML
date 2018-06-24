@@ -13,14 +13,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-
+import xml.agent.dto.IznajmljivanjeDTO;
 import xml.agent.dto.SobaDTO;
 import xml.agent.model.Enums.DodatneUsluge;
 import xml.agent.model.Enums.KategorijaSmestaja;
 import xml.agent.model.Enums.StatusRezevacije;
 import xml.agent.repository.RezervacijaRepository;
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 public class Soba {
@@ -168,5 +169,18 @@ public class Soba {
 		this.setKategorija(soba.getKategorija());
 		this.setOpcija(soba.getOpcija());
 		this.setRezervisano(new ArrayList<Rezervacija>());
+	}
+
+
+	public boolean checkDates(IznajmljivanjeDTO izn) {
+		Date od = izn.getDatumOd();
+		Date doo = izn.getDatumDo();
+		for(Iznajmljivanje i :  this.iznajmljivanja){
+			if(!((i.getDatumOd().before(od) && i.getDatumDo().before(doo)) ||
+					(i.getDatumOd().after(od) && i.getDatumDo().after(doo)))){
+				return false;
+			}
+		}
+		return true;
 	}
 }
