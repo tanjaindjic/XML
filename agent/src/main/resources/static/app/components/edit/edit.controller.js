@@ -156,13 +156,7 @@
 	        	$scope.zaRent.iznajmljivanja[i].datumDo = sklopiDatume(s.iznajmljivanja[i].datumDo);
         	}
         }
-        var sklopiDatume = function(dat){    		
-    		/*var currentTime = new Date(parseInt(dat));
-    		var month = currentTime.getMonth() + 1;
-    		var day = currentTime.getDate();
-    		var year = currentTime.getFullYear();
-    		var date = day + "/" + month + "/" + year;
-    		return date;*/
+        var sklopiDatume = function(dat){  
         	var myDate = new Date(dat);
         	return myDate.getDate() + "\\" +  (myDate.getMonth()+1) + "\\" + myDate.getFullYear();
         	
@@ -187,8 +181,6 @@
               }).then(function successCallback(response) {
             	  if(response.data!=""){
             		  var izn = response.data;
-            		  izn.datumOd = sklopiDatume(response.data.datumOd);
-            		  izn.datumDo = sklopiDatume(response.data.datumDo);
             		  $scope.zaRent.iznajmljivanja.push(izn);
             		  $scope.messageRent = "";
             	  }

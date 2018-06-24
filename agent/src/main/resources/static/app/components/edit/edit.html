@@ -69,7 +69,7 @@
 			        
 				    <td>
 				        <div class='imgHome' ng-repeat='img in smestaj.slike'>
-				       		<img ng-src="/api/files/{{img.uri}}.jpg" height="50" wight="60">
+				       		<img ng-src="/api/files/{{img.uri}}" height="50" wight="60">
 				        </div>			        	
 			        </td>
 			        </tr>
@@ -141,7 +141,7 @@
 				</tr>
 				<tr ng-repeat='s0 in sveSobe'>
 					<td><span>{{s0.brojLezaja}}</span></td>
-					<td><span ng-repeat='o in s0.opcija'>{{o.opcija}}<br/></span></td>
+					<td><span ng-repeat='o in s0.opcija'>{{o.opcija}}<br/></span></td> 
 					<td><span>{{s0.kategorija.kategorija}}</span></td>
 					<td><span>{{s0.cena}}</span></td>
 					<td><button ng-click='ec.edit(s0)'>rent it</button></td>
