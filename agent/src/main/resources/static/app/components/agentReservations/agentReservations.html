@@ -21,7 +21,7 @@
 				<td><label for="repeatSelect"> Select Accommodation: </label> <select
 					ng-options="s as s.naziv for s in all track by s.id"
 					ng-model="selectedSmestaj"></select> <span> Room: </span> <select
-					ng-options="so as so.id for so in selectedSmestaj track by so.id"
+					ng-options="so as so.id for so in selectedSmestaj.sobe track by so.id"
 					ng-model="selectedSoba"></select>
 					<p>Price: {{selectedSoba.cena}}</p>
 					<p>Beds: {{selectedSoba.brojLezaja}}</p>
