@@ -1,4 +1,4 @@
-package xml.agent.xmlWeb_smestaj.smestajSoap.ostoja;
+package xml.agent.xmlWeb_smestaj.smestajSoap.proba;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

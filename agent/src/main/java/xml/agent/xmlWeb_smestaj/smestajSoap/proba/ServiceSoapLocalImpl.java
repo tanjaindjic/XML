@@ -1,4 +1,4 @@
-package xml.agent.xmlWeb_smestaj.smestajSoap.ostoja;
+package xml.agent.xmlWeb_smestaj.smestajSoap.proba;
 
 import java.util.ArrayList;
 import java.util.List;

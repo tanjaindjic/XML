@@ -11,8 +11,8 @@ import org.apache.wss4j.dom.handler.WSHandlerConstants;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import xml.agent.xmlWeb_smestaj.smestajSoap.ostoja.SmestajService;
-import xml.agent.xmlWeb_smestaj.smestajSoap.ostoja.SmestajWebService;
+import xml.agent.xmlWeb_smestaj.smestajSoap.proba.SmestajService;
+import xml.agent.xmlWeb_smestaj.smestajSoap.proba.SmestajWebService;
 
 @Configuration
 public class CXFConfig {
