@@ -1,6 +1,7 @@
 package xml.agent.controller;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,6 +48,7 @@ public class SobaController {
 	public ResponseEntity<Soba> dodajSoba(@RequestBody SobaDTO soba){
 		return new ResponseEntity<Soba>(sobaService.dodajSoba(soba), HttpStatus.OK);
 	}
+	//iznajmljivanje sobe - dodaj
 	@RequestMapping(
 			value = "/api/sobe/{id}",
 			method = RequestMethod.POST,

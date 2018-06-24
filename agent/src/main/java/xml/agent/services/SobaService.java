@@ -50,15 +50,20 @@ public class SobaService {
 		return null;
 	}
 
-	public Iznajmljivanje dodajIznajmljivanje(Long id, IznajmljivanjeDTO izn) {
-		Iznajmljivanje i = new Iznajmljivanje();
-		i.setMyDTO(izn);
+	public Iznajmljivanje dodajIznajmljivanje(Long id, IznajmljivanjeDTO izn) {		
 		Optional<Soba> s = sobaRepository.findById(id);
+		Iznajmljivanje i = new Iznajmljivanje();
 		if(s.isPresent()){
 			Soba ss = s.get();
-			i.setSoba(ss);
-			ss.getIznajmljivanja().add(i);
-			sobaRepository.save(ss);
+			if(ss.checkDates(izn)){
+				i.setMyDTO(izn);
+				i.setSoba(ss);
+				ss.getIznajmljivanja().add(i);
+				sobaRepository.save(ss);
+			}
+			else{
+				return null;
+			}
 		}
 			
 		return iznajmljivanjeRepo.save(i);

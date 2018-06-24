@@ -94,7 +94,7 @@
 								<td>additional:</td>
 								<td>
 									<div ng-repeat="option in dodatne">				
-				  					<input type="checkbox" value="option" ng-click="ec.addDodatne(option)"> {{option.opcija}}<br>
+				  					<input type="checkbox" value="option" ng-click="ec.addDodatne(option)" > {{option.opcija}}<br>
 				  					</div>
 								</td>
 							</tr>
@@ -138,16 +138,16 @@
 					<th width='20%'>price</th>
 					<th width='30%'></th>
 				</tr>
-				<tr ng-repeat='s in sveSobe'>
-					<td>{{s.brojLezaja}}
-					<td><span ng-repeat='o in s.opcija'>{{o.opcija}}<br/></span></td>
-					<td>{{s.kategorija.kategorija}}</td>
-					<td>{{s.cena}}</td>
-					<td><button ng-click='ec.edit(s)'>rent it</button></td>
+				<tr ng-repeat='s0 in sveSobe'>
+					<td><span>{{s0.brojLezaja}}</span></td>
+					<td><span ng-repeat='o in s0.opcija'>{{o.opcija}}<br/></span></td>
+					<td><span>{{s0.kategorija.kategorija}}</span></td>
+					<td><span>{{s0.cena}}</span></td>
+					<td><button ng-click='ec.edit(s0)'>rent it</button></td>
 				</tr>					
 			</table>
    	</div>  
-     			<div ng-hide='allRooms'>
+     	<div ng-hide='allRooms'>
 	        <h3 class="olive">RENT A ROOM: </h3>
 			 
 			 <br/>
@@ -156,13 +156,13 @@
 			 	<tr>
 			 		<td width='10%'></td>
 			 		<td width='20%'>from:</td>
-			 		<td width='30%'><input type="date" ng-model='rent.datumOd'/></td>
+			 		<td width='30%'><input type="date" ng-model='rent.datumOd' ng-change='ec.setMinDo()' min="{{today}}"/></td>
 			 		<td width='10%'></td>
 			 	</tr>
 			 	<tr>
 			 		<td></td>
 			 		<td>to:</td>
-			 		<td><input type="date" ng-model='rent.datumDo'/></td>
+			 		<td><input type="date" ng-model='rent.datumDo' min="{{minDo}}"/></td>
 			 		<td></td>
 			 	</tr>
 			 	<tr>
@@ -193,8 +193,8 @@
 			<table>
 			 	<tr width='100%'>
 			 		<th width='10%'></th>
-			 		<th width='20%'>from</th>
-			 		<th width='20%'>to</th>
+			 		<th width='20%'>from [dd\MM\yyyy]&nbsp&nbsp</th>
+			 		<th width='20%'>to [dd\MM\yyyy]&nbsp&nbsp</th>
 			 		<th width='20%'>price</th>
 			 		<th width='30%'></th>
 			 	</tr><br/><hr/>

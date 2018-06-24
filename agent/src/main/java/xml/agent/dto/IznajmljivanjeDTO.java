@@ -1,13 +1,12 @@
 package xml.agent.dto;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class IznajmljivanjeDTO {
-	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date datumOd;
-	 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
     private Date datumDo;
 
     private Long cena;
