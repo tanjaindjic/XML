@@ -1,0 +1,29 @@
+<div>
+  <div class="tab">
+        <button class="tablinks" ng-click="goToState('core.home')" >MY ACCOMMODATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentAccomodation')" >ADD ACCOMMODATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentReservations')" >MAKE RESERVATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentChat')" >CHAT</button>
+        <button class="tablinks" ng-click="goToState('core.agentConfirmStay')" >CONFIRM STAY</button>
+    </div>
+
+
+<div class="centar">
+
+
+    <h2 class="olive">ALL CHATS: </h2>
+
+    </br>
+
+
+    <ul class="goreDoleListCentar" >
+
+
+       <li ng-repeat="korisnik in korisnici track by $index" class="gornjaIvica" ng-click="selectChat(korisnik.id)">
+           <a >{{korisnik.username}}</a>
+       </li>
+    </ul>
+
+</div>
+
+</div>

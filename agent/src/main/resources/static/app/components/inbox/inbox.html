@@ -1,0 +1,64 @@
+<style>
+ul {
+  list-style-type: none;
+}
+</style>
+<div>
+
+
+    </br>
+    </br>
+
+
+     <div class="tab">
+        <button class="tablinks" ng-click="goToState('core.home')" >MY ACCOMMODATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentAccomodation')" >ADD ACCOMMODATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentReservations')" >MAKE RESERVATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentChat')" >CHAT</button>
+        <button class="tablinks" ng-click="goToState('core.agentConfirmStay')" >CONFIRM STAY</button>
+    </div>
+
+    <div>
+
+        <h3 class="olive">CHAT: </h3>
+
+        </br>
+
+
+        <ul>
+
+
+            <li ng-repeat="message in messages track by $index">
+
+                <a ng-if="message.posiljalac.id == userId" >{{message.posiljalac.username}} : {{message.tekst}} </a>
+                <a ng-if="message.posiljalac.id != userId"  class="tudjiChat">{{message.posiljalac.username}} : {{message.tekst}} </a>
+            </li>
+
+            <li>
+                </br>
+            </li>
+
+            <li>
+                  <textarea  rows="2" cols="70" ng-model="novaPoruka"></textarea>
+            </li>
+
+            <li>
+                </br>
+            </li>
+
+            <li>
+                <button  type="submit"  ng-click="sendMessage(novaPoruka)">Send message </button>
+            </li>
+        </ul>
+        </br>
+
+
+        </br>
+
+    </div>
+
+
+
+
+
+</div>
