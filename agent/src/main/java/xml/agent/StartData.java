@@ -152,7 +152,16 @@ public class StartData {
          ArrayList<Slika> slike = new ArrayList<>();
          slike.add(new Slika("slika1"));
          slike.add(new Slika("slika2"));
-         Soba temp = new Soba(1, new ArrayList<>(), new ArrayList<>());
+         Soba temp = new Soba();
+         temp.setBrojLezaja(1);
+         temp.setCena(10L);
+         KategorijaSmestaja ka = new KategorijaSmestaja();
+         ka.setKategorija("all inclusive");
+         kategorijaRepository.save(ka);
+         temp.setKategorija(ka);
+         temp.setOpcija(new ArrayList<>());
+         temp.setCene(new ArrayList<>());
+         temp.setRezervisano(new ArrayList<>());
          Soba temp1 = new Soba(2, new ArrayList<>(), new ArrayList<>());
          Soba temp2 = new Soba(3, new ArrayList<>(), new ArrayList<>());
          ArrayList<Iznajmljivanje> iznajmljivanja = new ArrayList<>();
