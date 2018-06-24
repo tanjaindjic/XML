@@ -150,8 +150,8 @@ public class StartData {
          
          ArrayList<Soba> sobe = new ArrayList<>();
          ArrayList<Slika> slike = new ArrayList<>();
-         slike.add(new Slika("slika1"));
-         slike.add(new Slika("slika2"));
+         slike.add(new Slika("slika1.jpg"));
+         slike.add(new Slika("slika2.jpg"));
          Soba temp = new Soba();
          temp.setBrojLezaja(1);
          temp.setCena(10L);
