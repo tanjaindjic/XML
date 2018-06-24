@@ -206,7 +206,7 @@ public class StartData {
          k.setId(idKorisnika);
 
          r.setSmestaj(sm);
-         r.setStatus(StatusRezevacije.CONFIRMED);
+         r.setStatus(StatusRezevacije.PENDING);
          r.setOcenio(false);
          r.setRezervisao(k);
 

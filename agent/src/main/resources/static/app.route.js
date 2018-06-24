@@ -31,7 +31,32 @@
 			templateUrl: 'app/components/agentAccomodation/agentAccomodation.html',
 			controller: 'agentAccomodationController',
 			controllerAs: 'aac'
-		})		 
+		})	
+		.state('core.agentReservations', {
+			url: 'agentReservations',
+			templateUrl: 'app/components/agentReservations/agentReservations.html',
+			controller: 'agentReservationsController',
+			controllerAs: 'arc'
+		})	
+		.state('core.agentConfirmStay', {
+			url: 'agentConfirmStay',
+			templateUrl: 'app/components/agentConfirmStay/agentConfirmStay.html',
+			controller: 'agentConfirmStayController',
+			controllerAs: 'acsc'
+		})	
+		
+		 .state('core.inbox', {
+			 url: 'inbox',
+			 templateUrl: 'app/components/inbox/inbox.html',
+			 controller: 'inboxController',
+			 controllerAs: 'ic'
+		 })		
+		 .state('core.agentChat', {
+			 url: 'agentChat',
+			 templateUrl: 'app/components/agentChat/agentChat.html',
+			 controller: 'agentChatController',
+			 controllerAs: 'acc'
+		 })		
 		.state('core.edit', {
 			url: 'edit',
 			templateUrl: 'app/components/edit/edit.html',

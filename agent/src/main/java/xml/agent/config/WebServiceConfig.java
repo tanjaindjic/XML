@@ -100,6 +100,7 @@ public class WebServiceConfig extends WebSecurityConfigurerAdapter {
 
             .antMatchers(HttpMethod.POST,"/reservation/**").hasRole("AGENT")
             .antMatchers(HttpMethod.GET,"/reservation/**").hasRole("AGENT")
+            .antMatchers(HttpMethod.GET,"/messages/**").hasRole("AGENT")
             .anyRequest().authenticated();
 
         // Custom JWT based security filter

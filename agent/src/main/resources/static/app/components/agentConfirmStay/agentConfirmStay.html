@@ -1,4 +1,21 @@
+<style>
+ul {
+  list-style-type: none;
+}
+</style>
 <div>
+  <div class="tab">
+        <button class="tablinks" ng-click="goToState('core.home')" >MY ACCOMMODATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentAccomodation')" >ADD ACCOMMODATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentReservations')" >MAKE RESERVATION</button>
+        <button class="tablinks" ng-click="goToState('core.agentChat')" >CHAT</button>
+        <button class="tablinks" ng-click="goToState('core.agentConfirmStay')" >CONFIRM STAY</button>
+    </div>
+
+<div class="centar">
+<table>
+	<tr>
+	<td>
 	<ul>
 		
 		<li ng-repeat="rez in all track by rez.id">
@@ -16,5 +33,11 @@
 		
 	</ul>
 	
+	</td></tr>
+</table>
+	
+
+</div>
+
 
 </div>
