@@ -37,6 +37,10 @@
                 $location.path('/login');		
 			}
     		var editId = $cookies.get('edit');
+    		if(editId==undefined || editId==""){
+    			$location.path('/home');
+    			return;
+    		}
     		$scope.sveSobe = [];
     		$scope.zaRent = {};
     		$scope.messageRent = "";
@@ -57,7 +61,10 @@
             	              });
             	      }
             	  }            	  
-              });
+              }, function errorCallback(response) {
+	    			$location.path('/home');
+	    			return;	              	
+               });
     		$scope.allRooms = true;
     		$scope.caths=[];
     		$http({
