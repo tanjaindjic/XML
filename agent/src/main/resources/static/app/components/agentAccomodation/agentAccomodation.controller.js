@@ -133,12 +133,7 @@
                 headers : createAuthorizationTokenHeader()
               }).then(function successCallback(response) {
             	  if(response.data!=""){
-            		  $scope.smestaj.slike.push(response.data);
-            		  if($rootScope.images!="")
-            			  $rootScope.images = $rootScope.images+', ';
-            		  $rootScope.images= $rootScope.images + $scope.uplImage.name;
-            		  $scope.uplImage={};
-            		  $scope.uplImage.name="";
+            		  $scope.smestaj = {};
             	  }
             	  
               });

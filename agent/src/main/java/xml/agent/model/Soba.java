@@ -16,6 +16,7 @@ import javax.persistence.Transient;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import xml.agent.dto.SobaDTO;
 import xml.agent.model.Enums.DodatneUsluge;
 import xml.agent.model.Enums.KategorijaSmestaja;
 import xml.agent.model.Enums.StatusRezevacije;
@@ -157,4 +158,15 @@ public class Soba {
     	//System.out.println("Nasao sam iznajmljivanje i ono je: "+nasao);
     	return nasao;
     }
+
+
+	public void setMyDTO(SobaDTO soba) {
+		this.setBrojLezaja(soba.getBrojLezaja());
+		this.setCena(soba.getCena());
+		this.setCene(new ArrayList<Cenovnik>());
+		this.setIznajmljivanja(new ArrayList<Iznajmljivanje>());
+		this.setKategorija(soba.getKategorija());
+		this.setOpcija(soba.getOpcija());
+		this.setRezervisano(new ArrayList<Rezervacija>());
+	}
 }

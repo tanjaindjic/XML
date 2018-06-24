@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import xml.agent.dto.IznajmljivanjeDTO;
+
 @Entity
 public class Iznajmljivanje {
 
@@ -88,5 +90,14 @@ public class Iznajmljivanje {
     public void setMozePojedinacno(Boolean mozePojedinacno) {
         this.mozePojedinacno = mozePojedinacno;
     }
+
+
+
+	public void setMyDTO(IznajmljivanjeDTO izn) {
+		this.setCena(izn.getCena());
+		this.setDatumOd(izn.getDatumOd());
+		this.setDatumDo(izn.getDatumDo());
+		this.setMozePojedinacno(izn.getMozePojedinacno());
+	}
 
 }

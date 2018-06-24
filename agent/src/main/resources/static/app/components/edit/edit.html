@@ -75,48 +75,142 @@
 			</tbody>
 		</table>
 		
-		 <h3 class="olive">ADD ROOM: </h3>
+        </br>
+        </br>
+        <table>
+        	<tr>
+        		<td width='100%'>
+        			<div>
+        				<h3 class="olive">ADD ROOM: </h3>
 		 
-		 <br/>
-		 
-		 <table>
-			<tr>
-				<td>beds:</td>
-				<td><input type="number" ng-model='soba.brojLezaja'/></td>
-			</tr>
-			<tr>
-				<td>additional:</td>
-				<td>
-					<div ng-repeat="option in dodatne">				
-  					<input type="checkbox" value="option.opcija" ng-click="aac.addDodatne(option)"> {{option.opcija}}<br>
-  					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>cathegory:</td>
-				<td><form name="myForm" ng-model='smestaj.kategorija'>
-					<label ng-repeat='k in caths'><input type="radio" ng-model="soba.kategorija" ng-value="k">{{k.kategorija}} &nbsp &nbsp</label>
-				</td>
-			</tr>	
-			<tr>
-				<td>price:</td>
-				<td><input type="number" ng-model='soba.cena'/></td>
-			</tr>	
-			<tr>
-				<td></td>
-				<td><br/><button ng-click='ec.addRoom()' class='buttonP'>add room</button></td>
-			</tr>	
-			<tr ng-show='shoeMessage'>
-				<td></td>
-				<td>{{message}}</td>
-			</tr>
-			
-		</table>
+						 <br/>
+						 
+						 <table>
+							<tr>
+								<td>beds:</td>
+								<td><input type="number" ng-model='soba.brojLezaja'/></td>
+							</tr>
+							<tr>
+								<td>additional:</td>
+								<td>
+									<div ng-repeat="option in dodatne">				
+				  					<input type="checkbox" value="option" ng-click="ec.addDodatne(option)"> {{option.opcija}}<br>
+				  					</div>
+								</td>
+							</tr>
+							<tr>
+								<td>cathegory:</td>
+								<td><form name="myForm" ng-model='soba.kategorija'>
+									<label ng-repeat='k in caths'><input type="radio" ng-model="soba.kategorija" ng-value="k">{{k.kategorija}} &nbsp &nbsp</label>
+								</td>
+							</tr>	
+							<tr>
+								<td>price:</td>
+								<td><input type="number" ng-model='soba.cena'/></td>
+							</tr>	
+							<tr>
+								<td></td>
+								<td><br/><button ng-click='ec.addRoom()' class='buttonP'>add room</button></td>
+							</tr>	
+							<tr ng-show='showMessage'>
+								<td></td>
+								<td>{{message}}</td>
+							</tr>
+							
+						</table>
+        			</div>
+        		</td>
+        		<td width='50%'>
+        			    		
+        		</td>
+        	</tr>
+        </table>
+ 		<div ng-show='allRooms' width='100%'>
+	        <h3 class="olive">ALL ROOMS: </h3>
+			 
+			 <br/>
+			 
+			 <table width='100%'>
+				<tr width='100%'>
+					<th width='10%'>beds</th>
+					<th width='20%'>additional</th>
+					<th width='20%'>cathegory</th>
+					<th width='20%'>price</th>
+					<th width='30%'></th>
+				</tr>
+				<tr ng-repeat='s in sveSobe'>
+					<td>{{s.brojLezaja}}
+					<td><span ng-repeat='o in s.opcija'>{{o.opcija}}<br/></span></td>
+					<td>{{s.kategorija.kategorija}}</td>
+					<td>{{s.cena}}</td>
+					<td><button ng-click='ec.edit(s)'>rent it</button></td>
+				</tr>					
+			</table>
+   	</div>  
+     			<div ng-hide='allRooms'>
+	        <h3 class="olive">RENT A ROOM: </h3>
+			 
+			 <br/>
+			 
+			 <table>
+			 	<tr>
+			 		<td width='10%'></td>
+			 		<td width='20%'>from:</td>
+			 		<td width='30%'><input type="date" ng-model='rent.datumOd'/></td>
+			 		<td width='10%'></td>
+			 	</tr>
+			 	<tr>
+			 		<td></td>
+			 		<td>to:</td>
+			 		<td><input type="date" ng-model='rent.datumDo'/></td>
+			 		<td></td>
+			 	</tr>
+			 	<tr>
+			 		<td></td>
+			 		<td>price:</td>
+			 		<td><input type="number" ng-model='rent.cena'/></td>
+			 		<td></td>
+			 	</tr>
+			 	<tr>
+			 		<td></td>
+			 		<td>can be partaly rented:</td>
+			 		<td><input type="checkbox" ng-true-value='true' ng-false-value='false' ng-model='rent.mozePojedinacno'/></td>
+			 		<td></td>
+			 	</tr>
+			 	<tr>
+			 		<td></td>
+			 		<td></td>
+			 		<td><button class='buttonP' ng-click='ec.addRent()'>make official</button></td>
+			 		<td>{{messageRent}}</td>
+			 	</tr>	
+			 	<tr>
+			 		<td></td>
+			 		<td></td>
+			 		<td><button class='buttonP' ng-click='ec.goBack()'>go back</button></td>
+			 		<td></td>
+			 	</tr>			
+			</table>
+			<table>
+			 	<tr width='100%'>
+			 		<th width='10%'></th>
+			 		<th width='20%'>from</th>
+			 		<th width='20%'>to</th>
+			 		<th width='20%'>price</th>
+			 		<th width='30%'></th>
+			 	</tr><br/><hr/>
+			 	<tr ng-repeat='i in zaRent.iznajmljivanja'>
+			 		<td></td>
+			 		<td>{{i.datumOd}} &nbsp &nbsp</td>
+			 		<td>{{i.datumDo}} &nbsp &nbsp</td>
+			 		<td>{{i.cena}} &nbsp &nbsp</td>
+			 	</tr>
+			 				
+			</table>
+     </div> 
 
         </br><br/>
 		
 		
-		prikaz svih soba i mogucnost dodavanja termina u svaku
         
         </br>
 

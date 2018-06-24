@@ -92,6 +92,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/auth/**").permitAll()
             .antMatchers(HttpMethod.POST,"/api/postFile").permitAll()
             .antMatchers(HttpMethod.POST,"/api/smestaj").permitAll()
+            .antMatchers(HttpMethod.POST,"/api/sobe").permitAll()
+            .antMatchers(HttpMethod.GET,"/api/sobe/**").permitAll()
+            .antMatchers(HttpMethod.POST,"/api/sobe/**").permitAll()
         
             .anyRequest().authenticated();
 
@@ -121,7 +124,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/postFile",
                 "/api/getallfiles",
                     "/requests/**/**/**",
-                    "/certificates/**/**"
+                    "/certificates/**/**",
+                    "/api/sobe",
+                    "/api/sobe/**"
                     
             )
 
@@ -154,7 +159,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/kategorija",
                 "/api/files/**", "/uploadCert",
                 "/api/agent/**/smestaj",
-                "/api/smestaj/**"
+                "/api/smestaj/**",
+                "/api/sobe/**"
         
                 
             )
