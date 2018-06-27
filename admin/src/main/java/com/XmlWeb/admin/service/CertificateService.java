@@ -153,7 +153,8 @@ public class CertificateService {
     	   	 builder.addRDN(BCStyle.UID, certificate.getSerialNumber());
 
             return new IssuerData(keyPair.getPrivate(), builder.build());
-        } else {
+        }       
+        else {
             IssuerData id = keyStoreService.readIssuerFromStore("admin");
             return id;
         }

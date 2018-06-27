@@ -73,6 +73,12 @@
 			 templateUrl: 'app/components/succ/succ.html',
 			 controller: 'succController',
 			 controllerAs: 'succ'
+		 })		 
+		 .state('core.foreignCertificate', {
+			 url: 'foreignCertificate',
+			 templateUrl: 'app/components/foreignCertificate/foreignCertificate.html',
+			 controller: 'foreignCertificateController',
+			 controllerAs: 'fcc'
 		 });
      /* $locationProvider.html5Mode({
     	  enabled: true,

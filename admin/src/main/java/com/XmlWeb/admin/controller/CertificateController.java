@@ -1,6 +1,8 @@
 package com.XmlWeb.admin.controller;
 
+import java.security.cert.X509Certificate;
 import java.util.List;
+import java.util.UUID;
 
 import javax.ws.rs.core.MediaType;
 
@@ -9,6 +11,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -72,4 +75,25 @@ public class CertificateController {
         
 	
 	}
+	
+	 @RequestMapping(method=RequestMethod.POST, value="/certificate")
+	    public ResponseEntity<CertificateDTO> genCertificate(@RequestBody CertificateDTO dto){
+	        if (dto.getCaa() == 1) {
+	            dto.setIsCa(true);
+	        } else {
+	            dto.setIsCa(false);
+	        }
+	        if(dto.getId().equals("noid")){
+	        	dto.setId(UUID.randomUUID().toString());
+	        }
+	        if(dto.getPIB()==null){
+	        	dto.setPIB("000000000");
+	        }
+	        X509Certificate created = certService.generateCertificate(dto);
+	        if (created != null) {
+	            CertificateDTO creDto = new CertificateDTO(created);
+	            return new ResponseEntity<>(creDto, HttpStatus.CREATED);
+	        }
+	        return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+	    }
 }

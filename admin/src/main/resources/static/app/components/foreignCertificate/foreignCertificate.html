@@ -1,0 +1,67 @@
+<div>
+		<h2>Create a new certificate</h2>
+		<form  name="createCertificateForm">
+		<table>
+			<tr>
+				<td width='10%'></td>
+				<td width='90%'><input type="checkbox" id="self" ng-model='self'><label>Self Signed</label></td>
+			</tr>			
+			<tr>
+				<td></td>
+				<td><input type="text" placeholder="Common Name*" ng-model='cert.commonName' required/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="text" placeholder="Surname*" ng-model='cert.surname' required/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="text" 	placeholder="Given Name*" ng-model='cert.givenName' required/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="text" placeholder="Email Address*" ng-model='cert.email' required/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="text" placeholder="Country Name*" ng-model='cert.country' required/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="text" placeholder="Organization Name*" ng-model='cert.orgName' required/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="text" 	placeholder="Organizational Unit Name*" ng-model='cert.orgNameUnit' required/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="text" placeholder="UID*" ng-model='cert.uid' required/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>
+					<div>
+						<input type="checkbox" id="isCA" ng-disabled="self" ng-model='cert.isCa'>
+						<label for="isCA">Certificate Authority</label>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>From*</td>
+				<td><input type="date" id="fromDate" ng-model='dateFrom' required/></td>
+			</tr>
+			<tr>
+				<td>To*</td>
+				<td><input type="date" id="toDate" ng-model='dateTo' required/></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Create" ng-click="fcc.send() && createCertificateForm.$valid"/><br><hr /></td>
+			</tr>
+		</table>
+		</form>
+		<p ng-show='showStatus'>
+			{{status}}
+		</p>
+	</div>
