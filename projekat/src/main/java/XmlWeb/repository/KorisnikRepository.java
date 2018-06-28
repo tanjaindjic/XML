@@ -11,5 +11,6 @@ public interface KorisnikRepository extends CrudRepository<Korisnik, Long>{
 	Optional<Korisnik> findById(Long id);
 	Korisnik findByEmailIgnoreCase(String email);
 	Korisnik findByConfirmationToken(String confirmationToken);
+	Korisnik findByResetToken(String token);
 
 }

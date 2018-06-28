@@ -1,0 +1,128 @@
+<style>
+label, input {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+meter {
+	/* Reset the default appearance */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	margin: 0 auto 1em;
+	width: 100%;
+	height: 0.5em;
+	/* Applicable only to Firefox */
+	background: none;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+meter::-webkit-meter-bar {
+	background: none;
+	background-color: rgba(0, 0, 0, 0.1);
+}
+
+meter[value="1"]::-webkit-meter-optimum-value {
+	background: red;
+	background-color: rgba(1, 0, 0, 0.1);
+}
+
+meter[value="2"]::-webkit-meter-optimum-value {
+	background: yellow;
+}
+
+meter[value="3"]::-webkit-meter-optimum-value {
+	background: orange;
+}
+
+meter[value="4"]::-webkit-meter-optimum-value {
+	background: green;
+}
+
+/* Gecko based browsers */
+meter[value="1"]::-moz-meter-bar {
+	background: red;
+	background-color: rgba(1, 0, 0, 0.1);
+}
+
+meter[value="2"]::-moz-meter-bar {
+	background: yellow;
+}
+
+meter[value="3"]::-moz-meter-bar {
+	background: orange;
+}
+
+meter[value="4"]::-moz-meter-bar {
+	background: green;
+}
+</style>
+<!-- Hook up strength bar on page load-->
+<script type="text/javascript">
+	var strength = {
+		0 : "Worst",
+		1 : "Bad",
+		2 : "Weak",
+		3 : "Good",
+		4 : "Strong"
+	}
+	var password = document.getElementById('exampleInputPassword1');
+	var meter = document.getElementById('password-strength-meter');
+	var text = document.getElementById('password-strength-text');
+
+	password.addEventListener('input', function() {
+		var val = password.value;
+		var result = zxcvbn(val);
+
+		// Update the password strength meter
+		meter.value = result.score;
+
+		// Update the text indicator
+		if (val !== "") {
+			text.innerHTML = "Strength: " + strength[result.score];
+		} else {
+			text.innerHTML = "";
+		}
+
+	});
+</script>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default" id="register">
+			<div class="panel-heading">
+				<h3 class="panel-title">Change password:</h3>
+			</div>
+			<h4 style="color: red">{{message}}</h4>
+			<div class="panel-body">
+				<form id="registerForm">
+
+					<div>
+						<p>Password must be at least 8 characters long.</p>
+					</div>
+					<div class="form-group">
+						<input type="password" class="form-control"
+							id="exampleInputPassword1" placeholder="Password" required
+							name="password1">
+					</div>
+					<meter style="display: none" max="4" id="password-strength-meter"></meter>
+					<p id="password-strength-text"></p>
+
+					<div class="form-group">
+						<input type="password" class="form-control"
+							id="exampleInputPassword2" placeholder="Confirm password"
+							required name="password2">
+					</div>
+
+
+
+					<br>
+
+					<button type="submit" class="btn btn-default">Save</button>
+				</form>
+				<br> <br> <br> <br>
+			</div>
+		</div>
+
+	</div>
+</div>

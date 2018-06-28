@@ -5,14 +5,16 @@
 		.module('app')
 		.controller('uploadCertController', uploadCertController);
 
-    uploadCertController.$inject = ['$location', '$scope', '$rootScope','$http', '$cookies', '$sce'];
-    function uploadCertController($location, $scope, $rootScope, $http, $cookies, $sce) {
+    uploadCertController.$inject = ['$location', '$scope', '$rootScope','$http', '$cookies', '$sce', '$stateParams'];
+    function uploadCertController($location, $scope, $rootScope, $http, $cookies, $sce, $stateParams) {
         var uc = this;
      
         var init = function (){
         	$scope.myFile="";
 	         $scope.showW= false;
 	         $scope.message="";
+	         $scope.user=$stateParams.username;
+	         console.log($scope.user)
         };
         init();
         
@@ -25,14 +27,15 @@
             fileFormData.append('file', file);
         	$http({
         		method: 'POST',
-                url: 'https://localhost:8096/certificates/upload/' + jwt_decode(getJwtToken()).sub,
+                url: 'https://localhost:8096/certificates/upload/' + $scope.user,
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined},
                 data: fileFormData
             }).then(function onSuccess(response) {
             	window.location = response.data.Location;
-            	
+            	 removeJwtToken();
             }).catch(function onError(response) {
+            	
                $scope.message = response.data.text;
             });
         }

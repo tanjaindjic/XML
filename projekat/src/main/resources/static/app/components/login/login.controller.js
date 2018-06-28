@@ -17,6 +17,27 @@
 				"id" : $scope.userId
 			});
 		}
+	    
+	    $("#forgot").click(function() {
+		if(document.getElementById('resetDiv').style.display == 'block')
+			document.getElementById('resetDiv').style.display = 'none';
+		else document.getElementById('resetDiv').style.display = 'block';
+		});
+	    
+	    
+	    $scope.reset = function(){
+	    	console.log("email " + document.getElementById("resetEmail"))
+			$http({
+				method : 'GET',
+				url : "https://localhost:8096/user/" + document.getElementById("resetEmail").value + "/resetPassword"
+			}).then(function successCallback(response) {
+
+				window.location = response.data.Location;
+			}, function errorCallback(response) {
+				$scope.message = response.data.text;
+				console.log(response)
+			});
+	    }
 
         var getStatus = function(id){
         console.log("usao u status")
@@ -32,14 +53,16 @@
                   console.log($scope.role)
                   if($scope.status=="NEPOTVRDJEN" && $scope.role=="AGENT"){
                                   console.log("nepotvrdjen")
-                                  $location.path("/uploadCert");
+                                   $state.go("core.uploadCert" , {"username" : jwt_decode(getJwtToken()).sub} );
+                                  removeJwtToken();
+                                  
                               }
                   else if($scope.role=="ADMIN"){
                 	  removeJwtToken();
                 	  $location.path("/success/5")
                 	 
                   }
-                  else $state.go("core.home", {}, {reload:true})
+                  else {  $state.go("core.home", {}, {reload:true})}
             }, function errorCallback(response) {
                 console.log(response.data)
                 console.log(response)
@@ -79,7 +102,7 @@
                     data : JSON.stringify(loginData)
                 }).then(function successCallback(response) {
 
-                    setJwtToken(response.data.token);
+                	setJwtToken(response.data.token);
                     var id = jwt_decode(getJwtToken()).jti;
                     getStatus(id);
 

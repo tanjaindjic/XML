@@ -119,6 +119,8 @@ public class StartData {
          k.setLastName("Peric");
          k.setAktiviran(true);
          k.setRole(Role.ADMIN);
+         k.setConfirmationToken("");
+         k.setResetToken("");
          k.setStatusNaloga(StatusKorisnika.AKTIVAN);
          k.setEmail("admir@admir.com");
          k.setLastPasswordResetDate(new Date());
@@ -362,6 +364,7 @@ public class StartData {
          k.setStatusNaloga(StatusKorisnika.AKTIVAN);
          k.setEmail(email);
          k.setConfirmationToken("");
+         k.setResetToken("");
          k.setLastPasswordResetDate(new Date());
          k.setIzdaje(new ArrayList<>());
          k.setRezervacije(new ArrayList<>());

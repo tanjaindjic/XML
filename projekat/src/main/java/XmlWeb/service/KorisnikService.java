@@ -209,6 +209,7 @@ public class KorisnikService {
 		else
 			novi.setRole(Role.USER);
 		novi.setConfirmationToken(UUID.randomUUID().toString());
+		novi.setResetToken("");
 		korisnikRepo.save(novi);
 		a.getUsers().add(novi);
 		autoRepo.save(a);
@@ -341,6 +342,7 @@ public class KorisnikService {
 		novi.setAdresa(regDetails.getAdresa());
 		novi.setRole(Role.AGENT);
 		novi.setConfirmationToken("");
+		novi.setResetToken("");
 		korisnikRepo.save(novi);
 		a.getUsers().add(novi);
 		autoRepo.save(a);
@@ -385,5 +387,54 @@ public class KorisnikService {
 
 		korisnikRepo.save(k);
 	}
+
+	public ResponseEntity<HashMap> resetPass(String email) {
+		HashMap map = new HashMap<>();
+		
+		// TODO Auto-generated method stub
+		Korisnik k = korisnikRepo.findByEmailIgnoreCase(email);
+		if (k == null) {
+			map.put("text", "No user with that email.");
+			return new ResponseEntity<>(map, HttpStatus.EXPECTATION_FAILED);
+		}
+		k.setLastPasswordResetDate(new Date());
+		k.setResetToken(UUID.randomUUID().toString());
+		korisnikRepo.save(k);
+		String subject = "Reset Password";
+		String text = "If you forgot your old password, on https://localhost:8096/#!/resetPass/" + k.getResetToken() + " you can set new one.";
+		String redirect = "6";
+		SimpleMailMessage registrationEmail = new SimpleMailMessage();
+		registrationEmail.setTo(k.getEmail());
+		registrationEmail.setSubject(subject);
+		registrationEmail.setText(text);
+		registrationEmail.setFrom("noreply@domain.com");
+
+		emailService.sendEmail(registrationEmail);
+		// return new ResponseEntity<String>("Almost there! Please finish your
+		// registration via link we sent on your email.", HttpStatus.OK);
+
+		String location = "https://localhost:8090/#!/success/" + redirect;
+		map.put("Location", location);
+		return new ResponseEntity<>(map, HttpStatus.OK);
+		
+	}
+
+	public ResponseEntity<HashMap> savePass(RegisterDTO dto, String token, HttpServletResponse response) {
+		// TODO Auto-generated method stub
+		HashMap<String, String> map = new HashMap<>();
+		Korisnik k = korisnikRepo.findByResetToken(token);
+		if (k == null) {
+			map.put("text", "Password reset failed. No user with that token found.");
+			return new ResponseEntity<>(map, HttpStatus.BAD_REQUEST);
+		}
+		
+
+		k.setPassword(bCryptPasswordEncoder.encode(dto.getPassword1()));
+		k.setResetToken("");
+		korisnikRepo.save(k);
+		map.put("Location", "https://localhost:8096/#!/success/2");
+		return new ResponseEntity<>(map, HttpStatus.OK);
+	}
+
 
 }

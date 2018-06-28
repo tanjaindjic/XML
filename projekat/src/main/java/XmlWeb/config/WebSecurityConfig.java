@@ -100,7 +100,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/h2-console/**/**").permitAll()
             .antMatchers("/uploadCert").permitAll()
             .antMatchers("/auth/**").permitAll()
-            .antMatchers("/services/**").permitAll();
+            .antMatchers("/services/**").permitAll()
+        	.antMatchers("/user/**/resetPassword").permitAll()
+        	.antMatchers("/user/resetToken/**").permitAll();
            
 
         // Custom JWT based security filter
@@ -130,7 +132,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/getallfiles",
                     "/requests/**/**/**",
                     "/certificates/**/**",
-                    "/services/**"
+                    "/services/**",
+                    "/user/resetToken/**"
             )
 
            .antMatchers(
@@ -162,7 +165,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/kategorija",
                 "/api/files/**", "/uploadCert",
                 "/services/**",
-                "/resources/**"
+                "/resources/**",
+                "/user/**/resetPassword"
         
                 
             )

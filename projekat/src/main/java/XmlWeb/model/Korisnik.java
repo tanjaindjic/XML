@@ -86,8 +86,19 @@ public class Korisnik {
     
     @Column(name = "confirmation_token")
 	private String confirmationToken;
+    
+    @Column(name = "reset_token")
+   	private String resetToken;
 
-    @Column(name = "pib")
+    public String getResetToken() {
+		return resetToken;
+	}
+
+	public void setResetToken(String resetToken) {
+		this.resetToken = resetToken;
+	}
+
+	@Column(name = "pib")
     private String PIB;
     
    

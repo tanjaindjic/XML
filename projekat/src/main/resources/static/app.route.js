@@ -20,6 +20,13 @@
 			 controller: 'searchResultsController',
 			 controllerAs: 'searchResultsController'
 		 })
+		 
+		 .state('core.resetPass', {
+			 url: 'resetPass/{token}',
+			 templateUrl: 'app/components/resetPass/resetPass.html',
+			 controller: 'resetPassController',
+			 controllerAs: 'resetPassController'
+		 })
 		 .state('core.home', {
 			 url: 'home',
 			 templateUrl: 'app/components/home/home.html',
@@ -42,7 +49,8 @@
            				url: 'uploadCert',
            				templateUrl: 'app/components/uploadCert/uploadCert.html',
            				controller: 'uploadCertController',
-           				controllerAs: 'uc'
+           				controllerAs: 'uc',
+                        params: {username:null}
            			})
 		 .state('core.register', {
 			 url: 'register',

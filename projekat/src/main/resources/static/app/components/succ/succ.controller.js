@@ -45,6 +45,9 @@
                 document.getElementById("timer3").style.display = "block";
                 document.getElementById("success").style.display = "none";
     		}
+    		if(lastPart==6){
+                $scope.message = "We sent you an email with password reset details."
+    		}
         };
         init();
 
