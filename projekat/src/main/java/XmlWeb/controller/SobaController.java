@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import XmlWeb.config.PermitAll;
 import XmlWeb.model.Smestaj;
 import XmlWeb.model.Soba;
 import XmlWeb.service.SmestajService;
@@ -20,7 +21,7 @@ public class SobaController {
 	
 	@Autowired
 	private SobaService sobaService;
-
+	@PermitAll
 	@RequestMapping(
 			value = "/api/sobe",
 			method = RequestMethod.GET,

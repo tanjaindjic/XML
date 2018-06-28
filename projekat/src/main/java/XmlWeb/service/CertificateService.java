@@ -79,7 +79,7 @@ public class    CertificateService {
         return certificateDTOS;
     }
 
-    
+    //OVDE SE PRAVI SAMO PRVI SERTIFIKAT ZA ADMIRA SVE OSTALE ON PRAVI U ADMIN APLIKACIJI, SALJE AN MEJL I U GLAVNU BAZU
     public X509Certificate generateCertificate(CertificateDTO certificateDTO) {
         // Serijski broj sertifikata
         int randomNum = 0 + (int) (Math.random() * 10000000);

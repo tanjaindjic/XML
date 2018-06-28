@@ -1,20 +1,5 @@
 package XmlWeb.controller;
 
-import XmlWeb.config.AdminRead;
-import XmlWeb.config.AdminWrite;
-import XmlWeb.model.Enums.StatusKorisnika;
-import XmlWeb.model.Korisnik;
-import XmlWeb.security.CertificateDTO;
-import XmlWeb.service.CertificateService;
-import XmlWeb.service.KeyStoreService;
-import XmlWeb.service.KorisnikService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.ws.rs.core.MediaType;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +9,28 @@ import java.security.cert.X509Certificate;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import javax.ws.rs.core.MediaType;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import XmlWeb.config.AdminRead;
+import XmlWeb.config.AdminWrite;
+import XmlWeb.config.AgentWrite;
+import XmlWeb.model.Korisnik;
+import XmlWeb.model.Enums.StatusKorisnika;
+import XmlWeb.security.CertificateDTO;
+import XmlWeb.service.CertificateService;
+import XmlWeb.service.KeyStoreService;
+import XmlWeb.service.KorisnikService;
 
 @RestController
 public class CertificateController {
@@ -71,6 +78,7 @@ public class CertificateController {
 
 
     @AdminWrite
+    @AgentWrite
     @RequestMapping(value="/certificates/upload/{username}", method= RequestMethod.POST)
     public ResponseEntity<HashMap> uploadAndCreateSF(@RequestBody MultipartFile file, @PathVariable String username) throws IOException, CertificateException {
         HashMap<String, String> map = new HashMap<>();

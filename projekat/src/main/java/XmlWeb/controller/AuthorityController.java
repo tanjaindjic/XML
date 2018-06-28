@@ -17,7 +17,8 @@ public class AuthorityController {
 
 	@Autowired
 	private AuthorityRepository authorityRepo;
-	@PermitAll
+	
+	//mislim da ovo niko ne koristi
 	@RequestMapping(value = "/authority", method = RequestMethod.GET)
 	public List<Authority> getAuthorities() {
 		ArrayList ret = new ArrayList();

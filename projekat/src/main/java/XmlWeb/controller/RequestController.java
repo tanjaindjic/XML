@@ -2,18 +2,24 @@ package XmlWeb.controller;
 
 import java.util.List;
 
-import XmlWeb.config.*;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import javax.ws.rs.core.MediaType;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import XmlWeb.config.AdminRead;
+import XmlWeb.config.AdminWrite;
 import XmlWeb.dto.AgentRequestDTO;
 import XmlWeb.model.AgentRequest;
 import XmlWeb.model.Korisnik;
 import XmlWeb.service.AgentRequestService;
 import XmlWeb.service.AuthorityService;
 import XmlWeb.service.KorisnikService;
-
-import javax.ws.rs.core.MediaType;
 
 @RestController
 public class RequestController {
@@ -28,7 +34,7 @@ public class RequestController {
 	private KorisnikService korisnikService;
 
 
-
+	@AdminRead
 	@RequestMapping(method = RequestMethod.GET, value = "/requests")
 	public List<AgentRequest> getRequests() {
 		
@@ -36,7 +42,7 @@ public class RequestController {
 		
 	}
 
-	@AdminWrite
+	@AdminRead
 	@CrossOrigin(origins = "https://localhost:8090")
 	@RequestMapping(method = RequestMethod.GET, value = "/dtorequests")
 	public List<AgentRequestDTO> getDTORequests() {

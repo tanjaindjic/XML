@@ -1,17 +1,12 @@
 package XmlWeb.controller;
 
-import XmlWeb.dto.KomentarDTO;
-import XmlWeb.model.Komentar;
-import XmlWeb.service.KomentarService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
+import org.springframework.web.bind.annotation.RestController;
+//ne koristi se, radimo preko clouda
+@Deprecated
 @RestController
 public class KomentarController {
 
-    @Autowired
+  /*  @Autowired
     private KomentarService ks;
 
     @RequestMapping(method = RequestMethod.GET, value = "/comments/getAll")
@@ -57,7 +52,7 @@ public class KomentarController {
     public void publish(@PathVariable Long id){
         ks.publishComment(id);
     }
-
+*/
 
 
 

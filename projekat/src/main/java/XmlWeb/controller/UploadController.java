@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import XmlWeb.config.AgentWrite;
+import XmlWeb.config.PermitAll;
 import XmlWeb.dto.UploadDTO;
 import XmlWeb.service.StorageService;
 
@@ -34,6 +36,7 @@ public class UploadController {
  
 	List<String> files = new ArrayList<String>();
  
+	@AgentWrite
 	//@PostMapping("/api/postFile")
 	@RequestMapping(
 			value = "/api/postFile",
@@ -53,6 +56,7 @@ public class UploadController {
 		}
 	}
  
+	@PermitAll
 	@GetMapping("/api/getallfiles")
 	public ResponseEntity<List<String>> getListFiles(Model model) {
 		List<String> fileNames = files
@@ -63,6 +67,7 @@ public class UploadController {
 		return ResponseEntity.ok().body(fileNames);
 	}
  
+	@PermitAll
 	@GetMapping("/api/files/{filename}")
 	@ResponseBody
 	public ResponseEntity<?> getFile(@PathVariable String filename) {

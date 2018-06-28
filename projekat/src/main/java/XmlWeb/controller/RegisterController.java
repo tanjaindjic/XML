@@ -36,9 +36,7 @@ public class RegisterController {
 	@Autowired
 	private EmailService emailService;
 
-	@UserRead
-	@AgentRead
-	@AdminRead
+	@PermitAll
 	@RequestMapping(method = RequestMethod.GET, value = "/confirm/{token}")
 	public ResponseEntity<HashMap> confirmRegistration(HttpServletResponse response,
 			@PathVariable("token") String token) throws IOException {
@@ -46,17 +44,14 @@ public class RegisterController {
 
 	}
 
-	@UserRead
-	@AgentRead
-	@AdminRead
+
+	@PermitAll
 	@RequestMapping(method = RequestMethod.GET, value = "/register")
 	public void redirect(HttpServletResponse response) throws IOException {
 		registerService.redirect(response);
 	}
 
-	@UserWrite
-	@AgentWrite
-	@AdminWrite
+	@PermitAll
 	@RequestMapping(method = RequestMethod.POST, value = "/register", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<HashMap> register(HttpServletResponse response, @RequestBody RegisterDTO regDetails)
 			throws URISyntaxException, InterruptedException, IOException, NoSuchAlgorithmException, NoSuchProviderException, OperatorCreationException {

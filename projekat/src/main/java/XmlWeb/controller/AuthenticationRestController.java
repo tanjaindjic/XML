@@ -95,6 +95,7 @@ public class AuthenticationRestController {
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 
+    @PermitAll
     @RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String authToken = request.getHeader(tokenHeader);

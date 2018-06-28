@@ -6,6 +6,8 @@ import java.util.Map;
 
 import XmlWeb.config.AdminWrite;
 import XmlWeb.config.AgentWrite;
+import XmlWeb.config.PermitAll;
+
 import org.hibernate.JDBCException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +24,7 @@ public class TipSmestajaController {
 	
 	@Autowired
 	private TipSmestajaService tipService;
-	
+	@PermitAll
 	@RequestMapping(
 			value = "/api/tipService",
 			method = RequestMethod.GET,
