@@ -1,0 +1,36 @@
+<div ng-show='isDownload'>
+	<div>
+		<h2>Download Certificate</h2>
+		<table>	
+			<tr>
+				<td width='10%'></td>
+				<td width='90%'><input type="number" placeholder="Serial number*" ng-model='downloadNumber' required /><td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Download" ng-click="certc.makeItDownlaod()"/><br><hr /></td>
+			</tr>
+		</table>
+	</div>
+</div>
+<br/>
+<br/>
+<br/>
+<div >
+	<div>
+		<h2>Check Certificate validity</h2>
+		<table>	
+			<tr>
+				<td width='10%'></td>
+				<td width='90%'><input type="number" placeholder="Serial number*" ng-model='checkNumber' required /><td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Check" ng-click="certc.checkStatus()"/><br><hr /></td>
+			</tr>
+		</table>
+		<p ng-show='showCheckedStatus'>
+			{{checkedStatus}}
+		</p>
+	</div>
+</div>

@@ -28,9 +28,9 @@
         }
 
 
-		$scope.profile = function(){
+		$scope.certificate = function(){
 			$scope.panelToShow = -1;
-            $location.path('/profile');
+            $location.path('/certificates');
 		}
 		
 		

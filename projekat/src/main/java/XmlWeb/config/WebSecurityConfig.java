@@ -97,6 +97,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/reservation/setBoolean/**").hasRole("ADMIN")
             .antMatchers("/certificates").hasRole("ADMIN")
             .antMatchers("/certificates/**/**").hasRole("ADMIN")
+            .antMatchers("/certificate/**/**").permitAll()
             .antMatchers("/h2-console/**/**").permitAll()
             .antMatchers("/uploadCert").permitAll()
             .antMatchers("/auth/**").permitAll()
@@ -132,6 +133,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/getallfiles",
                     "/requests/**/**/**",
                     "/certificates/**/**",
+                    "/certificate/**/**",
                     "/services/**",
                     "/user/resetToken/**"
             )
@@ -166,7 +168,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/api/files/**", "/uploadCert",
                 "/services/**",
                 "/resources/**",
-                "/user/**/resetPassword"
+                "/user/**/resetPassword",
+                "/certificate/**/**"
         
                 
             )

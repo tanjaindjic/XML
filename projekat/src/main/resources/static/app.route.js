@@ -89,6 +89,12 @@
 			templateUrl: 'app/components/profile/profile.html',
 			controller: 'profileController',
 			controllerAs: 'pc'
+		})
+		.state('core.certificates', {
+			url: 'certificates',
+			templateUrl: 'app/components/certificates/certificates.html',
+			controller: 'certificateController',
+			controllerAs: 'certc'
 		});
      /* $locationProvider.html5Mode({
     	  enabled: true,

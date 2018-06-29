@@ -320,6 +320,11 @@
 			$location.path('/login');
 		}
 		
+		$scope.certificate = function() {
+			$scope.panelToShow = -1;
+			$location.path('/certificates');
+		}
+		
 		$scope.register = function() {
 			$scope.swapPanel(-1);
 			$location.path('/register');

@@ -110,7 +110,7 @@
         crc.checkStatus = function(){
         	$http({
                 method: 'GET',
-                url: 'https://localhost:8096/certificates/check/'+$scope.checkNumber, 
+                url: 'https://localhost:8096/certificate/check/'+$scope.checkNumber, 
                 headers: createAuthorizationTokenHeader()
               }).then(function successCallback(response) {
             	
@@ -143,7 +143,7 @@
         	}
         	$http({
                 method: 'GET',
-                url: 'https://localhost:8096/certificates/download/'+$scope.downloadNumber, 
+                url: 'https://localhost:8096/certificate/download/'+$scope.downloadNumber, 
                 headers: createAuthorizationTokenHeader()
               }).then(function successCallback(data, status, headers, config) {            	
             	  var res = data;

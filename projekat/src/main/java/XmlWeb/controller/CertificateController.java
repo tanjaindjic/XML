@@ -30,7 +30,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import XmlWeb.config.AdminRead;
 import XmlWeb.config.AdminWrite;
+import XmlWeb.config.AgentRead;
 import XmlWeb.config.AgentWrite;
+import XmlWeb.config.UserRead;
 import XmlWeb.model.Korisnik;
 import XmlWeb.model.Enums.StatusKorisnika;
 import XmlWeb.security.CertificateDTO;
@@ -65,7 +67,9 @@ public class CertificateController {
     }
 
     @AdminRead
-    @RequestMapping(value = "/certificates/check/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN)
+    @AgentRead
+    @UserRead
+    @RequestMapping(value = "/certificate/check/{id}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN)
     public ResponseEntity<String> checkCertificate(@PathVariable String id) {
         String respond = cs.check(id);
         return new ResponseEntity<>(respond, HttpStatus.OK);
@@ -82,8 +86,10 @@ public class CertificateController {
         return new ResponseEntity<>(respond, HttpStatus.OK);
     }
     @AdminRead
+    @AgentRead
+    @UserRead
     @Produces("text/plain")
-    @RequestMapping(value = "/certificates/download/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/certificate/download/{id}", method = RequestMethod.GET)
     public Response download(@PathVariable String id) {
         String crt = cs.download(id);
 

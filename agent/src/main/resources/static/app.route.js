@@ -62,6 +62,12 @@
 			templateUrl: 'app/components/agentReservations/agentReservations.html',
 			controller: 'agentReservationsController',
 			controllerAs: 'arc'
+		})		
+		.state('core.certificates', {
+			url: 'certificates',
+			templateUrl: 'app/components/certificates/certificates.html',
+			controller: 'certificateController',
+			controllerAs: 'certc'
 		});
      /* $locationProvider.html5Mode({
     	  enabled: true,
