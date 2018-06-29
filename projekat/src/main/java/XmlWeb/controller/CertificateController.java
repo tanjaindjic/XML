@@ -2,7 +2,6 @@ package XmlWeb.controller;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,11 +13,12 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,8 +37,6 @@ import XmlWeb.security.CertificateDTO;
 import XmlWeb.service.CertificateService;
 import XmlWeb.service.KeyStoreService;
 import XmlWeb.service.KorisnikService;
-
-import com.sun.research.ws.wadl.Resource;
 
 @RestController
 public class CertificateController {
@@ -84,10 +82,13 @@ public class CertificateController {
         return new ResponseEntity<>(respond, HttpStatus.OK);
     }
     @AdminRead
-    @RequestMapping(value = "/certificates/download/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_OCTET_STREAM)
-    public ResponseEntity<FileOutputStream> download(@PathVariable String id) {
+    @Produces("text/plain")
+    @RequestMapping(value = "/certificates/download/{id}", method = RequestMethod.GET)
+    public Response download(@PathVariable String id) {
         String crt = cs.download(id);
-        String filename = "certificate_"+id;
+
+		
+   //    String filename = "certificate_"+id;
         byte[] b = crt.getBytes();
         FileOutputStream out;
 		try {
@@ -101,7 +102,7 @@ public class CertificateController {
 	        try {
 				out.close();
 			//	System.out.println("DOWNLOAD: uspeo da dodje do statusa ok");
-		        return new ResponseEntity<>(out, HttpStatus.OK);              // .build();
+		    //    return new ResponseEntity<>(out, HttpStatus.OK);              // .build();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -110,7 +111,12 @@ public class CertificateController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+
+        File file = new File("certificate_download.crt");
+		ResponseBuilder response = Response.ok((Object) file);
+		response.header("Content-Disposition",
+			"attachment; filename=\"certificate.log\"");
+		return response.build();
     }
 
     @AdminWrite

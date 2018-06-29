@@ -4,12 +4,14 @@ import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.StringWriter;
 import java.security.KeyPair;
@@ -27,12 +29,7 @@ import java.util.List;
 
 import javax.xml.bind.DatatypeConverter;
 
-import XmlWeb.model.Enums.StatusKorisnika;
-import XmlWeb.model.Korisnik;
-import XmlWeb.security.CertificateDTO;
-import XmlWeb.security.CertificateGenerator;
-import XmlWeb.security.IssuerData;
-import XmlWeb.security.SubjectData;
+import org.apache.commons.collections.functors.ExceptionClosure;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.mail.EmailAttachment;
@@ -55,9 +52,20 @@ import org.bouncycastle.util.io.pem.PemObject;
 import org.bouncycastle.util.io.pem.PemWriter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.*;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import XmlWeb.model.Korisnik;
+import XmlWeb.model.Enums.StatusKorisnika;
+import XmlWeb.security.CertificateDTO;
+import XmlWeb.security.CertificateGenerator;
+import XmlWeb.security.IssuerData;
+import XmlWeb.security.SubjectData;
 
 
 @Service
@@ -209,11 +217,22 @@ public class    CertificateService {
         try {
        //     System.out.println("DOWNLOAD:  vrsi konverziju");
             sw.write(DatatypeConverter.printBase64Binary(cert.getEncoded()).replaceAll("(.{64})", "$1\n"));
+
+        	PrintWriter out;
+				try {
+					out = new PrintWriter("filename.txt");
+	                out.println(sw.toString());
+	                out.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            
         } catch (CertificateEncodingException e) {
             e.printStackTrace();
         }
 
-        System.out.println("DOWNLOAD:  povratna vrednost :" + sw.toString());
+   //     System.out.println("DOWNLOAD:  povratna vrednost :" + sw.toString());
         return sw.toString();
     }
 
