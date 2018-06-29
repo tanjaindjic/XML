@@ -191,20 +191,29 @@ public class    CertificateService {
 
     
     public String download(String id) {
-        X509Certificate cert = keyStoreService.getCertificate(id);
+    	List<X509Certificate> certs = keyStoreService.getCertificates();
+    	X509Certificate cert = null;
+    	for (X509Certificate c0 : certs) {
+            if (c0.getSerialNumber().toString().equals(id)) {
+                cert=c0;
+            }
+        }
+   //     System.out.println("DOWNLOAD: id "+id);
         if (cert == null) {
+       //     System.out.println("DOWNLOAD:  vraca null");
             return null;
         }
+     //   System.out.println("DOWNLOAD:  nije null");
         StringWriter sw = new StringWriter();
 
         try {
-            sw.write("-----BEGIN CERTIFICATE-----\n");
+       //     System.out.println("DOWNLOAD:  vrsi konverziju");
             sw.write(DatatypeConverter.printBase64Binary(cert.getEncoded()).replaceAll("(.{64})", "$1\n"));
-            sw.write("\n-----END CERTIFICATE-----\n");
         } catch (CertificateEncodingException e) {
             e.printStackTrace();
         }
 
+        System.out.println("DOWNLOAD:  povratna vrednost :" + sw.toString());
         return sw.toString();
     }
 

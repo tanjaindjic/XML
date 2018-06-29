@@ -152,3 +152,7 @@
 .tudjiChat{
     background-color: aqua;
 }
+.aCer:hover {
+	cursor: pointer;	
+    background-color: white;
+}

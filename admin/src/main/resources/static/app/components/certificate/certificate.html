@@ -2,6 +2,7 @@
 	<ul class='ulCer'>
 	  <li class='liCer'><a class="aCer" ng-click='crc.all()'>All Certificates</a></li>
 	  <li class='liCer'><a class="aCer" ng-click='crc.check()'>Check Status</a></li>
+	  <li class='liCer'><a class="aCer" ng-click='crc.downloadCert()'>Download</a></li>
 	  <li class='liCer'><a class="aCer" ng-click='crc.revokeCert()'>Revoke</a></li>
 	</ul>
 </div>
@@ -70,5 +71,20 @@
 		<p ng-show='showIsRevoked'>
 			{{revokedStatus}}
 		</p>
+	</div>
+</div>
+<div ng-show='isDownload'>
+	<div>
+		<h2>Download Certificate</h2>
+		<table>	
+			<tr>
+				<td width='10%'></td>
+				<td width='90%'><input type="number" placeholder="Serial number*" ng-model='downloadNumber' required /><td>
+			</tr>
+			<tr>
+				<td></td>
+				<td><input type="submit" value="Download" ng-click="crc.makeItDownlaod()"/><br><hr /></td>
+			</tr>
+		</table>
 	</div>
 </div>

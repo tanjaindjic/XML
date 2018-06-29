@@ -26,9 +26,10 @@
         	$scope.checkedStatus="";
         	$scope.showCheckedStatus=false;
         	$scope.showIsRevoked=false;
+        	$scope.isDownload=false;
         	$scope.revokedStatus="";
         	$scope.allCerts = [];
-        	
+        	$scope.downloadNumber="";
      
         	$http({
                 method: 'GET',
@@ -52,6 +53,7 @@
         	$scope.isRevoke=false;
         	$scope.showIsRevoked=false;
         	$scope.showCheckedStatus=false;
+        	$scope.isDownload=false;
         	
         }
         crc.makeNew = function(){
@@ -62,7 +64,7 @@
         	$scope.isRevoke=false;
         	$scope.showIsRevoked=false;
         	$scope.showCheckedStatus=false;
-        	
+        	$scope.isDownload=false;        	
         }
         crc.getCert = function(){
         	$scope.isAll=false;
@@ -72,7 +74,7 @@
         	$scope.isRevoke=false;
         	$scope.showIsRevoked=false;
         	$scope.showCheckedStatus=false;
-        	
+        	$scope.isDownload=false;        	
         }
         crc.check = function(){
         	$scope.isAll=false;
@@ -81,7 +83,8 @@
         	$scope.isGet=false;
         	$scope.isRevoke=false;    
         	$scope.showIsRevoked=false;
-        	$scope.showCheckedStatus=false;    	
+        	$scope.showCheckedStatus=false;    
+        	$scope.isDownload=false;	
         }
         crc.revokeCert = function(){
         	$scope.isAll=false;
@@ -91,6 +94,17 @@
         	$scope.isRevoke=true;
         	$scope.showIsRevoked=false;
         	$scope.showCheckedStatus=false;
+        	$scope.isDownload=false;
+        }
+        crc.downloadCert = function(){
+        	$scope.isAll=false;
+        	$scope.isCheck=false;
+        	$scope.isMake=false;
+        	$scope.isGet=false;
+        	$scope.isRevoke=false;
+        	$scope.showIsRevoked=false;
+        	$scope.showCheckedStatus=false;
+        	$scope.isDownload=true;
         }
      
         crc.checkStatus = function(){
@@ -121,6 +135,21 @@
             	  else
             		  $scope.revokedStatus = "status for "+$scope.checkNumber+" :NOT REVOKED";
             	  $scope.showIsRevoked=true;
+              }); 
+        }
+        crc.makeItDownlaod = function(){
+        	if($scope.downloadNumber==null || $scope.downloadNumber==""){
+        		return;
+        	}
+        	$http({
+                method: 'GET',
+                url: 'https://localhost:8096/certificates/download/'+$scope.downloadNumber, 
+                headers: createAuthorizationTokenHeader()
+              }).then(function successCallback(data, status, headers, config) {            	
+            	  var res = data;
+            	  var blob = new Blob([data], {type: 'application/binary'});
+            	    var objectUrl = URL.createObjectURL(blob);
+            	    window.open(objectUrl);
               }); 
         }
         crc.showDone= function() {			
