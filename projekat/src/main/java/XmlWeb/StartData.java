@@ -166,10 +166,6 @@ public class StartData {
          TipSmestaja tipSmestaja = new TipSmestaja();
          tipSmestaja.setTip("Kuca");
          tipSmestajaRepository.save(tipSmestaja);
-
-         /*KategorijaSmestaja kategorijaSmestaja = new KategorijaSmestaja();
-         kategorijaSmestaja.setKategorija("Vrh");
-         kategorijaRepository.save(kategorijaSmestaja);*/
          
          addSmestaj("Smestaj1", "Adresa1", "Grad1", "Drzava1", 1, 0, 1, 2, new Date(118, 1, 1), new Date(119 , 1, 1),100L, (float)3.5);
          addSmestaj("Smestaj1", "Adresa2", "Grad1", "Drzava2", 2, 2, 4, 1, new Date(118, 1, 1), new Date(119 , 1, 1),200L, (float)2.6);
@@ -184,7 +180,6 @@ public class StartData {
 
          Korisnik k1 = new Korisnik();
          k1.setId(idVlasnika);
-         /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
          
          ArrayList<Soba> sobe = new ArrayList<>();
          ArrayList<Slika> slike = new ArrayList<>();
@@ -207,8 +202,7 @@ public class StartData {
          sobe.add(temp);
          sobe.add(temp1);
          sobe.add(temp2);
-         
-         /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
+
          Smestaj sm = new Smestaj();
          sm.setNaziv("Maldivi VIP");
          sm.setOpis("Hotel Slavija je smešten u centru Beograda, u neposrednoj blizini raznovrsnih prodavnica i restorana. U ponudi ima besplatan bežični internet u zajedničkim prostorijama i svim smeštajnim jedinicama. Nalazi se na svega par koraka od Hrama Sv. Save, koji je jedna od najvažnijih gradskih znamenitosti.\n" + 
@@ -230,13 +224,9 @@ public class StartData {
          ArrayList<KategorijaSmestaja> kats = (ArrayList<KategorijaSmestaja>) kategorijaRepository.findAll();
          sm.setKategorija(kats.get(1));
          sm.setVlasnik(k1);
-         
-         
-         /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
+
          sm.setSlike(slike);
          sm.setSobe(sobe);
-         /*Dodajem deo za dodavanje slike, nemo jme ubiti stankovicu*/
-
 
          sm = smestajRepository.save(sm);
 
@@ -371,7 +361,6 @@ public class StartData {
          
          List l = new ArrayList<>();
          Authority a;
-         //OVO SAM IZMENILA JER CE BITI ZAKUCANE ROLE NEMA STA DA SE DODAJE SAMO DA NADJE ODGOVARAJUCU IZ REPOSITORY
          if(r == Role.USER)
             a = authorityRepository.findByName(AuthorityName.ROLE_USER);
          else if (r == Role.AGENT)
