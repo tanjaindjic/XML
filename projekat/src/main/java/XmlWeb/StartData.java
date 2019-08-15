@@ -134,7 +134,6 @@ public class StartData {
          authorityRepository.save(adminAuthority);
          System.out.println("dodao admira");
 
-
          CertificateDTO dto = new CertificateDTO();
          dto.setCommonName(k.getUsername());
          dto.setId(k.getId().toString());
